@@ -11,6 +11,28 @@ app_color = "grey"
 app_email = "veena.h@promantia.com"
 app_license = "MIT"
 
+fixtures = ["Workflow","Workflow State","Workflow Action Master",
+{"dt": "Custom Field",
+		"filters": [
+         [
+             "name", "in", [
+		"Job Applicant-interview_date",
+		"Job Applicant-interview_time",
+		"Job Applicant-department",
+		"Job Applicant-department_manager",
+		"Department-department_manager"
+		]
+	]
+]
+}
+]
+doctype_js = {
+	"Job Applicant" : "axis_inspection/doctype/job_applicant/job_applicant.js"
+}
+scheduler_events = {
+	"daily":  ["axis_inspection.axis_inspection.doctype.certificates.certificates.validate_expiry_date"
+	]
+}
 # Includes in <head>
 # ------------------
 
