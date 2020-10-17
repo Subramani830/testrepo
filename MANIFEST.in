@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include axis_inspection *.css
+recursive-include axis_inspection *.csv
+recursive-include axis_inspection *.html
+recursive-include axis_inspection *.ico
+recursive-include axis_inspection *.js
+recursive-include axis_inspection *.json
+recursive-include axis_inspection *.md
+recursive-include axis_inspection *.png
+recursive-include axis_inspection *.py
+recursive-include axis_inspection *.svg
+recursive-include axis_inspection *.txt
+recursive-exclude axis_inspection *.pyc
