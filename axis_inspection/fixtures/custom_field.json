@@ -133,7 +133,7 @@
   "insert_after": "source_name",
   "label": "Interview date",
   "length": 0,
-  "mandatory_depends_on": null,
+  "mandatory_depends_on": "eval:doc.status==\"Accepted\"",
   "modified": "2020-10-14 13:50:24.909682",
   "name": "Job Applicant-interview_date",
   "no_copy": 0,
