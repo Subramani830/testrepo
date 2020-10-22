@@ -20,16 +20,25 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 		"Job Applicant-interview_time",
 		"Job Applicant-department",
 		"Job Applicant-department_manager",
-		"Department-department_manager"
+		"Department-department_manager",
+		"Employee Separation-department_manager",
+		"Employee Separation-employee_resignation",
+		"Employee Onboarding-probation"
 		]
 	]
 ]
+},
+{"dt": "Notification", 
+		"filters": [
+		"is_standard != 1"	
+		]
 }
 ]
 doctype_js = {
 	"Job Applicant" : "axis_inspection/doctype/job_applicant/job_applicant.js",
 	"Employee Costs" : "axis_inspection/doctype/employee_costs/employee_costs.js",
-	"Clearance Process" : "axis_inspection/doctype/clearance_process/clearance_process.js"
+	"Clearance Process" : "axis_inspection/doctype/clearance_process/clearance_process.js",
+	"Employee Separation" : "axis_inspection/doctype/employee_separation/employee_separation.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.certificates.certificates.validate_expiry_date"
