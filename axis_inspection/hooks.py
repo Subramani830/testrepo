@@ -27,11 +27,17 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 }
 ]
 doctype_js = {
-	"Job Applicant" : "axis_inspection/doctype/job_applicant/job_applicant.js"
+	"Job Applicant" : "axis_inspection/doctype/job_applicant/job_applicant.js",
+	"Employee Costs" : "axis_inspection/doctype/employee_costs/employee_costs.js",
+	"Clearance Process" : "axis_inspection/doctype/clearance_process/clearance_process.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.certificates.certificates.validate_expiry_date"
 	]
+}
+
+override_doctype_dashboards = {
+	"Employee": ["axis_inspection.axis_inspection.doctype.employee.employee_dashboard.get_dashboard_data"]
 }
 # Includes in <head>
 # ------------------

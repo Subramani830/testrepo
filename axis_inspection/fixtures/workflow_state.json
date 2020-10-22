@@ -2,6 +2,18 @@
  {
   "docstatus": 0,
   "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2020-10-21 12:20:37.098352",
+  "name": "Cleared",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "style": "",
+  "workflow_state_name": "Cleared"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
   "icon": "question-sign",
   "modified": "2020-10-12 13:07:26.284716",
   "name": "Pending",
