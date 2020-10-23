@@ -33,10 +33,21 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 		"filters": [
 		"is_standard != 1"	
 		]
+},
+{"dt": "Print Format",
+        "filters": [
+	[
+		"name","in",
+ 			[
+			"Axis Job Offer Print Format"
+]
+	]
+]
 }
 ]
 doctype_js = {
 	"Job Applicant" : "axis_inspection/doctype/job_applicant/job_applicant.js",
+	"Job Offer" : "axis_inspection/doctype/job_offer/job_offer.js",
 	"Employee Costs" : "axis_inspection/doctype/employee_costs/employee_costs.js",
 	"Clearance Process" : "axis_inspection/doctype/clearance_process/clearance_process.js",
 	"Employee Separation" : "axis_inspection/doctype/employee_separation/employee_separation.js",
