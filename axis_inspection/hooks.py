@@ -24,7 +24,10 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 		"Employee Separation-department_manager",
 		"Employee Separation-employee_resignation",
 		"Employee Onboarding-probation",
-		"Customer-blacklisted"
+		"Customer-blacklisted",
+		"Sales Order-contract",
+		"Quotation-contract",
+		"Employee-department_manager"
 		]
 	]
 ]
@@ -51,7 +54,9 @@ doctype_js = {
 	"Employee Costs" : "axis_inspection/doctype/employee_costs/employee_costs.js",
 	"Clearance Process" : "axis_inspection/doctype/clearance_process/clearance_process.js",
 	"Employee Separation" : "axis_inspection/doctype/employee_separation/employee_separation.js",
-	"Sales Order" : "axis_inspection/doctype/sales_order/sales_order.js"
+	"Sales Order" : "axis_inspection/doctype/sales_order/sales_order.js",
+	"Contract" : "axis_inspection/doctype/contract/contract.js",
+	"Quotation" : "axis_inspection/doctype/quotation/quotation.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.certificates.certificates.validate_expiry_date"
@@ -59,7 +64,8 @@ scheduler_events = {
 }
 
 override_doctype_dashboards = {
-	"Employee": ["axis_inspection.axis_inspection.doctype.employee.employee_dashboard.get_dashboard_data"]
+	"Employee": ["axis_inspection.axis_inspection.doctype.employee.employee_dashboard.get_dashboard_data"],
+	"Contract": ["axis_inspection.axis_inspection.doctype.contract.contract_dashboard.get_dashboard_data"]
 }
 # Includes in <head>
 # ------------------
