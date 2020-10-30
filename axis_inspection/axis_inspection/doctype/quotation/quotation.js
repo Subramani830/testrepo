@@ -11,6 +11,8 @@ frappe.ui.form.on("Quotation", {
            		  cur_frm.refresh_field("party_name");
 			  frm.doc.order_type='Sales';
          		  cur_frm.refresh_field("order_type");
+			  frm.doc.price_list=transfer.price_list
+         		   cur_frm.refresh_field("price_list");
 			  frm.doc.customer_name=transfer.party_name;
          		  cur_frm.refresh_field("customer_name");
 			  frappe.db.get_value("Address",frm.doc.customer,"name",(s)=>{
@@ -20,7 +22,24 @@ frappe.ui.form.on("Quotation", {
 			frappe.db.get_value("Customer",frm.doc.customer_name,"customer_primary_contact",(a)=>{
 			frm.doc.contact_person = a.customer_primary_contact;
 			cur_frm.refresh_field("contact_person");
-            		})       
+            		}) 
+
+			cur_frm.clear_table("items");
+			$.each(transfer.items, function(index, row){
+			    var d=frm.add_child("items");
+			    d.item_code = row.item_code;
+			    d.delivery_date = row.delivery_date;
+			    d.item_name = row.item_name;
+			    d.description = row.description;
+			    d.item_group = row.item_group;
+			    d.brand = row.brand;
+			    d.image = row.image;
+			    d.rate = row.rate;
+			    d.image_view = row.image_view;
+			    d.qty = row.qty;
+			    d.stock_uom = row.stock_uom;
+			    d.uom = row.uom;
+			})      
 	 })
 	}
 })

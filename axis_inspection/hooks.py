@@ -27,7 +27,16 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 		"Customer-blacklisted",
 		"Sales Order-contract",
 		"Quotation-contract",
-		"Employee-department_manager"
+		"Employee-department_manager",
+		"Journal Entry-reference_no",
+		"Contract-items",
+		"Contract-currency",
+		"Contract-conversion_rate",
+		"Contract-column_break_14",
+		"Contract-price_list",
+		"Contract-currency_and_price_list_details",
+		"Contract-company",
+		"Task-clt_number"
 		]
 	]
 ]
@@ -51,15 +60,13 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 doctype_js = {
 	"Job Applicant" : "axis_inspection/doctype/job_applicant/job_applicant.js",
 	"Job Offer" : "axis_inspection/doctype/job_offer/job_offer.js",
-	"Employee Costs" : "axis_inspection/doctype/employee_costs/employee_costs.js",
-	"Clearance Process" : "axis_inspection/doctype/clearance_process/clearance_process.js",
 	"Employee Separation" : "axis_inspection/doctype/employee_separation/employee_separation.js",
 	"Sales Order" : "axis_inspection/doctype/sales_order/sales_order.js",
 	"Contract" : "axis_inspection/doctype/contract/contract.js",
 	"Quotation" : "axis_inspection/doctype/quotation/quotation.js"
 }
 scheduler_events = {
-	"daily":  ["axis_inspection.axis_inspection.doctype.certificates.certificates.validate_expiry_date"
+	"daily":  ["axis_inspection.axis_inspection.doctype.document.document.validate_expiry_date"
 	]
 }
 

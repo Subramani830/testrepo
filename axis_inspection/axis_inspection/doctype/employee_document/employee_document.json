@@ -1,44 +1,27 @@
 {
  "actions": [],
- "allow_import": 1,
- "autoname": "CER-.#####",
- "creation": "2020-10-12 14:22:36.504815",
+ "autoname": "field:document_name",
+ "creation": "2020-10-28 11:29:43.029263",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "company",
-  "employee",
-  "document_detail"
+  "document_name"
  ],
  "fields": [
   {
-   "fieldname": "company",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Company",
-   "options": "Company",
-   "reqd": 1
-  },
-  {
-   "fieldname": "employee",
-   "fieldtype": "Link",
-   "label": "Employee",
-   "options": "Employee"
-  },
-  {
-   "fieldname": "document_detail",
-   "fieldtype": "Table",
-   "label": "Document Detail",
-   "options": "Document Detail"
+   "fieldname": "document_name",
+   "fieldtype": "Data",
+   "label": "Document Name",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2020-10-12 21:34:09.926980",
+ "modified": "2020-10-28 11:33:41.391673",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
- "name": "Certificates",
+ "name": "Employee Document",
  "owner": "Administrator",
  "permissions": [
   {
@@ -61,7 +44,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Employee",
+   "role": "Administrator",
    "share": 1,
    "write": 1
   }

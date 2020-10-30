@@ -1,23 +1,24 @@
 {
  "actions": [],
- "autoname": "EMP-CST-.####",
- "creation": "2020-10-19 17:03:07.656638",
+ "allow_import": 1,
+ "autoname": "DOC-.#####",
+ "creation": "2020-10-29 10:21:25.413379",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "company",
   "employee",
-  "employee_cost_details",
-  "total_cost",
-  "amended_from"
+  "document_detail"
  ],
  "fields": [
   {
    "fieldname": "company",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Company",
-   "options": "Company"
+   "options": "Company",
+   "reqd": 1
   },
   {
    "fieldname": "employee",
@@ -26,36 +27,18 @@
    "options": "Employee"
   },
   {
-   "fieldname": "employee_cost_details",
+   "fieldname": "document_detail",
    "fieldtype": "Table",
-   "label": "Employee Cost Details",
-   "options": "Employee Cost Details"
-  },
-  {
-   "default": "0",
-   "fieldname": "total_cost",
-   "fieldtype": "Currency",
-   "label": "Total Cost",
-   "options": "Cuurency",
-   "read_only": 1
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Employee Costs",
-   "print_hide": 1,
-   "read_only": 1
+   "label": "Document Detail",
+   "options": "Document Detail"
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
- "modified": "2020-10-29 10:45:37.588284",
+ "modified": "2020-10-29 10:21:25.413379",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
- "name": "Employee Costs",
+ "name": "Document",
  "owner": "Administrator",
  "permissions": [
   {
@@ -67,6 +50,18 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employee",
    "share": 1,
    "write": 1
   }

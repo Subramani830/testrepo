@@ -1,10 +1,12 @@
 // Copyright (c) 2020, veena and contributors
 // For license information, please see license.txt
 
+
 var today = new Date().toISOString().slice(0, 10)
-frappe.ui.form.on('Certificates', {
-	//refresh: function(frm) {
-	//}
+frappe.ui.form.on('Document', {
+	// refresh: function(frm) {
+
+	// }
 });
 frappe.ui.form.on('Document Detail', {
 	expiry_date:function(frm,cdt,cdn){

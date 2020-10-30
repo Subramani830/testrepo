@@ -2,13 +2,29 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Employee Costs', {
-	// refresh: function(frm) {
-
-	// }
+	refresh: function(frm) {
+		if(frm.doc.docstatus === 1){    
+            frm.page.add_inner_button('Journal Entry', function(){
+                var doc = frappe.model.get_new_doc('Journal Entry');
+                doc.reference_no = frm.doc.name;
+		doc.company=frm.doc.company;
+		doc.voucher_type="Journal Entry";
+		doc.naming_series='ACC-JV-.YYYY.-';
+                frappe.set_route('Form', 'Journal Entry', doc.name);
+            },'Create')
+	}
+}
 
 });
 frappe.ui.form.on('Employee Cost Details' , {
  cost:function(frm,cdt,cdn){
+	 $.each(frm.doc.employee_cost_details,function(idx,cost){
+		if(cost.cost<0){
+			cost.cost=0;
+			frappe.throw("Cost should be greater than 0")
+		}
+	 });
+	
             set_total_cost(frm,cdt,cdn);
 },
  employee_cost_details_remove:function(frm,cdt,cdn){

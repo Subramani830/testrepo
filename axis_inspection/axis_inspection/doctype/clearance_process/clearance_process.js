@@ -3,14 +3,7 @@
 
 frappe.ui.form.on('Clearance Process', {
 	 refresh: function(frm,cdt,cdn) {
-		if(frm.fields_dict["clearance_process_detail"].grid.get_field('item_code')) {
-			frm.set_query("equipment", "clearance_process_detail", function() {
-				return {
-					query: "erpnext.controllers.queries.item_query",
-					filters: {'is_fixed_asset': 1}
-				}
-			});
-		}
+		
 	 },
 	before_save:function(frm,cdt,cdn){
 		var status="Cleared"

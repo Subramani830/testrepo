@@ -7,10 +7,12 @@
  "field_order": [
   "project",
   "equipment",
+  "condition_of_equipment",
   "status"
  ],
  "fields": [
   {
+   "columns": 1,
    "fieldname": "project",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -22,7 +24,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Equipment",
-   "options": "Item"
+   "options": "Asset"
   },
   {
    "fieldname": "status",
@@ -30,12 +32,20 @@
    "in_list_view": 1,
    "label": "Status",
    "options": "Open\nCleared"
+  },
+  {
+   "columns": 2,
+   "fieldname": "condition_of_equipment",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Condition of Equipment",
+   "options": "\nGood\nBad\nNeeds Repair\nNeeds Maintenance\nNeeds Calibration"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2020-10-22 10:48:23.485290",
+ "modified": "2020-10-29 11:39:40.974557",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Clearance Process Detail",

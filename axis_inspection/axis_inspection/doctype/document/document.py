@@ -10,16 +10,15 @@ from frappe import _
 from six import string_types
 from frappe.utils import date_diff
 from frappe.core.doctype.communication.email import make
-
-class Certificates(Document):
-		pass
+class Document(Document):
+	pass
 
 def validate_expiry_date():
-	docName=frappe.get_all("Certificates")
+	docName=frappe.get_all("Document")
 	for v in docName:
-		docList=frappe.db.get_list("Certificates",filters={'name':v.name},fields={'*'})
+		docList=frappe.db.get_list("Document",filters={'name':v.name},fields={'*'})
 		for row in docList:
-				documentList=frappe.db.get_list("Document Detail",filters={'parenttype':'Certificates','parent':row.name},fields={'*'})
+				documentList=frappe.db.get_list("Document Detail",filters={'parenttype':'Document','parent':row.name},fields={'*'})
 				for val in documentList:
 					new_date=str(date.today())
 					expire_date=date_diff(val.expiry_date,new_date)

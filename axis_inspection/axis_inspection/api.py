@@ -13,4 +13,3 @@ def get_department_manager(doctype,name):
                 employee_id= frappe.db.get_value('Department',{'name':department},'department_manager')
                 if employee_id:
                      return frappe.db.get_value(doctype,{'name':employee_id},'user_id')
-                     
