@@ -37,7 +37,11 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 		"Contract-currency_and_price_list_details",
 		"Contract-company",
 		"Task-clt_number",
-		"Timesheet-department_manager"
+		"Timesheet-department_manager",
+		"Job Offer-reason_for_rejection",
+		"Training Event-internal_trainer",
+		"Employee Boarding Activity-status",
+		"Vehicle-asset"
 		]
 	]
 ]
@@ -46,6 +50,18 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 		"filters": [
 		"is_standard != 1"	
 		]
+},
+{"dt": "Property Setter",
+        "filters": [
+	[
+		"name","in",
+ 			[
+				"Job Offer-status-options",
+				"Training Event-trainer_email-options"
+				
+			]
+	]
+	]
 },
 {"dt": "Print Format",
         "filters": [
@@ -65,7 +81,9 @@ doctype_js = {
 	"Sales Order" : "axis_inspection/doctype/sales_order/sales_order.js",
 	"Contract" : "axis_inspection/doctype/contract/contract.js",
 	"Quotation" : "axis_inspection/doctype/quotation/quotation.js",
-	"Timesheet" : "axis_inspection/doctype/timesheet/timesheet.js"
+	"Timesheet" : "axis_inspection/doctype/timesheet/timesheet.js",
+	"Training Event" : "axis_inspection/doctype/training_event/training_event.js",
+	"Vehicle" : "axis_inspection/doctype/vehicle/vehicle.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.document.document.validate_expiry_date"
