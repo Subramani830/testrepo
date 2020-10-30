@@ -1,0 +1,34 @@
+[
+ {
+  "default_value": null,
+  "doc_type": "Training Event",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "trainer_email",
+  "modified": "2020-10-29 11:36:49.858006",
+  "name": "Training Event-trainer_email-options",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "options",
+  "property_type": "Text",
+  "value": "Email"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Job Offer",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "status",
+  "modified": "2020-10-29 16:51:16.705390",
+  "name": "Job Offer-status-options",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "options",
+  "property_type": "Text",
+  "value": "Awaiting Response\nApplicant Accepted\nSent\nNot Sent\nApplicant Rejected"
+ }
+]

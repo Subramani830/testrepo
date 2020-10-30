@@ -17,7 +17,7 @@ def get_dashboard_data(data):
 			},
 			{
 				'label': _('Lifecycle'),
-				'items': ['Employee Transfer', 'Employee Promotion', 'Employee Separation']
+				'items': ['Employee Transfer', 'Employee Promotion', 'Employee Separation','Employee Onboarding']
 			},
 			{
 				'label': _('Shift'),

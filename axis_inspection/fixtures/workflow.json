@@ -4,7 +4,7 @@
   "doctype": "Workflow",
   "document_type": "Employee Advance",
   "is_active": 1,
-  "modified": "2020-10-22 11:57:10.943632",
+  "modified": "2020-10-30 16:49:12.412439",
   "name": "Employee Advance Flow",
   "override_status": 0,
   "parent": null,
@@ -26,7 +26,7 @@
     "update_value": ""
    },
    {
-    "allow_edit": "Accounts Manager",
+    "allow_edit": "Department Manager",
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -34,7 +34,7 @@
     "parent": "Employee Advance Flow",
     "parentfield": "states",
     "parenttype": "Workflow",
-    "state": "Initial Review",
+    "state": "Reviewed by DM",
     "update_field": null,
     "update_value": null
    },
@@ -47,7 +47,7 @@
     "parent": "Employee Advance Flow",
     "parentfield": "states",
     "parenttype": "Workflow",
-    "state": "Second Review",
+    "state": "Reviewed by HR Manager",
     "update_field": null,
     "update_value": null
    },
@@ -60,7 +60,7 @@
     "parent": "Employee Advance Flow",
     "parentfield": "states",
     "parenttype": "Workflow",
-    "state": "Approved",
+    "state": "Approved by CEO",
     "update_field": "",
     "update_value": null
    },
@@ -82,9 +82,9 @@
    {
     "action": "Review",
     "allow_self_approval": 0,
-    "allowed": "Accounts Manager",
+    "allowed": "Department Manager",
     "condition": null,
-    "next_state": "Initial Review",
+    "next_state": "Reviewed by DM",
     "parent": "Employee Advance Flow",
     "parentfield": "transitions",
     "parenttype": "Workflow",
@@ -93,7 +93,7 @@
    {
     "action": "Reject",
     "allow_self_approval": 0,
-    "allowed": "Accounts Manager",
+    "allowed": "Department Manager",
     "condition": null,
     "next_state": "Draft",
     "parent": "Employee Advance Flow",
@@ -106,11 +106,11 @@
     "allow_self_approval": 0,
     "allowed": "HR Manager",
     "condition": null,
-    "next_state": "Second Review",
+    "next_state": "Reviewed by HR Manager",
     "parent": "Employee Advance Flow",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Initial Review"
+    "state": "Reviewed by DM"
    },
    {
     "action": "Reject",
@@ -121,18 +121,18 @@
     "parent": "Employee Advance Flow",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Initial Review"
+    "state": "Reviewed by DM"
    },
    {
     "action": "Approve",
     "allow_self_approval": 0,
     "allowed": "CEO",
     "condition": null,
-    "next_state": "Approved",
+    "next_state": "Approved by CEO",
     "parent": "Employee Advance Flow",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Second Review"
+    "state": "Reviewed by HR Manager"
    },
    {
     "action": "Reject",
@@ -143,7 +143,7 @@
     "parent": "Employee Advance Flow",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Second Review"
+    "state": "Reviewed by HR Manager"
    }
   ],
   "workflow_name": "Employee Advance Flow",
@@ -258,7 +258,7 @@
   "doctype": "Workflow",
   "document_type": "Employee Separation",
   "is_active": 1,
-  "modified": "2020-10-22 11:56:05.976530",
+  "modified": "2020-10-30 16:51:32.643177",
   "name": "Employee Separation Flow",
   "override_status": 0,
   "parent": null,
@@ -280,7 +280,7 @@
     "update_value": ""
    },
    {
-    "allow_edit": "Employee",
+    "allow_edit": "Department Manager",
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -323,7 +323,7 @@
    {
     "action": "Review",
     "allow_self_approval": 0,
-    "allowed": "Employee",
+    "allowed": "Department Manager",
     "condition": "frappe.session.user==doc.department_manager",
     "next_state": "Initial Review",
     "parent": "Employee Separation Flow",
@@ -334,7 +334,7 @@
    {
     "action": "Reject",
     "allow_self_approval": 0,
-    "allowed": "Employee",
+    "allowed": "Department Manager",
     "condition": "frappe.session.user==doc.department_manager",
     "next_state": "Applied",
     "parent": "Employee Separation Flow",
@@ -464,7 +464,7 @@
   "doctype": "Workflow",
   "document_type": "Employee Resignation",
   "is_active": 1,
-  "modified": "2020-10-22 11:55:42.268961",
+  "modified": "2020-10-30 16:50:26.412808",
   "name": "Employee Resignation Flow",
   "override_status": 0,
   "parent": null,
@@ -486,7 +486,7 @@
     "update_value": null
    },
    {
-    "allow_edit": "Employee",
+    "allow_edit": "Department Manager",
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -529,7 +529,7 @@
    {
     "action": "Review",
     "allow_self_approval": 0,
-    "allowed": "Employee",
+    "allowed": "Department Manager",
     "condition": "frappe.session.user==doc.department_manager",
     "next_state": "Initial Review",
     "parent": "Employee Resignation Flow",
@@ -540,7 +540,7 @@
    {
     "action": "Reject",
     "allow_self_approval": 0,
-    "allowed": "Employee",
+    "allowed": "Department Manager",
     "condition": "frappe.session.user==doc.department_manager",
     "next_state": "Applied",
     "parent": "Employee Resignation Flow",
