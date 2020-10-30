@@ -3,12 +3,12 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2020-10-19 15:50:13.000329",
+  "modified": "2020-10-30 15:57:06.253928",
   "name": "Draft",
   "parent": null,
   "parentfield": null,
   "parenttype": null,
-  "style": "",
+  "style": "Warning",
   "workflow_state_name": "Draft"
  },
  {
@@ -154,5 +154,17 @@
   "parenttype": null,
   "style": "",
   "workflow_state_name": "Open"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2020-10-30 15:57:36.084732",
+  "name": "Submitted",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "style": "Primary",
+  "workflow_state_name": "Submitted"
  }
 ]

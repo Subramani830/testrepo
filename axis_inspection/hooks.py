@@ -36,7 +36,8 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 		"Contract-price_list",
 		"Contract-currency_and_price_list_details",
 		"Contract-company",
-		"Task-clt_number"
+		"Task-clt_number",
+		"Timesheet-department_manager"
 		]
 	]
 ]
@@ -63,7 +64,8 @@ doctype_js = {
 	"Employee Separation" : "axis_inspection/doctype/employee_separation/employee_separation.js",
 	"Sales Order" : "axis_inspection/doctype/sales_order/sales_order.js",
 	"Contract" : "axis_inspection/doctype/contract/contract.js",
-	"Quotation" : "axis_inspection/doctype/quotation/quotation.js"
+	"Quotation" : "axis_inspection/doctype/quotation/quotation.js",
+	"Timesheet" : "axis_inspection/doctype/timesheet/timesheet.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.document.document.validate_expiry_date"
