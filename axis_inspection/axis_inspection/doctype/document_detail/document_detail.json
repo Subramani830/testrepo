@@ -7,7 +7,8 @@
  "field_order": [
   "document_name",
   "expiry_date",
-  "renewal_date"
+  "renewal_date",
+  "status"
  ],
  "fields": [
   {
@@ -28,12 +29,20 @@
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Renewal Date"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Not Completed\nCompleted\nNeeds Action",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2020-10-28 11:36:20.954790",
+ "modified": "2020-11-03 14:31:28.137388",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Document Detail",
