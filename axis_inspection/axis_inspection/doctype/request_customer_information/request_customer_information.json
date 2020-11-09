@@ -54,7 +54,6 @@
   "campaign",
   "column_break1",
   "transaction_date",
-  "amended_from",
   "lost_reasons",
   "request_customer_quotation",
   "amended_from"
@@ -405,21 +404,17 @@
   {
    "fieldname": "amended_from",
    "fieldtype": "Link",
-   "ignore_user_permissions": 1,
    "label": "Amended From",
    "no_copy": 1,
-   "oldfieldname": "amended_from",
-   "oldfieldtype": "Data",
-   "options": "Opportunity",
+   "options": "Request Customer Information",
    "print_hide": 1,
-   "read_only": 1,
-   "width": "150px"
+   "read_only": 1
   },
   {
    "fieldname": "lost_reasons",
    "fieldtype": "Table MultiSelect",
    "label": "Lost Reasons",
-   "options": "Opportunity Lost Reason Detail",
+   "options": "Lost Reason Detail",
    "read_only": 1
   },
   {
@@ -441,7 +436,7 @@
  "icon": "fa fa-info-sign",
  "is_submittable": 1,
  "links": [],
- "modified": "2020-11-03 15:30:53.993148",
+ "modified": "2020-11-09 15:32:22.484867",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Request Customer Information",
