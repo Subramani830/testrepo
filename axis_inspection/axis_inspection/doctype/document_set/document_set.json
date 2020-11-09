@@ -1,14 +1,14 @@
 {
  "actions": [],
  "allow_import": 1,
- "autoname": "DOC-.#####",
- "creation": "2020-10-29 10:21:25.413379",
+ "autoname": "DOC-SET-.#####",
+ "creation": "2020-11-04 17:48:41.880656",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "company",
-  "employee",
+  "employee_name",
   "document_detail"
  ],
  "fields": [
@@ -21,24 +21,25 @@
    "reqd": 1
   },
   {
-   "fieldname": "employee",
-   "fieldtype": "Link",
-   "label": "Employee",
-   "options": "Employee"
-  },
-  {
    "fieldname": "document_detail",
    "fieldtype": "Table",
    "label": "Document Detail",
    "options": "Document Detail"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "employee_name",
+   "fieldtype": "Link",
+   "label": "Employee Name",
+   "options": "Employee"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2020-10-29 10:21:25.413379",
+ "modified": "2020-11-04 17:49:22.396018",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
- "name": "Document",
+ "name": "Document Set",
  "owner": "Administrator",
  "permissions": [
   {
@@ -69,5 +70,7 @@
  "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "track_changes": 1
+ "track_changes": 1,
+ "track_seen": 1,
+ "track_views": 1
 }

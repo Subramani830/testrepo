@@ -41,7 +41,14 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 		"Job Offer-reason_for_rejection",
 		"Training Event-internal_trainer",
 		"Employee Boarding Activity-status",
-		"Vehicle-asset"
+		"Vehicle-asset",
+		"Purchase Order-task",
+		"Task-in_house",
+		"Task-out_sourced",
+		"Quotation-request_customer_quotation",
+		"Quotation-request_customer_information",
+		"Supplier Quotation-request_customer_quotation",
+		"Training Event Employee-equipment"
 		]
 	]
 ]
@@ -83,10 +90,12 @@ doctype_js = {
 	"Quotation" : "axis_inspection/doctype/quotation/quotation.js",
 	"Timesheet" : "axis_inspection/doctype/timesheet/timesheet.js",
 	"Training Event" : "axis_inspection/doctype/training_event/training_event.js",
-	"Vehicle" : "axis_inspection/doctype/vehicle/vehicle.js"
+	"Vehicle" : "axis_inspection/doctype/vehicle/vehicle.js",
+	"Task" : "axis_inspection/doctype/task/task.js",
+	"Sales Invoice" : "axis_inspection/doctype/sales_invoice/sales_invoice.js"
 }
 scheduler_events = {
-	"daily":  ["axis_inspection.axis_inspection.doctype.document.document.validate_expiry_date"
+	"daily":  ["axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date"
 	]
 }
 
@@ -94,6 +103,8 @@ override_doctype_dashboards = {
 	"Employee": ["axis_inspection.axis_inspection.doctype.employee.employee_dashboard.get_dashboard_data"],
 	"Contract": ["axis_inspection.axis_inspection.doctype.contract.contract_dashboard.get_dashboard_data"]
 }
+
+
 # Includes in <head>
 # ------------------
 
