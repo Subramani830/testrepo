@@ -4,6 +4,9 @@ from frappe.frappeclient import FrappeClient
 from frappe.model.document import Document
 import requests
 import json
+from bs4 import BeautifulSoup
+import datetime
+from datetime import date
 
 @frappe.whitelist()
 def get_sender_email(doctype,role,parenttype):
@@ -21,3 +24,32 @@ def get_department_manager(doctype,name):
 @frappe.whitelist()
 def get_email_list(doctype,role,parenttype):
         return frappe.db.get_list('Has Role',filters={'role':role,'parenttype':parenttype},fields={'parent'})
+
+
+
+def get_applicant_list():
+	previous_date = datetime.datetime.today() - datetime.timedelta(days=1)
+	for item in frappe.db.get_list("Communication", filters={"sent_or_received": "Received","subject":"New Job Application","communication_date":["between",[previous_date,datetime.datetime.now()]]}, fields = {"content","communication_date"}):
+		soup = BeautifulSoup(item.content)
+		values=soup.get_text('\n')
+		z = values.split("\n")
+		aname=z[1]
+		phone=z[3]
+		mail=z[5]
+		apply_for=z[7]
+		curr_position=z[9]
+		curr_company=z[11]
+		exp=z[13]
+
+		docVal=frappe.db.get_list("Job Applicant", filters={"applicant_name":aname,"email_id":mail,"job_title":apply_for})
+		if not docVal:
+			frappe.get_doc(dict(doctype = 'Job Applicant',
+	   		applicant_name = aname,
+		    	email_id = mail,
+	    		phone_number=phone,
+			job_title=apply_for,
+			current_position=curr_position,
+			current_company=curr_company,
+			experience=exp)).insert()
+			frappe.db.commit()
+
