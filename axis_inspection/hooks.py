@@ -53,7 +53,11 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 		"Item-child_items",
 		"Sales Invoice-ses_number",
 		"Employee-old_employee_id",
-		"Employee-id_expiry_date"
+		"Employee-id_expiry_date",
+		"Job Applicant-phone_number",
+		"Job Applicant-current_position",
+		"Job Applicant-current_company",
+		"Job Applicant-experience"
 		]
 	]
 ]
