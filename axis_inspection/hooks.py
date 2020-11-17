@@ -48,7 +48,12 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 		"Quotation-request_customer_quotation",
 		"Quotation-request_customer_information",
 		"Supplier Quotation-request_customer_quotation",
-		"Training Event Employee-equipment"
+		"Training Event Employee-equipment",
+		"Item-child_item",
+		"Item-child_items",
+		"Sales Invoice-ses_number",
+		"Employee-old_employee_id",
+		"Employee-id_expiry_date"
 		]
 	]
 ]
@@ -92,11 +97,14 @@ doctype_js = {
 	"Training Event" : "axis_inspection/doctype/training_event/training_event.js",
 	"Vehicle" : "axis_inspection/doctype/vehicle/vehicle.js",
 	"Task" : "axis_inspection/doctype/task/task.js",
-	"Sales Invoice" : "axis_inspection/doctype/sales_invoice/sales_invoice.js"
+	"Sales Invoice" : "axis_inspection/doctype/sales_invoice/sales_invoice.js",
+	"Purchase Order" : "axis_inspection/doctype/purchase_order/purchase_order.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date"
-	]
+	],
+ 	"hourly": ["axis_inspection.axis_inspection.api.get_applicant_list"
+ 	]
 }
 
 override_doctype_dashboards = {
