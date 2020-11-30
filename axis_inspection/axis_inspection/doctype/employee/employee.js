@@ -13,5 +13,22 @@ frappe.ui.form.on('Employee', {
     	   			});
 	    		}
     		});
+	},
+after_save:function(frm,cdt,cdn){
+	if(frm.doc.status=="Active"){
+		frappe.call({
+			method:"axis_inspection.axis_inspection.api.create_warehouse",
+			async:false,
+			args:{
+				doctype:'Warehouse',
+				employee_warehouse:frm.doc.name,
+				company:frm.doc.company,
+				warehouse_name:frm.doc.employee_name
+			},
+			callback:function(r){
+			}
+		})	
 	}
+	
+}
 });

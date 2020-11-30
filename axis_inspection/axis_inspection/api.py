@@ -53,3 +53,19 @@ def get_applicant_list():
 			experience=exp)).insert()
 			frappe.db.commit()
 
+@frappe.whitelist()
+def create_warehouse(doctype,employee_warehouse,company,warehouse_name):
+        val=frappe.db.get_list(doctype,filters={'employee_warehouse':employee_warehouse},fields={'warehouse_name','name'})
+        if not val:
+                frappe.get_doc(dict(doctype=doctype,
+                        company=company,
+                        employee_warehouse=employee_warehouse,
+                        warehouse_name=warehouse_name)).insert()
+        else:
+                if val!=warehouse_name:
+                        for row in val:
+                                doc= frappe.get_doc('Warehouse',row.name)
+                                doc.warehouse_name=warehouse_name
+                                doc.save()
+
+

@@ -102,7 +102,8 @@ doctype_js = {
 	"Vehicle" : "axis_inspection/doctype/vehicle/vehicle.js",
 	"Task" : "axis_inspection/doctype/task/task.js",
 	"Sales Invoice" : "axis_inspection/doctype/sales_invoice/sales_invoice.js",
-	"Purchase Order" : "axis_inspection/doctype/purchase_order/purchase_order.js"
+	"Purchase Order" : "axis_inspection/doctype/purchase_order/purchase_order.js",
+	"Employee" : "axis_inspection/doctype/employee/employee.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date"
@@ -115,6 +116,8 @@ override_doctype_dashboards = {
 	"Employee": ["axis_inspection.axis_inspection.doctype.employee.employee_dashboard.get_dashboard_data"],
 	"Contract": ["axis_inspection.axis_inspection.doctype.contract.contract_dashboard.get_dashboard_data"]
 }
+
+
 
 
 # Includes in <head>
