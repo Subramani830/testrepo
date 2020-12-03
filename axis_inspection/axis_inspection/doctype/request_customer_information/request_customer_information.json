@@ -49,13 +49,14 @@
   "contact_display",
   "contact_email",
   "contact_mobile",
+  "section_break_39",
+  "project_details",
   "more_info",
   "company",
   "campaign",
   "column_break1",
   "transaction_date",
   "lost_reasons",
-  "request_customer_quotation",
   "amended_from"
  ],
  "fields": [
@@ -418,12 +419,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "request_customer_quotation",
-   "fieldtype": "Link",
-   "label": "Request Customer Quotation",
-   "options": "Request Customer Quotation"
-  },
-  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -431,12 +426,21 @@
    "options": "Request Customer Information",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_39",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "project_details",
+   "fieldtype": "Text Editor",
+   "label": "Project Details"
   }
  ],
  "icon": "fa fa-info-sign",
  "is_submittable": 1,
  "links": [],
- "modified": "2020-11-09 15:32:22.484867",
+ "modified": "2020-12-03 13:50:24.072572",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Request Customer Information",
