@@ -45,9 +45,7 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 		"Purchase Order-task",
 		"Task-in_house",
 		"Task-out_sourced",
-		"Quotation-request_customer_quotation",
 		"Quotation-request_customer_information",
-		"Supplier Quotation-request_customer_quotation",
 		"Training Event Employee-equipment",
 		"Item-child_item",
 		"Item-child_items",
@@ -73,7 +71,26 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 		"name","in",
  			[
 				"Job Offer-status-options",
-				"Training Event-trainer_email-options"
+				"Training Event-trainer_email-options",
+				"Sales Order-sec_warehouse-hidden",
+				"Sales Order-set_warehouse-hidden",
+				"Sales Order-taxes_section-hidden",
+				"Sales Order-inter_company_order_reference-hidden",
+				"Sales Order-sales_team_section_break-hidden",
+				"Sales Order-section_break1-hidden",
+				"Lead-type-options",
+				"Sales Order-tax_id-hidden",
+				"Sales Invoice-tax_id-hidden",
+				"Delivery Note-tax_id-hidden",
+				"Lead-status-options",
+				"Sales Invoice-sales_team_section_break-hidden",
+				"Sales Invoice-section_break2-hidden",
+				"Customer-so_required-hidden",
+				"Customer-dn_required-hidden",
+				"Customer-is_internal_customer-hidden",
+				"Lead-unsubscribed-hidden",
+				"Lead-blog_subscriber-hidden",
+				"Quotation-taxes_section-hidden"
 				
 			]
 	]
@@ -103,7 +120,11 @@ doctype_js = {
 	"Task" : "axis_inspection/doctype/task/task.js",
 	"Sales Invoice" : "axis_inspection/doctype/sales_invoice/sales_invoice.js",
 	"Purchase Order" : "axis_inspection/doctype/purchase_order/purchase_order.js",
-	"Employee" : "axis_inspection/doctype/employee/employee.js"
+	"Employee" : "axis_inspection/doctype/employee/employee.js",
+	"Material Request" : "axis_inspection/doctype/material_request/material_request.js",
+	"Supplier Quotation" : "axis_inspection/doctype/supplier_quotation/supplier_quotation.js",
+	"Attendance" : "axis_inspection/doctype/attendance/attendance.js",
+	"Stock Entry" : "axis_inspection/doctype/stock_entry/stock_entry.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date"

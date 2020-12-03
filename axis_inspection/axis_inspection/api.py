@@ -7,6 +7,7 @@ import json
 from bs4 import BeautifulSoup
 import datetime
 from datetime import date
+from axis_inspection.axis_inspection.doctype.job_applicant.job_applicant import send_mail_employee,send_mail_hr,sendmail_jobtitle_correction
 
 @frappe.whitelist()
 def get_sender_email(doctype,role,parenttype):
@@ -26,7 +27,7 @@ def get_email_list(doctype,role,parenttype):
         return frappe.db.get_list('Has Role',filters={'role':role,'parenttype':parenttype},fields={'parent'})
 
 
-
+@frappe.whitelist()
 def get_applicant_list():
 	previous_date = datetime.datetime.today() - datetime.timedelta(days=1)
 	for item in frappe.db.get_list("Communication", filters={"sent_or_received": "Received","subject":"New Job Application","communication_date":["between",[previous_date,datetime.datetime.now()]]}, fields = {"content","communication_date"}):
@@ -41,17 +42,26 @@ def get_applicant_list():
 		curr_company=z[11]
 		exp=z[13]
 
-		docVal=frappe.db.get_list("Job Applicant", filters={"applicant_name":aname,"email_id":mail,"job_title":apply_for})
-		if not docVal:
-			frappe.get_doc(dict(doctype = 'Job Applicant',
-	   		applicant_name = aname,
-		    	email_id = mail,
-	    		phone_number=phone,
-			job_title=apply_for,
-			current_position=curr_position,
-			current_company=curr_company,
-			experience=exp)).insert()
-			frappe.db.commit()
+		openings=frappe.db.get_list("Job Opening", filters={"name":apply_for},fields={"name"})
+		if openings:
+			docVal=frappe.db.get_list("Job Applicant", filters={"applicant_name":aname,"email_id":mail,"job_title":apply_for})
+			if not docVal:
+				for val in frappe.db.get_list("Job Applicant", filters={"applicant_name":aname,"email_id":mail},fields= {"job_title","applicant_name","email_id"}):
+					send_mail_employee(val.applicant_name,val.email_id,val.job_title,apply_for)
+					send_mail_hr(val.applicant_name,val.job_title,apply_for)
+
+				frappe.get_doc(dict(doctype = 'Job Applicant',
+		   		applicant_name = aname,
+			    	email_id = mail,
+		    		phone_number=phone,
+				job_title=apply_for,
+				current_position=curr_position,
+				current_company=curr_company,
+				experience=exp)).insert()
+				frappe.db.commit()
+		else:
+			sendmail_jobtitle_correction(aname,mail,apply_for)
+
 
 @frappe.whitelist()
 def create_warehouse(doctype,employee_warehouse,company,warehouse_name):

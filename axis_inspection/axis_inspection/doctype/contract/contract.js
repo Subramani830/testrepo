@@ -1,24 +1,31 @@
 frappe.ui.form.on('Contract', {
     refresh:  function(frm) {
         if(frm.doc.docstatus === 1 && frm.doc.party_type=='Customer'){    
-            frm.page.add_inner_button('Sales Order', function(){
-                var doc = frappe.model.get_new_doc('Sales Order');
-                doc.contract = frm.doc.name;
-		doc.company = frm.doc.company;
-		doc.price_list=frm.doc.price_list
-                frappe.set_route('Form', 'Sales Order', doc.name);
-            },'Create'),
-            frm.page.add_inner_button('Quotation', function(){
-                var doc = frappe.model.get_new_doc('Quotation');
-		doc.quotation_to='Customer';
-		doc.contract = frm.doc.name;
-		doc.company = frm.doc.company;
-		doc.price_list=frm.doc.price_list
-                frappe.set_route('Form', 'Quotation', doc.name);
-            },'Create')
+		frm.add_custom_button(__('Sales Order'),
+		function() {
+		frm.trigger("make_sales_order")
+		}, __('Create'));
+
+		frm.add_custom_button(__('Quotation'),
+		function() {
+		frm.trigger("make_quotation")
+		}, __('Create'));
         }
-    }
+    },
+	make_quotation: function(frm) {
+		frappe.model.open_mapped_doc({
+			method: "axis_inspection.axis_inspection.doctype.contract.contract.make_sales_order",
+			frm: frm
+		})
+	},
+	make_quotation: function(frm) {
+		frappe.model.open_mapped_doc({
+			method: "axis_inspection.axis_inspection.doctype.contract.contract.make_quotation",
+			frm: frm
+		})
+	},
 });
+
 
 frappe.ui.form.on('Contract Item', {
     item_code:  function(frm,cdt,cdn) {
@@ -80,5 +87,3 @@ rate:  function(frm,cdt,cdn) {
 cur_frm.refresh_field('items')
 }
 });
-
-
