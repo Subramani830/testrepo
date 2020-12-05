@@ -92,7 +92,11 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 				"Lead-unsubscribed-hidden",
 				"Lead-blog_subscriber-hidden",
 				"Quotation-taxes_section-hidden",
-				"Timesheet-allow_copy-check"
+				"Sales Order-subscription_section-hidden",
+				"Purchase Order-subscription_section-hidden",
+				"Purchase Invoice-subscription_section-hidden",
+				"Sales Invoice-subscription_section-hidden",
+				"Timesheet-allow_copy"
 				
 			]
 	]
@@ -103,7 +107,7 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 	[
 		"name","in",
  			[
-			"Axis Job Offer Print Format"
+			"Axis Job Offer Print Format","Axis PO Print Format","Axis PI Print Format","Axis PR Print Format","Axis SO Print Format","Axis SI Print Format","Axis DN Print Format"
 ]
 	]
 ]
