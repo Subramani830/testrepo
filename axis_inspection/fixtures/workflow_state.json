@@ -214,5 +214,17 @@
   "parenttype": null,
   "style": "Primary",
   "workflow_state_name": "Submitted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2020-12-04 15:23:40.169235",
+  "name": "Completed",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "style": "Primary",
+  "workflow_state_name": "Completed"
  }
 ]

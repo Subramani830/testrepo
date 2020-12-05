@@ -55,7 +55,8 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 		"Job Applicant-phone_number",
 		"Job Applicant-current_position",
 		"Job Applicant-current_company",
-		"Job Applicant-experience"
+		"Job Applicant-experience",
+		"Warehouse-employee_warehouse"
 		]
 	]
 ]
@@ -90,7 +91,8 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 				"Customer-is_internal_customer-hidden",
 				"Lead-unsubscribed-hidden",
 				"Lead-blog_subscriber-hidden",
-				"Quotation-taxes_section-hidden"
+				"Quotation-taxes_section-hidden",
+				"Timesheet-allow_copy-check"
 				
 			]
 	]
@@ -138,7 +140,11 @@ override_doctype_dashboards = {
 	"Contract": ["axis_inspection.axis_inspection.doctype.contract.contract_dashboard.get_dashboard_data"]
 }
 
-
+doc_events = {
+    	"Quotation": {
+		"on_submit": ["axis_inspection.axis_inspection.doctype.quotation.quotation.auto_create_sales_order"]
+    }
+}
 
 
 # Includes in <head>

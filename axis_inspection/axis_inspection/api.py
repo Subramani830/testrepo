@@ -14,12 +14,10 @@ def get_sender_email(doctype,role,parenttype):
         return frappe.db.get_value('Has Role',{'role':role,'parenttype':parenttype},'parent')
 
 @frappe.whitelist()
-def get_department_manager(doctype,name):
-        department=frappe.db.get_value(doctype,{'name':name},'Department')
-        if department:
-                employee_id= frappe.db.get_value('Department',{'name':department},'department_manager')
-                if employee_id:
-                     return frappe.db.get_value(doctype,{'name':employee_id},'user_id')
+def get_reports_to(doctype,name):
+        reports_to=frappe.db.get_value(doctype,{'name':name},'reports_to')
+        if reports_to:
+            return frappe.db.get_value(doctype,{'name':reports_to},'user_id')
 
 
 @frappe.whitelist()
@@ -77,5 +75,11 @@ def create_warehouse(doctype,employee_warehouse,company,warehouse_name):
                                 doc= frappe.get_doc('Warehouse',row.name)
                                 doc.warehouse_name=warehouse_name
                                 doc.save()
+
+@frappe.whitelist()
+def get_designation(doctype,name):
+	job_title=frappe.db.get_value(doctype,{'name':name},'job_title')
+	if job_title:
+		return frappe.db.get_value("Job Opening",{'name':job_title},'designation')
 
 

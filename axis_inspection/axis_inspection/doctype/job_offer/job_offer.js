@@ -29,6 +29,26 @@ after_save:function(frm,cdt,cdn){
         '<h3>HR Team</h3>';
         sendEmail(sender,frm.doc.name,frm.doc.applicant_email,emailTemplate)
     }
+},
+job_applicant:function(frm,cdt,cdn){
+    if(frm.doc.job_applicant!=undefined){
+	    frappe.call({
+		method:"axis_inspection.axis_inspection.api.get_designation",
+		async:false,
+		args: {
+		    doctype: "Job Applicant",
+		    name: frm.doc.job_applicant
+		},
+		    callback: function(r) {
+		        if(r.message!==undefined){
+		            frm.set_value("designation",r.message)
+		        }
+			else{
+				frm.set_value("designation","")
+			}
+		    }
+	    });
+}
 }
 });
 
