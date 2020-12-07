@@ -19,25 +19,13 @@ before_save:function(frm,cdt,cdn){
 	$.each(frm.doc.items, function(idx, item){     
 	    frappe.db.get_value("Item",item.item_code,"inspection_required_before_stock_entry",(a)=>{
 	        if(a.inspection_required_before_stock_entry==1){
-        	   frappe.call({
-                    method: "frappe.client.get_list",
-                    async:false,
-                    args: {
-                        doctype: "Quality Inspection",
-                        fields : ["item_code"],
-                        filters:{
-                           "item_code":item.item_code
-                        }
-                    },
-                    callback: function(r) {
-                        if(r.message.length===0)
-                        {
-                            frappe.validated=false;
-                            frappe.throw('Quality Inspection required for item '+item.item_code);
-                        }
-
-                    }
-        	   })
+			frappe.db.get_value("Quality Inspection",{item_code:item.item_code},"item_code",(i)=>{
+				if(i.item_code==null)
+		                {
+		                    frappe.validated=false;
+		                    frappe.throw('Quality Inspection required for item '+item.item_code);
+		                }
+			})
 	        }
 	    });
 
