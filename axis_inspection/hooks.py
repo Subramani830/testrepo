@@ -57,7 +57,13 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 		"Job Applicant-current_company",
 		"Job Applicant-experiences",
 		"Warehouse-employee_warehouse",
-		"Item-inspection_required_before_stock_entry"
+		"Item-inspection_required_before_stock_entry",
+		"Purchase Order-vat_section",
+		"Sales Order-vat_section",
+		"Purchase Invoice-vat_section",
+		"Sales Invoice-vat_section",
+		"Purchase Receipt-vat_section",
+		"Delivery Note-vat_section"
 		]
 	]
 ]
@@ -100,16 +106,13 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 				"Timesheet-allow_copy",
 				"Purchase Order-inter_company_order_reference-hidden",
 				"Purchase Order-taxes_section-hidden",
-				"Purchase Order-vat_section-hidden",
-				"Sales Order-vat_section-hidden",
 				"Sales Invoice-inter_company_invoice_reference-hidden",
 				"Sales Invoice-shipping_rule-hidden",
 				"Sales Invoice-tax_category-hidden",
-				"Sales Invoice-vat_section-hidden",
-				"Purchase Invoice-vat_section-hidden",
 				"Purchase Invoice-inter_company_invoice_reference-hidden",
 				"Purchase Invoice-taxes_section-hidden",
-				"Opportunity-first_response_time-hidden"
+				"Opportunity-first_response_time-hidden",
+				"Purchase Order-is_subcontracted-hidden"
 			]
 	]
 	]
