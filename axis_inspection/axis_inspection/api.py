@@ -55,7 +55,7 @@ def get_applicant_list():
 				job_title=apply_for,
 				current_position=curr_position,
 				current_company=curr_company,
-				experience=exp)).insert()
+				experiences=exp)).insert()
 				frappe.db.commit()
 		else:
 			sendmail_jobtitle_correction(aname,mail,apply_for)

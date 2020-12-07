@@ -1,5 +1,5 @@
 frappe.ui.form.on('Purchase Order', {
-	refresh:function(frm,cdt,cdn) {
+	onload_post_render: function(frm) {
 	    setTimeout(() => {
 		frm.remove_custom_button('Update Items');
 		}, 10);
@@ -12,6 +12,7 @@ frappe.ui.form.on('Purchase Order', {
 				'Thanks,<br><br></h3>';
 				sendEmail(frm.doc.name,email,emailTemplate);
 			})
+			location.reload()
 	}
 });
 
