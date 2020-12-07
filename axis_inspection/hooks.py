@@ -11,7 +11,7 @@ app_color = "grey"
 app_email = "veena.h@promantia.com"
 app_license = "MIT"
 
-fixtures = ["Workflow","Workflow State","Workflow Action Master",
+fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 {"dt": "Custom Field",
 		"filters": [
          [
@@ -55,8 +55,9 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 		"Job Applicant-phone_number",
 		"Job Applicant-current_position",
 		"Job Applicant-current_company",
-		"Job Applicant-experience",
-		"Warehouse-employee_warehouse"
+		"Job Applicant-experiences",
+		"Warehouse-employee_warehouse",
+		"Item-inspection_required_before_stock_entry"
 		]
 	]
 ]
@@ -96,8 +97,19 @@ fixtures = ["Workflow","Workflow State","Workflow Action Master",
 				"Purchase Order-subscription_section-hidden",
 				"Purchase Invoice-subscription_section-hidden",
 				"Sales Invoice-subscription_section-hidden",
-				"Timesheet-allow_copy"
-				
+				"Timesheet-allow_copy",
+				"Purchase Order-inter_company_order_reference-hidden",
+				"Purchase Order-taxes_section-hidden",
+				"Purchase Order-vat_section-hidden",
+				"Sales Order-vat_section-hidden",
+				"Sales Invoice-inter_company_invoice_reference-hidden",
+				"Sales Invoice-shipping_rule-hidden",
+				"Sales Invoice-tax_category-hidden",
+				"Sales Invoice-vat_section-hidden",
+				"Purchase Invoice-vat_section-hidden",
+				"Purchase Invoice-inter_company_invoice_reference-hidden",
+				"Purchase Invoice-taxes_section-hidden",
+				"Opportunity-first_response_time-hidden"
 			]
 	]
 	]
@@ -130,7 +142,9 @@ doctype_js = {
 	"Material Request" : "axis_inspection/doctype/material_request/material_request.js",
 	"Supplier Quotation" : "axis_inspection/doctype/supplier_quotation/supplier_quotation.js",
 	"Attendance" : "axis_inspection/doctype/attendance/attendance.js",
-	"Stock Entry" : "axis_inspection/doctype/stock_entry/stock_entry.js"
+	"Stock Entry" : "axis_inspection/doctype/stock_entry/stock_entry.js",
+	"Job Opening" : "axis_inspection/doctype/job_opening/job_opening.js",
+	"Employee Promotion" : "axis_inspection/doctype/employee_promotion/employee_promotion.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date"
