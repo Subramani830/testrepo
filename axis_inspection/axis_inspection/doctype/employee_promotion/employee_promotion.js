@@ -1,9 +1,8 @@
 frappe.ui.form.on('Employee Promotion', {
 	employee: function(frm) {
 		// your code here
-		frappe.db.get_value("Employee",frm.doc.employee,"company",(s)=>{
-					frm.doc.company = s.company;
-					cur_frm.refresh_field("company"); 
+		frappe.db.get_value("Employee",{name:frm.doc.employee},"company",(s)=>{
+					frm.set_value('company',s.company);
 				  }) 
 	}
 })

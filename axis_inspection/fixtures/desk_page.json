@@ -348,7 +348,7 @@
    {
     "hidden": 0,
     "label": "Items and Pricing",
-    "links": "[\n    {\n        \"description\": \"All Products or Services.\",\n        \"label\": \"Item\",\n        \"name\": \"Item\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"dependencies\": [\n            \"Item\",\n            \"Price List\"\n        ],\n        \"description\": \"Multiple Item prices.\",\n        \"label\": \"Item Price\",\n        \"name\": \"Item Price\",\n        \"onboard\": 1,\n        \"route\": \"#Report/Item Price\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Price List master.\",\n        \"label\": \"Price List\",\n        \"name\": \"Price List\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Tree of Item Groups.\",\n        \"icon\": \"fa fa-sitemap\",\n        \"label\": \"Item Group\",\n        \"link\": \"Tree/Item Group\",\n        \"name\": \"Item Group\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"dependencies\": [\n            \"Item\"\n        ],\n        \"description\": \"Bundle items at time of sale.\",\n        \"label\": \"Product Bundle\",\n        \"name\": \"Product Bundle\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Rules for applying different promotional schemes.\",\n        \"label\": \"Promotional Scheme\",\n        \"name\": \"Promotional Scheme\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"dependencies\": [\n            \"Item\"\n        ],\n        \"description\": \"Rules for applying pricing and discount.\",\n        \"label\": \"Pricing Rule\",\n        \"name\": \"Pricing Rule\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Rules for adding shipping costs.\",\n        \"label\": \"Shipping Rule\",\n        \"name\": \"Shipping Rule\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Define coupon codes.\",\n        \"label\": \"Coupon Code\",\n        \"name\": \"Coupon Code\",\n        \"type\": \"doctype\"\n    }\n]",
+    "links": "[\n    {\n        \"description\": \"All Products or Services.\",\n        \"label\": \"Item\",\n        \"name\": \"Item\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"dependencies\": [\n            \"Item\",\n            \"Price List\"\n        ],\n        \"description\": \"Multiple Item prices.\",\n        \"label\": \"Item Price\",\n        \"name\": \"Item Price\",\n        \"onboard\": 1,\n        \"route\": \"#Report/Item Price\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Price List master.\",\n        \"label\": \"Price List\",\n        \"name\": \"Price List\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Tree of Item Groups.\",\n        \"icon\": \"fa fa-sitemap\",\n        \"label\": \"Item Group\",\n        \"link\": \"Tree/Item Group\",\n        \"name\": \"Item Group\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Rules for applying different promotional schemes.\",\n        \"label\": \"Promotional Scheme\",\n        \"name\": \"Promotional Scheme\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"dependencies\": [\n            \"Item\"\n        ],\n        \"description\": \"Rules for applying pricing and discount.\",\n        \"label\": \"Pricing Rule\",\n        \"name\": \"Pricing Rule\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Rules for adding shipping costs.\",\n        \"label\": \"Shipping Rule\",\n        \"name\": \"Shipping Rule\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Define coupon codes.\",\n        \"label\": \"Coupon Code\",\n        \"name\": \"Coupon Code\",\n        \"type\": \"doctype\"\n    }\n]",
     "parent": "Selling",
     "parentfield": "cards",
     "parenttype": "Desk Page"
@@ -400,7 +400,7 @@
   "hide_custom": 1,
   "is_standard": 1,
   "label": "Selling",
-  "modified": "2020-10-08 10:23:09.984377",
+  "modified": "2020-12-07 14:08:23.252657",
   "module": "Selling",
   "name": "Selling",
   "onboarding": "Selling",
@@ -497,7 +497,7 @@
    {
     "hidden": 0,
     "label": "Items & Pricing",
-    "links": "[\n    {\n        \"description\": \"All Products or Services.\",\n        \"label\": \"Item\",\n        \"name\": \"Item\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Multiple Item prices.\",\n        \"label\": \"Item Price\",\n        \"name\": \"Item Price\",\n        \"onboard\": 1,\n        \"route\": \"#Report/Item Price\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Price List master.\",\n        \"label\": \"Price List\",\n        \"name\": \"Price List\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Bundle items at time of sale.\",\n        \"label\": \"Product Bundle\",\n        \"name\": \"Product Bundle\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Tree of Item Groups.\",\n        \"icon\": \"fa fa-sitemap\",\n        \"label\": \"Item Group\",\n        \"link\": \"Tree/Item Group\",\n        \"name\": \"Item Group\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Rules for applying different promotional schemes.\",\n        \"label\": \"Promotional Scheme\",\n        \"name\": \"Promotional Scheme\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Rules for applying pricing and discount.\",\n        \"label\": \"Pricing Rule\",\n        \"name\": \"Pricing Rule\",\n        \"type\": \"doctype\"\n    }\n]",
+    "links": "[\n    {\n        \"description\": \"All Products or Services.\",\n        \"label\": \"Item\",\n        \"name\": \"Item\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Multiple Item prices.\",\n        \"label\": \"Item Price\",\n        \"name\": \"Item Price\",\n        \"onboard\": 1,\n        \"route\": \"#Report/Item Price\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Price List master.\",\n        \"label\": \"Price List\",\n        \"name\": \"Price List\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Tree of Item Groups.\",\n        \"icon\": \"fa fa-sitemap\",\n        \"label\": \"Item Group\",\n        \"link\": \"Tree/Item Group\",\n        \"name\": \"Item Group\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Rules for applying different promotional schemes.\",\n        \"label\": \"Promotional Scheme\",\n        \"name\": \"Promotional Scheme\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Rules for applying pricing and discount.\",\n        \"label\": \"Pricing Rule\",\n        \"name\": \"Pricing Rule\",\n        \"type\": \"doctype\"\n    }\n]",
     "parent": "Buying",
     "parentfield": "cards",
     "parenttype": "Desk Page"
@@ -573,7 +573,7 @@
   "hide_custom": 0,
   "is_standard": 1,
   "label": "Buying",
-  "modified": "2020-12-05 15:33:28.591515",
+  "modified": "2020-12-07 14:02:28.720000",
   "module": "Buying",
   "name": "Buying",
   "onboarding": "Buying",
@@ -1650,7 +1650,7 @@
    {
     "hidden": 0,
     "label": "Items and Pricing",
-    "links": "[\n    {\n        \"label\": \"Item\",\n        \"name\": \"Item\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"icon\": \"fa fa-sitemap\",\n        \"label\": \"Item Group\",\n        \"link\": \"Tree/Item Group\",\n        \"name\": \"Item Group\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Product Bundle\",\n        \"name\": \"Product Bundle\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Price List\",\n        \"name\": \"Price List\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Item Price\",\n        \"name\": \"Item Price\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Shipping Rule\",\n        \"name\": \"Shipping Rule\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Pricing Rule\",\n        \"name\": \"Pricing Rule\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Item Alternative\",\n        \"name\": \"Item Alternative\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Item Manufacturer\",\n        \"name\": \"Item Manufacturer\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Customs Tariff Number\",\n        \"name\": \"Customs Tariff Number\",\n        \"type\": \"doctype\"\n    }\n]",
+    "links": "[\n    {\n        \"label\": \"Item\",\n        \"name\": \"Item\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"icon\": \"fa fa-sitemap\",\n        \"label\": \"Item Group\",\n        \"link\": \"Tree/Item Group\",\n        \"name\": \"Item Group\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Price List\",\n        \"name\": \"Price List\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Item Price\",\n        \"name\": \"Item Price\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Shipping Rule\",\n        \"name\": \"Shipping Rule\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Pricing Rule\",\n        \"name\": \"Pricing Rule\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Item Alternative\",\n        \"name\": \"Item Alternative\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Item Manufacturer\",\n        \"name\": \"Item Manufacturer\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Customs Tariff Number\",\n        \"name\": \"Customs Tariff Number\",\n        \"type\": \"doctype\"\n    }\n]",
     "parent": "Stock",
     "parentfield": "cards",
     "parenttype": "Desk Page"
@@ -1734,7 +1734,7 @@
   "hide_custom": 0,
   "is_standard": 1,
   "label": "Stock",
-  "modified": "2020-10-07 18:40:17.130207",
+  "modified": "2020-12-07 14:09:02.627202",
   "module": "Stock",
   "name": "Stock",
   "onboarding": "Stock",
@@ -4121,7 +4121,7 @@
    {
     "hidden": 0,
     "label": "Axis Custom Apps",
-    "links": "[\n        {\n           \"dependencies\":[\"Item\"],\n           \"name\": \"Request Customer Information\",\n           \"label\":\"Request Customer Information\",\n\t\t\t\"description\": \"Customer Information\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        },\n        {\n            \"dependencies\":[\"Item\"],\n           \"name\": \"Document Set\",\n           \"label\":\"Document Set\",\n\t\t\t\"description\": \"Set of documents\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        }\n    ]",
+    "links": "[\n        {\n           \"dependencies\":[\"Item\"],\n           \"name\": \"Request Customer Information\",\n           \"label\":\"Request Customer Information\",\n\t\t\t\"description\": \"Customer Information\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        },\n        {\n            \"dependencies\":[\"Item\"],\n           \"name\": \"Document Set\",\n           \"label\":\"Document Set\",\n\t\t\t\"description\": \"Set of documents\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        },\n        {\n            \"dependencies\":[\"Item\"],\n           \"name\": \"Stock Movement\",\n           \"label\":\"Stock Movement\",\n\t\t\t\"description\": \"Stock Movements\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        },\n        {\n            \"dependencies\":[\"Item\"],\n           \"name\": \"Clearance Process\",\n           \"label\":\"Clearance Process\",\n\t\t\t\"description\": \"Clearance Processes\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        },\n        {\n            \"dependencies\":[\"Item\"],\n           \"name\": \"Employee Costs\",\n           \"label\":\"Employee Costs\",\n\t\t\t\"description\": \"Employees Costs\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        }\n    ]",
     "parent": "Axis",
     "parentfield": "cards",
     "parenttype": "Desk Page"
@@ -4141,7 +4141,7 @@
   "hide_custom": 0,
   "is_standard": 0,
   "label": "Axis",
-  "modified": "2020-12-05 15:16:17.386579",
+  "modified": "2020-12-07 14:19:43.573633",
   "module": "Axis Inspection",
   "name": "Axis",
   "onboarding": null,
