@@ -63,7 +63,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 		"Purchase Invoice-vat_section",
 		"Sales Invoice-vat_section",
 		"Purchase Receipt-vat_section",
-		"Delivery Note-vat_section"
+		"Delivery Note-vat_section",
+		"Material Request-requested_for"
 		]
 	]
 ]
@@ -112,7 +113,15 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 				"Purchase Invoice-inter_company_invoice_reference-hidden",
 				"Purchase Invoice-taxes_section-hidden",
 				"Opportunity-first_response_time-hidden",
-				"Purchase Order-is_subcontracted-hidden"
+				"Purchase Order-is_subcontracted-hidden",
+				"Sales Order-scan_barcode-hidden",
+				"Purchase Order-scan_barcode-hidden",
+				"Sales Invoice-scan_barcode-hidden",
+				"Material Request-scan_barcode-hidden",
+				"Stock Entry-scan_barcode-hidden",
+				"Purchase Invoice-scan_barcode-hidden",
+				"Job Opening-job_title-hidden",
+				"Job Opening-job_title-default"
 			]
 	]
 	]
@@ -158,7 +167,8 @@ scheduler_events = {
 
 override_doctype_dashboards = {
 	"Employee": ["axis_inspection.axis_inspection.doctype.employee.employee_dashboard.get_dashboard_data"],
-	"Contract": ["axis_inspection.axis_inspection.doctype.contract.contract_dashboard.get_dashboard_data"]
+	"Contract": ["axis_inspection.axis_inspection.doctype.contract.contract_dashboard.get_dashboard_data"],
+	"Supplier Quotation": ["axis_inspection.axis_inspection.doctype.supplier_quotation.supplier_quotation_dashboard.get_dashboard_data"]
 }
 
 doc_events = {
