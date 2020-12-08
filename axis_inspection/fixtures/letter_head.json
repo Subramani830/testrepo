@@ -1,0 +1,18 @@
+[
+ {
+  "content": "\n<h6 style=\"text-align: Left; font-size: 10px;\"><img align=\"left\" src=\"/files/Letter head.png\" style=\"width: 110px; height: 100px;\"><b></b></h6>\n",
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Letter Head",
+  "footer": null,
+  "image": null,
+  "is_default": 1,
+  "letter_head_name": "Axis",
+  "modified": "2020-11-18 15:25:50.588891",
+  "name": "Axis",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "source": "HTML"
+ }
+]

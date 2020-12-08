@@ -11,7 +11,7 @@ app_color = "grey"
 app_email = "veena.h@promantia.com"
 app_license = "MIT"
 
-fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
+fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Letter Head",
 {"dt": "Custom Field",
 		"filters": [
          [
@@ -64,7 +64,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 		"Sales Invoice-vat_section",
 		"Purchase Receipt-vat_section",
 		"Delivery Note-vat_section",
-		"Material Request-requested_for"
+		"Material Request-requested_for",
+		"Contract-contract_terms_and_conditions"
 		]
 	]
 ]
@@ -121,7 +122,18 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 				"Stock Entry-scan_barcode-hidden",
 				"Purchase Invoice-scan_barcode-hidden",
 				"Job Opening-job_title-hidden",
-				"Job Opening-job_title-default"
+				"Job Opening-job_title-default",
+				"Purchase Order Item-cost_center-reqd",
+				"Purchase Receipt Item-cost_center-reqd",
+				"Delivery Note Item-cost_center-reqd",
+				"Payment Entry-cost_center-reqd",
+				"Journal Entry Account-cost_center-reqd",
+				"Purchase Invoice-cost_center-reqd",
+				"Sales Invoice-cost_center-reqd",
+				"Stock Entry Detail-cost_center-reqd",
+				"Material Request Item-cost_center-reqd",
+				"Contract-document_type-options"
+				
 			]
 	]
 	]

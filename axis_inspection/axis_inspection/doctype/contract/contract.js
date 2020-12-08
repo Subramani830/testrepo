@@ -24,6 +24,24 @@ frappe.ui.form.on('Contract', {
 			frm: frm
 		})
 	},
+contract_terms_and_conditions:function(frm) {
+frappe.call({
+			method: "frappe.client.get_value",
+			async:false,
+			args: {
+				doctype: "Terms and Conditions",
+				fieldname: "terms",
+				filters:{
+					title:frm.doc.contract_terms_and_conditions		
+				}
+			},
+			callback(r) {
+			    if(r.message) {
+				frm.set_value("contract_terms",r.message.terms)
+			    }
+			}
+		    });
+}
 });
 
 
