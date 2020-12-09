@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import frappe
+from frappe import _
+from frappe.model.mapper import get_mapped_doc
 from . import __version__ as app_version
+from erpnext.hr.doctype.employee_onboarding.employee_onboarding import EmployeeOnboarding
 
 app_name = "axis_inspection"
 app_title = "Axis Inspection"
@@ -132,7 +136,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Sales Invoice-cost_center-reqd",
 				"Stock Entry Detail-cost_center-reqd",
 				"Material Request Item-cost_center-reqd",
-				"Contract-document_type-options"
+				"Contract-document_type-options",
+				"Customer-sales_team_section_break-hidden",
+				"Customer-sales_team_section-hidden"
 				
 			]
 	]
@@ -168,7 +174,8 @@ doctype_js = {
 	"Attendance" : "axis_inspection/doctype/attendance/attendance.js",
 	"Stock Entry" : "axis_inspection/doctype/stock_entry/stock_entry.js",
 	"Job Opening" : "axis_inspection/doctype/job_opening/job_opening.js",
-	"Employee Promotion" : "axis_inspection/doctype/employee_promotion/employee_promotion.js"
+	"Employee Promotion" : "axis_inspection/doctype/employee_promotion/employee_promotion.js",
+	"Opportunity" : "axis_inspection/doctype/opportunity/opportunity.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date"
@@ -189,6 +196,12 @@ doc_events = {
     }
 }
 
+
+
+def validate_duplicate_employee_onboarding(self):
+	pass
+
+EmployeeOnboarding.validate_duplicate_employee_onboarding = validate_duplicate_employee_onboarding
 
 # Includes in <head>
 # ------------------
