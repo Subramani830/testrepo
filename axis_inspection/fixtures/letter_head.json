@@ -1,14 +1,14 @@
 [
  {
-  "content": "\n<h6 style=\"text-align: Left; font-size: 10px;\"><img align=\"left\" src=\"/files/Letter head.png\" style=\"width: 110px; height: 100px;\"><b></b></h6>\n",
+  "content": "<h6 style=\"text-align: Left; font-size: 10px;\"><img align=\"left\" src=\"/files/Letter head.png\" style=\"width: 110px; height: 100px;\"><b></b></h6>\n\n",
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Letter Head",
   "footer": null,
-  "image": null,
+  "image": "",
   "is_default": 1,
   "letter_head_name": "Axis",
-  "modified": "2020-11-18 15:25:50.588891",
+  "modified": "2020-12-08 16:00:58.006536",
   "name": "Axis",
   "parent": null,
   "parentfield": null,

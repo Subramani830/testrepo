@@ -226,5 +226,17 @@
   "parenttype": null,
   "style": "Primary",
   "workflow_state_name": "Completed"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2020-12-08 14:35:18.953701",
+  "name": "Technical Review",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "style": "",
+  "workflow_state_name": "Technical Review"
  }
 ]
