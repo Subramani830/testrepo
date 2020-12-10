@@ -41,6 +41,20 @@ frappe.call({
 			    }
 			}
 		    });
+},
+party_user:function(frm,cdt,cdn){
+	if(frm.doc.party_type==="Employee"){
+		if(frm.doc.party_user!=undefined){
+			frm.set_query("party_name",function(){
+				return{
+				 query: "axis_inspection.axis_inspection.api.get_employee_list",
+				    filters: {
+				        "user_id":frm.doc.party_user
+				    }
+				};
+			     });
+		}
+	}
 }
 });
 

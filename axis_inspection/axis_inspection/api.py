@@ -82,4 +82,9 @@ def get_designation(doctype,name):
 	if job_title:
 		return frappe.db.get_value("Job Opening",{'name':job_title},'designation')
 
+@frappe.whitelist()
+def get_employee_list(doctype, txt, searchfield, start, page_len, filters):
+	user_id=filters['user_id']
+	return frappe.db.sql(""" select name from `tabEmployee` where user_id=%s""",(user_id))
+
 
