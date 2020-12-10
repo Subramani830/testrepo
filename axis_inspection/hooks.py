@@ -200,12 +200,6 @@ override_doctype_dashboards = {
 	"Supplier Quotation": ["axis_inspection.axis_inspection.doctype.supplier_quotation.supplier_quotation_dashboard.get_dashboard_data"]
 }
 
-doc_events = {
-    	"Quotation": {
-		"on_submit": ["axis_inspection.axis_inspection.doctype.quotation.quotation.auto_create_sales_order"]
-    }
-}
-
 
 
 def validate_duplicate_employee_onboarding(self):
