@@ -69,7 +69,16 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Purchase Receipt-vat_section",
 		"Delivery Note-vat_section",
 		"Material Request-requested_for",
-		"Contract-contract_terms_and_conditions"
+		"Contract-contract_terms_and_conditions",
+		"Purchase Receipt Item-branch",
+		"Purchase Order Item-branch",
+		"Delivery Note Item-branch",
+		"Payment Entry-branch",
+		"Journal Entry Account-branch",
+		"Purchase Invoice-branch",
+		"Sales Invoice-branch",
+		"Stock Entry Detail-branch",
+		"Material Request Item-branch"
 		]
 	]
 ]
@@ -138,7 +147,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Material Request Item-cost_center-reqd",
 				"Contract-document_type-options",
 				"Customer-sales_team_section_break-hidden",
-				"Customer-sales_team_section-hidden"
+				"Customer-sales_team_section-hidden",
+				
 				
 			]
 	]
