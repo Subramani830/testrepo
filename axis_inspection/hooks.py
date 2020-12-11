@@ -179,7 +179,21 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Sales Order-payment_terms_template-read_only_depends_on",
 				"Sales Order-payment_schedule-read_only_depends_on",
 				"Project-sales_order-reqd",
-				"Sales Order-po_no-reqd"
+				"Sales Order-po_no-reqd",
+				"Purchase Order Item-project-reqd",
+				"Purchase Receipt Item-project-reqd",
+				"Delivery Note Item-project-reqd",
+				"Payment Entry-project-reqd",
+				"Journal Entry Account-project-reqd",
+				"Purchase Invoice-project-reqd",
+				"Sales Invoice-project-reqd",
+				"Stock Entry Detail-project-reqd",
+				"Material Request Item-project-reqd",
+				"Sales Taxes and Charges-cost_center-depends_on",
+				"Lead-county-hidden",
+				"Opportunity Item-uom-in_list_view",
+				"Quotation-referral_sales_partner-hidden",
+				"Loan Application-is_secured_loan-depends_on"
 			]
 	]
 	]
@@ -189,7 +203,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 	[
 		"name","in",
  			[
-			"Axis Job Offer Print Format","Axis PO Print Format","Axis PI Print Format","Axis PR Print Format","Axis SO Print Format","Axis SI Print Format","Axis DN Print Format"
+			"Axis Job Offer Print Format","Axis PO Print Format","Axis PI Print Format","Axis PR Print Format","Axis SO Print Format","Axis SI Print Format","Axis DN Print Format","Axis Contract print Format"
+
 ]
 	]
 ]
@@ -216,7 +231,8 @@ doctype_js = {
 	"Job Opening" : "axis_inspection/doctype/job_opening/job_opening.js",
 	"Employee Promotion" : "axis_inspection/doctype/employee_promotion/employee_promotion.js",
 	"Opportunity" : "axis_inspection/doctype/opportunity/opportunity.js",
-	"Asset" : "axis_inspection/doctype/asset/asset.js"
+	"Asset" : "axis_inspection/doctype/asset/asset.js",
+	"Lead" :  "axis_inspection/doctype/lead/lead.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date"

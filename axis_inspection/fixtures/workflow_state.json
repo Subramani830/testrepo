@@ -3,6 +3,18 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
+  "modified": "2020-12-11 14:10:36.399685",
+  "name": "Lost",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "style": "",
+  "workflow_state_name": "Lost"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
   "modified": "2020-11-26 16:31:46.514952",
   "name": "Pending Approval",
   "parent": null,

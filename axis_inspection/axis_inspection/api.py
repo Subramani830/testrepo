@@ -87,4 +87,19 @@ def get_employee_list(doctype, txt, searchfield, start, page_len, filters):
 	user_id=filters['user_id']
 	return frappe.db.sql(""" select name from `tabEmployee` where user_id=%s""",(user_id))
 
+@frappe.whitelist()
+def update_status(doc,status):
+        quotation_doc=frappe.get_doc("Quotation",doc) 
+        quotation_doc.db_set('workflow_state',status)
+
+@frappe.whitelist()
+def get_user_list(doctype, txt, searchfield, start, page_len, filters):
+        return frappe.db.sql("""
+                select u.name, concat(u.first_name, ' ', u.last_name)
+                from tabUser u, `tabHas Role` r
+                where u.name = r.parent and (r.role = 'Sales User' or r.role = 'Sales Manager')
+                and u.enabled = 1 and u.name like %s
+        """, ("%" + txt + "%"))
+
+
 

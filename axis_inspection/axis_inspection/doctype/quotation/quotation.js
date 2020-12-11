@@ -36,8 +36,21 @@ frappe.ui.form.on("Quotation", {
 	 })
 	}
 	},
-	refresh: function(frm){
-		// your code here
+refresh: function(frm){
+	if(frm.doc.status=="Lost"){
+		frappe.call({
+		        method:"axis_inspection.axis_inspection.api.update_status",
+		        args:{
+				doc:cur_frm.doc.name,
+				status:	cur_frm.doc.status
+			},
+		        async:false,
+		        callback: function(r){
+		        }
+		    });
+	}
+	
+
 		    setTimeout(() => {
 	frm.remove_custom_button('Subscription', 'Create');
         }, 10);
