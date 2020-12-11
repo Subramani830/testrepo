@@ -78,7 +78,15 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Purchase Invoice-branch",
 		"Sales Invoice-branch",
 		"Stock Entry Detail-branch",
-		"Material Request Item-branch"
+		"Material Request Item-branch",
+		"Employee-sponsor",
+		"Company-company_registration",
+		"Purchase Invoice-ses_number",
+		"Employee-personal_bank_name",
+		"Employee-personal_bank_ac_no",
+		"Asset-asset_barcode",
+		"Asset Movement Item-asset_barcode",
+		"Sales Order-quotation"
 		]
 	]
 ]
@@ -148,8 +156,30 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Contract-document_type-options",
 				"Customer-sales_team_section_break-hidden",
 				"Customer-sales_team_section-hidden",
-				
-				
+				"Employee-permanent_accommodation_type-hidden",
+				"Employee-current_accommodation_type-hidden",
+				"Item-item_tax_section_break-hidden",
+				"Item-manufacturing-hidden",
+				"Item-website_section-hidden",
+				"Item-hub_publishing_sb-hidden",
+				"Item Barcode-title_field",
+				"Sales Order-customer-read_only_depends_on",
+				"Sales Order-order_type-read_only_depends_on",
+				"Sales Order-customer_address-read_only_depends_on",
+				"Sales Order-contact_person-read_only_depends_on",
+				"Sales Order-shipping_address_name-read_only_depends_on",
+				"Sales Order-currency-read_only_depends_on",
+				"Sales Order-selling_price_list-read_only_depends_on",
+				"Sales Order-items-read_only_depends_on",
+				"Sales Order-taxes_and_charges-read_only_depends_on",
+				"Sales Order-taxes-read_only_depends_on",
+				"Sales Order-tc_name-read_only_depends_on",
+				"Sales Order-terms-read_only_depends_on",
+				"Sales Order-territory-read_only_depends_on",
+				"Sales Order-payment_terms_template-read_only_depends_on",
+				"Sales Order-payment_schedule-read_only_depends_on",
+				"Project-sales_order-reqd",
+				"Sales Order-po_no-reqd"
 			]
 	]
 	]
@@ -185,7 +215,8 @@ doctype_js = {
 	"Stock Entry" : "axis_inspection/doctype/stock_entry/stock_entry.js",
 	"Job Opening" : "axis_inspection/doctype/job_opening/job_opening.js",
 	"Employee Promotion" : "axis_inspection/doctype/employee_promotion/employee_promotion.js",
-	"Opportunity" : "axis_inspection/doctype/opportunity/opportunity.js"
+	"Opportunity" : "axis_inspection/doctype/opportunity/opportunity.js",
+	"Asset" : "axis_inspection/doctype/asset/asset.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date"
@@ -197,7 +228,8 @@ scheduler_events = {
 override_doctype_dashboards = {
 	"Employee": ["axis_inspection.axis_inspection.doctype.employee.employee_dashboard.get_dashboard_data"],
 	"Contract": ["axis_inspection.axis_inspection.doctype.contract.contract_dashboard.get_dashboard_data"],
-	"Supplier Quotation": ["axis_inspection.axis_inspection.doctype.supplier_quotation.supplier_quotation_dashboard.get_dashboard_data"]
+	"Supplier Quotation": ["axis_inspection.axis_inspection.doctype.supplier_quotation.supplier_quotation_dashboard.get_dashboard_data"],
+	"Sales Order": ["axis_inspection.axis_inspection.doctype.sales_order.sales_order_dashboard.get_dashboard_data"]
 }
 
 

@@ -1,9 +1,14 @@
 frappe.ui.form.on('Purchase Order', {
 	onload_post_render: function(frm) {
 	    setTimeout(() => {
+		frm.remove_custom_button('Product Bundle','Get items from');
 		frm.remove_custom_button('Update Items');
+		frm.remove_custom_button('Subscription','Create');
 		}, 10);
 	    },
+after_save: function(frm){
+	location.reload()
+},
 	on_submit:function(frm,cdt,cdn){
 			frappe.db.get_value("Address",frm.doc.supplier_address, "email_id",(c)=>{
 				var email=c.email_id;
