@@ -37,6 +37,10 @@ frappe.ui.form.on("Quotation", {
 	}
 	},
 	refresh: function(frm){
+		// your code here
+		    setTimeout(() => {
+	frm.remove_custom_button('Subscription', 'Create');
+        }, 10);
 
 	if (frm.doc.docstatus===0) {
 			frm.add_custom_button(__('Request Customer Information'),
