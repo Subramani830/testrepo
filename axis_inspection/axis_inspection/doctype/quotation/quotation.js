@@ -84,6 +84,20 @@ refresh: function(frm){
 						}
 					})
 					}, __("Get items from"), "btn-default");
+
+			frm.add_custom_button(__('Supplier Quotation'),
+					function() {
+						erpnext.utils.map_current_doc({
+							method: "erpnext.buying.doctype.supplier_quotation.supplier_quotation.make_quotation",
+							source_doctype: "Supplier Quotation",
+							target: me.frm,
+							setters: {},
+							get_query_filters: {
+								docstatus: 1,
+								status: ["!=", "Stopped"],
+							}
+						})
+					}, __("Get items from"));
 	}
 	}
 });

@@ -86,7 +86,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Employee-personal_bank_ac_no",
 		"Asset-asset_barcode",
 		"Asset Movement Item-asset_barcode",
-		"Sales Order-quotation"
+		"Sales Order-quotation",
+		"Customer-company_registration",
+		"Customer-our_vendor_number"
 		]
 	]
 ]

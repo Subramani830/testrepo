@@ -41,6 +41,7 @@ frappe.ui.form.on("Request Customer Information", {
 				frm: frm
 			});
 		}
+
 	},
 
 	onload_post_render: function(frm) {
@@ -146,6 +147,7 @@ frappe.ui.form.on("Request Customer Information", {
 			frm: frm
 		})
 	},
+
 })
 
 // TODO commonify this code
