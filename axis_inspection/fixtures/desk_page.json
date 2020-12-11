@@ -191,7 +191,7 @@
    {
     "hidden": 0,
     "label": "Sales Pipeline",
-    "links": "[\n    {\n        \"description\": \"Database of potential customers.\",\n        \"label\": \"Lead\",\n        \"name\": \"Lead\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Potential opportunities for selling.\",\n        \"label\": \"Opportunity\",\n        \"name\": \"Opportunity\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Customer database.\",\n        \"label\": \"Customer\",\n        \"name\": \"Customer\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"All Contacts.\",\n        \"label\": \"Contact\",\n        \"name\": \"Contact\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Record of all communications of type email, phone, chat, visit, etc.\",\n        \"label\": \"Communication\",\n        \"name\": \"Communication\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Track Leads by Lead Source.\",\n        \"label\": \"Lead Source\",\n        \"name\": \"Lead Source\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Helps you keep tracks of Contracts based on Supplier, Customer and Employee\",\n        \"label\": \"Contract\",\n        \"name\": \"Contract\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Helps you manage appointments with your leads\",\n        \"label\": \"Appointment\",\n        \"name\": \"Appointment\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Newsletter\",\n        \"name\": \"Newsletter\",\n        \"type\": \"doctype\"\n    }\n]",
+    "links": "[\n    {\n        \"description\": \"Database of potential customers.\",\n        \"label\": \"Lead\",\n        \"name\": \"Lead\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Potential opportunities for selling.\",\n        \"label\": \"Opportunity\",\n        \"name\": \"Opportunity\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Customer database.\",\n        \"label\": \"Customer\",\n        \"name\": \"Customer\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"All Contacts.\",\n        \"label\": \"Contact\",\n        \"name\": \"Contact\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Record of all communications of type email, phone, chat, visit, etc.\",\n        \"label\": \"Communication\",\n        \"name\": \"Communication\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Track Leads by Lead Source.\",\n        \"label\": \"Lead Source\",\n        \"name\": \"Lead Source\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Helps you keep tracks of Contracts based on Supplier, Customer and Employee\",\n        \"label\": \"Contract\",\n        \"name\": \"Contract\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"description\": \"Helps you manage appointments with your leads\",\n        \"label\": \"Appointment\",\n        \"name\": \"Appointment\",\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Newsletter\",\n        \"name\": \"Newsletter\",\n        \"type\": \"doctype\"\n    },\n    {\n           \"dependencies\":[\"Item\"],\n           \"name\": \"Request Customer Information\",\n           \"label\":\"Request Customer Information\",\n\t\t\t\"description\": \"Customer Information\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        }\n]",
     "parent": "CRM",
     "parentfield": "cards",
     "parenttype": "Desk Page"
@@ -251,7 +251,7 @@
   "hide_custom": 0,
   "is_standard": 1,
   "label": "CRM",
-  "modified": "2020-08-11 18:55:18.238900",
+  "modified": "2020-12-11 16:06:53.759036",
   "module": "CRM",
   "name": "CRM",
   "onboarding": "CRM",
@@ -489,7 +489,7 @@
    {
     "hidden": 0,
     "label": "Buying",
-    "links": "[   \n    {\n        \"dependencies\": [\n            \"Item\"\n        ],\n        \"description\": \"Request for purchase.\",\n        \"label\": \"Material Request\",\n        \"name\": \"Material Request\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"dependencies\": [\n            \"Item\",\n            \"Supplier\"\n        ],\n        \"description\": \"Purchase Orders given to Suppliers.\",\n        \"label\": \"Purchase Order\",\n        \"name\": \"Purchase Order\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"dependencies\": [\n            \"Item\",\n            \"Supplier\"\n        ],\n        \"label\": \"Purchase Invoice\",\n        \"name\": \"Purchase Invoice\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"dependencies\": [\n            \"Item\",\n            \"Supplier\"\n        ],\n        \"description\": \"Request for quotation.\",\n        \"label\": \"Request for Quotation\",\n        \"name\": \"Request for Quotation\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"dependencies\": [\n            \"Item\",\n            \"Supplier\"\n        ],\n        \"description\": \"Quotations received from Suppliers.\",\n        \"label\": \"Supplier Quotation\",\n        \"name\": \"Supplier Quotation\",\n        \"type\": \"doctype\"\n    },\n            {\n           \"dependencies\":[\"Item\"],\n           \"name\": \"Request Customer Information\",\n           \"label\":\"Request Customer Information\",\n\t\t\t\"description\": \"Customer Information\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        }\n]",
+    "links": "[   \n    {\n        \"dependencies\": [\n            \"Item\"\n        ],\n        \"description\": \"Request for purchase.\",\n        \"label\": \"Material Request\",\n        \"name\": \"Material Request\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"dependencies\": [\n            \"Item\",\n            \"Supplier\"\n        ],\n        \"description\": \"Purchase Orders given to Suppliers.\",\n        \"label\": \"Purchase Order\",\n        \"name\": \"Purchase Order\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"dependencies\": [\n            \"Item\",\n            \"Supplier\"\n        ],\n        \"label\": \"Purchase Invoice\",\n        \"name\": \"Purchase Invoice\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"dependencies\": [\n            \"Item\",\n            \"Supplier\"\n        ],\n        \"description\": \"Request for quotation.\",\n        \"label\": \"Request for Quotation\",\n        \"name\": \"Request for Quotation\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"dependencies\": [\n            \"Item\",\n            \"Supplier\"\n        ],\n        \"description\": \"Quotations received from Suppliers.\",\n        \"label\": \"Supplier Quotation\",\n        \"name\": \"Supplier Quotation\",\n        \"type\": \"doctype\"\n    }\n]",
     "parent": "Buying",
     "parentfield": "cards",
     "parenttype": "Desk Page"
@@ -573,7 +573,7 @@
   "hide_custom": 0,
   "is_standard": 1,
   "label": "Buying",
-  "modified": "2020-12-07 14:02:28.720000",
+  "modified": "2020-12-11 16:05:44.102960",
   "module": "Buying",
   "name": "Buying",
   "onboarding": "Buying",
@@ -4121,7 +4121,7 @@
    {
     "hidden": 0,
     "label": "Axis Custom Apps",
-    "links": "[\n        {\n           \"dependencies\":[\"Item\"],\n           \"name\": \"Request Customer Information\",\n           \"label\":\"Request Customer Information\",\n\t\t\t\"description\": \"Customer Information\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        },\n        {\n            \"dependencies\":[\"Item\"],\n           \"name\": \"Document Set\",\n           \"label\":\"Document Set\",\n\t\t\t\"description\": \"Set of documents\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        },\n        {\n            \"dependencies\":[\"Item\"],\n           \"name\": \"Stock Movement\",\n           \"label\":\"Stock Movement\",\n\t\t\t\"description\": \"Stock Movements\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        },\n        {\n            \"dependencies\":[\"Item\"],\n           \"name\": \"Clearance Process\",\n           \"label\":\"Clearance Process\",\n\t\t\t\"description\": \"Clearance Processes\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        },\n        {\n            \"dependencies\":[\"Item\"],\n           \"name\": \"Employee Costs\",\n           \"label\":\"Employee Costs\",\n\t\t\t\"description\": \"Employees Costs\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        }\n    ]",
+    "links": "[\n        {\n            \"dependencies\":[\"Item\"],\n           \"name\": \"Document Set\",\n           \"label\":\"Document Set\",\n\t\t\t\"description\": \"Set of documents\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        },\n        {\n            \"dependencies\":[\"Item\"],\n           \"name\": \"Stock Movement\",\n           \"label\":\"Stock Movement\",\n\t\t\t\"description\": \"Stock Movements\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        },\n        {\n            \"dependencies\":[\"Item\"],\n           \"name\": \"Clearance Process\",\n           \"label\":\"Clearance Process\",\n\t\t\t\"description\": \"Clearance Processes\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        },\n        {\n            \"dependencies\":[\"Item\"],\n           \"name\": \"Employee Costs\",\n           \"label\":\"Employee Costs\",\n\t\t\t\"description\": \"Employees Costs\",\n\t\t\t\"onboard\": 1,\n\t\t\t\"type\":\"doctype\"\n        }\n    ]",
     "parent": "Axis",
     "parentfield": "cards",
     "parenttype": "Desk Page"
@@ -4141,7 +4141,7 @@
   "hide_custom": 0,
   "is_standard": 0,
   "label": "Axis",
-  "modified": "2020-12-07 14:19:43.573633",
+  "modified": "2020-12-11 16:04:29.418051",
   "module": "Axis Inspection",
   "name": "Axis",
   "onboarding": null,
