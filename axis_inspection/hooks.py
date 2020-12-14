@@ -89,7 +89,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Sales Order-quotation",
 		"Customer-company_registration",
 		"Customer-our_vendor_number",
-		"Task-assign_to"
+		"Task-assign_to",
+		"Item-skills_details",
+		"Item-skills"
 		]
 	]
 ]
