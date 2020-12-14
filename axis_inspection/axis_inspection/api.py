@@ -101,5 +101,32 @@ def get_user_list(doctype, txt, searchfield, start, page_len, filters):
                 and u.enabled = 1 and u.name like %s
         """, ("%" + txt + "%"))
 
+@frappe.whitelist()
+def get_employee_filter(sales_order):
+	employee=[]
+	item=frappe.db.get_list("Sales Order Item",filters={"parent":sales_order},fields={"item_code"})
+	for row in item:
+		v=frappe.db.get_list('Employee Skill',filters={"parent":row.item_code,"parenttype":"Item"},fields={"skill"})
+		for val in v:
+			emp=frappe.db.get_list('Employee Skill',filters={"skill":val.skill,"parenttype":"Employee Skill Map"},fields={"parent"})
+			for e in emp:
+				if e.parent not in employee:
+						employee.append(e.parent)     
+			
+	return employee
 
-
+@frappe.whitelist()
+def get_project_list(employee):
+	project=[]
+	skills=frappe.db.get_list('Employee Skill',filters={"parent":employee,"parenttype":"Employee Skill Map"},fields={"skill"})
+	for skill in skills:
+		items=frappe.db.get_list('Employee Skill',filters={"skill":skill.skill,"parenttype":"Item"},fields={"parent"})
+		for item in items:
+			so=frappe.db.get_list("Sales Order Item",filters={"parenttype":"Sales Order","item_code":item.parent,"docstatus":1},fields={"parent"})
+			for s in so:
+				pro=frappe.db.get_list("Sales Order",filters={"name":s.parent},fields={"project"})
+				for e in pro:
+					if e.project not in project:
+						project.append(e.project)     
+			
+	return project

@@ -4,7 +4,7 @@
   "doctype": "Workflow",
   "document_type": "Sales Order",
   "is_active": 1,
-  "modified": "2020-11-26 17:31:52.820752",
+  "modified": "2020-12-14 10:37:09.494889",
   "name": "Sales Order Flow",
   "override_status": 0,
   "parent": null,
@@ -40,7 +40,7 @@
    },
    {
     "allow_edit": "Sales Manager",
-    "doc_status": "1",
+    "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
     "next_action_email_template": null,

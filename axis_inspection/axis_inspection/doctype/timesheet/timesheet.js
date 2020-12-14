@@ -3,18 +3,39 @@
 
 frappe.ui.form.on('Timesheet', {
 employee:function(frm,cdt,cdn){
-console.log('hhg')
-	frappe.call({
-		method:"axis_inspection.axis_inspection.api.get_reports_to",
-		async:false,
-				args: {
-					doctype: 'Employee',
-					name: frm.doc.employee
-				},
+	if(frm.doc.employee!==undefined){
+		frappe.call({
+			method:"axis_inspection.axis_inspection.api.get_reports_to",
+			async:false,
+					args: {
+						doctype: 'Employee',
+						name: frm.doc.employee
+					},
+				callback: function(r){
+					frm.set_value('department_manager',r.message)
+				}
+			});
+		var project=[]	
+		frappe.call({
+			method:"axis_inspection.axis_inspection.api.get_project_list",
+			async:false,
+			args: {
+				"employee":frm.doc.employee	
+			},
 			callback: function(r){
-				frm.set_value('department_manager',r.message)
+				for(var i=0; i<r.message.length; i++){
+					project.push(r.message[i]);
+				}
+				frm.fields_dict['time_logs'].grid.get_field('project').get_query = function() {
+					return{
+						filters: {
+							name:["in",project] 
+						}
+					};
+				};
 			}
 		});
+}
 },
 before_workflow_action: (frm) => {
 	if(frm.doc.workflow_state=="Draft")
@@ -25,5 +46,12 @@ before_workflow_action: (frm) => {
 		}
 	});
 	}
+}
+});
+
+frappe.ui.form.on('Timesheet Detail', {
+activity_type:function(frm){
+console.log('dds')
+
 }
 });
