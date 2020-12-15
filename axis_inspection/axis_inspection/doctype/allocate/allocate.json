@@ -1,0 +1,40 @@
+{
+ "actions": [],
+ "creation": "2020-12-15 11:09:55.214366",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "asset_no",
+  "asset_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "asset_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Asset Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "asset_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Asset",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2020-12-15 15:37:09.620449",
+ "modified_by": "Administrator",
+ "module": "Axis Inspection",
+ "name": "Allocate",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

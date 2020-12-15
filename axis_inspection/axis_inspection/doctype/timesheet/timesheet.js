@@ -46,12 +46,34 @@ before_workflow_action: (frm) => {
 		}
 	});
 	}
-}
+},
+refresh:function(frm){
+var employee=[];
+$.each(frm.doc.time_logs,function(idx, item){
+	if(item.task!=undefined){
+		frappe.call({
+				method:"axis_inspection.axis_inspection.api.get_employee",
+				async:false,
+				args: {
+					"task":item.task
+				},
+				callback: function(r){
+console.log(r)
+					for(var i=0; i<r.message.length; i++){
+						employee.push(r.message[i]);
+					}
+				}
+		});
+	}
+});
+	frm.set_query("employee", function(frm, cdt, cdn) {
+		return {
+			filters: {
+				name:["in",employee] 
+			}
+		};
+		});
+	}
+
 });
 
-frappe.ui.form.on('Timesheet Detail', {
-activity_type:function(frm){
-console.log('dds')
-
-}
-});

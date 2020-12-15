@@ -89,11 +89,18 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Sales Order-quotation",
 		"Customer-company_registration",
 		"Customer-our_vendor_number",
-		"Task-assign_to",
+		"Task-assign_",
 		"Item-skills_details",
 		"Item-skills",
 		"Employee-nationality",
-		"Employee-id_number"
+		"Employee-id_number",
+		"Asset-skill_details",
+		"Asset-skill",
+		"Task-allocate",
+		"Asset Movement Item-task",
+		"Task-allocation",
+		"Task-assign"
+
 		]
 	]
 ]
@@ -211,7 +218,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Delivery Note-per_billed-hidden",
 				"Delivery Note-sales_team_section_break-hidden",
 				"Delivery Note-section_break1-hidden",
-				"Project-customer-fetch_from"
+				"Project-customer-fetch_from",
+				"Stock Entry-project-reqd"
 			]
 	]
 	]
@@ -250,7 +258,8 @@ doctype_js = {
 	"Employee Promotion" : "axis_inspection/doctype/employee_promotion/employee_promotion.js",
 	"Opportunity" : "axis_inspection/doctype/opportunity/opportunity.js",
 	"Asset" : "axis_inspection/doctype/asset/asset.js",
-	"Lead" :  "axis_inspection/doctype/lead/lead.js"
+	"Lead" :  "axis_inspection/doctype/lead/lead.js",
+	"Asset Movement" : "axis_inspection/doctype/asset_movement/asset_movement.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date"
@@ -266,6 +275,11 @@ override_doctype_dashboards = {
 	"Sales Order": ["axis_inspection.axis_inspection.doctype.sales_order.sales_order_dashboard.get_dashboard_data"]
 }
 
+doc_events = {
+    	"Asset Movement": {
+		"on_submit": ["axis_inspection.axis_inspection.doctype.asset_movement.asset_movement.update_asset"]
+    }
+}
 
 
 def validate_duplicate_employee_onboarding(self):

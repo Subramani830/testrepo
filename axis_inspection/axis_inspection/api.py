@@ -106,8 +106,8 @@ def get_employee_filter(sales_order):
 	employee=[]
 	item=frappe.db.get_list("Sales Order Item",filters={"parent":sales_order},fields={"item_code"})
 	for row in item:
-		v=frappe.db.get_list('Employee Skill',filters={"parent":row.item_code,"parenttype":"Item"},fields={"skill"})
-		for val in v:
+		skill=frappe.db.get_list('Employee Skill',filters={"parent":row.item_code,"parenttype":"Item"},fields={"skill"})
+		for val in skill:
 			emp=frappe.db.get_list('Employee Skill',filters={"skill":val.skill,"parenttype":"Employee Skill Map"},fields={"parent"})
 			for e in emp:
 				if e.parent not in employee:
@@ -116,17 +116,22 @@ def get_employee_filter(sales_order):
 	return employee
 
 @frappe.whitelist()
-def get_project_list(employee):
-	project=[]
-	skills=frappe.db.get_list('Employee Skill',filters={"parent":employee,"parenttype":"Employee Skill Map"},fields={"skill"})
-	for skill in skills:
-		items=frappe.db.get_list('Employee Skill',filters={"skill":skill.skill,"parenttype":"Item"},fields={"parent"})
-		for item in items:
-			so=frappe.db.get_list("Sales Order Item",filters={"parenttype":"Sales Order","item_code":item.parent,"docstatus":1},fields={"parent"})
-			for s in so:
-				pro=frappe.db.get_list("Sales Order",filters={"name":s.parent},fields={"project"})
-				for e in pro:
-					if e.project not in project:
-						project.append(e.project)     
-			
-	return project
+def get_employee(task):
+	employee=[]
+	val=frappe.db.get_list("Assign To",filters={'parent':task},fields=["assign_to"])
+	for row in val:
+		if row.assign_to not in employee:
+			employee.append(row.assign_to)
+	return employee
+
+@frappe.whitelist()
+def get_item_list(project):
+	item=[]
+	name=frappe.db.get_value('Project',{'name':project},'sales_order')
+	if name:
+		itemList=frappe.db.get_list("Sales Order Item",filters={"parent":name},fields={"item_code"})
+		for row in itemList:
+			if frappe.db.get_value('Item',{'name':row.item_code},'is_stock_item')== 1:
+				if row.item_code not in item:
+					item.append(row.item_code)
+		return item

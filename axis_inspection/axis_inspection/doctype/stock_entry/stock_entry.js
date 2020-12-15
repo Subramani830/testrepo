@@ -32,6 +32,33 @@ before_save:function(frm,cdt,cdn){
 
         })
         
+},
+project:function(frm){
+var items=[];
+	$.each(frm.doc.items,function(idx, item){
+		if(frm.doc.project!=undefined){
+		frappe.call({
+				method:"axis_inspection.axis_inspection.api.get_item_list",
+				async:false,
+				args: {
+					"project":frm.doc.project
+				},
+				callback: function(r){
+					for(var i=0; i<r.message.length; i++){
+						items.push(r.message[i]);
+					}
+				}
+		});
+		}
+	});
+frm.fields_dict['items'].grid.get_field('item_code').get_query = function() {
+                                return {
+                                    filters: {
+                                       name:["in",items] 
+                                    }
+                                };
+                            };
+
 }
 })
 

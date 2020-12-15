@@ -47,13 +47,13 @@ var employee=[];
 			for(var i=0; i<r.message.length; i++){
 				employee.push(r.message[i]);
 			}
-			frm.set_query("assign_to", function() {
+			frm.fields_dict['assign_'].grid.get_field('assign_to').get_query = function() {
 				return {
 					filters: {
 						name:["in",employee] 
 					}
 				};
-			});
+			};
 						
 		}
 	});

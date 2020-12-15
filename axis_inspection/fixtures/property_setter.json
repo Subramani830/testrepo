@@ -1,6 +1,22 @@
 [
  {
   "default_value": null,
+  "doc_type": "Stock Entry",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "project",
+  "modified": "2020-12-15 13:49:02.918848",
+  "name": "Stock Entry-project-reqd",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "reqd",
+  "property_type": "Check",
+  "value": "1"
+ },
+ {
+  "default_value": null,
   "doc_type": "Delivery Note",
   "docstatus": 0,
   "doctype": "Property Setter",
