@@ -36,9 +36,14 @@ task:function(frm,cdt,cdn){
                     }
             });
         }
-    });
-    
-    
-}
-    
+	
+    });   
+},
+	asset:function(frm,cdt,cdn){
+		var row = locals[cdt][cdn];
+		frappe.db.get_value("Asset",{"name":row.asset}, "asset_barcode",(c)=>{
+		row.asset_barcode=c.asset_barcode
+		})
+		cur_frm.refresh_field("assets")
+	}  
 });

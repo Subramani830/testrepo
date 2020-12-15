@@ -259,7 +259,8 @@ doctype_js = {
 	"Opportunity" : "axis_inspection/doctype/opportunity/opportunity.js",
 	"Asset" : "axis_inspection/doctype/asset/asset.js",
 	"Lead" :  "axis_inspection/doctype/lead/lead.js",
-	"Asset Movement" : "axis_inspection/doctype/asset_movement/asset_movement.js"
+	"Asset Movement" : "axis_inspection/doctype/asset_movement/asset_movement.js",
+	"Item" : "axis_inspection/doctype/item/item.js",
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date"

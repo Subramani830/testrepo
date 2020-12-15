@@ -135,3 +135,9 @@ def get_item_list(project):
 				if row.item_code not in item:
 					item.append(row.item_code)
 		return item
+
+@frappe.whitelist()
+def set_barcode_name(barcode):
+	bcode=frappe.db.get_value("Item Barcode",{'barcode':barcode},'name')
+	if bcode!=barcode:
+		frappe.db.sql("""update `tabItem Barcode` set name=%s where barcode=%s""",(barcode,barcode))
