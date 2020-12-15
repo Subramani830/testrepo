@@ -91,7 +91,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Customer-our_vendor_number",
 		"Task-assign_to",
 		"Item-skills_details",
-		"Item-skills"
+		"Item-skills",
+		"Employee-nationality",
+		"Employee-id_number"
 		]
 	]
 ]
@@ -198,7 +200,18 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Lead-county-hidden",
 				"Opportunity Item-uom-in_list_view",
 				"Quotation-referral_sales_partner-hidden",
-				"Loan Application-is_secured_loan-depends_on"
+				"Loan Application-is_secured_loan-depends_on",
+				"Delivery Note-project-reqd",
+				"Delivery Note-sec_warehouse-hidden",
+				"Delivery Note-taxes_section-hidden",
+				"Delivery Note-campaign-hidden",
+				"Delivery Note-source-hidden",
+				"Delivery Note-is_internal_customer-hidden",
+				"Delivery Note-inter_company_reference-hidden",
+				"Delivery Note-per_billed-hidden",
+				"Delivery Note-sales_team_section_break-hidden",
+				"Delivery Note-section_break1-hidden",
+				"Project-customer-fetch_from"
 			]
 	]
 	]
