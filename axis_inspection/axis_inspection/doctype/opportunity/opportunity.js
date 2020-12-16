@@ -3,6 +3,15 @@ frappe.provide("erpnext.crm");
 
 frappe.ui.form.on('Opportunity', {
 	refresh(frm,doc) {
+    frm.set_query("converted_by", function() {
+        return {
+                query: "axis_inspection.axis_inspection.api.get_user_list",
+                filters:{
+                    "role":["in","Sales User","Sales Manager"]
+                }
+            
+        };
+    });
 		// your code here
 		var bt = ['Request For Quotation']
         bt.forEach(function(bt){

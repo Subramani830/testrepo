@@ -99,7 +99,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Task-allocate",
 		"Asset Movement Item-task",
 		"Task-allocation",
-		"Task-assign"
+		"Task-assign",
+		"Task-email"
 
 		]
 	]
@@ -219,7 +220,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Delivery Note-sales_team_section_break-hidden",
 				"Delivery Note-section_break1-hidden",
 				"Project-customer-fetch_from",
-				"Stock Entry-project-reqd"
+				"Stock Entry-project-reqd",
+				"Lead-company-hidden"
 			]
 	]
 	]

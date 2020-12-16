@@ -1,6 +1,22 @@
 [
  {
   "default_value": null,
+  "doc_type": "Lead",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "company",
+  "modified": "2020-12-16 07:04:07.360873",
+  "name": "Lead-company-hidden",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "hidden",
+  "property_type": "Check",
+  "value": "1"
+ },
+ {
+  "default_value": null,
   "doc_type": "Stock Entry",
   "docstatus": 0,
   "doctype": "Property Setter",
