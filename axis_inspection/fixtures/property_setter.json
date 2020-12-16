@@ -1694,5 +1694,37 @@
   "property": "reqd",
   "property_type": "Check",
   "value": "1"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Opportunity Item",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "item_name",
+  "modified": "2020-12-16 10:12:34.973332",
+  "name": "Opportunity Item-item_name-columns",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "columns",
+  "property_type": "Int",
+  "value": "4"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Address",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "county",
+  "modified": "2020-12-16 14:28:18.562587",
+  "name": "Address-county-hidden",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "hidden",
+  "property_type": "Check",
+  "value": "1"
  }
 ]

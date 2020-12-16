@@ -19,8 +19,15 @@ from erpnext.setup.utils import get_exchange_rate
 from erpnext.utilities.transaction_base import TransactionBase
 from erpnext.accounts.party import get_party_account_currency
 from frappe.email.inbox import link_communication_to_document
+from frappe.contacts.address_and_contact import load_address_and_contact, delete_contact_and_address
+from frappe.permissions import add_user_permission, remove_user_permission, set_user_permission_if_allowed, has_permission
 
 class RequestCustomerInformation(TransactionBase):
+	def onload(self):
+		"""Load address and contacts in `__onload`"""
+		load_address_and_contact(self)
+	def on_trash(self):
+		delete_contact_and_address('RequestCustomerInformation', self.name)
 	def after_insert(self):
 		if self.opportunity_from == "Lead":
 			frappe.get_doc("Lead", self.party_name).set_status(update=True)

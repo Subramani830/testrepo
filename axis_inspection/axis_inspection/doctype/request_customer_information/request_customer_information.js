@@ -34,6 +34,17 @@ frappe.ui.form.on("Request Customer Information", {
 
 		if (frm.doc.opportunity_from == "Customer") {
 			erpnext.utils.get_party_details(frm);
+
+			frappe.db.get_value("Customer",frm.doc.party_name,"our_vendor_number",(v)=>{
+				frm.set_value("our_vendor_number", v.our_vendor_number);
+			  })
+			frappe.db.get_value("Customer",frm.doc.party_name,"tax_id",(t)=>{
+				frm.set_value("vat_number", t.tax_id);
+			  })
+			frappe.db.get_value("Customer",frm.doc.party_name,"company_registration",(r)=>{
+				frm.set_value("cr_number", r.company_registration);
+			  })
+
 		} else if (frm.doc.opportunity_from == "Lead") {
 			erpnext.utils.map_current_doc({
 				method: "erpnext.crm.doctype.lead.lead.make_opportunity",
@@ -111,6 +122,17 @@ frappe.ui.form.on("Request Customer Information", {
 				});
 			}
 		}
+
+	     frm.toggle_display(['address_html','contact_html'], !frm.doc.__islocal);
+       	     frappe.dynamic_link = {doc: frm.doc, fieldname: 'name', doctype: 'Request Customer Information'}
+
+            if(!frm.doc.__islocal) {
+                unhide_field(['address_html','contact_html']);
+                frappe.contacts.render_address_and_contact(frm);
+            } else {
+                hide_field(['address_html','contact_html']);
+                frappe.contacts.clear_address_and_contact(frm);
+            }
 	},
 
 	set_contact_link: function(frm) {

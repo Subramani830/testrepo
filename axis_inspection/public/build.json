@@ -1,0 +1,6 @@
+{
+    "js/axis_inspetion.min.js":[
+        "public/js/templates/address_list.html",
+        "public/js/templates/contact_list.html"
+    ]
+}

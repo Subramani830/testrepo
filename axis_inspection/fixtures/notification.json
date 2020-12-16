@@ -233,7 +233,7 @@
   "is_standard": 0,
   "message": "<h3>Hi,</h3>\n<p>Task <a href=\"{{ frappe.utils.get_url_to_form(doc.doctype, doc.name) }}\">{{doc.name}}</a> has been created, please submit the timesheet</p>\n<h3>ThankYou</h3>",
   "method": null,
-  "modified": "2020-12-16 06:13:56.932269",
+  "modified": "2020-12-16 12:22:49.865691",
   "module": null,
   "name": "Task created",
   "parent": null,
@@ -249,7 +249,7 @@
     "parent": "Task created",
     "parentfield": "recipients",
     "parenttype": "Notification",
-    "receiver_by_document_field": "email",
+    "receiver_by_document_field": "email,assign_",
     "receiver_by_role": null
    }
   ],

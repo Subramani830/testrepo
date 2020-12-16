@@ -100,8 +100,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Asset Movement Item-task",
 		"Task-allocation",
 		"Task-assign",
-		"Task-email"
-
+		"Address-po_box",
+		"Contact-contact_of_procurement__team_and_email_id",
+		"Contact-contact_of_accounts_team_and_email_id"
 		]
 	]
 ]
@@ -221,7 +222,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Delivery Note-section_break1-hidden",
 				"Project-customer-fetch_from",
 				"Stock Entry-project-reqd",
-				"Lead-company-hidden"
+				"Lead-company-hidden",
+				"Address-county-hidden",
+				"Opportunity Item-item_name-columns"
 			]
 	]
 	]
@@ -232,6 +235,17 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"name","in",
  			[
 			"Axis Job Offer Print Format","Axis PO Print Format","Axis PI Print Format","Axis PR Print Format","Axis SO Print Format","Axis SI Print Format","Axis DN Print Format","Axis Contract print Format"
+
+]
+	]
+]
+},
+{"dt": "Address Template",
+        "filters": [
+	[
+		"name","in",
+ 			[
+			"India","Saudi Arabia"
 
 ]
 	]
@@ -290,6 +304,8 @@ def validate_duplicate_employee_onboarding(self):
 
 EmployeeOnboarding.validate_duplicate_employee_onboarding = validate_duplicate_employee_onboarding
 
+
+app_include_js = "/assets/js/axis_inspection.min.js"
 # Includes in <head>
 # ------------------
 
