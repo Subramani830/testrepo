@@ -24,9 +24,25 @@ after_save:function(frm,cdt,cdn){
 				employee_warehouse:frm.doc.name,
 				company:frm.doc.company,
 				warehouse_name:frm.doc.employee_name
+			}
+		})	
+	}
+	else if(frm.doc.status=="Left"){
+		frappe.call({
+			method:"axis_inspection.axis_inspection.api.delete_warehouse",
+			async:false,
+			args:{
+				doctype:'Warehouse',
+				employee_warehouse:frm.doc.name,
+				company:frm.doc.company,
+				warehouse_name:frm.doc.employee_name
 			},
 			callback:function(r){
-			}
+				if(r.message!=undefined){
+						frm.set_value('status','Active')
+						frappe.throw(('Status cannot be "Left" as Stock is available for '+r.message+'.'))
+					
+				}			}
 		})	
 	}
 	

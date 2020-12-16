@@ -224,7 +224,11 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Stock Entry-project-reqd",
 				"Lead-company-hidden",
 				"Address-county-hidden",
-				"Opportunity Item-item_name-columns"
+				"Opportunity Item-item_name-columns",
+				"Purchase Receipt-project-reqd",
+				"Project-cost_center-reqd",
+				"Sales Taxes and Charges-cost_center-reqd",
+				"Sales Order-project-reqd"
 			]
 	]
 	]
@@ -288,13 +292,14 @@ scheduler_events = {
 override_doctype_dashboards = {
 	"Employee": ["axis_inspection.axis_inspection.doctype.employee.employee_dashboard.get_dashboard_data"],
 	"Contract": ["axis_inspection.axis_inspection.doctype.contract.contract_dashboard.get_dashboard_data"],
-	"Supplier Quotation": ["axis_inspection.axis_inspection.doctype.supplier_quotation.supplier_quotation_dashboard.get_dashboard_data"],
+	"Supplier Quotation":["axis_inspection.axis_inspection.doctype.supplier_quotation.supplier_quotation_dashboard.get_dashboard_data"],
 	"Sales Order": ["axis_inspection.axis_inspection.doctype.sales_order.sales_order_dashboard.get_dashboard_data"]
 }
 
 doc_events = {
     	"Asset Movement": {
-		"on_submit": ["axis_inspection.axis_inspection.doctype.asset_movement.asset_movement.update_asset"]
+		"on_submit": ["axis_inspection.axis_inspection.doctype.asset_movement.asset_movement.update_asset_details"],
+		"on_cancel": ["axis_inspection.axis_inspection.doctype.asset_movement.asset_movement.delete_asset_details"]
     }
 }
 
