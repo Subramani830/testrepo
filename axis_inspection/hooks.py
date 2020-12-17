@@ -249,7 +249,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 	[
 		"name","in",
  			[
-			"Axis Job Offer Print Format","Axis PO Print Format","Axis PI Print Format","Axis PR Print Format","Axis SO Print Format","Axis SI Print Format","Axis DN Print Format","Axis Contract print Format"
+			"Axis Job Offer Print Format","Axis PO Print Format","Axis PI Print Format","Axis PR Print Format","Axis SO Print Format","Axis SI Print Format","Axis DN Print Format","Axis Contract print Format","Company Contact Information Update"
 
 ]
 	]
