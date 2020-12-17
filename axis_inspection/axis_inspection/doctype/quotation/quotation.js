@@ -99,6 +99,11 @@ refresh: function(frm){
 						})
 					}, __("Get items from"));
 	}
+
+	if(frappe.user_roles.includes('Sales User')){
+		var df1 = frappe.meta.get_docfield("Quotation Item","rate", cur_frm.doc.name);
+            	df1.read_only = 1;
+	}
 	}
 });
 
