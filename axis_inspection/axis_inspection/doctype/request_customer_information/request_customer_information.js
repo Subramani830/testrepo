@@ -46,11 +46,18 @@ frappe.ui.form.on("Request Customer Information", {
 			  })
 
 		} else if (frm.doc.opportunity_from == "Lead") {
-			erpnext.utils.map_current_doc({
+			frappe.db.get_value("Opportunity",{"party_name":frm.doc.party_name},"converted_by",(c)=>{
+				frm.set_value("converted_by", c.converted_by);
+			  })
+		/*	erpnext.utils.map_current_doc({
 				method: "erpnext.crm.doctype.lead.lead.make_opportunity",
 				source_name: frm.doc.party_name,
 				frm: frm
-			});
+			});*/
+			frappe.db.get_value("Opportunity",{"party_name":frm.doc.party_name},"expected_closing",(e)=>{
+				frm.set_value("expected_closing", e.expected_closing);
+			  })
+
 		}
 
 	},
@@ -133,6 +140,15 @@ frappe.ui.form.on("Request Customer Information", {
                 hide_field(['address_html','contact_html']);
                 frappe.contacts.clear_address_and_contact(frm);
             }
+    frm.set_query("converted_by", function() {
+        return {
+                query: "axis_inspection.axis_inspection.api.get_user_list",
+                filters:{
+                    "role":["in","Sales User","Sales Manager"]
+                }
+            
+        };
+    });
 	},
 
 	set_contact_link: function(frm) {

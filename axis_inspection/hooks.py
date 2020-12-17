@@ -102,7 +102,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Task-assign",
 		"Address-po_box",
 		"Contact-contact_of_procurement__team_and_email_id",
-		"Contact-contact_of_accounts_team_and_email_id"
+		"Contact-contact_of_accounts_team_and_email_id",
+		"Opportunity-send_rci_email"
 		]
 	]
 ]
@@ -228,7 +229,17 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Purchase Receipt-project-reqd",
 				"Project-cost_center-reqd",
 				"Sales Taxes and Charges-cost_center-reqd",
-				"Sales Order-project-reqd"
+				"Sales Order-project-reqd",
+				"Lead-company_name-reqd",
+				"Lead-email_id-reqd",
+				"Lead-salutation-reqd",
+				"Lead-designation-reqd",
+				"Lead-address_type-reqd",
+				"Lead-address_title-reqd",
+				"Lead-state-reqd",
+				"Lead-country-reqd",
+				"Lead-phone-reqd",
+				"Lead-mobile_no-reqd"
 			]
 	]
 	]
