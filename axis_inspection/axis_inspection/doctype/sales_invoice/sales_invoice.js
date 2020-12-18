@@ -21,7 +21,12 @@ frappe.ui.form.on('Sales Invoice', {
 			},
 			args: {
 			    doctype: "Has Role",
-			    role:"Sales User",
+			    role:"Projets Manager",
+			    parenttype:"User"
+			},
+			args: {
+			    doctype: "Has Role",
+			    role:"Accounts Manager",
 			    parenttype:"User"
 			},
 			    callback: function(r) {

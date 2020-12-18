@@ -104,7 +104,10 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Contact-contact_of_procurement__team_and_email_id",
 		"Contact-contact_of_accounts_team_and_email_id",
 		"Opportunity-send_rci_email",
-		"Opportunity-price_list"
+		"Opportunity-price_list",
+		"Contract-maximum_value",
+		"Contract-amt_left",
+		"Contract-percentage_amt_left"
 		]
 	]
 ]
