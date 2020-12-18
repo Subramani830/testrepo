@@ -240,7 +240,47 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Lead-state-reqd",
 				"Lead-country-reqd",
 				"Lead-phone-reqd",
-				"Lead-mobile_no-reqd"
+				"Lead-mobile_no-reqd",
+				"Lead-address_line1-reqd",
+				"Lead-city-reqd",
+				"Material Request-set_warehouse-reqd",
+				"Material Request-schedule_date-reqd",
+				"Material Request Item-manufacture_details-hidden",
+				"Material Request Item-bom_no-hidden",
+				"Supplier-pan-hidden",
+				"Supplier-tax_category-hidden",
+				"Supplier-tax_withholding_category-hidden",
+				"Supplier-is_internal_supplier-hidden",
+				"Supplier-allow_purchase_invoice_creation_without_purchase_receipt-hidden",
+				"Supplier-allow_purchase_invoice_creation_without_purchase_order-hidden",
+				"Supplier-warn_rfqs-hidden",
+				"Supplier-prevent_rfqs-hidden",
+				"Supplier-warn_pos-hidden",
+				"Supplier-prevent_pos-hidden",
+				"Supplier Quotation Item-lead_time_days-hidden",
+				"Supplier Quotation Item-item_tax_template-hidden",
+				"Supplier Quotation-taxes_section-hidden",
+				"Project-project_details-read_only_depends_on",
+				"Project-company-read_only_depends_on",
+				"Project-estimated_costing-read_only_depends_on",
+				"Project-estimated_costing-read_only_depends_on",
+				"Purchase Receipt-taxes_charges_section-hidden",
+				"Purchase Receipt-is_subcontracted-hidden",
+				"Purchase Receipt Item-item_tax_template-hidden",
+				"Purchase Receipt Item-allow_zero_valuation_rate-hidden",
+				"Purchase Receipt Item-bom-hidden",
+				"Purchase Receipt Item-bom-hidden",
+				"Purchase Receipt Item-from_warehouse-hidden",
+				"Purchase Receipt-transporter_info-hidden",
+				"Purchase Receipt-printing_settings-hidden",
+				"Purchase Invoice-bill_no-reqd",
+				"Purchase Invoice-bill_date-reqd",
+				"Purchase Invoice-apply_tds-hidden",
+				"Purchase Invoice-is_subcontracted-hidden",
+				"Purchase Invoice Item-manufacture_details-hidden",
+				"Purchase Receipt Item-manufacture_details-hidden",
+				"Purchase Invoice Item-allow_zero_valuation_rate-hidden",
+				"Purchase Invoice Item-bom-hidden"
 			]
 	]
 	]
@@ -256,6 +296,14 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 	]
 ]
 },
+{"dt": "Role", 
+		"filters":[
+        [
+        "name","in",["CEO", "President","General Manager","Deputy General Manager"]
+	]
+	]
+},
+
 {"dt": "Address Template",
         "filters": [
 	[
@@ -305,7 +353,8 @@ override_doctype_dashboards = {
 	"Employee": ["axis_inspection.axis_inspection.doctype.employee.employee_dashboard.get_dashboard_data"],
 	"Contract": ["axis_inspection.axis_inspection.doctype.contract.contract_dashboard.get_dashboard_data"],
 	"Supplier Quotation":["axis_inspection.axis_inspection.doctype.supplier_quotation.supplier_quotation_dashboard.get_dashboard_data"],
-	"Sales Order": ["axis_inspection.axis_inspection.doctype.sales_order.sales_order_dashboard.get_dashboard_data"]
+	"Sales Order": ["axis_inspection.axis_inspection.doctype.sales_order.sales_order_dashboard.get_dashboard_data"],
+	"Material Request":["axis_inspection.axis_inspection.doctype.material_request.material_request_dashboard.get_dashboard_data"]
 }
 
 doc_events = {
