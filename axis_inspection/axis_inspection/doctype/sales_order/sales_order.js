@@ -131,7 +131,6 @@ refresh(frm) {
 		    	})    
 	}   
 	 },
-
 	after_workflow_action: (frm) =>{
 	    var rem;
 	    var percent;
