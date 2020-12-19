@@ -104,7 +104,22 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Contact-contact_of_procurement__team_and_email_id",
 		"Contact-contact_of_accounts_team_and_email_id",
 		"Opportunity-send_rci_email",
-		"Opportunity-price_list"
+		"Opportunity-price_list",
+		"Contract-maximum_value",
+		"Contract-amt_left",
+		"Contract-percentage_amt_left",
+		"Sales Order-amt_billed_perc",
+		"Sales Order-amount_left",
+		"Job Applicant-age",
+		"Job Applicant-nationality",
+		"Job Applicant-employee_id",
+		"Employee-contract_date_end",
+		"Employee-employment_status",
+		"Employee-bank_names",
+		"Employee-personal_bank_name1",
+		"Employee-insurance_class",
+		"Employee-hospital_network",
+		"Leave Encashment-department_manager"
 		]
 	]
 ]
@@ -280,7 +295,41 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Purchase Invoice Item-manufacture_details-hidden",
 				"Purchase Receipt Item-manufacture_details-hidden",
 				"Purchase Invoice Item-allow_zero_valuation_rate-hidden",
-				"Purchase Invoice Item-bom-hidden"
+				"Purchase Invoice Item-bom-hidden",
+				"Job Applicant-resume_attachment-mandatory_depends_on",
+				"Employee-last_name-reqd",
+				"Employee-salutation-reqd",
+				"Employee-employment_type-reqd",
+				"Employee-scheduled_confirmation_date-reqd",
+				"Employee-final_confirmation_date-reqd",
+				"Employee-notice_number_of_days-reqd",
+				"Employee-notice_number_of_days-default",
+				"Employee-date_of_retirement-hidden",
+				"Employee-contract_end_date-hidden",
+				"Employee-department-reqd",
+				"Employee-designation-reqd",
+				"Employee-reports_to-reqd",
+				"Employee-grade-hidden",
+				"Employee-branch-reqd",
+				"Employee-expense_approver-reqd",
+				"Employee-leave_approver-reqd",
+				"Employee-shift_request_approver-hidden",
+				"Employee-leave_policy-reqd",
+				"Employee-holiday_list-reqd",
+				"Employee-default_shift-reqd",
+				"Employee-bank_ac_no-mandatory_depends_on",
+				"Employee-salary_mode-options",
+				"Employee-bank_name-hidden",
+				"Employee-payroll_cost_center-reqd",
+				"Employee-health_insurance_provider-reqd",
+				"Employee-cell_number-reqd",
+				"Employee-personal_email-reqd",
+				"Employee-permanent_address-reqd",
+				"Employee-prefered_contact_email-reqd",
+				"Employee-current_address-reqd",
+				"Employee-valid_upto-reqd",
+				"Employee-marital_status-reqd",
+				"Employee Advance-repay_unclaimed_amount_from_salary-hidden"
 			]
 	]
 	]
@@ -341,6 +390,7 @@ doctype_js = {
 	"Lead" :  "axis_inspection/doctype/lead/lead.js",
 	"Asset Movement" : "axis_inspection/doctype/asset_movement/asset_movement.js",
 	"Item" : "axis_inspection/doctype/item/item.js",
+	"Leave Encashment" : "axis_inspection/doctype/leave_encashment/leave_encashment.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date"

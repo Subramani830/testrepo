@@ -76,6 +76,14 @@ refresh(frm) {
                 }
             }
         });
+
+		frm.set_query("contract",function(){
+            return{
+       		filters: [
+                    ["Contract","party_name", "in",[frm.doc.customer]]
+                ]
+    }
+    });
     },
 	contract: function(frm) {
 		if(frm.doc.contract!=undefined){
@@ -122,5 +130,33 @@ refresh(frm) {
 
 		    	})    
 	}   
-	 }
+	 },
+	after_workflow_action: (frm) =>{
+	    var rem;
+	    var percent;
+	    if(frm.doc.workflow_state=="Approved")
+        {
+		// your code here
+		frappe.db.get_value("Contract",{"name":frm.doc.contract},["maximum_value","amt_left"],(v)=>{
+		    if(v.amt_left == null || v.amt_left == ""){
+		        rem=v.maximum_value-frm.doc.rounded_total;
+		        percent=(rem/v.maximum_value)*100;
+		    }else{
+		        rem=v.amt_left-frm.doc.rounded_total;
+		        percent=(rem/v.maximum_value)*100;
+		    }
+		    frappe.call({
+                "method": "frappe.client.set_value",
+                "args": {
+                    "doctype": "Contract",
+                    "name": frm.doc.contract,
+                "fieldname": {
+                    "amt_left":rem,
+                    "percentage_amt_left":percent
+                },
+                }
+            })
+		})
+	}
+	}
 });
