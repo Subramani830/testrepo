@@ -225,7 +225,7 @@
   "doctype": "Workflow",
   "document_type": "Sales Order",
   "is_active": 1,
-  "modified": "2020-12-14 10:37:09.494889",
+  "modified": "2020-12-18 11:59:04.571934",
   "name": "Sales Order Flow",
   "override_status": 0,
   "parent": null,
@@ -291,7 +291,7 @@
     "action": "Approve",
     "allow_self_approval": 0,
     "allowed": "Sales Manager",
-    "condition": null,
+    "condition": "\n",
     "next_state": "Approved",
     "parent": "Sales Order Flow",
     "parentfield": "transitions",
@@ -1674,6 +1674,110 @@
    }
   ],
   "workflow_name": "TimeSheet Workflow",
+  "workflow_state_field": "workflow_state"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow",
+  "document_type": "Supplier Quotation",
+  "is_active": 0,
+  "modified": "2020-12-18 14:47:52.218929",
+  "name": "Supplier Quotation Flow",
+  "override_status": 0,
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "send_email_alert": 0,
+  "states": [
+   {
+    "allow_edit": "Department Manager",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Supplier Quotation Flow",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Pending Approval",
+    "update_field": "",
+    "update_value": null
+   },
+   {
+    "allow_edit": "Department Manager",
+    "doc_status": "1",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Supplier Quotation Flow",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Approved",
+    "update_field": "",
+    "update_value": ""
+   },
+   {
+    "allow_edit": "Department Manager",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Supplier Quotation Flow",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Rejected",
+    "update_field": "",
+    "update_value": ""
+   },
+   {
+    "allow_edit": "Department Manager",
+    "doc_status": "2",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Supplier Quotation Flow",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Cancelled",
+    "update_field": "",
+    "update_value": ""
+   }
+  ],
+  "transitions": [
+   {
+    "action": "Approve",
+    "allow_self_approval": 1,
+    "allowed": "Department Manager",
+    "condition": null,
+    "next_state": "Approved",
+    "parent": "Supplier Quotation Flow",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Pending Approval"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "Department Manager",
+    "condition": null,
+    "next_state": "Rejected",
+    "parent": "Supplier Quotation Flow",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Pending Approval"
+   },
+   {
+    "action": "Cancel",
+    "allow_self_approval": 1,
+    "allowed": "Department Manager",
+    "condition": null,
+    "next_state": "Cancelled",
+    "parent": "Supplier Quotation Flow",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Approved"
+   }
+  ],
+  "workflow_name": "Supplier Quotation Flow",
   "workflow_state_field": "workflow_state"
  }
 ]
