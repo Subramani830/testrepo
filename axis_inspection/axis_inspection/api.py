@@ -19,7 +19,14 @@ def get_reports_to(doctype,name):
         if reports_to:
             return frappe.db.get_value(doctype,{'name':reports_to},'user_id')
 
-
+@frappe.whitelist()
+def get_department_manager(doctype,name):
+        department=frappe.db.get_value(doctype,{'name':name},'Department')
+        if department:
+                employee_id= frappe.db.get_value('Department',{'name':department},'department_manager')
+                if employee_id:
+                     return frappe.db.get_value(doctype,{'name':employee_id},'user_id')
+                    
 @frappe.whitelist()
 def get_email_list(doctype,role,parenttype):
         return frappe.db.get_list('Has Role',filters={'role':role,'parenttype':parenttype},fields={'parent'})
@@ -161,3 +168,19 @@ def set_barcode_name(barcode):
 	bcode=frappe.db.get_value("Item Barcode",{'barcode':barcode},'name')
 	if bcode!=barcode:
 		frappe.db.sql("""update `tabItem Barcode` set name=%s where barcode=%s""",(barcode,barcode))
+
+@frappe.whitelist()
+def vehicle_log_list(doctype, txt, searchfield, start, page_len, filters):
+	employee=filters['employee']
+	return frappe.db.sql("""select name from `tabVehicle Log` where employee=%s""",(employee))
+
+@frappe.whitelist()
+def update_task(doctype,assign_to):
+	taskList=[]
+	task= frappe.db.get_list(doctype,filters={'assign_to':assign_to,'parenttype':'Task'},fields=['parent'])
+	if task:
+		for row in task:
+			taskDetails= frappe.db.get_list("Task",filters={'name':row.parent,"status":"Open"},fields=['project','name'])
+			for val in taskDetails:
+				taskList.append(val)
+		return taskList

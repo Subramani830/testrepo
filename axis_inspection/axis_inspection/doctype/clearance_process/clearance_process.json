@@ -6,11 +6,39 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "company",
   "employee",
+  "employee_name",
+  "designation",
+  "branch",
+  "column_break_4",
+  "company",
+  "clearance_date",
+  "date_of_join",
+  "purpose_of_clearance_process",
   "department_manager",
+  "asset_section_section",
   "clearance_process_detail",
   "status",
+  "vehicle_section_section",
+  "vehicle_log",
+  "make",
+  "model",
+  "chassis_no",
+  "column_break_18",
+  "license_plate",
+  "odometer_value",
+  "condition",
+  "transport_status",
+  "task_section_section",
+  "task_detail",
+  "radiation_safety_section",
+  "reading",
+  "column_break_28",
+  "date_of_reading",
+  "account_section_section",
+  "account_detail",
+  "pending_penalties",
+  "penalty_status",
   "amended_from"
  ],
  "fields": [
@@ -18,13 +46,15 @@
    "fieldname": "company",
    "fieldtype": "Link",
    "label": "Company",
-   "options": "Company"
+   "options": "Company",
+   "reqd": 1
   },
   {
    "fieldname": "employee",
    "fieldtype": "Link",
    "label": "Employee",
-   "options": "Employee"
+   "options": "Employee",
+   "reqd": 1
   },
   {
    "fieldname": "clearance_process_detail",
@@ -55,12 +85,176 @@
    "hidden": 1,
    "label": "Department Manager",
    "read_only": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.designation",
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "asset_section_section",
+   "fieldtype": "Section Break",
+   "label": "Asset Section"
+  },
+  {
+   "fieldname": "clearance_date",
+   "fieldtype": "Date",
+   "label": "Clearance Date"
+  },
+  {
+   "fetch_from": "employee.branch",
+   "fieldname": "branch",
+   "fieldtype": "Data",
+   "label": "Branch",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.date_of_joining",
+   "fieldname": "date_of_join",
+   "fieldtype": "Data",
+   "label": "Date Of Join",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "vehicle_section_section",
+   "fieldtype": "Section Break",
+   "label": "Vehicle Section"
+  },
+  {
+   "fieldname": "vehicle_log",
+   "fieldtype": "Link",
+   "label": "Vehicle Log",
+   "options": "Vehicle Log"
+  },
+  {
+   "fieldname": "purpose_of_clearance_process",
+   "fieldtype": "Select",
+   "label": "Purpose Of Clearance Process",
+   "options": "\nMonthly Clearance (Month)\nVacation (Leave Request Link, Leave Type(Vacation or long leave (>30 days)),Leave start date, Leave Duration, Leave End date)\nDepartment Transfer (Employee Transfer Link, date of Transfer, From Department, To Department)\nExit (Employee Seperation Link, Exit Type(Resignation, Termination), Exit Date)"
+  },
+  {
+   "fetch_from": "vehicle_log.make",
+   "fieldname": "make",
+   "fieldtype": "Data",
+   "label": "Make",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "vehicle_log.model",
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "label": "Model",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "vehicle_log.license_plate",
+   "fieldname": "license_plate",
+   "fieldtype": "Data",
+   "label": "License Plate",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "vehicle_log.odometer",
+   "fieldname": "odometer_value",
+   "fieldtype": "Data",
+   "label": "Odometer Value",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "chassis_no",
+   "fieldtype": "Data",
+   "label": "Chassis No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "condition",
+   "fieldtype": "Data",
+   "label": "Condition"
+  },
+  {
+   "fieldname": "transport_status",
+   "fieldtype": "Select",
+   "label": "Transport Status",
+   "options": "Pending\nCleared"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "radiation_safety_section",
+   "fieldtype": "Section Break",
+   "label": "Radiation Safety"
+  },
+  {
+   "fieldname": "reading",
+   "fieldtype": "Data",
+   "label": "Reading"
+  },
+  {
+   "fieldname": "date_of_reading",
+   "fieldtype": "Date",
+   "label": "Date of Reading"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "task_section_section",
+   "fieldtype": "Section Break",
+   "label": "Task Section"
+  },
+  {
+   "fieldname": "task_detail",
+   "fieldtype": "Table",
+   "label": "Task Detail",
+   "options": "Task Detail"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "account_section_section",
+   "fieldtype": "Section Break",
+   "label": "Account Section"
+  },
+  {
+   "fieldname": "account_detail",
+   "fieldtype": "Table",
+   "label": "Account Detail",
+   "options": "Account Detail"
+  },
+  {
+   "fieldname": "column_break_28",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pending_penalties",
+   "fieldtype": "Data",
+   "label": "Pending Penalties"
+  },
+  {
+   "fieldname": "penalty_status",
+   "fieldtype": "Select",
+   "label": "Penalty Status",
+   "options": "\nPending\nCleared"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2020-10-22 12:24:23.143503",
+ "modified": "2020-12-19 16:45:46.024660",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Clearance Process",

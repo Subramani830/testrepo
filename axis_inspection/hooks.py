@@ -119,7 +119,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Employee-personal_bank_name1",
 		"Employee-insurance_class",
 		"Employee-hospital_network",
-		"Leave Encashment-department_manager"
+		"Leave Encashment-department_manager",
+		"Supplier-supplier_name_in_arabic"
 		]
 	]
 ]
@@ -329,7 +330,10 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee-current_address-reqd",
 				"Employee-valid_upto-reqd",
 				"Employee-marital_status-reqd",
-				"Employee Advance-repay_unclaimed_amount_from_salary-hidden"
+				"Employee Advance-repay_unclaimed_amount_from_salary-hidden",
+				"Purchase Order Item-manufacture_details-hidden",
+				"Purchase Order Item-bom-hidden",
+				"Purchase Order Item-item_tax_template-hidden",
 			]
 	]
 	]
@@ -348,7 +352,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 {"dt": "Role", 
 		"filters":[
         [
-        "name","in",["CEO", "President","General Manager","Deputy General Manager"]
+        "name","in",["CEO", "President","General Manager","Deputy General Manager","Transportation Manager"]
 	]
 	]
 },

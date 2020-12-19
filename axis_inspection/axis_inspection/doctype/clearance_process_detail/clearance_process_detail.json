@@ -8,11 +8,11 @@
   "project",
   "equipment",
   "condition_of_equipment",
-  "status"
+  "asset_status"
  ],
  "fields": [
   {
-   "columns": 1,
+   "columns": 2,
    "fieldname": "project",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -27,25 +27,27 @@
    "options": "Asset"
   },
   {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Status",
-   "options": "Open\nCleared"
-  },
-  {
    "columns": 2,
    "fieldname": "condition_of_equipment",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Condition of Equipment",
    "options": "\nGood\nBad\nNeeds Repair\nNeeds Maintenance\nNeeds Calibration"
+  },
+  {
+   "default": "Open",
+   "fieldname": "asset_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Assets Status",
+   "options": "Open\nCleared",
+   "read_only_depends_on": "eval:!frappe.user_roles.includes('Assets Manager')"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2020-10-29 11:39:40.974557",
+ "modified": "2020-12-19 10:54:52.391181",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Clearance Process Detail",
