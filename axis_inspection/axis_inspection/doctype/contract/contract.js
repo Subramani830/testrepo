@@ -76,6 +76,17 @@ document_name:function(frm,cdt,cdn){
 			}
 		});
 		}
+},
+party_name:function(frm,cdt,cdn){
+	if(frm.doc.party_type==="Employee"){
+		if(frm.doc.party_name!=undefined){
+			frappe.db.get_value("Employee",frm.doc.party_name,["leave_policy","holiday_list","default_shift"],(v)=>{
+			frm.set_value("leave_policy", v.leave_policy);
+			frm.set_value("holiday_list", v.holiday_list);
+			frm.set_value("shift_type", v.default_shift);
+			  })
+		}
+	}
 }
 });
 

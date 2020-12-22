@@ -134,6 +134,13 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Employee-attach__document_set",
 		"Employee-attach__skill_mapping",
 		"Employee-column_break_112",
+		"Employee-border_number",
+		"Contract-duration",
+		"Employee-reports_to_name",
+		"Contract-leave_policy",
+		"Contract-holiday_list",
+		"Contract-shift_type",
+		"Employee-nationality"
 		]
 	]
 ]
@@ -361,7 +368,16 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Project-total_costing_amount-depends_on",
 				"Project-total_expense_claim-depends_on",
 				"Project-total_purchase_cost-depends_on",
-				"Company-sales_settings-depends_on"
+				"Company-sales_settings-depends_on",
+				"Contract-party_user-label",
+				"Contract-sb_fulfilment-hidden",
+				"Contract-document_type-mandatory_depends_on",
+				"Contract-document_name-mandatory_depends_on",
+				"Employee-final_confirmation_date-label",
+				"Employee-personal_email-mandatory_depends_on",
+				"Employee-company_email-mandatory_depends_on",
+				"Employee Advance-mode_of_payment-depends_on",
+				"Employee Advance-repay_unclaimed_amount_from_salary-hidden"
 			]
 	]
 	]

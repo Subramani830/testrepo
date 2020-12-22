@@ -46,5 +46,18 @@ after_save:function(frm,cdt,cdn){
 		})	
 	}
 	
+},
+validate:function(frm){
+	var regex = /^[0-9]{10}$/;
+	if (regex.test(frm.doc.id_number) != true && frm.doc.id_number!=undefined && frm.doc.id_number!=""){
+		frappe.msgprint(__("ID number should be 10 digit."));
+		frappe.validated = false;
+
+	}
+	if (regex.test(frm.doc.border_number) != true && frm.doc.border_number!=undefined && frm.doc.border_number!=""){
+		frappe.msgprint(__("Border number should be 10 digit."));
+		frappe.validated = false;
+
+	}
 }
 });

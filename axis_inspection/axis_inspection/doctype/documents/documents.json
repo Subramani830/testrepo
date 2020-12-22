@@ -1,7 +1,7 @@
 {
  "actions": [],
  "autoname": "field:document_name",
- "creation": "2020-10-28 11:29:43.029263",
+ "creation": "2020-12-21 15:31:36.622247",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -18,10 +18,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2020-10-28 11:33:41.391673",
+ "modified": "2020-12-21 15:31:36.622247",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
- "name": "Employee Document",
+ "name": "Documents",
  "owner": "Administrator",
  "permissions": [
   {
