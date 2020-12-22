@@ -55,6 +55,27 @@ party_user:function(frm,cdt,cdn){
 			     });
 		}
 	}
+},
+document_name:function(frm,cdt,cdn){
+	if(frm.doc.document_type==="Job Offer" && frm.doc.document_name!=undefined){
+		frappe.call({
+			method:"axis_inspection.axis_inspection.api.get_job_offer_terms",
+			async:false,
+			args:{
+				doctype:'Job Offer Term',
+				parent:frm.doc.document_name,
+				parenttype:'Job Offer'
+			},
+			callback:function(r){
+				for(var i=0;i<r.message.length;i++){
+					var child = cur_frm.add_child("job_offer_terms");
+					frappe.model.set_value(child.doctype, child.name, "offer_term", r.message[i].offer_term);
+					frappe.model.set_value(child.doctype, child.name, "value", r.message[i].value);
+					cur_frm.refresh_field("job_offer_terms");
+				}
+			}
+		});
+		}
 }
 });
 

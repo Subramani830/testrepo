@@ -46,8 +46,12 @@ before_workflow_action: (frm) => {
 		}
 	});
 	}
-},
-refresh:function(frm){
+}
+});
+//refresh:function(frm){
+
+frappe.ui.form.on('Timesheet Detail', {
+task:function(frm){
 var employee=[];
 $.each(frm.doc.time_logs,function(idx, item){
 	if(item.task!=undefined){
@@ -58,7 +62,6 @@ $.each(frm.doc.time_logs,function(idx, item){
 					"task":item.task
 				},
 				callback: function(r){
-console.log(r)
 					for(var i=0; i<r.message.length; i++){
 						employee.push(r.message[i]);
 					}

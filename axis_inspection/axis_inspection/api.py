@@ -184,3 +184,15 @@ def update_task(doctype,assign_to):
 			for val in taskDetails:
 				taskList.append(val)
 		return taskList
+
+@frappe.whitelist()
+def update_project(doctype,name,parenttype):
+	return frappe.db.get_list(doctype,filters={'parent':name,'parenttype':parenttype},fields=['project','task'])
+
+@frappe.whitelist()
+def get_cost_center(doctype,name,parenttype):
+	return frappe.db.get_value(doctype,{'parent':name,'parenttype':parenttype},'cost_center')
+
+@frappe.whitelist()
+def get_job_offer_terms(doctype,parent,parenttype):
+		return frappe.db.get_list(doctype,filters={'parent':parent,'parenttype':parenttype},fields=['offer_term','value'])

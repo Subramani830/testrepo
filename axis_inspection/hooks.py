@@ -120,7 +120,20 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Employee-insurance_class",
 		"Employee-hospital_network",
 		"Leave Encashment-department_manager",
-		"Supplier-supplier_name_in_arabic"
+		"Supplier-supplier_name_in_arabic",
+		"Material Request Item-task",
+		"Request for Quotation Item-task",
+		"Supplier Quotation Item-task",
+		"Purchase Order Item-task",
+		"Purchase Receipt Item-task",
+		"Purchase Invoice Item-task",
+		"Contract-job_offer_terms",
+		"Employee-attachments",
+		"Employee-attach_job_offer",
+		"Employee-attach_contract",
+		"Employee-attach__document_set",
+		"Employee-attach__skill_mapping",
+		"Employee-column_break_112",
 		]
 	]
 ]
@@ -334,6 +347,21 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Purchase Order Item-manufacture_details-hidden",
 				"Purchase Order Item-bom-hidden",
 				"Purchase Order Item-item_tax_template-hidden",
+				"Supplier Quotation Item-project-reqd",
+				"Payroll Entry-payroll_frequency-default",
+				"Payroll Entry-payroll_frequency-options",
+				"Timesheet Detail-task-in_list_view",
+				"Timesheet Detail-task-reqd",
+				"Timesheet Detail-project-read_only",
+				"Project-estimated_costing-depends_on",
+				"Project-total_sales_amount-depends_on",
+				"Project-total_billable_amount-depends_on",
+				"Project-total_billed_amount-depends_on",
+				"Project-total_consumed_material_cost-depends_on",
+				"Project-total_costing_amount-depends_on",
+				"Project-total_expense_claim-depends_on",
+				"Project-total_purchase_cost-depends_on",
+				"Company-sales_settings-depends_on"
 			]
 	]
 	]
@@ -394,7 +422,10 @@ doctype_js = {
 	"Lead" :  "axis_inspection/doctype/lead/lead.js",
 	"Asset Movement" : "axis_inspection/doctype/asset_movement/asset_movement.js",
 	"Item" : "axis_inspection/doctype/item/item.js",
-	"Leave Encashment" : "axis_inspection/doctype/leave_encashment/leave_encashment.js"
+	"Leave Encashment" : "axis_inspection/doctype/leave_encashment/leave_encashment.js",
+	"Request for Quotation" : "axis_inspection/doctype/request_for_quotation/request_for_quotation.js",
+	"Purchase Receipt" : "axis_inspection/doctype/purchase_receipt/purchase_receipt.js",
+	"Purchase Invoice" : "axis_inspection/doctype/purchase_invoice/purchase_invoice.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date"
