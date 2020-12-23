@@ -266,7 +266,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Purchase Receipt-project-reqd",
 				"Project-cost_center-reqd",
 				"Sales Taxes and Charges-cost_center-mandatory_depends_on",
-				"Sales Order-project-reqd",
 				"Lead-company_name-reqd",
 				"Lead-email_id-reqd",
 				"Lead-salutation-reqd",
@@ -340,7 +339,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee-default_shift-reqd",
 				"Employee-bank_ac_no-mandatory_depends_on",
 				"Employee-salary_mode-options",
-				"Employee-bank_name-hidden",
 				"Employee-payroll_cost_center-reqd",
 				"Employee-health_insurance_provider-reqd",
 				"Employee-cell_number-reqd",
@@ -377,7 +375,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee-personal_email-mandatory_depends_on",
 				"Employee-company_email-mandatory_depends_on",
 				"Employee Advance-mode_of_payment-depends_on",
-				"Employee Advance-repay_unclaimed_amount_from_salary-hidden"
+				"Employee Advance-repay_unclaimed_amount_from_salary-hidden",
+				"Task-project-reqd"
 			]
 	]
 	]

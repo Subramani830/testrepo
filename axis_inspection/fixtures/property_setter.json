@@ -581,22 +581,6 @@
   "docstatus": 0,
   "doctype": "Property Setter",
   "doctype_or_field": "DocField",
-  "field_name": "bank_name",
-  "modified": "2020-12-18 16:23:27.648744",
-  "name": "Employee-bank_name-hidden",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "property": "hidden",
-  "property_type": "Check",
-  "value": "1"
- },
- {
-  "default_value": null,
-  "doc_type": "Employee",
-  "docstatus": 0,
-  "doctype": "Property Setter",
-  "doctype_or_field": "DocField",
   "field_name": "payroll_cost_center",
   "modified": "2020-12-18 16:29:18.322103",
   "name": "Employee-payroll_cost_center-reqd",
@@ -2689,22 +2673,6 @@
  },
  {
   "default_value": null,
-  "doc_type": "Sales Order",
-  "docstatus": 0,
-  "doctype": "Property Setter",
-  "doctype_or_field": "DocField",
-  "field_name": "project",
-  "modified": "2020-12-16 18:18:20.782322",
-  "name": "Sales Order-project-reqd",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "property": "reqd",
-  "property_type": "Check",
-  "value": "1"
- },
- {
-  "default_value": null,
   "doc_type": "Project",
   "docstatus": 0,
   "doctype": "Property Setter",
@@ -3518,5 +3486,21 @@
   "property": "depends_on",
   "property_type": "Data",
   "value": "eval:!(frappe.user_roles.includes(\"Employee\"))"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Task",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "project",
+  "modified": "2020-12-23 14:21:29.611786",
+  "name": "Task-project-reqd",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "reqd",
+  "property_type": "Check",
+  "value": "1"
  }
 ]
