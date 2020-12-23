@@ -32,7 +32,7 @@ refresh:function(frm){
 var employee=[];
 if(frm.doc.company){}
 	else{
-	frm.set_value('company','Axis Inspection')
+	frm.set_value('company','Axis Inspection Ltd.')
 	}
 $.each(frm.doc.time_logs,function(idx, item){
 	if(item.task!=undefined){
