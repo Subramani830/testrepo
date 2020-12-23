@@ -64,6 +64,16 @@ validate:function(frm){
 		frappe.validated = false;
 
 	}
+	if(frm.doc.id_expiry_date<=frappe.datetime.get_today()){
+		frappe.msgprint(__("Id Expiry date should be greater than todays date."));
+		frappe.validated = false;
+	}
+	if(frm.doc.valid_upto<=frappe.datetime.get_today()){
+		frappe.msgprint(__("Valid Upto should be greater than todays date."));
+		frappe.validated = false;
+	}
+
+
 },
 reports_to:function(frm,cdt,cdn){
     		frappe.db.get_value("Employee",{"name":frm.doc.reports_to},"user_id",(c)=>{

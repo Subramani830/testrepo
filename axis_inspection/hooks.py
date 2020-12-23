@@ -466,7 +466,8 @@ override_doctype_dashboards = {
 	"Contract": ["axis_inspection.axis_inspection.doctype.contract.contract_dashboard.get_dashboard_data"],
 	"Supplier Quotation":["axis_inspection.axis_inspection.doctype.supplier_quotation.supplier_quotation_dashboard.get_dashboard_data"],
 	"Sales Order": ["axis_inspection.axis_inspection.doctype.sales_order.sales_order_dashboard.get_dashboard_data"],
-	"Material Request":["axis_inspection.axis_inspection.doctype.material_request.material_request_dashboard.get_dashboard_data"]
+	"Material Request":["axis_inspection.axis_inspection.doctype.material_request.material_request_dashboard.get_dashboard_data"],
+	"Company":["axis_inspection.axis_inspection.doctype.company.company_dashboard.get_dashboard_data"]
 }
 
 doc_events = {
