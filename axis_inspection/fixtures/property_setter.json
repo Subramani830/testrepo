@@ -1,6 +1,40 @@
 [
  {
   "default_value": null,
+  "doc_type": "Employee",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "health_insurance_no",
+  "modified": "2020-12-23 13:36:18.575954",
+  "name": "Employee-health_insurance_no-mandatory_depends_on",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "mandatory_depends_on",
+  "property_type": "Data",
+  "row_name": null,
+  "value": "eval:doc.health_insurance_provider"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Contract",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "party_user",
+  "modified": "2020-12-23 14:19:18.783034",
+  "name": "Contract-party_user-hidden",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "hidden",
+  "property_type": "Check",
+  "row_name": null,
+  "value": "1"
+ },
+ {
+  "default_value": null,
   "doc_type": "Project",
   "docstatus": 0,
   "doctype": "Property Setter",
@@ -13,6 +47,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:!frappe.user_roles.includes('Projects Manager');"
  },
  {
@@ -29,6 +64,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:!(frappe.user_roles.includes('Projects Manager'))"
  },
  {
@@ -45,6 +81,7 @@
   "parenttype": null,
   "property": "depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:!(frappe.user_roles.includes('Employee'))"
  },
  {
@@ -61,6 +98,7 @@
   "parenttype": null,
   "property": "label",
   "property_type": "Data",
+  "row_name": null,
   "value": "Assigned To"
  },
  {
@@ -77,6 +115,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -93,6 +132,7 @@
   "parenttype": null,
   "property": "mandatory_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.party_type=='Employee'"
  },
  {
@@ -109,6 +149,7 @@
   "parenttype": null,
   "property": "mandatory_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.party_type=='Employee'"
  },
  {
@@ -125,6 +166,7 @@
   "parenttype": null,
   "property": "label",
   "property_type": "Data",
+  "row_name": null,
   "value": "Probation End Date"
  },
  {
@@ -141,6 +183,7 @@
   "parenttype": null,
   "property": "mandatory_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.prefered_contact_email==\"Personal Email\""
  },
  {
@@ -157,6 +200,7 @@
   "parenttype": null,
   "property": "mandatory_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.prefered_contact_email==\"Company Email\""
  },
  {
@@ -173,6 +217,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -189,6 +234,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -205,6 +251,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -221,6 +268,7 @@
   "parenttype": null,
   "property": "mandatory_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.status==\"Accepted\""
  },
  {
@@ -237,6 +285,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -253,6 +302,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -269,6 +319,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -285,6 +336,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -301,6 +353,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -317,6 +370,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -333,6 +387,7 @@
   "parenttype": null,
   "property": "default",
   "property_type": "Text",
+  "row_name": null,
   "value": "90"
  },
  {
@@ -349,6 +404,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -365,6 +421,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -381,6 +438,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -397,6 +455,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -413,6 +472,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -429,6 +489,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -445,6 +506,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -461,6 +523,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -477,6 +540,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -493,6 +557,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -509,6 +574,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -525,6 +591,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -541,6 +608,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -557,6 +625,7 @@
   "parenttype": null,
   "property": "mandatory_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.salary_mode == 'Bank'"
  },
  {
@@ -573,6 +642,7 @@
   "parenttype": null,
   "property": "options",
   "property_type": "Text",
+  "row_name": null,
   "value": "\nBank\nCash"
  },
  {
@@ -589,6 +659,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -605,6 +676,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -621,6 +693,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -637,6 +710,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -653,6 +727,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -669,6 +744,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -685,6 +761,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -701,6 +778,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -717,6 +795,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -733,6 +812,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -749,6 +829,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -765,6 +846,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -781,6 +863,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -797,6 +880,7 @@
   "parenttype": null,
   "property": "mandatory_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.parenttype!=\"Quotation\""
  },
  {
@@ -813,6 +897,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -829,6 +914,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -845,6 +931,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -861,6 +948,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -877,6 +965,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -893,6 +982,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -909,6 +999,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -925,6 +1016,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -941,6 +1033,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -957,6 +1050,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -973,6 +1067,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -989,6 +1084,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1005,6 +1101,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1021,6 +1118,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1037,6 +1135,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1053,6 +1152,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1069,6 +1169,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1085,6 +1186,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1101,6 +1203,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1117,6 +1220,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1133,6 +1237,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1149,6 +1254,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1165,6 +1271,7 @@
   "parenttype": null,
   "property": "fetch_from",
   "property_type": "Small Text",
+  "row_name": null,
   "value": "sales_order.customer"
  },
  {
@@ -1181,6 +1288,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1197,6 +1305,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1213,6 +1322,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1229,6 +1339,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1245,6 +1356,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1261,6 +1373,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1277,6 +1390,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1293,6 +1407,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1309,6 +1424,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1325,6 +1441,7 @@
   "parenttype": null,
   "property": "depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.parenttype!=\"Quotation\""
  },
  {
@@ -1341,6 +1458,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1357,6 +1475,7 @@
   "parenttype": null,
   "property": "in_list_view",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1373,6 +1492,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1389,6 +1509,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1405,6 +1526,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1421,6 +1543,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1437,6 +1560,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1453,6 +1577,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1469,6 +1594,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1485,6 +1611,7 @@
   "parenttype": null,
   "property": "title_field",
   "property_type": "Data",
+  "row_name": null,
   "value": "barcode"
  },
  {
@@ -1501,6 +1628,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1517,6 +1645,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1533,6 +1662,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1549,6 +1679,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1565,6 +1696,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1581,6 +1713,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1597,6 +1730,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1613,6 +1747,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1629,6 +1764,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1645,6 +1781,7 @@
   "parenttype": null,
   "property": "options",
   "property_type": "Text",
+  "row_name": null,
   "value": "\nQuotation\nProject\nSales Order\nPurchase Order\nSales Invoice\nPurchase Invoice\nJob Offer"
  },
  {
@@ -1661,6 +1798,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1677,6 +1815,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1693,6 +1832,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1709,6 +1849,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1725,6 +1866,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1741,6 +1883,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1757,6 +1900,7 @@
   "parenttype": null,
   "property": "default",
   "property_type": "Text",
+  "row_name": null,
   "value": "\"\""
  },
  {
@@ -1773,6 +1917,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1789,6 +1934,7 @@
   "parenttype": null,
   "property": "allow_copy",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1805,6 +1951,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1821,6 +1968,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1837,6 +1985,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1853,6 +2002,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1869,6 +2019,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1885,6 +2036,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1901,6 +2053,7 @@
   "parenttype": null,
   "property": "options",
   "property_type": "Text",
+  "row_name": null,
   "value": "Client"
  },
  {
@@ -1917,6 +2070,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "0"
  },
  {
@@ -1933,6 +2087,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "0"
  },
  {
@@ -1949,6 +2104,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "0"
  },
  {
@@ -1965,6 +2121,7 @@
   "parenttype": null,
   "property": "options",
   "property_type": "Text",
+  "row_name": null,
   "value": "Lead\nInterested\nConverted\nDo Not Contact"
  },
  {
@@ -1981,6 +2138,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -1997,6 +2155,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2013,6 +2172,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2029,6 +2189,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2045,6 +2206,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2061,6 +2223,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2077,6 +2240,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2093,6 +2257,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2109,6 +2274,7 @@
   "parenttype": null,
   "property": "options",
   "property_type": "Text",
+  "row_name": null,
   "value": "Email"
  },
  {
@@ -2125,6 +2291,7 @@
   "parenttype": null,
   "property": "options",
   "property_type": "Text",
+  "row_name": null,
   "value": "Awaiting Response\nApplicant Accepted\nSent\nNot Sent\nApplicant Rejected"
  },
  {
@@ -2141,6 +2308,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2157,6 +2325,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2173,6 +2342,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2189,6 +2359,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2205,6 +2376,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2221,6 +2393,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2237,6 +2410,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2253,6 +2427,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2269,6 +2444,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2285,6 +2461,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2301,6 +2478,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2317,6 +2495,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2333,6 +2512,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2349,6 +2529,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2365,6 +2546,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2381,6 +2563,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.quotation!=null"
  },
  {
@@ -2397,6 +2580,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.quotation!=null"
  },
  {
@@ -2413,6 +2597,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.quotation!=null"
  },
  {
@@ -2429,6 +2614,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.quotation!=null"
  },
  {
@@ -2445,6 +2631,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.quotation!=null"
  },
  {
@@ -2461,6 +2648,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.quotation!=null"
  },
  {
@@ -2477,6 +2665,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.quotation!=null"
  },
  {
@@ -2493,6 +2682,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.quotation!=null"
  },
  {
@@ -2509,6 +2699,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.quotation!=null"
  },
  {
@@ -2525,6 +2716,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.quotation!=null"
  },
  {
@@ -2541,6 +2733,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.quotation!=null"
  },
  {
@@ -2557,6 +2750,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.quotation!=null"
  },
  {
@@ -2573,6 +2767,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.quotation!=null"
  },
  {
@@ -2589,6 +2784,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.quotation!=null"
  },
  {
@@ -2605,6 +2801,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:doc.quotation!=null"
  },
  {
@@ -2621,6 +2818,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2637,6 +2835,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2653,6 +2852,7 @@
   "parenttype": null,
   "property": "columns",
   "property_type": "Int",
+  "row_name": null,
   "value": "4"
  },
  {
@@ -2669,6 +2869,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2685,6 +2886,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2701,6 +2903,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2717,6 +2920,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2733,6 +2937,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2749,6 +2954,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2765,6 +2971,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2781,6 +2988,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2797,6 +3005,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2813,6 +3022,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2829,6 +3039,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2845,6 +3056,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2861,6 +3073,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2877,6 +3090,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2893,6 +3107,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2909,6 +3124,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2925,6 +3141,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2941,6 +3158,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2957,6 +3175,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2973,6 +3192,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -2989,6 +3209,7 @@
   "parenttype": null,
   "property": "read_only_depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:!frappe.user_roles.includes('Projects Manager');"
  },
  {
@@ -3005,6 +3226,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3021,6 +3243,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3037,6 +3260,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3053,6 +3277,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3069,6 +3294,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3085,6 +3311,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3101,6 +3328,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3117,6 +3345,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3133,6 +3362,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3149,6 +3379,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3165,6 +3396,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3181,6 +3413,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3197,6 +3430,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3213,6 +3447,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3229,6 +3464,7 @@
   "parenttype": null,
   "property": "hidden",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3245,6 +3481,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3261,6 +3498,7 @@
   "parenttype": null,
   "property": "depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:frappe.session.user==\"Administrator\""
  },
  {
@@ -3277,6 +3515,7 @@
   "parenttype": null,
   "property": "options",
   "property_type": "Text",
+  "row_name": null,
   "value": "\nMonthly"
  },
  {
@@ -3293,6 +3532,7 @@
   "parenttype": null,
   "property": "default",
   "property_type": "Text",
+  "row_name": null,
   "value": "Monthly"
  },
  {
@@ -3309,6 +3549,7 @@
   "parenttype": null,
   "property": "read_only",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3325,6 +3566,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3341,6 +3583,7 @@
   "parenttype": null,
   "property": "in_list_view",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  },
  {
@@ -3357,6 +3600,7 @@
   "parenttype": null,
   "property": "depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:(frappe.user_roles.includes('Projects Manager')||frappe.user_roles.includes('System Manager'))"
  },
  {
@@ -3373,6 +3617,7 @@
   "parenttype": null,
   "property": "depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:(frappe.user_roles.includes('Projects Manager')||frappe.user_roles.includes('System Manager'))"
  },
  {
@@ -3389,6 +3634,7 @@
   "parenttype": null,
   "property": "depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:(frappe.user_roles.includes('Projects Manager')||frappe.user_roles.includes('System Manager'))"
  },
  {
@@ -3405,6 +3651,7 @@
   "parenttype": null,
   "property": "depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:(frappe.user_roles.includes('Projects Manager')||frappe.user_roles.includes('System Manager'))"
  },
  {
@@ -3421,6 +3668,7 @@
   "parenttype": null,
   "property": "depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:(frappe.user_roles.includes('Projects Manager')||frappe.user_roles.includes('System Manager'))"
  },
  {
@@ -3437,6 +3685,7 @@
   "parenttype": null,
   "property": "depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:(frappe.user_roles.includes('Projects Manager')||frappe.user_roles.includes('System Manager'))"
  },
  {
@@ -3453,6 +3702,7 @@
   "parenttype": null,
   "property": "depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:(frappe.user_roles.includes('Projects Manager')||frappe.user_roles.includes('System Manager'))"
  },
  {
@@ -3469,6 +3719,7 @@
   "parenttype": null,
   "property": "depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:(frappe.user_roles.includes('Projects Manager')||frappe.user_roles.includes('System Manager'))"
  },
  {
@@ -3485,6 +3736,7 @@
   "parenttype": null,
   "property": "depends_on",
   "property_type": "Data",
+  "row_name": null,
   "value": "eval:!(frappe.user_roles.includes(\"Employee\"))"
  },
  {
@@ -3501,6 +3753,7 @@
   "parenttype": null,
   "property": "reqd",
   "property_type": "Check",
+  "row_name": null,
   "value": "1"
  }
 ]

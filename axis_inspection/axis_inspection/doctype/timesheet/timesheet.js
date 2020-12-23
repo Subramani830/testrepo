@@ -30,6 +30,10 @@ before_workflow_action: (frm) => {
 },
 refresh:function(frm){
 var employee=[];
+if(frm.doc.company){}
+	else{
+	frm.set_value('company','Axis Inspection')
+	}
 $.each(frm.doc.time_logs,function(idx, item){
 	if(item.task!=undefined){
 		frappe.call({

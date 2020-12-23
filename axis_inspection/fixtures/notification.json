@@ -7,6 +7,49 @@
   "days_in_advance": 0,
   "docstatus": 0,
   "doctype": "Notification",
+  "document_type": "Employee",
+  "enabled": 1,
+  "event": "Save",
+  "is_standard": 0,
+  "message": "<h3>Hi</h3>\n<p>A new Employee is added to the Team<br>Find details of Employee document in the link: <a href=\"{{ frappe.utils.get_url_to_form(doc.doctype, doc.name) }}\">{{doc.name}}</a></p>\n<h3>Thank You</h3>",
+  "method": null,
+  "modified": "2020-12-23 15:59:11.011712",
+  "module": null,
+  "name": "Employee Added",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "print_format": null,
+  "property_value": null,
+  "recipients": [
+   {
+    "bcc": null,
+    "cc": null,
+    "condition": null,
+    "parent": "Employee Added",
+    "parentfield": "recipients",
+    "parenttype": "Notification",
+    "receiver_by_document_field": "reports_to_id",
+    "receiver_by_role": null
+   }
+  ],
+  "send_system_notification": 0,
+  "send_to_all_assignees": 0,
+  "sender": null,
+  "sender_email": null,
+  "set_property_after_alert": null,
+  "slack_webhook_url": null,
+  "subject": "New Employee added to Team",
+  "value_changed": null
+ },
+ {
+  "attach_print": 0,
+  "channel": "Email",
+  "condition": "",
+  "date_changed": null,
+  "days_in_advance": 0,
+  "docstatus": 0,
+  "doctype": "Notification",
   "document_type": "Employee Costs",
   "enabled": 1,
   "event": "Submit",
@@ -40,7 +83,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Employee Cost has been created {{doc.name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -84,7 +126,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Pending approval for Document Set {{doc.name}}",
-  "twilio_number": null,
   "value_changed": ""
  },
  {
@@ -128,7 +169,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Document Set approved {{doc.name}}",
-  "twilio_number": null,
   "value_changed": ""
  },
  {
@@ -192,7 +232,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Contract Expiration for {{ doc.name }}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -236,7 +275,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Probation end date {{doc.name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -280,7 +318,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Passport expiry date {{doc.name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -344,7 +381,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Contract {{ doc.name }}",
-  "twilio_number": null,
   "value_changed": "percentage_amt_left"
  },
  {
@@ -408,7 +444,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Sales Order {{ doc.name }}",
-  "twilio_number": null,
   "value_changed": "amt_billed_perc"
  },
  {
@@ -502,7 +537,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Sales Order {{ doc.name }}",
-  "twilio_number": null,
   "value_changed": "amt_billed_perc"
  },
  {
@@ -556,7 +590,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Initial Review for Job Applicant {{doc.name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -600,7 +633,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Pending approval for Leave Encashment {{doc.name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -664,7 +696,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Contract {{ doc.name }}",
-  "twilio_number": null,
   "value_changed": "percentage_amt_left"
  },
  {
@@ -708,7 +739,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Company Contact Information Update",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -752,7 +782,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Next contact date for Lead {{doc.name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -796,7 +825,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Next contact date for Opportunity {{doc.name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -840,7 +868,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Quotation Approved for{{doc.name}}",
-  "twilio_number": null,
   "value_changed": ""
  },
  {
@@ -884,7 +911,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Sales Order approved for {{doc.name}}",
-  "twilio_number": null,
   "value_changed": ""
  },
  {
@@ -928,7 +954,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Sales Order Created for {{doc.name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -972,7 +997,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Task created {{doc.name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -1016,7 +1040,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Delivery Note created for {{doc.name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -1060,7 +1083,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Pending approval for Sales Invoice {{doc.name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -1104,7 +1126,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Sales Invoice Approved for {{doc.name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -1148,7 +1169,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Contract {{ doc.name }} will be expired on {{doc.end_date}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -1192,7 +1212,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Quotation  {{doc.name}} will be valid till {{doc.valid_till}}.",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -1236,7 +1255,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Quotation  {{doc.name}} will be expired on {{doc.valid_till}}.",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -1280,7 +1298,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Pending approval for Quotation {{doc.name}}",
-  "twilio_number": null,
   "value_changed": ""
  },
  {
@@ -1324,7 +1341,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Pending approval for Sales Order {{doc.name}}",
-  "twilio_number": null,
   "value_changed": ""
  },
  {
@@ -1368,7 +1384,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "New Task assigned on {{doc.name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -1412,7 +1427,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Request to give training for {{doc.name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -1456,7 +1470,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Employee appraisal due date.",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -1500,7 +1513,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Job Confirmation for {{doc.designation}} post",
-  "twilio_number": null,
   "value_changed": "status"
  },
  {
@@ -1544,7 +1556,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Training Schedule: {{doc.name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -1588,7 +1599,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Leave Approval Notification",
-  "twilio_number": null,
   "value_changed": "status"
  },
  {
@@ -1632,7 +1642,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Resignation request by {{doc.employee_name}}",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -1676,7 +1685,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Sales Order details for your Purchase Order.",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -1720,7 +1728,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Sales Invoice created for your Purchase Order.",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -1764,7 +1771,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Employee Resignation",
-  "twilio_number": null,
   "value_changed": null
  },
  {
@@ -1808,7 +1814,6 @@
   "set_property_after_alert": null,
   "slack_webhook_url": null,
   "subject": "Job Application rejected for {{doc.designation}} post",
-  "twilio_number": null,
   "value_changed": "status"
  }
 ]

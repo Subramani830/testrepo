@@ -59,5 +59,18 @@ validate:function(frm){
 		frappe.validated = false;
 
 	}
-}
+	if (regex.test(frm.doc.visa_number) != true && frm.doc.visa_number!=undefined && frm.doc.visa_number!=""){
+		frappe.msgprint(__("Visa number should be 10 digit."));
+		frappe.validated = false;
+
+	}
+},
+reports_to:function(frm,cdt,cdn){
+    		frappe.db.get_value("Employee",{"name":frm.doc.reports_to},"user_id",(c)=>{
+	    		if(c.user_id){
+	        			console.log(c.user_id)
+				frm.set_value("reports_to_id",c.user_id)
+	    		}
+    		});
+	}
 });

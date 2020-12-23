@@ -140,11 +140,21 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Contract-leave_policy",
 		"Contract-holiday_list",
 		"Contract-shift_type",
-		"Employee-nationality"
+		"Employee-nationality",
+		"Employee-reports_to_id",
+		"Employee-visa_type",
+		"Employee-visa_number",
+		"Employee-visa_expiry_date",
+		"Employee-driving_license_type",
+		"Employee-driving_license_number",
+		"Employee-driving_license_expiry",
+		"Employee-column_break_73",
+		"Employee-health_insurance_expiry"
 		]
 	]
 ]
 },
+
 {"dt": "Notification", 
 		"filters": [
 		"is_standard != 1"	
@@ -376,7 +386,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee-company_email-mandatory_depends_on",
 				"Employee Advance-mode_of_payment-depends_on",
 				"Employee Advance-repay_unclaimed_amount_from_salary-hidden",
-				"Task-project-reqd"
+				"Task-project-reqd",
+				"Employee-health_insurance_no-mandatory_depends_on",
+				"Contract-party_user-hidden"
 			]
 	]
 	]
