@@ -15,26 +15,7 @@ employee:function(frm,cdt,cdn){
 					frm.set_value('department_manager',r.message)
 				}
 			});
-		var project=[]	
-		frappe.call({
-			method:"axis_inspection.axis_inspection.api.get_project_list",
-			async:false,
-			args: {
-				"employee":frm.doc.employee	
-			},
-			callback: function(r){
-				for(var i=0; i<r.message.length; i++){
-					project.push(r.message[i]);
-				}
-				frm.fields_dict['time_logs'].grid.get_field('project').get_query = function() {
-					return{
-						filters: {
-							name:["in",project] 
-						}
-					};
-				};
-			}
-		});
+		
 }
 },
 before_workflow_action: (frm) => {
