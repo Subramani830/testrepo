@@ -155,7 +155,10 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Employee Advance-department_manager",
 		"Shift Request-department_manager",
 		"Appraisal-department_manager",
-		"Job Offer-is_existing_employee"
+		"Job Offer-is_existing_employee",
+		"Quotation-quotation_reference",
+		"Sales Order-sales_order_reference",
+		"Supplier Quotation-contract"
 		]
 	]
 ]
@@ -399,7 +402,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Job Offer-job_applicant-depends_on",
 				"Job Offer-applicant_email-depends_on",
 				"Job Offer-job_applicant-mandatory_depends_on",
-				"Job Offer-applicant_name-mandatory_depends_on"
+				"Job Offer-applicant_name-mandatory_depends_on",
+				"Sales Order-order_type-options"
 			]
 	]
 	]

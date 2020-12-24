@@ -27,5 +27,15 @@ frappe.ui.form.on('Supplier Quotation', {
 		}
 	});
 	
-   }
+   },
+	refresh:function(frm,cdt,cdn){
+		frm.set_query("contract",function(){
+			return{
+				filters: {
+				"party_type":'Supplier',
+				"party_name":frm.doc.supplier
+				}
+			};
+		});
+	}
 })
