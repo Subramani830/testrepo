@@ -82,5 +82,11 @@ reports_to:function(frm,cdt,cdn){
 				frm.set_value("reports_to_id",c.user_id)
 	    		}
     		});
-	}
+	},
+job_applicant:function(frm){
+		frappe.db.get_value("Job Offer",{"job_applicant":frm.doc.job_applicant},["offer_date","offer_confirmation_date"],(e)=>{
+			frm.set_value("scheduled_confirmation_date", e.offer_date);
+			frm.set_value("job_offer_confirmation_date", e.offer_confirmation_date);
+		});
+}
 });

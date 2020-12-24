@@ -127,13 +127,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Purchase Order Item-task",
 		"Purchase Receipt Item-task",
 		"Purchase Invoice Item-task",
-		"Contract-job_offer_terms",
-		"Employee-attachments",
-		"Employee-attach_job_offer",
-		"Employee-attach_contract",
-		"Employee-attach__document_set",
-		"Employee-attach__skill_mapping",
-		"Employee-column_break_112",
 		"Employee-border_number",
 		"Contract-duration",
 		"Employee-reports_to_name",
@@ -158,7 +151,13 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Job Offer-is_existing_employee",
 		"Quotation-quotation_reference",
 		"Sales Order-sales_order_reference",
-		"Supplier Quotation-contract"
+		"Supplier Quotation-contract",
+		"Job Offer-offer_confirmation_date",
+		"Employee-job_offer_confirmation_date",
+		"Employee-document_set",
+		"Employee-contract",
+		"Employee-probation_start_date",
+		"Contract-contract_term"
 		]
 	]
 ]
@@ -403,7 +402,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Job Offer-applicant_email-depends_on",
 				"Job Offer-job_applicant-mandatory_depends_on",
 				"Job Offer-applicant_name-mandatory_depends_on",
-				"Sales Order-order_type-options"
+				"Sales Order-order_type-options",
+				"Employee-contract_end_date-read_only"
 			]
 	]
 	]

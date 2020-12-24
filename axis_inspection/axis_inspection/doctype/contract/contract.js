@@ -10,7 +10,7 @@ frappe.ui.form.on('Contract', {
 		function() {
 		frm.trigger("make_quotation")
 		}, __('Create'));
-        }
+		}
     },
 	make_quotation: function(frm) {
 		frappe.model.open_mapped_doc({
@@ -42,20 +42,6 @@ frappe.call({
 			}
 		    });
 },
-party_user:function(frm,cdt,cdn){
-	if(frm.doc.party_type==="Employee"){
-		if(frm.doc.party_user!=undefined){
-			frm.set_query("party_name",function(){
-				return{
-				 query: "axis_inspection.axis_inspection.api.get_employee_list",
-				    filters: {
-				        "user_id":frm.doc.party_user
-				    }
-				};
-			     });
-		}
-	}
-},
 document_name:function(frm,cdt,cdn){
 	if(frm.doc.document_type==="Job Offer" && frm.doc.document_name!=undefined){
 		frappe.call({
@@ -68,10 +54,10 @@ document_name:function(frm,cdt,cdn){
 			},
 			callback:function(r){
 				for(var i=0;i<r.message.length;i++){
-					var child = cur_frm.add_child("job_offer_terms");
-					frappe.model.set_value(child.doctype, child.name, "offer_term", r.message[i].offer_term);
+					var child = cur_frm.add_child("contract_term");
+					frappe.model.set_value(child.doctype, child.name, "contract_term", r.message[i].offer_term);
 					frappe.model.set_value(child.doctype, child.name, "value", r.message[i].value);
-					cur_frm.refresh_field("job_offer_terms");
+					cur_frm.refresh_field("contract_term");
 				}
 			}
 		});
@@ -81,11 +67,59 @@ party_name:function(frm,cdt,cdn){
 	if(frm.doc.party_type==="Employee"){
 		if(frm.doc.party_name!=undefined){
 			frappe.db.get_value("Employee",frm.doc.party_name,["leave_policy","holiday_list","default_shift"],(v)=>{
-			frm.set_value("leave_policy", v.leave_policy);
-			frm.set_value("holiday_list", v.holiday_list);
-			frm.set_value("shift_type", v.default_shift);
-			  })
+				frm.set_value("leave_policy", v.leave_policy);
+				frm.set_value("holiday_list", v.holiday_list);
+				frm.set_value("shift_type", v.default_shift);
+			  })		  
 		}
+	}
+},
+after_save:function(frm){
+	frappe.call({
+		"method": "frappe.client.set_value",
+		"async":false,
+		"args": {
+		"doctype": "Employee",
+		"name": frm.doc.party_name,
+		"fieldname": "contract",
+		"value": frm.doc.start_date
+		}
+	});
+	frappe.call({
+		"method": "frappe.client.set_value",
+		"async":false,
+		"args": {
+		"doctype": "Employee",
+		"name": frm.doc.party_name,
+		"fieldname": "contract_end_date",
+		"value": frm.doc.end_date
+		}
+	});
+},
+party_type:function(frm){
+	if(frm.doc.party_type=="Employee"){
+		var  contract_term=["Contract Type","Contract Duration","Notice Period","Weekend Days"]
+		frappe.call({
+			method: "frappe.client.get_list",
+			async:false,
+			args: {
+				doctype: "Contract Term",
+				fields: ["name"],
+				filters:{
+					name:["in",contract_term]
+				},
+			},
+			callback: function(r) {
+				if(r.message.length>0){
+					cur_frm.clear_table("contract_term")
+					for(var i=0;i<r.message.length;i++){
+						var child = cur_frm.add_child("contract_term");
+						  child.contract_term=r.message[i].name;
+					}
+				}
+			}
+		})
+		cur_frm.refresh_field("contract_term")
 	}
 }
 });

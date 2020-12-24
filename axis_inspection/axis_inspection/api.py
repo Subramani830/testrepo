@@ -15,9 +15,11 @@ def get_sender_email(doctype,role,parenttype):
 
 @frappe.whitelist()
 def get_reports_to(doctype,name):
-        reports_to=frappe.db.get_value(doctype,{'name':name},'reports_to')
-        if reports_to:
-            return frappe.db.get_value(doctype,{'name':reports_to},'user_id')
+        department=frappe.db.get_value(doctype,{'name':name},'Department')
+        if department:
+                employee_id= frappe.db.get_value('Department',{'name':department},'department_manager')
+                if employee_id:
+                     return frappe.db.get_value(doctype,{'name':employee_id},'user_id')
 
 @frappe.whitelist()
 def get_department_manager(doctype,name):

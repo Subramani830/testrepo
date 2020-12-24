@@ -47,8 +47,39 @@ job_applicant:function(frm,cdt,cdn){
 				frm.set_value("designation","")
 			}
 		    }
-	    });
-}
+        });
+    var  offer_term=["Designation","Total Salary","Basic Salary","Transportation","Housing","Communication","Food","Medical Insurance","Vacation Due After","Overtime","Vacation Days","Ticket","Travel Class","Family Status","Probationary Period","Other term & Conditions","Main Duties","Validity","Working Hours"]
+    frappe.call({
+        method: "frappe.client.get_list",
+        async:false,
+        args: {
+            doctype: "Offer Term",
+            fields: ["name"],
+            filters:{
+                name:["in",offer_term]
+            },
+        },
+        callback: function(r) {
+            if(r.message.length>0){
+                cur_frm.clear_table("offer_terms")
+                for(var i=0;i<r.message.length;i++){
+                    var child = cur_frm.add_child("offer_terms");
+                    child.offer_term=r.message[i].name;
+                }
+            }
+        }
+    })
+    }
+cur_frm.refresh_field("offer_terms")
+},
+designation:function(frm,cdt,cdn){
+    if(frm.doc.designation!=undefined){
+        $.each(frm.doc.offer_terms,function(idx,term){
+			if(term.offer_term=="Designation"){
+                frappe.model.set_value(term.doctype, term.name, "value",frm.doc.designation);
+            }
+        });
+    }
 }
 });
 
