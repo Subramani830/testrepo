@@ -134,7 +134,7 @@ refresh(frm) {
 	after_workflow_action: (frm) =>{
 	    var rem;
 	    var percent;
-	    if(frm.doc.workflow_state=="Approved")
+	    if(frm.doc.workflow_state=="Approved" && frm.doc.contract != undefined)
         {
 		// your code here
 		frappe.db.get_value("Contract",{"name":frm.doc.contract},["maximum_value","amt_left"],(v)=>{
