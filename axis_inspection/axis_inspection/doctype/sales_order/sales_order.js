@@ -158,5 +158,10 @@ refresh(frm) {
             })
 		})
 	}
+	},
+	quotation: function(frm) {
+		frappe.db.get_value("Quotation",{"name":frm.doc.quotation},"order_type",(r)=>{
+			frm.set_value('order_type',r.order_type)
+		})
 	}
 });

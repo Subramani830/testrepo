@@ -403,7 +403,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Job Offer-job_applicant-mandatory_depends_on",
 				"Job Offer-applicant_name-mandatory_depends_on",
 				"Sales Order-order_type-options",
-				"Employee-contract_end_date-read_only"
+				"Employee-contract_end_date-read_only",
+				"Quotation-order_type-options",
+				"Sales Order-project-reqd"
 			]
 	]
 	]
@@ -422,7 +424,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 {"dt": "Role", 
 		"filters":[
         [
-        "name","in",["CEO", "President","General Manager","Deputy General Manager","Transportation Manager"]
+        "name","in",["CEO", "President","General Manager","Deputy General Manager","Transportation Manager","Payroll User"]
 	]
 	]
 },

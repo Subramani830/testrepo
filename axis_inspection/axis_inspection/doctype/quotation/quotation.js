@@ -100,10 +100,24 @@ refresh: function(frm){
 					}, __("Get items from"));
 	}
 
-	if(frappe.user_roles.includes('Sales User')){
-		var df1 = frappe.meta.get_docfield("Quotation Item","rate", cur_frm.doc.name);
-            	df1.read_only = 1;
-	}
+	//if(frappe.user_roles.includes('Sales User')){
+		//var df1 = frappe.meta.get_docfield("Quotation Item","rate", cur_frm.doc.name);
+            	//df1.read_only = 1;
+	//}
+	frappe.call({
+			method: "axis_inspection.axis_inspection.doctype.quotation.quotation.get_user_role",
+			async:false,
+			 callback: function(r){
+				console.log(r.message)
+				if(r.message==0){
+					var df1 = frappe.meta.get_docfield("Quotation Item","rate", cur_frm.doc.name);
+            				df1.read_only = 1;	
+					var df2 = frappe.meta.get_docfield("Quotation","selling_price_list", cur_frm.doc.name);
+            				df2.read_only = 1;			
+				}
+				
+                }
+    });
 	}
 });
 
