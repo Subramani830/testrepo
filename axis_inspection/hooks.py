@@ -5,7 +5,6 @@ from frappe import _
 from frappe.model.mapper import get_mapped_doc
 from . import __version__ as app_version
 from erpnext.hr.doctype.employee_onboarding.employee_onboarding import EmployeeOnboarding
-from erpnext.hr.doctype.job_offer.job_offer import JobOffer
 
 app_name = "axis_inspection"
 app_title = "Axis Inspection"
@@ -500,10 +499,6 @@ def validate_duplicate_employee_onboarding(self):
 
 EmployeeOnboarding.validate_duplicate_employee_onboarding = validate_duplicate_employee_onboarding
 
-def validate(self):
-	pass
-
-JobOffer.validate = validate
 
 
 app_include_js = "/assets/js/axis_inspection.min.js"
