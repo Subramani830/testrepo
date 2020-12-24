@@ -5,6 +5,7 @@ from frappe import _
 from frappe.model.mapper import get_mapped_doc
 from . import __version__ as app_version
 from erpnext.hr.doctype.employee_onboarding.employee_onboarding import EmployeeOnboarding
+from erpnext.hr.doctype.job_offer.job_offer import JobOffer
 
 app_name = "axis_inspection"
 app_title = "Axis Inspection"
@@ -149,7 +150,13 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Employee-driving_license_number",
 		"Employee-driving_license_expiry",
 		"Employee-column_break_73",
-		"Employee-health_insurance_expiry"
+		"Employee-health_insurance_expiry",
+		"Leave Application-department_manager",
+		"Expense Claim-department_manager",
+		"Employee Advance-department_manager",
+		"Shift Request-department_manager",
+		"Appraisal-department_manager",
+		"Job Offer-is_existing_employee"
 		]
 	]
 ]
@@ -388,7 +395,12 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee Advance-repay_unclaimed_amount_from_salary-hidden",
 				"Task-project-reqd",
 				"Employee-health_insurance_no-mandatory_depends_on",
-				"Contract-party_user-hidden"
+				"Contract-party_user-hidden",
+				"Job Offer-applicant_name-depends_on",
+				"Job Offer-job_applicant-depends_on",
+				"Job Offer-applicant_email-depends_on",
+				"Job Offer-job_applicant-mandatory_depends_on",
+				"Job Offer-applicant_name-mandatory_depends_on"
 			]
 	]
 	]
@@ -452,7 +464,12 @@ doctype_js = {
 	"Leave Encashment" : "axis_inspection/doctype/leave_encashment/leave_encashment.js",
 	"Request for Quotation" : "axis_inspection/doctype/request_for_quotation/request_for_quotation.js",
 	"Purchase Receipt" : "axis_inspection/doctype/purchase_receipt/purchase_receipt.js",
-	"Purchase Invoice" : "axis_inspection/doctype/purchase_invoice/purchase_invoice.js"
+	"Purchase Invoice" : "axis_inspection/doctype/purchase_invoice/purchase_invoice.js",
+	"Leave Application" : "axis_inspection/doctype/leave_application/leave_application.js",
+	"Expense Claim" : "axis_inspection/doctype/expense_claim/expense_claim.js",
+	"Employee Advance" : "axis_inspection/doctype/employee_advance/employee_advance.js",
+	"Shift Request" : "axis_inspection/doctype/shift_request/shift_request.js",
+	"Appraisal" : "axis_inspection/doctype/appraisal/appraisal.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date"
@@ -482,6 +499,11 @@ def validate_duplicate_employee_onboarding(self):
 	pass
 
 EmployeeOnboarding.validate_duplicate_employee_onboarding = validate_duplicate_employee_onboarding
+
+def validate(self):
+	pass
+
+JobOffer.validate = validate
 
 
 app_include_js = "/assets/js/axis_inspection.min.js"

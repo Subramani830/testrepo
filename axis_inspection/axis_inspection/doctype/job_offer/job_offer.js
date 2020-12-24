@@ -49,6 +49,11 @@ job_applicant:function(frm,cdt,cdn){
 		    }
 	    });
 }
+},
+is_existing_employee:function(frm){
+	if(frm.doc.is_existing_employee==1){
+		frm.set_value("job_applicant","Generic - generic@gmail.com")
+	}
 }
 });
 
