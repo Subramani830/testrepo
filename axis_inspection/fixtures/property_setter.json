@@ -1,19 +1,35 @@
 [
  {
   "default_value": null,
-  "doc_type": "Sales Order",
+  "doc_type": "Employee",
   "docstatus": 0,
   "doctype": "Property Setter",
   "doctype_or_field": "DocField",
-  "field_name": "project",
-  "modified": "2020-12-16 18:18:20.782322",
-  "name": "Sales Order-project-reqd",
+  "field_name": "contract_end_date",
+  "modified": "2020-12-18 16:02:56.708562",
+  "name": "Employee-contract_end_date-hidden",
   "parent": null,
   "parentfield": null,
   "parenttype": null,
-  "property": "reqd",
+  "property": "hidden",
   "property_type": "Check",
   "value": "1"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Project",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "sales_order",
+  "modified": "2020-12-25 12:44:54.184988",
+  "name": "Project-sales_order-mandatory_depends_on",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "mandatory_depends_on",
+  "property_type": "Data",
+  "value": "eval:!(doc.project_type=='Internal')"
  },
  {
   "default_value": null,
@@ -2702,22 +2718,6 @@
   "property": "read_only_depends_on",
   "property_type": "Data",
   "value": "eval:doc.quotation!=null"
- },
- {
-  "default_value": null,
-  "doc_type": "Project",
-  "docstatus": 0,
-  "doctype": "Property Setter",
-  "doctype_or_field": "DocField",
-  "field_name": "sales_order",
-  "modified": "2020-12-11 11:59:14.443640",
-  "name": "Project-sales_order-reqd",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "property": "reqd",
-  "property_type": "Check",
-  "value": "1"
  },
  {
   "default_value": null,
