@@ -1185,7 +1185,7 @@
   "doctype": "Workflow",
   "document_type": "Quotation",
   "is_active": 1,
-  "modified": "2020-11-26 17:32:43.237962",
+  "modified": "2020-12-25 10:10:18.679190",
   "name": "Quotation Flow",
   "override_status": 0,
   "parent": null,
@@ -1249,7 +1249,7 @@
   "transitions": [
    {
     "action": "Approve",
-    "allow_self_approval": 0,
+    "allow_self_approval": 1,
     "allowed": "Sales Manager",
     "condition": null,
     "next_state": "Approved",
@@ -1260,7 +1260,7 @@
    },
    {
     "action": "Reject",
-    "allow_self_approval": 0,
+    "allow_self_approval": 1,
     "allowed": "Sales Manager",
     "condition": null,
     "next_state": "Rejected",
@@ -1271,7 +1271,7 @@
    },
    {
     "action": "Cancel",
-    "allow_self_approval": 0,
+    "allow_self_approval": 1,
     "allowed": "Sales Manager",
     "condition": null,
     "next_state": "Cancelled",

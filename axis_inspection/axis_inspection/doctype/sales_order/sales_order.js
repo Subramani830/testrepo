@@ -49,6 +49,15 @@ refresh(frm) {
 		    var df20 = frappe.meta.get_docfield("Payment Schedule","payment_amount", cur_frm.doc.name);
             df20.read_only = 1;
 	}
+
+	frm.set_query("contract",function(){
+		return{
+			filters: {
+			"party_type":'Customer',
+			"party_name":frm.doc.customer
+			}
+		};
+	});
     },
     customer: function(frm,cdt,cdn) {
         frappe.call({
@@ -77,13 +86,6 @@ refresh(frm) {
             }
         });
 
-		frm.set_query("contract",function(){
-            return{
-       		filters: [
-                    ["Contract","party_name", "in",[frm.doc.customer]]
-                ]
-    }
-    });
     },
 	contract: function(frm) {
 		if(frm.doc.contract!=undefined){

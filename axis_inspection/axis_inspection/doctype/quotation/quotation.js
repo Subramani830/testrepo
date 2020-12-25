@@ -1,13 +1,4 @@
 frappe.ui.form.on("Quotation", {
-	party_name: function(frm) {
-		frm.set_query("contract",function(){
-            return{
-       		filters: [
-                    ["Contract","party_name", "in",[frm.doc.party_name]]
-                ]
-    }
-    });
-	},
 	contract: function(frm) {
 
 		if(frm.doc.contract!=undefined){
@@ -118,6 +109,15 @@ refresh: function(frm){
 				
                 }
     });
+
+		frm.set_query("contract",function(){
+			return{
+				filters: {
+				"party_type":'Customer',
+				"party_name":frm.doc.party_name
+				}
+			};
+		});
 	}
 });
 
