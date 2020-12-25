@@ -84,9 +84,35 @@ reports_to:function(frm,cdt,cdn){
     		});
 	},
 job_applicant:function(frm){
-		frappe.db.get_value("Job Offer",{"job_applicant":frm.doc.job_applicant},["offer_date","offer_confirmation_date"],(e)=>{
+		frappe.db.get_value("Job Offer",{"job_applicant":frm.doc.job_applicant},["offer_date","offer_confirmation_date","name"],(e)=>{
 			frm.set_value("scheduled_confirmation_date", e.offer_date);
+			frm.set_value("offer_no",e.name)
 			frm.set_value("job_offer_confirmation_date", e.offer_confirmation_date);
 		});
+		frappe.db.get_value("Job Applicant",{"name":frm.doc.job_applicant},["interview_date",],(e)=>{
+			frm.set_value("application_date", e.interview_date);
+		});
+},
+probation_start_date:function(frm){
+	var end_date;
+	if(frm.doc.probation_start_date!=undefined){
+		 end_date=addDays(frm.doc.probation_start_date, frm.doc.probation_duration) 	 
+	}
+	frm.set_value("final_confirmation_date",end_date);
+	cur_frm.refresh_fields("final_confirmation_date")
+},
+probation_duration:function(frm){
+	var end_date;
+	if(frm.doc.probation_duration!=undefined){
+		 end_date=addDays(frm.doc.probation_start_date, frm.doc.probation_duration) 	 
+	}
+	frm.set_value("final_confirmation_date",end_date);
 }
 });
+
+function addDays(start_date, days) {
+	var d = new Date(start_date);
+	d.setDate(d.getDate() + Number(days));
+	return d
+	
+  }

@@ -157,7 +157,13 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Employee-document_set",
 		"Employee-contract",
 		"Employee-probation_start_date",
-		"Contract-contract_term"
+		"Contract-contract_term",
+		"Sales Order-purchase_order_attach",
+		"Employee-contract_no",
+		"Employee-offer_no",
+		"Employee-application_date",
+		"Employee-probation_duration",
+		"Employee-employee_skill_map"
 		]
 	]
 ]
@@ -405,7 +411,10 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Sales Order-order_type-options",
 				"Employee-contract_end_date-read_only",
 				"Quotation-order_type-options",
-				"Sales Order-project-reqd"
+				"Sales Order-project-reqd",
+				"Employee-scheduled_confirmation_date-read_only",
+				"Employee-final_confirmation_date-read_only",
+				"Employee-contract_end_date-read_only"
 			]
 	]
 	]
@@ -474,7 +483,8 @@ doctype_js = {
 	"Expense Claim" : "axis_inspection/doctype/expense_claim/expense_claim.js",
 	"Employee Advance" : "axis_inspection/doctype/employee_advance/employee_advance.js",
 	"Shift Request" : "axis_inspection/doctype/shift_request/shift_request.js",
-	"Appraisal" : "axis_inspection/doctype/appraisal/appraisal.js"
+	"Appraisal" : "axis_inspection/doctype/appraisal/appraisal.js",
+	"Employee Skill Map" : "axis_inspection/doctype/employee_skill_map/employee_skill_map.js"
 }
 scheduler_events = {
 	"daily":  ["axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date"

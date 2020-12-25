@@ -5,8 +5,9 @@ from frappe.model.document import Document
 import requests
 import json
 from bs4 import BeautifulSoup
-import datetime
 from datetime import date
+from datetime import timedelta
+import datetime
 from axis_inspection.axis_inspection.doctype.job_applicant.job_applicant import send_mail_employee,send_mail_hr,sendmail_jobtitle_correction
 
 @frappe.whitelist()
@@ -198,3 +199,12 @@ def get_cost_center(doctype,name,parenttype):
 @frappe.whitelist()
 def get_job_offer_terms(doctype,parent,parenttype):
 		return frappe.db.get_list(doctype,filters={'parent':parent,'parenttype':parenttype},fields=['offer_term','value'])
+
+@frappe.whitelist()
+def update_enployee(name,contract_no,contract_start_date,contract_end_date):
+	employee=frappe.get_doc("Employee",name)
+	employee.db_set('contract_no',contract_no)
+	employee.db_set('contract',contract_start_date)
+	employee.db_set('probation_start_date',contract_start_date)
+	employee.db_set('contract_end_date',contract_end_date)
+	
