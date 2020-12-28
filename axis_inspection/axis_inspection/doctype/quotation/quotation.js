@@ -1,4 +1,34 @@
 frappe.ui.form.on("Quotation", {
+item_group: function(frm) {
+	frappe.call({
+            method: "frappe.client.get_list",
+		async:false,
+            args: {
+                doctype: "Item",
+                fields: ["item_code","item_group"],
+                filters:{
+                    "item_group":frm.doc.item_group
+                },
+            },
+            callback: function(r) {
+		var count=0;
+		$.each(frm.doc.items, function(idx, item){
+			if(item.item_code){}
+			else{count++;}	
+		})
+		
+		if(count>0){
+			cur_frm.clear_table("items");
+		}
+		for(var i=0;i<r.message.length;i++){
+			var child = cur_frm.add_child("items");
+                    	child.item_code=r.message[i].item_code;
+			cur_frm.refresh_field("items")
+		}
+		}
+	})
+},
+
 	contract: function(frm) {
 
 		if(frm.doc.contract!=undefined){
@@ -91,15 +121,11 @@ refresh: function(frm){
 					}, __("Get items from"));
 	}
 
-	//if(frappe.user_roles.includes('Sales User')){
-		//var df1 = frappe.meta.get_docfield("Quotation Item","rate", cur_frm.doc.name);
-            	//df1.read_only = 1;
-	//}
+	
 	frappe.call({
 			method: "axis_inspection.axis_inspection.doctype.quotation.quotation.get_user_role",
 			async:false,
 			 callback: function(r){
-				console.log(r.message)
 				if(r.message==0){
 					var df1 = frappe.meta.get_docfield("Quotation Item","rate", cur_frm.doc.name);
             				df1.read_only = 1;	

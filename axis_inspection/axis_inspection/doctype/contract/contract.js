@@ -75,34 +75,36 @@ party_name:function(frm,cdt,cdn){
 	}
 },
 after_save:function(frm){
-	frappe.call({
-		method:"axis_inspection.axis_inspection.api.update_enployee",
-		async:false,
-		args:{
-			name:frm.doc.party_name,
-			contract_no:frm.doc.name,
-			contract_start_date:frm.doc.start_date,
-			contract_end_date:frm.doc.end_date
-		},
-		callback:function(r){
-			frappe.db.get_value("Employee",frm.doc.party_name,"probation_duration",(c)=>{
-	    		if(c.probation_duration!==null){
-				var	end_date=addDays(frm.doc.start_date, c.probation_duration) 
-				var dateFormated = end_date.toISOString().substr(0,10);
-					frappe.call({
-						"method": "frappe.client.set_value",
-						"async":false,
-						"args": {
-						"doctype": "Employee",
-						"name": frm.doc.party_name,
-						"fieldname":"final_confirmation_date",
-						"value":dateFormated
-						}
+	if(frm.doc.party_type=="Employee"){
+		frappe.call({
+			method:"axis_inspection.axis_inspection.api.update_enployee",
+			async:false,
+			args:{
+				name:frm.doc.party_name,
+				contract_no:frm.doc.name,
+				contract_start_date:frm.doc.start_date,
+				contract_end_date:frm.doc.end_date
+			},
+			callback:function(r){
+				frappe.db.get_value("Employee",frm.doc.party_name,"probation_duration",(c)=>{
+		    		if(c.probation_duration!==null){
+					var	end_date=addDays(frm.doc.start_date, c.probation_duration) 
+					var dateFormated = end_date.toISOString().substr(0,10);
+						frappe.call({
+							"method": "frappe.client.set_value",
+							"async":false,
+							"args": {
+							"doctype": "Employee",
+							"name": frm.doc.party_name,
+							"fieldname":"final_confirmation_date",
+							"value":dateFormated
+							}
+						});
+					}
 					});
-				}
-				});
-		}
+			}
 		});
+	}
 },
 party_type:function(frm){
 	if(frm.doc.party_type=="Employee"){

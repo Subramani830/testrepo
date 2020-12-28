@@ -5,6 +5,7 @@ from frappe import _
 from frappe.model.mapper import get_mapped_doc
 from . import __version__ as app_version
 from erpnext.hr.doctype.employee_onboarding.employee_onboarding import EmployeeOnboarding
+from erpnext.payroll.doctype.payroll_entry.payroll_entry import PayrollEntry
 
 app_name = "axis_inspection"
 app_title = "Axis Inspection"
@@ -163,7 +164,10 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Employee-application_date",
 		"Employee-probation_duration",
 		"Employee-employee_skill_map",
-		"Employee-employment_status_"
+		"Employee-employment_status_",
+		"Payroll Entry-payroll_cost_center",
+		"Quotation-item_group",
+		"Task-purchase_order"
 		]
 	]
 ]
@@ -414,7 +418,10 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee-scheduled_confirmation_date-read_only",
 				"Employee-final_confirmation_date-read_only",
 				"Employee-contract_end_date-read_only",
-				"Project-sales_order-mandatory_depends_on"
+				"Project-sales_order-mandatory_depends_on",
+				"Timesheet Detail-billing_hours-permlevel",
+				"Timesheet Detail-billing_rate-permlevel",
+				"Timesheet Detail-billing_amount-permlevel"
 			]
 	]
 	]
@@ -514,6 +521,43 @@ doc_events = {
 def validate_duplicate_employee_onboarding(self):
 	pass
 
+def get_filter_condition(self):
+	self.check_mandatory()
+	cond = ''
+	for f in ['company', 'branch', 'department', 'designation', 'payroll_cost_center']:
+		if self.get(f):
+			cond += " and t1." + f + " = " + frappe.db.escape(self.get(f))
+	return cond
+
+def fill_employee_details(self):
+		self.set('employees', [])
+		employees = self.get_emp_list()
+		if not employees:
+			error_msg = _("No employees found for the mentioned criteria:<br>Company: {0}<br> Currency: {1}<br>Payroll Payable Account: {2}").format(
+				frappe.bold(self.company), frappe.bold(self.currency), frappe.bold(self.payroll_payable_account))
+			if self.branch:
+				error_msg += "<br>" + _("Branch: {0}").format(frappe.bold(self.branch))
+			if self.department:
+				error_msg += "<br>" + _("Department: {0}").format(frappe.bold(self.department))
+			if self.designation:
+				error_msg += "<br>" + _("Designation: {0}").format(frappe.bold(self.designation))
+			if self.start_date:
+				error_msg += "<br>" + _("Start date: {0}").format(frappe.bold(self.start_date))
+			if self.end_date:
+				error_msg += "<br>" + _("End date: {0}").format(frappe.bold(self.end_date))
+			if self.payroll_cost_center:
+				error_msg += "<br>" + _("Payroll Cost Center: {0}").format(frappe.bold(self.payroll_cost_center))
+			frappe.throw(error_msg, title=_("No employees found"))
+
+		for d in employees:
+			self.append('employees', d)
+
+		self.number_of_employees = len(employees)
+		if self.validate_attendance:
+			return self.validate_employee_attendance()
+
+PayrollEntry.get_filter_condition=get_filter_condition
+PayrollEntry.fill_employee_details=fill_employee_details
 EmployeeOnboarding.validate_duplicate_employee_onboarding = validate_duplicate_employee_onboarding
 
 
