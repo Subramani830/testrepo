@@ -201,10 +201,11 @@ def get_job_offer_terms(doctype,parent,parenttype):
 		return frappe.db.get_list(doctype,filters={'parent':parent,'parenttype':parenttype},fields=['offer_term','value'])
 
 @frappe.whitelist()
-def update_enployee(name,contract_no,contract_start_date,contract_end_date):
+def update_enployee(name,contract_no,contract_start_date,contract_end_date,contract_date_end):
 	employee=frappe.get_doc("Employee",name)
 	employee.db_set('contract_no',contract_no)
 	employee.db_set('contract',contract_start_date)
 	employee.db_set('probation_start_date',contract_start_date)
 	employee.db_set('contract_end_date',contract_end_date)
+	employee.db_set('contract_date_end',contract_date_end)
 	

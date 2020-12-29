@@ -432,7 +432,15 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Timesheet Detail-billing_hours-permlevel",
 				"Timesheet Detail-billing_rate-permlevel",
 				"Timesheet Detail-billing_amount-permlevel",
-				"Contract-contract_template-hidden"
+				"Contract-contract_template-hidden",
+				"Quotation Item-item_name-in_list_view",
+				"Sales Order Item-item_name-in_list_view",
+				"Sales Invoice Item-item_name-in_list_view",
+				"Material Request Item-item_name-in_list_view",
+				"Supplier Quotation Item-item_name-in_list_view",
+				"Request for Quotation Item-item_name-in_list_view",
+				"Purchase Order Item-item_name-in_list_view",
+				"Purchase Invoice Item-item_name-in_list_view"
 			]
 	]
 	]

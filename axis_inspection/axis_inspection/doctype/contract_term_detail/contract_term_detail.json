@@ -14,7 +14,7 @@
    "fieldname": "contract_term",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "ContractTerm",
+   "label": "Contract Term",
    "options": "Contract Term",
    "reqd": 1
   },
@@ -32,7 +32,7 @@
  ],
  "istable": 1,
  "links": [],
- "modified": "2020-12-24 13:10:14.518486",
+ "modified": "2020-12-29 11:49:44.864135",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Contract Term Detail",

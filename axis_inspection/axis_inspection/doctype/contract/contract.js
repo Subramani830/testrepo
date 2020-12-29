@@ -83,9 +83,11 @@ after_save:function(frm){
 				name:frm.doc.party_name,
 				contract_no:frm.doc.name,
 				contract_start_date:frm.doc.start_date,
-				contract_end_date:frm.doc.end_date
+				contract_end_date:frm.doc.end_date,
+				contract_date_end:frm.doc.duration
 			},
 			callback:function(r){
+				console.log(r)
 				frappe.db.get_value("Employee",frm.doc.party_name,"probation_duration",(c)=>{
 		    		if(c.probation_duration!==null){
 					var	end_date=addDays(frm.doc.start_date, c.probation_duration) 
@@ -131,6 +133,34 @@ party_type:function(frm){
 		})
 		cur_frm.refresh_field("contract_term")
 	}
+},
+end_date:function(frm){
+	if(frm.doc.start_date!=undefined && frm.doc.end_date!=undefined){
+		var date1 = new Date(frm.doc.start_date);
+		var date2 = new Date(frm.doc.end_date);
+		var Difference_In_Time = date2.getTime() - date1.getTime(); 
+		var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
+		var duration=Difference_In_Days/365
+		if(duration==1 ||duration==2||duration==3||duration==4||duration==5){
+			var duration1=duration+" Year"
+			frm.set_value("duration",duration1);
+		}
+		else{
+			frappe.throw(('Duration will be in years only'))
+		}
+	}
+	else{
+		frappe.throw(('Please enter start date and end date'))
+	}
+},
+duration:function(frm){
+	if(frm.doc.duration!=undefined){
+        $.each(frm.doc.contract_term,function(idx,term){
+			if(term.contract_term=="Contract Duration"){
+                frappe.model.set_value(term.doctype, term.name, "value",frm.doc.duration);
+            }
+        });
+    }
 }
 });
 
