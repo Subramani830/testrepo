@@ -13,5 +13,21 @@ frappe.ui.form.on('Leave Application', {
 				}
 			});
 			}
+	},
+	refresh:function(frm) {
+		frm.set_query("clearance_process",function(){
+                return{
+                    filters: {
+                        "employee":frm.doc.employee
+                    }
+                };
+             });
+	},
+	before_workflow_action: (frm) => {
+		if(frm.doc.workflow_state=="First Approval"){
+		if(frm.doc.clearance_process){}
+		else{frappe.throw("Clearance Process is mandatory field")
+		}
+		}
 	}
 })

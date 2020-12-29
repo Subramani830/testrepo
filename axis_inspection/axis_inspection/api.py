@@ -208,4 +208,18 @@ def update_enployee(name,contract_no,contract_start_date,contract_end_date,contr
 	employee.db_set('probation_start_date',contract_start_date)
 	employee.db_set('contract_end_date',contract_end_date)
 	employee.db_set('contract_date_end',contract_date_end)
+
+
+@frappe.whitelist()
+def get_user_role_billing():
+	q1=frappe.db.sql("""
+		select count(r.parent)
+		from tabUser u,`tabHas Role` r where
+		u.name=%s and
+		u.name = r.parent and r.role in ('Projects Manager','System Manager')
+		and u.enabled = 1
+		""",(frappe.session.user))
+
+	for q in q1:
+		return q[0]
 	

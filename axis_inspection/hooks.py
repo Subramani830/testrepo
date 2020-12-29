@@ -177,7 +177,11 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Quotation-delivery_date",
 		"Quotation-location",
 		"Sales Order-date_percentage",
-		"Purchase Invoice-purchase_invoice"
+		"Purchase Invoice-purchase_invoice",
+		"Quotation-item_group", 
+		"Supplier quotaion-item_group",
+		"Request for Quotation-item_group",
+		"Leave Application-clearance_process"
 		]
 	]
 ]
@@ -439,7 +443,10 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Supplier Quotation Item-item_name-in_list_view",
 				"Request for Quotation Item-item_name-in_list_view",
 				"Purchase Order Item-item_name-in_list_view",
-				"Purchase Invoice Item-item_name-in_list_view"
+				"Purchase Invoice Item-item_name-in_list_view",
+				"Clearance Process-purpose_of_clearance_process-options",
+				"Timesheet Detail-costing_rate-permlevel",
+				"Timesheet Detail-costing_amount-permlevel"
 			]
 	]
 	]
