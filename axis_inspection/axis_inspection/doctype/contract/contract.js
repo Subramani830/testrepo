@@ -87,7 +87,6 @@ after_save:function(frm){
 				contract_date_end:frm.doc.duration
 			},
 			callback:function(r){
-				console.log(r)
 				frappe.db.get_value("Employee",frm.doc.party_name,"probation_duration",(c)=>{
 		    		if(c.probation_duration!==null){
 					var	end_date=addDays(frm.doc.start_date, c.probation_duration) 
@@ -110,7 +109,7 @@ after_save:function(frm){
 },
 party_type:function(frm){
 	if(frm.doc.party_type=="Employee"){
-		var  contract_term=["Contract Type","Contract Duration","Notice Period","Weekend Days"]
+		var  contract_term=["Contract Type","Contract Duration","Notice Period","Weekend Days","Destination"]
 		frappe.call({
 			method: "frappe.client.get_list",
 			async:false,
@@ -134,23 +133,42 @@ party_type:function(frm){
 		cur_frm.refresh_field("contract_term")
 	}
 },
-end_date:function(frm){
-	if(frm.doc.start_date!=undefined && frm.doc.end_date!=undefined){
-		var date1 = new Date(frm.doc.start_date);
-		var date2 = new Date(frm.doc.end_date);
-		var Difference_In_Time = date2.getTime() - date1.getTime(); 
-		var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
-		var duration=Difference_In_Days/365
-		if(duration==1 ||duration==2||duration==3||duration==4||duration==5){
-			var duration1=duration+" Year"
-			frm.set_value("duration",duration1);
+start_date:function(frm){
+	if(frm.doc.party_type=="Employee"){
+		if(frm.doc.start_date!=undefined && frm.doc.end_date!=undefined){
+			var duration=updateDuration(frm.doc.start_date,frm.doc.end_date)	
+			if(duration==1 ||duration==2||duration==3||duration==4||duration==5){
+				var duration1=duration+" Year"
+				frm.set_value("duration",duration1);
+			}
+			else{
+					frm.doc.duration='';
+					cur_frm.refresh_field('duration');
+					frappe.throw(('Duration will be in years only'))
+			}	
 		}
 		else{
-			frappe.throw(('Duration will be in years only'))
+			frappe.throw(('Please enter start date and end date'))
 		}
 	}
-	else{
-		frappe.throw(('Please enter start date and end date'))
+},
+end_date:function(frm){
+	if(frm.doc.party_type=="Employee"){
+		if(frm.doc.start_date!=undefined && frm.doc.end_date!=undefined){
+			var duration=updateDuration(frm.doc.start_date,frm.doc.end_date)	
+			if(duration==1 ||duration==2||duration==3||duration==4||duration==5){
+				var duration1=duration+" Year"
+				frm.set_value("duration",duration1);
+			}
+			else{
+					frm.doc.duration='';
+					cur_frm.refresh_field('duration');
+					frappe.throw(('Duration will be in years only'))
+			}		
+		}
+		else{
+			frappe.throw(('Please enter start date and end date'))
+		}
 	}
 },
 duration:function(frm){
@@ -230,5 +248,16 @@ function addDays(start_date, days) {
 	var d = new Date(start_date);
 	d.setDate(d.getDate() + Number(days));
 	return d
+	
+  }
+
+  function updateDuration(start_date,end_date){
+	var date1 = new Date(start_date);
+	var date2 = new Date(end_date);
+	var Difference_In_Time = date2.getTime() - date1.getTime(); 
+	var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
+	var duration=Difference_In_Days/365
+
+	return duration
 	
   }
