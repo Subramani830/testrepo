@@ -14,6 +14,8 @@ frappe.ui.form.on('Request for Quotation', {
                     for(var i=0;i<r.message.length;i++){
                         frappe.model.set_value(item.doctype, item.name, "project_name", r.message[i].project);
                         frappe.model.set_value(item.doctype, item.name, "task", r.message[i].task);
+			frappe.model.set_value(item.doctype, item.name, "cost_center", r.message[i].cost_center);
+                        frappe.model.set_value(item.doctype, item.name, "branch", r.message[i].branch);
                     }
 			cur_frm.refresh_field("items")
                 }

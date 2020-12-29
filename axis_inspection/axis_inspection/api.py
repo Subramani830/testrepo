@@ -190,7 +190,7 @@ def update_task(doctype,assign_to):
 
 @frappe.whitelist()
 def update_project(doctype,name,parenttype):
-	return frappe.db.get_list(doctype,filters={'parent':name,'parenttype':parenttype},fields=['project','task'])
+	return frappe.db.get_list(doctype,filters={'parent':name,'parenttype':parenttype},fields=['project','task','branch','cost_center'])
 
 @frappe.whitelist()
 def get_cost_center(doctype,name,parenttype):

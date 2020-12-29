@@ -5,6 +5,29 @@ frappe.ui.form.on('Purchase Order', {
 		frm.remove_custom_button('Update Items');
 		frm.remove_custom_button('Subscription','Create');
 		}, 10);
+
+
+		$.each(frm.doc.items,function(idx, item){
+		if(item.supplier_quotation!=undefined){
+		    frappe.call({
+		        method:"axis_inspection.axis_inspection.api.update_project",
+		        async:false,
+		        args:{
+		            doctype:'Supplier Quotation Item',
+		            name:item.supplier_quotation,
+		            parenttype:'Supplier Quotation'
+		        },
+		        callback:function(r){
+		            for(var i=0;i<r.message.length;i++){
+		                frappe.model.set_value(item.doctype, item.name, "project", r.message[i].project);
+		                frappe.model.set_value(item.doctype, item.name, "task", r.message[i].task);
+				frappe.model.set_value(item.doctype, item.name, "cost_center", r.message[i].cost_center);
+                        	frappe.model.set_value(item.doctype, item.name, "branch", r.message[i].branch);
+		            }
+		        }
+		    });
+		}
+	});
 	    },
 after_save: function(frm){
 	location.reload()

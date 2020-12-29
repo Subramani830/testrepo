@@ -179,9 +179,14 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Sales Order-date_percentage",
 		"Purchase Invoice-purchase_invoice",
 		"Quotation-item_group", 
-		"Supplier quotaion-item_group",
+		"Supplier Quotaion-item_group",
 		"Request for Quotation-item_group",
-		"Leave Application-clearance_process"
+		"Leave Application-clearance_process",
+		"Request for Quotation Item-branch",
+		"Request for Quotation Item-cost_center",
+		"Supplier Quotaion Item-branch",
+		"Supplier Quotaion Item-cost_center",
+		"Purchase Invoice Item-branch"
 		]
 	]
 ]
