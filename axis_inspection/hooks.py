@@ -363,7 +363,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee-notice_number_of_days-reqd",
 				"Employee-notice_number_of_days-default",
 				"Employee-date_of_retirement-hidden",
-				"Employee-contract_end_date-hidden",
 				"Employee-department-reqd",
 				"Employee-designation-reqd",
 				"Employee-reports_to-reqd",

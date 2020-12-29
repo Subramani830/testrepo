@@ -177,22 +177,6 @@
  },
  {
   "default_value": null,
-  "doc_type": "Employee",
-  "docstatus": 0,
-  "doctype": "Property Setter",
-  "doctype_or_field": "DocField",
-  "field_name": "contract_end_date",
-  "modified": "2020-12-18 16:02:56.708562",
-  "name": "Employee-contract_end_date-hidden",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "property": "hidden",
-  "property_type": "Check",
-  "value": "1"
- },
- {
-  "default_value": null,
   "doc_type": "Project",
   "docstatus": 0,
   "doctype": "Property Setter",
