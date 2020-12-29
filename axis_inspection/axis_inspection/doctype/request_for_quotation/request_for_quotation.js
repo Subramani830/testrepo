@@ -29,7 +29,7 @@ frappe.ui.form.on('Request for Quotation', {
 		async:false,
             args: {
                 doctype: "Item",
-                fields: ["item_code","item_group"],
+                fields: ["item_code","item_group","item_name"],
                 filters:{
                     "item_group":frm.doc.item_group
                 },
@@ -47,6 +47,7 @@ frappe.ui.form.on('Request for Quotation', {
 		for(var i=0;i<r.message.length;i++){
 			var child = cur_frm.add_child("items");
                     	child.item_code=r.message[i].item_code;
+			child.item_name=r.message[i].item_name;
 			cur_frm.refresh_field("items")
 		}
 		}
