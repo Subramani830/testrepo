@@ -167,7 +167,17 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Employee-employment_status_",
 		"Payroll Entry-payroll_cost_center",
 		"Quotation-item_group",
-		"Task-purchase_order"
+		"Task-purchase_order",
+		"Opportunity-customers_rfq",
+		"Supplier Quotation-suppliers_quotation",
+		"Payment Entry-proof_of_payment",
+		"Quotation-contract_remaining_value",
+		"Opportunity-customer_rfq_number",
+		"Quotation-customer_rfq_number",
+		"Quotation-delivery_date",
+		"Quotation-location",
+		"Sales Order-date_percentage",
+		"Purchase Invoice-purchase_invoice"
 		]
 	]
 ]
@@ -421,7 +431,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Project-sales_order-mandatory_depends_on",
 				"Timesheet Detail-billing_hours-permlevel",
 				"Timesheet Detail-billing_rate-permlevel",
-				"Timesheet Detail-billing_amount-permlevel"
+				"Timesheet Detail-billing_amount-permlevel",
+				"Contract-contract_template-hidden"
 			]
 	]
 	]
@@ -495,7 +506,9 @@ doctype_js = {
 	"Project" : "axis_inspection/doctype/project/project.js"
 }
 scheduler_events = {
-	"daily":  ["axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date"
+	"daily":  [
+		"axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date",
+		"axis_inspection.axis_inspection.doctype.sales_order.sales_order.get_delivery_date_list"
 	],
  	"hourly": ["axis_inspection.axis_inspection.api.get_applicant_list"
  	]

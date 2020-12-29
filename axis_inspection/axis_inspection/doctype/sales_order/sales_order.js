@@ -158,6 +158,18 @@ refresh(frm) {
                 },
                 }
             })
+	if(frm.doc.quotation!=undefined){
+		    frappe.call({
+                "method": "frappe.client.set_value",
+                "args": {
+                    "doctype": "Quotation",
+                    "name": frm.doc.quotation,
+                "fieldname": {
+                    "contract_remaining_value":rem
+                },
+                }
+            })
+}
 		})
 	}
 	},
@@ -165,5 +177,15 @@ refresh(frm) {
 		frappe.db.get_value("Quotation",{"name":frm.doc.quotation},"order_type",(r)=>{
 			frm.set_value('order_type',r.order_type)
 		})
+	},
+	before_save:function(frm){
+		if(frm.doc.contract != undefined){
+		frappe.db.get_value("Contract",{"name":frm.doc.contract},"percentage_amt_left",(a)=>{
+			if(a.percentage_amt_left < 10){
+		           frappe.validated=false;
+		           frappe.msgprint(__("90% of the Contract amount has been consumed. It cannot be used."));
+			}
+		})
 	}
+}
 });

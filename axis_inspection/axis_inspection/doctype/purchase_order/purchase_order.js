@@ -9,7 +9,9 @@ frappe.ui.form.on('Purchase Order', {
 after_save: function(frm){
 	location.reload()
 },
-	on_submit:function(frm,cdt,cdn){
+	after_workflow_action:function(frm,cdt,cdn){
+	    if(frm.doc.workflow_state=="Approved")
+	        {
 			frappe.db.get_value("Address",frm.doc.supplier_address, "email_id",(c)=>{
 				var email=c.email_id;
 				var emailTemplate='<h3><strong> Dear '+frm.doc.supplier_name+',</strong></h3><br><br>'+
@@ -18,6 +20,7 @@ after_save: function(frm){
 				sendEmail(frm.doc.name,email,emailTemplate);
 			})
 			location.reload()
+	}
 	}
 });
 
