@@ -1,5 +1,5 @@
 {
-    "js/axis_inspetion.min.js":[
+    "js/axis_inspection.min.js":[
         "public/js/templates/address_list.html",
         "public/js/templates/contact_list.html"
     ]

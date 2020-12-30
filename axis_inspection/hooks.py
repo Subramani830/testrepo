@@ -186,7 +186,10 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Request for Quotation Item-cost_center",
 		"Supplier Quotaion Item-branch",
 		"Supplier Quotaion Item-cost_center",
-		"Purchase Invoice Item-branch"
+		"Purchase Invoice Item-branch",
+		"Quotation-subject",
+		"Quotation-phone",
+		"Quotation-designation"
 		]
 	]
 ]
@@ -367,7 +370,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee-last_name-reqd",
 				"Employee-salutation-reqd",
 				"Employee-employment_type-reqd",
-				"Employee-scheduled_confirmation_date-reqd",
 				"Employee-final_confirmation_date-reqd",
 				"Employee-notice_number_of_days-reqd",
 				"Employee-notice_number_of_days-default",
@@ -451,7 +453,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Purchase Invoice Item-item_name-in_list_view",
 				"Clearance Process-purpose_of_clearance_process-options",
 				"Timesheet Detail-costing_rate-permlevel",
-				"Timesheet Detail-costing_amount-permlevel"
+				"Timesheet Detail-costing_amount-permlevel",
+				"Employee-passport_number-reqd"
 			]
 	]
 	]
@@ -461,7 +464,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 	[
 		"name","in",
  			[
-			"Axis Job Offer Print Format","Axis PO Print Format","Axis PI Print Format","Axis PR Print Format","Axis SO Print Format","Axis SI Print Format","Axis DN Print Format","Axis Contract print Format","Company Contact Information Update"
+			"Axis Job Offer Print Format","Axis PO Print Format","Axis PI Print Format","Axis PR Print Format","Axis SO Print Format","Axis SI Print Format","Axis DN Print Format","Axis Contract print Format","Company Contact Information Update","Universal Quotation"
 
 ]
 	]
