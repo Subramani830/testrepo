@@ -192,7 +192,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Quotation-designation",
 		"Payment Entry-task",
 		"Material Request-department_manager",
-		"Supplier Quotation-department_manager"
+		"Supplier Quotation-department_manager",
+		"Contract-contract_reference"
 		
 		]
 	]

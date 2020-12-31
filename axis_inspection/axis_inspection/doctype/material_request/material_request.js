@@ -10,5 +10,20 @@ frappe.ui.form.on('Material Request', {
 	},
 	after_save:function(frm){
 		location.reload()
+	},
+	requested_for:function(frm) {
+				if(frm.doc.requested_for!==undefined){
+		frappe.call({
+			method:"axis_inspection.axis_inspection.api.get_reports_to",
+			async:false,
+					args: {
+						doctype: 'Employee',
+						name: frm.doc.requested_for
+					},
+				callback: function(r){
+					frm.set_value('department_manager',r.message)
+				}
+			});
+			}
 	}
 });

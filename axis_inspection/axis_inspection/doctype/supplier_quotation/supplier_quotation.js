@@ -78,6 +78,13 @@ frappe.ui.form.on('Supplier Quotation', {
 				}
 			};
 		});
+		frm.set_query("item_group",function(){
+			return{
+				filters: {
+				"parent_item_group":'Billing Items'
+				}
+			};
+		});
 
 		
 	},
