@@ -189,7 +189,11 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Purchase Invoice Item-branch",
 		"Quotation-subject",
 		"Quotation-phone",
-		"Quotation-designation"
+		"Quotation-designation",
+		"Payment Entry-task",
+		"Material Request-department_manager",
+		"Supplier Quotation-department_manager"
+		
 		]
 	]
 ]
@@ -525,7 +529,8 @@ doctype_js = {
 	"Shift Request" : "axis_inspection/doctype/shift_request/shift_request.js",
 	"Appraisal" : "axis_inspection/doctype/appraisal/appraisal.js",
 	"Employee Skill Map" : "axis_inspection/doctype/employee_skill_map/employee_skill_map.js",
-	"Project" : "axis_inspection/doctype/project/project.js"
+	"Project" : "axis_inspection/doctype/project/project.js",
+	"Payment Entry" : "axis_inspection/doctype/payment_entry/payment_entry.js"
 }
 scheduler_events = {
 	"daily":  [

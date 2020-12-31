@@ -80,5 +80,18 @@ frappe.ui.form.on('Supplier Quotation', {
 		});
 
 		
+	},
+	before_save:function(frm,cdt,cdn){
+		if(frm.doc.department_manager){}
+		else{
+			$.each(frm.doc.items,function(idx, item){
+				if(item.material_request){
+					frappe.db.get_value("Material Request",item.material_request,"department_manager",(s)=>{
+						frm.set_value("department_manager",s.department_manager)	
+
+					})		
+				}
+			})
+		}
 	}
 })

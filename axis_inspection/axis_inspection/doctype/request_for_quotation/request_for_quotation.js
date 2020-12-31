@@ -54,7 +54,8 @@ frappe.ui.form.on('Request for Quotation', {
 	})
 },
 refresh:function(frm){
-	frm.set_query("item_code","items",function(){
+	
+frm.set_query("item_code","items",function(){
 			return{
 				filters: {
 				"item_group":frm.doc.item_group
@@ -62,6 +63,26 @@ refresh:function(frm){
 				}
 			};
 		});
+
+
+frm.fields_dict['items'].grid.get_field('item_code').get_query = function(doc, cdt, cdn) {
+        var child = locals[cdt][cdn];
+        //console.log(child);
+        return {    
+            filters:[
+                ['item_group', '=', frm.doc.item_group]
+            ]
+        }
+    }
+frm.fields_dict['items'].grid.get_field("item_code").get_query = function(doc, cdt, cdn) {
+	return {
+		filters: [
+			['Item', 'item_group', '=', 'Services']
+		]
+	}
+}
+
+
 }
 });
 frappe.ui.form.on('Request for Quotation Item', {
