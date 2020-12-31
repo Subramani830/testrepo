@@ -385,8 +385,8 @@
   "docstatus": 0,
   "doctype": "Workflow",
   "document_type": "Leave Application",
-  "is_active": 0,
-  "modified": "2020-12-23 18:23:46.364157",
+  "is_active": 1,
+  "modified": "2020-12-31 09:33:43.893230",
   "name": "Leave Application Workflow",
   "override_status": 0,
   "parent": null,
@@ -1646,8 +1646,8 @@
   "docstatus": 0,
   "doctype": "Workflow",
   "document_type": "Leave Application",
-  "is_active": 1,
-  "modified": "2020-10-22 11:57:41.994116",
+  "is_active": 0,
+  "modified": "2020-12-31 09:33:29.389270",
   "name": "Leave Application Flow",
   "override_status": 0,
   "parent": null,
@@ -1877,7 +1877,7 @@
   "doctype": "Workflow",
   "document_type": "Payroll Entry",
   "is_active": 1,
-  "modified": "2020-10-22 11:56:29.520076",
+  "modified": "2020-12-31 09:56:43.593974",
   "name": "Payroll Entry Flow",
   "override_status": 0,
   "parent": null,
@@ -1894,12 +1894,38 @@
     "parent": "Payroll Entry Flow",
     "parentfield": "states",
     "parenttype": "Workflow",
-    "state": "Create",
+    "state": "Open",
     "update_field": null,
     "update_value": null
    },
    {
     "allow_edit": "HR Manager",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Payroll Entry Flow",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "First Approval",
+    "update_field": null,
+    "update_value": null
+   },
+   {
+    "allow_edit": "Accounts Manager",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Payroll Entry Flow",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Second Approval",
+    "update_field": null,
+    "update_value": null
+   },
+   {
+    "allow_edit": "CEO",
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -1912,7 +1938,7 @@
     "update_value": null
    },
    {
-    "allow_edit": "HR Manager",
+    "allow_edit": "CEO",
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -1923,19 +1949,32 @@
     "state": "Rejected",
     "update_field": null,
     "update_value": null
+   },
+   {
+    "allow_edit": "CEO",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Payroll Entry Flow",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Cancelled",
+    "update_field": null,
+    "update_value": null
    }
   ],
   "transitions": [
    {
-    "action": "Approve",
+    "action": "Review",
     "allow_self_approval": 0,
     "allowed": "HR Manager",
     "condition": null,
-    "next_state": "Approved",
+    "next_state": "First Approval",
     "parent": "Payroll Entry Flow",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Create"
+    "state": "Open"
    },
    {
     "action": "Reject",
@@ -1946,7 +1985,62 @@
     "parent": "Payroll Entry Flow",
     "parentfield": "transitions",
     "parenttype": "Workflow",
-    "state": "Create"
+    "state": "Open"
+   },
+   {
+    "action": "Review",
+    "allow_self_approval": 1,
+    "allowed": "Accounts Manager",
+    "condition": null,
+    "next_state": "Second Approval",
+    "parent": "Payroll Entry Flow",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "First Approval"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "Accounts Manager",
+    "condition": null,
+    "next_state": "Rejected",
+    "parent": "Payroll Entry Flow",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "First Approval"
+   },
+   {
+    "action": "Review",
+    "allow_self_approval": 1,
+    "allowed": "CEO",
+    "condition": null,
+    "next_state": "Approved",
+    "parent": "Payroll Entry Flow",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Second Approval"
+   },
+   {
+    "action": "Reject",
+    "allow_self_approval": 1,
+    "allowed": "CEO",
+    "condition": null,
+    "next_state": "Rejected",
+    "parent": "Payroll Entry Flow",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Second Approval"
+   },
+   {
+    "action": "Cancel",
+    "allow_self_approval": 1,
+    "allowed": "CEO",
+    "condition": null,
+    "next_state": "Cancelled",
+    "parent": "Payroll Entry Flow",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "state": "Approved"
    }
   ],
   "workflow_name": "Payroll Entry Flow",
