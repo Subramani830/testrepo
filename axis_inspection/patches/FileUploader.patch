@@ -1,0 +1,11 @@
+--- frappe/public/js/frappe/file_uploader/FileUploader.vue
++++ frappe/public/js/frappe/file_uploader/FileUploader.vue
+@@ -130,7 +130,7 @@ export default {
+ 			default: true
+ 		},
+ 		disable_file_browser: {
+-			default: false
++			default: true
+ 		},
+ 		allow_multiple: {
+ 			default: true
