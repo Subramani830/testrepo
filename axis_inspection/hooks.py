@@ -193,7 +193,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Payment Entry-task",
 		"Material Request-department_manager",
 		"Supplier Quotation-department_manager",
-		"Contract-contract_reference"
+		"Contract-contract_reference",
+		"Supplier Quotation Item-out_sourced"
 		
 		]
 	]
@@ -459,7 +460,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Clearance Process-purpose_of_clearance_process-options",
 				"Timesheet Detail-costing_rate-permlevel",
 				"Timesheet Detail-costing_amount-permlevel",
-				"Employee-passport_number-reqd"
+				"Employee-passport_number-reqd",
+				"Supplier Quotation Item-project-mandatory_depends_on"
 			]
 	]
 	]

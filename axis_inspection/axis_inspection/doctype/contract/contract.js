@@ -62,7 +62,11 @@ contract_terms_and_conditions:function(frm) {
 		})
 		})	
 	}
+	else if(frm.doc.contract_terms_and_conditions==undefined){
+		frm.set_value("contract_terms",'')
+	}
 	else{
+	
 		frappe.call({
 			method: "frappe.client.get_value",
 			async:false,
