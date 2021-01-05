@@ -1,5 +1,47 @@
 frappe.ui.form.on('Sales Order', {
 refresh(frm) {
+
+	if(frm.doc.status=="Closed"){
+        frappe.call({
+                method:"axis_inspection.axis_inspection.api.update_workflow_status",
+                async:false,
+                args:{
+                    name:frm.doc.name,
+                },
+            callback:function(r){
+                cur_frm.refresh_fields("workflow_state");
+            }
+        });
+        cur_frm.add_custom_button(__('Re-open'), function() {
+            frappe.call({
+                method:"axis_inspection.axis_inspection.api.update__workflow_state",
+                async:false,
+                args:{
+                    name:frm.doc.name,
+		    status:frm.doc.custom_status
+                },
+            callback:function(r){
+                cur_frm.refresh_fields("workflow_state");
+            }
+        });
+        }, __("Status"));
+    }
+
+	else if(frm.doc.status!="Closed"){
+		frappe.call({
+                "method": "frappe.client.set_value",
+                "args": {
+                    "doctype": "Sales Order",
+                    "name": frm.doc.name,
+                "fieldname": {
+                    "custom_status":frm.doc.status
+                },
+                }
+            })
+		cur_frm.refresh_fields("custom_status");
+	}
+
+
     setTimeout(() => {
         frm.remove_custom_button('Update Items');
 	frm.remove_custom_button('Work Order', 'Create');

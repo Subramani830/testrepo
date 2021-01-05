@@ -223,3 +223,13 @@ def get_user_role_billing():
 	for q in q1:
 		return q[0]
 	
+@frappe.whitelist()
+def update_workflow_status(name):
+    so=frappe.get_doc("Sales Order",name)
+    so.db_set('workflow_state',"Closed")
+    
+@frappe.whitelist()
+def update__workflow_state(name,status):
+    so=frappe.get_doc("Sales Order",name)
+    so.db_set('status',status)
+    so.db_set('workflow_state',"Approved")

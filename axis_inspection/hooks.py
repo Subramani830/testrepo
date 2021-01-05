@@ -195,7 +195,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Supplier Quotation-department_manager",
 		"Contract-contract_reference",
 		"Supplier Quotation Item-out_sourced",
-		"Purchase Order-supplier_quotation"
+		"Purchase Order-supplier_quotation",
+		"Sales Order-custom_status",
+		"Contract-naming_series"
 		
 		]
 	]
@@ -582,7 +584,10 @@ doc_events = {
     	"Asset Movement": {
 		"on_submit": ["axis_inspection.axis_inspection.doctype.asset_movement.asset_movement.update_asset_details"],
 		"on_cancel": ["axis_inspection.axis_inspection.doctype.asset_movement.asset_movement.delete_asset_details"]
-    }
+    },
+	"Contract":{
+		"autoname": ["axis_inspection.axis_inspection.doctype.contract.contract.autoname"]
+	}
 }
 
 

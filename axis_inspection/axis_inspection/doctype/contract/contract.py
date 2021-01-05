@@ -7,6 +7,7 @@ from frappe.model.mapper import get_mapped_doc
 from frappe.utils import flt, nowdate, getdate
 from frappe import _
 from frappe.model.document import Document
+from frappe.model.naming import make_autoname
 
 from erpnext.controllers.selling_controller import SellingController
 
@@ -16,6 +17,11 @@ form_grid_templates = {
 
 class Contract(SellingController):
 	pass
+
+@frappe.whitelist()
+def autoname(doc, method):
+	doc.name = make_autoname(str(doc.naming_series))
+
 
 @frappe.whitelist()
 def make_quotation(source_name, target_doc=None):

@@ -284,9 +284,13 @@ var transfer
 				}
 			},
 			callback(r) {
-			    if(r.message) {
+			    if(r.message.price_list_rate) {
 					cur_row.doc.rate=r.message.price_list_rate
 					cur_row.doc.amount=cur_row.doc.rate*cur_row.doc.qty
+				}
+				else if(r.message.length==0){
+					cur_row.doc.rate=0;
+					cur_row.doc.amount=0;
 				}
 			}
 		});
