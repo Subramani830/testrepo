@@ -274,5 +274,17 @@
   "parenttype": null,
   "style": "",
   "workflow_state_name": "Technical Review"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2021-01-05 11:58:48.754906",
+  "name": "Closed",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "style": "",
+  "workflow_state_name": "Closed"
  }
 ]
