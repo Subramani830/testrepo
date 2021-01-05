@@ -102,5 +102,10 @@ frappe.ui.form.on('Supplier Quotation', {
 				}
 			})
 		}
+		if(frm.doc.taxes_and_charges==undefined){
+	    	frappe.db.get_value("Purchase Taxes and Charges Template",{"is_default":1}, "name",(t)=>{
+		frm.set_value("taxes_and_charges",t.name);
+		})
+		}
 	}
 })

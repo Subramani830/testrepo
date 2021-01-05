@@ -1,4 +1,12 @@
 frappe.ui.form.on('Purchase Order', {
+refresh(frm){
+		if(frm.doc.supplier_quotation!=undefined){
+			frappe.db.get_value("Supplier Quotation",frm.doc.supplier_quotation, "taxes_and_charges",(t)=>{
+				frm.set_value("taxes_and_charges",t.taxes_and_charges);
+				cur_frm.refresh_field("taxes_and_charges");
+			})
+		}
+},
 	onload_post_render: function(frm) {
 	    setTimeout(() => {
 		frm.remove_custom_button('Product Bundle','Get items from');

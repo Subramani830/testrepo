@@ -194,7 +194,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Material Request-department_manager",
 		"Supplier Quotation-department_manager",
 		"Contract-contract_reference",
-		"Supplier Quotation Item-out_sourced"
+		"Supplier Quotation Item-out_sourced",
+		"Purchase Order-supplier_quotation"
 		
 		]
 	]
@@ -461,7 +462,31 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Timesheet Detail-costing_rate-permlevel",
 				"Timesheet Detail-costing_amount-permlevel",
 				"Employee-passport_number-reqd",
-				"Supplier Quotation Item-project-mandatory_depends_on"
+				"Supplier Quotation Item-project-mandatory_depends_on",
+				"Material Request Item-uom-width",
+				"Material Request Item-uom-print_width",
+				"Material Request Item-item_code-columns",
+				"Material Request Item-warehouse-columns",
+				"Purchase Invoice Item-uom-in_list_view",
+				"Purchase Invoice Item-rate-columns",
+				"Purchase Invoice Item-item_code-columns",
+				"Purchase Invoice Item-uom-columns",
+				"Quotation Item-item_code-columns",
+				"Quotation Item-uom-in_list_view",
+				"Quotation Item-uom-columns",
+				"Sales Order Item-uom-in_list_view",
+				"Sales Order Item-item_code-columns",
+				"Sales Order Item-uom-columns",
+				"Sales Invoice Item-item_code-columns",
+				"Sales Invoice Item-uom-in_list_view",
+				"Sales Invoice Item-uom-columns",
+				"Blanket Order Item-item_name-in_list_view",
+				"Purchase Receipt Item-item_name-in_list_view",
+				"Purchase Receipt Item-uom-in_list_view",
+				"Purchase Receipt Item-item_code-columns",
+				"Purchase Receipt Item-item_name-columns",
+				"Purchase Receipt Item-uom-columns",
+				"Purchase Receipt Item-rate-columns"
 			]
 	]
 	]
