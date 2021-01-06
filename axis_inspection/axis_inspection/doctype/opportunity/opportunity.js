@@ -16,19 +16,48 @@ frappe.ui.form.on('Opportunity', {
 		var bt = ['Request For Quotation']
         bt.forEach(function(bt){
             frm.page.remove_inner_button(bt, 'Create')
-            });
+			});
+		var bt1 = ['Supplier Quotation']
+			bt1.forEach(function(bt){
+				frm.page.remove_inner_button(bt1, 'Create')
+				});
+		var bt2 = ['Quotation']
+				bt2.forEach(function(bt){
+					frm.page.remove_inner_button(bt2, 'Create')
+					});
+
 		if(!doc.__islocal && doc.status!=="Lost") {
-			if(frm.doc.with_items){		
-		frm.add_custom_button(__('Request For Supplier Quotation'),
-			function() {
-				frm.trigger("make_request_for_quotation")
-			}, __('Create'));
+			if(frm.doc.with_items){	
+				frm.add_custom_button(__('Quotation'),
+					function() {
+						frm.trigger("make_quotation_details")
+					}, __('Create'));	
+				frm.add_custom_button(__('Supplier Quotation'),
+					function() {
+						frm.trigger("make_supplier_quotation_details")
+					}, __('Create'));
+				frm.add_custom_button(__('Request For Supplier Quotation'),
+					function() {
+						frm.trigger("make_request_for_quotation_details")
+					}, __('Create'));
 			}
-		}
+			}
 		},
-	make_request_for_quotation: function(frm) {
+	make_request_for_quotation_details: function(frm) {
 		frappe.model.open_mapped_doc({
-			method: "erpnext.crm.doctype.opportunity.opportunity.make_request_for_quotation",
+			method: "axis_inspection.axis_inspection.doctype.opportunity.opportunity.make_request_for_quotation",
+			frm: frm
+		})
+	},
+	make_supplier_quotation_details: function(frm) {
+		frappe.model.open_mapped_doc({
+			method: "axis_inspection.axis_inspection.doctype.opportunity.opportunity.make_supplier_quotation",
+			frm: frm
+		})
+	},
+	make_quotation_details: function(frm) {
+		frappe.model.open_mapped_doc({
+			method: "axis_inspection.axis_inspection.doctype.opportunity.opportunity.make_quotation",
 			frm: frm
 		})
 	}

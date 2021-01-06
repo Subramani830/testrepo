@@ -197,7 +197,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Supplier Quotation Item-out_sourced",
 		"Purchase Order-supplier_quotation",
 		"Sales Order-custom_status",
-		"Contract-naming_series"
+		"Contract-naming_series",
+		"Opportunity Item-out_sourced"
 		
 		]
 	]
@@ -488,7 +489,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Purchase Receipt Item-item_code-columns",
 				"Purchase Receipt Item-item_name-columns",
 				"Purchase Receipt Item-uom-columns",
-				"Purchase Receipt Item-rate-columns"
+				"Purchase Receipt Item-rate-columns",
+				"Opportunity Item-item_name-columns"
 			]
 	]
 	]

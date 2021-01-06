@@ -164,7 +164,11 @@ refresh: function(frm){
 				}
 			};
 		});
-		
-	}
+		var bt = ['Opportunity']
+        bt.forEach(function(bt){
+            frm.page.remove_inner_button(bt, 'Get items from')
+			});		
+}
+
 });
 
