@@ -562,7 +562,8 @@ doctype_js = {
 	"Appraisal" : "axis_inspection/doctype/appraisal/appraisal.js",
 	"Employee Skill Map" : "axis_inspection/doctype/employee_skill_map/employee_skill_map.js",
 	"Project" : "axis_inspection/doctype/project/project.js",
-	"Payment Entry" : "axis_inspection/doctype/payment_entry/payment_entry.js"
+	"Payment Entry" : "axis_inspection/doctype/payment_entry/payment_entry.js",
+	"Skill" : "axis_inspection/doctype/skill/skill.js"
 }
 scheduler_events = {
 	"daily":  [

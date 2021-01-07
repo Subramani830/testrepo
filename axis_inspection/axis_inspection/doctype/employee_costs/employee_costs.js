@@ -3,6 +3,33 @@
 
 frappe.ui.form.on('Employee Costs', {
 	refresh: function(frm) {
+	if(frm.doc.docstatus === 0 && frm.doc.__islocal==1){
+	    	frappe.call({
+            method: "frappe.client.get_list",
+		async:false,
+            args: {
+                doctype: "Documents",
+                fields: ["name"],
+                filters:{
+                },
+            },
+            callback: function(r) {
+                if(r.message.length>0){
+                    cur_frm.clear_table("employee_cost_details")
+                for(var i=0;i<r.message.length;i++){
+                    if(r.message[i].name == "IQAMA Transfer"||r.message[i].name == "Labor Documents"||r.message[i].name == "Medical Insurance"||r.message[i].name == "Medical Test"||r.message[i].name == "IQAMA"||r.message[i].name == "Visa"||r.message[i].name == "Exit/Re-Entry Visa"||r.message[i].name == "Agent Documents"||r.message[i].name == "Technical License"||r.message[i].name == "Flight Ticket"||r.message[i].name == "GRO"){
+         
+                    var child = cur_frm.add_child("employee_cost_details");
+                    child.document_name=r.message[i].name;
+                
+                    }
+                    }
+                }
+            }
+			         })
+	cur_frm.refresh_field("employee_cost_details")
+}
+
 		if(frm.doc.docstatus === 1){    
             frm.page.add_inner_button('Journal Entry', function(){
                 var doc = frappe.model.get_new_doc('Journal Entry');
@@ -13,6 +40,9 @@ frappe.ui.form.on('Employee Costs', {
                 frappe.set_route('Form', 'Journal Entry', doc.name);
             },'Create')
 	}
+},
+onload: function(frm){
+
 }
 
 });
