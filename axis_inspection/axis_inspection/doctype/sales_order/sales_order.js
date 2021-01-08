@@ -27,7 +27,8 @@ refresh(frm) {
         }, __("Status"));
     }
 
-	else if(frm.doc.status!="Closed"){
+	
+else if(frm.doc.status!="Closed" && frm.doc.status!="Draft" ){
 		frappe.call({
                 "method": "frappe.client.set_value",
                 "args": {
@@ -40,7 +41,6 @@ refresh(frm) {
             })
 		cur_frm.refresh_fields("custom_status");
 	}
-
 
     setTimeout(() => {
         frm.remove_custom_button('Update Items');
