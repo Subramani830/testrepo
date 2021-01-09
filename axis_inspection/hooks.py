@@ -198,8 +198,10 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Purchase Order-supplier_quotation",
 		"Sales Order-custom_status",
 		"Contract-naming_series",
-		"Opportunity Item-out_sourced"
-		
+		"Opportunity Item-out_sourced",
+		"Contract-attach_job_offer",
+		"Supplier-priority",
+		"Customer-priority_"		
 		]
 	]
 ]

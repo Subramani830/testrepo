@@ -149,11 +149,10 @@ after_save:function(frm){
 			}
 		});
 	}
-	
 },
 party_type:function(frm){
 	if(frm.doc.party_type=="Employee"){
-		var  contract_term=["Contract Type","Contract Duration","Notice Period","Weekend Days","Destination"]
+		var  contract_term=["Contract Type","Contract Duration","Notice Period","Weekend Days","Destination","Roles and Responsibilities"]
 		frappe.call({
 			method: "frappe.client.get_list",
 			async:false,
@@ -248,6 +247,59 @@ duration:function(frm){
             }
         });
     }
+},
+on_submit:function(frm){
+	if(frm.doc.party_type=="Employee"){
+		var email;
+		var employee;
+		var attachment=[];
+		frappe.call({
+				method:"axis_inspection.axis_inspection.api.get_file_name",
+				args:{
+					doctype:'File',
+					file_url:frm.doc.attach_job_offer,
+					attached_to_field:"attach_job_offer",
+					attached_to_doctype:"Contract"
+				},
+				async:false,
+				callback: function(r){
+					if(r.message) {
+						if(!attachment.includes(r.message)){
+							attachment.push(r.message);
+						}
+					}
+				}
+			});
+		frappe.call({
+			method:"axis_inspection.axis_inspection.api.get_email",
+			args:{
+				doctype:'Employee',
+				name:frm.doc.party_name
+			},
+			async:false,
+			callback: function(r){
+				for(var i=0;i<r.message.length;i++){
+				email=r.message[i].user_id;
+				employee=r.message[i].employee_name;
+
+				}
+			}
+		});
+		if(email!==undefined){
+			var emailTemplate=
+			'<h3>Dear ' +employee+',</h3>'+
+			'<br>'+
+			'<h3>Heartly Congratulations!</h3>'+
+			'<br>'+
+			'<h3> We are happy to welcome you as a employee  for '+frm.doc.company+' Offer letter  and contract is attached with this. </h3>'+
+			'<br>'+
+			'<br>'+
+			'<h3>Regards</h3>'+
+			'<h3>HR Team</h3>';
+			sendEmail(frm.doc.name,email,emailTemplate,attachment)
+		}
+}
+	
 }
 });
 frappe.ui.form.on('Contract Item', 'item_code',function(frm,cdt, cdn)
@@ -336,3 +388,26 @@ function addDays(start_date, days) {
 	return duration
 	
   }
+
+
+  function sendEmail(name,email,template,attachment='[]'){
+		frappe.call({
+						method: "frappe.core.doctype.communication.email.make",
+						args: {
+							subject: name,
+							communication_medium: "Email",
+							recipients: email,
+							content: template,
+							communication_type: "Communication",
+							send_email:1,
+							attachments:attachment,
+							print_format:"Axis Contract Print Format",
+							doctype: "Contract",
+							name: name,
+							print_letterhead: 0
+						},
+						callback: function(rh){
+							console.log("sent");
+						}   
+					});
+}

@@ -233,3 +233,11 @@ def update__workflow_state(name,status):
     so=frappe.get_doc("Sales Order",name)
     so.db_set('status',status)
     so.db_set('workflow_state',"Approved")
+
+@frappe.whitelist()
+def get_email(doctype,name):
+	return frappe.db.get_list(doctype,filters={'name':name},fields=["user_id","employee_name"])
+
+@frappe.whitelist()
+def get_file_name(doctype,file_url,attached_to_field,attached_to_doctype):
+		return frappe.db.get_value(doctype,{'file_url':file_url,"attached_to_field":attached_to_field,"attached_to_doctype":attached_to_doctype},'name')
