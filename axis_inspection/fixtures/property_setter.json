@@ -1,6 +1,22 @@
 [
  {
   "default_value": null,
+  "doc_type": "Project",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "cost_center",
+  "modified": "2021-01-08 13:54:50.470523",
+  "name": "Project-cost_center-mandatory_depends_on",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "mandatory_depends_on",
+  "property_type": "Data",
+  "value": "eval:!(doc.project_type==undefined)"
+ },
+ {
+  "default_value": null,
   "doc_type": "Supplier Quotation Item",
   "docstatus": 0,
   "doctype": "Property Setter",
@@ -604,22 +620,6 @@
   "parentfield": null,
   "parenttype": null,
   "property": "hidden",
-  "property_type": "Check",
-  "value": "1"
- },
- {
-  "default_value": null,
-  "doc_type": "Project",
-  "docstatus": 0,
-  "doctype": "Property Setter",
-  "doctype_or_field": "DocField",
-  "field_name": "sales_order",
-  "modified": "2020-12-11 11:59:14.443640",
-  "name": "Project-sales_order-reqd",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "property": "reqd",
   "property_type": "Check",
   "value": "1"
  },
@@ -3356,22 +3356,6 @@
   "parentfield": null,
   "parenttype": null,
   "property": "hidden",
-  "property_type": "Check",
-  "value": "1"
- },
- {
-  "default_value": null,
-  "doc_type": "Project",
-  "docstatus": 0,
-  "doctype": "Property Setter",
-  "doctype_or_field": "DocField",
-  "field_name": "cost_center",
-  "modified": "2020-12-16 18:25:41.400747",
-  "name": "Project-cost_center-reqd",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "property": "reqd",
   "property_type": "Check",
   "value": "1"
  },

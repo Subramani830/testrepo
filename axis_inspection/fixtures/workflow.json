@@ -2226,7 +2226,7 @@
   "doctype": "Workflow",
   "document_type": "Employee Separation",
   "is_active": 1,
-  "modified": "2020-10-30 16:51:32.643177",
+  "modified": "2021-01-10 12:56:30.343528",
   "name": "Employee Separation Flow",
   "override_status": 0,
   "parent": null,
@@ -2248,7 +2248,7 @@
     "update_value": ""
    },
    {
-    "allow_edit": "Department Manager",
+    "allow_edit": "Employee",
     "doc_status": "0",
     "is_optional_state": 0,
     "message": null,
@@ -2285,13 +2285,26 @@
     "state": "Cancelled",
     "update_field": null,
     "update_value": null
+   },
+   {
+    "allow_edit": "HR Manager",
+    "doc_status": "0",
+    "is_optional_state": 0,
+    "message": null,
+    "next_action_email_template": null,
+    "parent": "Employee Separation Flow",
+    "parentfield": "states",
+    "parenttype": "Workflow",
+    "state": "Rejected",
+    "update_field": null,
+    "update_value": null
    }
   ],
   "transitions": [
    {
     "action": "Review",
-    "allow_self_approval": 0,
-    "allowed": "Department Manager",
+    "allow_self_approval": 1,
+    "allowed": "Employee",
     "condition": "frappe.session.user==doc.department_manager",
     "next_state": "Initial Review",
     "parent": "Employee Separation Flow",
@@ -2302,9 +2315,9 @@
    {
     "action": "Reject",
     "allow_self_approval": 0,
-    "allowed": "Department Manager",
+    "allowed": "Employee",
     "condition": "frappe.session.user==doc.department_manager",
-    "next_state": "Applied",
+    "next_state": "Rejected",
     "parent": "Employee Separation Flow",
     "parentfield": "transitions",
     "parenttype": "Workflow",
@@ -2312,7 +2325,7 @@
    },
    {
     "action": "Approve",
-    "allow_self_approval": 0,
+    "allow_self_approval": 1,
     "allowed": "HR Manager",
     "condition": null,
     "next_state": "Approved",
@@ -2323,10 +2336,10 @@
    },
    {
     "action": "Reject",
-    "allow_self_approval": 0,
+    "allow_self_approval": 1,
     "allowed": "HR Manager",
     "condition": null,
-    "next_state": "Applied",
+    "next_state": "Rejected",
     "parent": "Employee Separation Flow",
     "parentfield": "transitions",
     "parenttype": "Workflow",
@@ -2334,7 +2347,7 @@
    },
    {
     "action": "Cancel",
-    "allow_self_approval": 0,
+    "allow_self_approval": 1,
     "allowed": "HR Manager",
     "condition": null,
     "next_state": "Cancelled",

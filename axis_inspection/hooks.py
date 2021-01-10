@@ -294,7 +294,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Sales Order-territory-read_only_depends_on",
 				"Sales Order-payment_terms_template-read_only_depends_on",
 				"Sales Order-payment_schedule-read_only_depends_on",
-				"Project-sales_order-reqd",
 				"Sales Order-po_no-reqd",
 				"Purchase Order Item-project-reqd",
 				"Purchase Receipt Item-project-reqd",
@@ -326,7 +325,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Address-county-hidden",
 				"Opportunity Item-item_name-columns",
 				"Purchase Receipt-project-reqd",
-				"Project-cost_center-reqd",
 				"Sales Taxes and Charges-cost_center-mandatory_depends_on",
 				"Lead-company_name-reqd",
 				"Lead-email_id-reqd",
@@ -492,7 +490,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Purchase Receipt Item-item_name-columns",
 				"Purchase Receipt Item-uom-columns",
 				"Purchase Receipt Item-rate-columns",
-				"Opportunity Item-item_name-columns"
+				"Opportunity Item-item_name-columns",
+				"Project-cost_center-mandatory_depends_on"
 			]
 	]
 	]
