@@ -76,6 +76,13 @@ employee:function(frm,cdt,cdn){
 			}
 		});
 	}
+	frm.fields_dict['clearance_process_detail'].grid.get_field('equipment').get_query = function() {
+		return {
+			filters: {
+				custodian:frm.doc.employee
+			}
+		};
+	};
 },	
 employee_name:function(frm,cdt,cdn){
 	if(frm.doc.employee!=undefined){

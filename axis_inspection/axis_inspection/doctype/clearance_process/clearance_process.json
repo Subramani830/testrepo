@@ -10,12 +10,14 @@
   "employee_name",
   "designation",
   "branch",
+  "start_date",
   "column_break_4",
   "company",
   "clearance_date",
   "date_of_join",
   "purpose_of_clearance_process",
   "department_manager",
+  "end_date",
   "asset_section_section",
   "clearance_process_detail",
   "status",
@@ -249,12 +251,24 @@
    "fieldtype": "Select",
    "label": "Penalty Status",
    "options": "\nPending\nCleared"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2020-12-19 16:45:46.024660",
+ "modified": "2021-01-11 12:49:48.786584",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Clearance Process",

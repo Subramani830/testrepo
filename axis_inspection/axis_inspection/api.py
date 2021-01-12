@@ -7,7 +7,7 @@ import json
 from bs4 import BeautifulSoup
 from datetime import date
 from datetime import timedelta
-import datetime
+from datetime import datetime
 from axis_inspection.axis_inspection.doctype.job_applicant.job_applicant import send_mail_employee,send_mail_hr,sendmail_jobtitle_correction
 
 @frappe.whitelist()
@@ -241,3 +241,13 @@ def get_email(doctype,name):
 @frappe.whitelist()
 def get_file_name(doctype,file_url,attached_to_field,attached_to_doctype):
 		return frappe.db.get_value(doctype,{'file_url':file_url,"attached_to_field":attached_to_field,"attached_to_doctype":attached_to_doctype},'name')
+
+@frappe.whitelist()
+def update_clearance_process(doctype,employee,month,year):
+	nameList=[]
+	start_date_list= frappe.db.get_list(doctype,filters={'employee':employee,'workflow_state':'Approved'},fields=['start_date','name'])
+	for row in start_date_list:
+		if row.start_date.month==int(month) and row.start_date.year==int(year):
+			if row.name not in nameList:
+				nameList.append(row.name)
+	return nameList
