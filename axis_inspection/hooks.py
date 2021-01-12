@@ -202,7 +202,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Contract-attach_job_offer",
 		"Supplier-priority",
 		"Customer-priority_",
-		"Sales Invoice-month_of_work"		
+		"Sales Invoice-month_of_work",
+		"Training Event-trainer_type"		
 		]
 	]
 ]
