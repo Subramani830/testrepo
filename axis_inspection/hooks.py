@@ -201,7 +201,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Opportunity Item-out_sourced",
 		"Contract-attach_job_offer",
 		"Supplier-priority",
-		"Customer-priority_"		
+		"Customer-priority_",
+		"Sales Invoice-month_of_work"		
 		]
 	]
 ]
@@ -446,7 +447,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee-contract_end_date-read_only",
 				"Quotation-order_type-options",
 				"Employee-scheduled_confirmation_date-read_only",
-				"Employee-final_confirmation_date-read_only",
 				"Employee-contract_end_date-read_only",
 				"Project-sales_order-mandatory_depends_on",
 				"Timesheet Detail-billing_hours-permlevel",

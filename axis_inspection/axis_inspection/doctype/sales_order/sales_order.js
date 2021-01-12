@@ -96,6 +96,7 @@ else if(frm.doc.status!="Closed" && frm.doc.status!="Draft" ){
 		return{
 			filters: {
 			"party_type":'Customer',
+			"docstatus": [0,1],
 			"party_name":frm.doc.customer
 			}
 		};

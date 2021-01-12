@@ -145,6 +145,7 @@ refresh: function(frm){
 			return{
 				filters: {
 				"party_type":'Customer',
+				"docstatus": [0,1],
 				"party_name":frm.doc.party_name
 				}
 			};

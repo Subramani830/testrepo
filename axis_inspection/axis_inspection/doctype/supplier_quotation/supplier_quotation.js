@@ -67,6 +67,7 @@ frappe.ui.form.on('Supplier Quotation', {
 			return{
 				filters: {
 				"party_type":'Supplier',
+				"docstatus": [0,1],
 				"party_name":frm.doc.supplier
 				}
 			};
