@@ -208,7 +208,11 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Asset Movement-project",
 		"Job Offer-job_offer_attachment",
 		"Timesheet-timesheet_type",
-		"Timesheet-timesheet_attachment"	
+		"Timesheet-timesheet_attachment",
+		"Contract-contract_terms_in_arabic",
+		"Contract-contract_template_for_arabic",
+		"Contract-contract_terms_",
+		"Contract-contract_template_"	
 		]
 	]
 ]
