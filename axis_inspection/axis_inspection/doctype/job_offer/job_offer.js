@@ -15,7 +15,7 @@ after_save:function(frm,cdt,cdn){
                 }
             }
     });
-    if(frm.doc.status=="Accepted"){
+    if(frm.doc.status=="Applicant Accepted"){
         var emailTemplate=
         '<h3>Dear ' +frm.doc.applicant_name+ ',</h3>'+
         '<br>'+
@@ -106,3 +106,19 @@ function sendEmail(sender,name,email,template){
     });
 
 }
+
+
+frappe.listview_settings['Job Offer'] = {
+	add_fields: ["company", "designation", "job_applicant", "status"],
+	get_indicator: function (doc) {
+		if (doc.status == "Applicant Accepted") {
+			return [__(doc.status), "green", "status,=," + doc.status];
+		} else if (doc.status == "Awaiting Response") {
+			return [__(doc.status), "orange", "status,=," + doc.status];
+		} else if (doc.status == "Not Sent") {
+			return [__(doc.status), "orange", "status,=," + doc.status];
+		} else if (doc.status == "Applicant Rejected") {
+			return [__(doc.status), "red", "status,=," + doc.status];
+		}
+	}
+};

@@ -205,7 +205,10 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Sales Invoice-month_of_work",
 		"Training Event-trainer_type",
 		"Salary Slip-clearance_process",
-		"Asset Movement-project"	
+		"Asset Movement-project",
+		"Job Offer-job_offer_attachment",
+		"Timesheet-timesheet_type",
+		"Timesheet-timesheet_attachment"	
 		]
 	]
 ]

@@ -2801,22 +2801,6 @@
  },
  {
   "default_value": null,
-  "doc_type": "Job Offer",
-  "docstatus": 0,
-  "doctype": "Property Setter",
-  "doctype_or_field": "DocField",
-  "field_name": "status",
-  "modified": "2020-10-29 16:51:16.705390",
-  "name": "Job Offer-status-options",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "property": "options",
-  "property_type": "Text",
-  "value": "Awaiting Response\nApplicant Accepted\nSent\nNot Sent\nApplicant Rejected"
- },
- {
-  "default_value": null,
   "doc_type": "Purchase Order",
   "docstatus": 0,
   "doctype": "Property Setter",
@@ -4286,5 +4270,21 @@
   "property": "columns",
   "property_type": "Int",
   "value": "3"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Job Offer",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "status",
+  "modified": "2021-01-13 17:58:58.047011",
+  "name": "Job Offer-status-options",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "options",
+  "property_type": "Text",
+  "value": "Awaiting Response\nApplicant Accepted\nNot Sent\nApplicant Rejected"
  }
 ]
