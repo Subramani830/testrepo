@@ -203,7 +203,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Supplier-priority",
 		"Customer-priority_",
 		"Sales Invoice-month_of_work",
-		"Training Event-trainer_type"		
+		"Training Event-trainer_type",
+		"Salary Slip-clearance_process"	
 		]
 	]
 ]
@@ -565,7 +566,8 @@ doctype_js = {
 	"Employee Skill Map" : "axis_inspection/doctype/employee_skill_map/employee_skill_map.js",
 	"Project" : "axis_inspection/doctype/project/project.js",
 	"Payment Entry" : "axis_inspection/doctype/payment_entry/payment_entry.js",
-	"Skill" : "axis_inspection/doctype/skill/skill.js"
+	"Skill" : "axis_inspection/doctype/skill/skill.js",
+	"Salary Slip" : "axis_inspection/doctype/salary_slip/salary_slip.js"
 }
 scheduler_events = {
 	"daily":  [
