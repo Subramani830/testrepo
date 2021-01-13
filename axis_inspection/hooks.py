@@ -204,7 +204,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Customer-priority_",
 		"Sales Invoice-month_of_work",
 		"Training Event-trainer_type",
-		"Salary Slip-clearance_process"	
+		"Salary Slip-clearance_process",
+		"Asset Movement-project"	
 		]
 	]
 ]
@@ -525,6 +526,15 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 			"India","Saudi Arabia"
 
 ]
+	]
+]
+},
+{"dt": "Report",
+		"filters": [
+         [
+             "name", "in", [
+		"Employee CTC"
+		]
 	]
 ]
 }

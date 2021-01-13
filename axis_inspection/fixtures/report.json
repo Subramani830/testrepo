@@ -1,0 +1,48 @@
+[
+ {
+  "add_total_row": 1,
+  "columns": [],
+  "disable_prepared_report": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": null,
+  "letter_head": "Axis",
+  "modified": "2021-01-13 09:56:18.711348",
+  "module": "Payroll",
+  "name": "Employee CTC",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "prepared_report": 0,
+  "query": "Select\nDISTINCT sa.name as \"Document Number:Link/Salary Structure Assignment:150\",\nsa.employee as \"Employee:data:130\",\ne.id_number as \"ID Number:data:100\",\nsa.employee_name as \"Name:data:130\",\nsa.salary_structure as \"Salary Structure:data:130\",\nsa.department as \"Departmet:data:100\",\nsd.salary_component as \"Salary Component:data:130\",\n(CASE WHEN sd.parentfield=\"deductions\" THEN 0-sd.amount ELSE sd.amount END) as \"Amount:data:130\"\nfrom `tabSalary Structure Assignment` sa\nLEFT JOIN `tabEmployee` e\nON e.name=sa.employee\nLEFT JOIN `tabSalary Structure` ss\nON ss.name=sa.salary_structure\nLEFT JOIN `tabSalary Detail` sd\nON sd.parent=ss.name\nWHERE ss.is_active=\"Yes\"\nAND ss.docstatus=1\nORDER BY sa.name ASC\n",
+  "ref_doctype": "Salary Structure Assignment",
+  "reference_report": null,
+  "report_name": "Employee CTC",
+  "report_script": null,
+  "report_type": "Query Report",
+  "roles": [
+   {
+    "parent": "Employee CTC",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "System Manager"
+   },
+   {
+    "parent": "Employee CTC",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR Manager"
+   },
+   {
+    "parent": "Employee CTC",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "HR User"
+   }
+  ]
+ }
+]
