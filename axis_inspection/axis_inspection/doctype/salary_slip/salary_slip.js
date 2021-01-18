@@ -36,16 +36,14 @@ before_submit:function(frm){
     }
     
 },
-after_save:function(frm){
-    console.log('ddd')
+on_submit:function(frm){
     frappe.call({
         method:"axis_inspection.axis_inspection.api.update_actual_paid",
         async:false,
         args:{
           doctype:'Deduction Calculation',
             employee:frm.doc.employee,
-            start_date:frm.doc.start_date,
-            actual_paid:frm.doc.employee_deduction
+            start_date:frm.doc.start_date
         },
        callback:function(r){
             console.log(r)
@@ -61,7 +59,6 @@ after_save:function(frm){
             });
         }
     });
-   // location.reload()
 },
 employee_deduction:function(frm){
     update_total_deduction(frm)

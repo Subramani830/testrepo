@@ -264,7 +264,7 @@ def get_balance(doctype,employee,start_date):
 
 	
 @frappe.whitelist()
-def update_actual_paid(doctype,employee,start_date,actual_paid):
+def update_actual_paid(doctype,employee,start_date):
 	month=updateDeduction(start_date)
 	parent=frappe.db.get_value('Employee Deductions',{'employee':employee},'name')
 	if parent:
