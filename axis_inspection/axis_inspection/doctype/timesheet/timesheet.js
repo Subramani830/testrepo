@@ -61,7 +61,6 @@ before_workflow_action: (frm) => {
 			method: "axis_inspection.axis_inspection.api.get_user_role_billing",
 			async:false,
 			 callback: function(r){
-				console.log(r.message)
 				if(r.message==0){
 					var df1 = frappe.meta.get_docfield("Timesheet Detail","billable", cur_frm.doc.name);
             				df1.hidden = 1;

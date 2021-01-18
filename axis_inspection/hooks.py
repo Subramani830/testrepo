@@ -212,7 +212,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Contract-contract_terms_in_arabic",
 		"Contract-contract_template_for_arabic",
 		"Contract-contract_terms_",
-		"Contract-contract_template_"	
+		"Contract-contract_template_",
+		"Salary Slip-employee_deduction"	
 		]
 	]
 ]
@@ -611,7 +612,11 @@ doc_events = {
     },
 	"Contract":{
 		"autoname": ["axis_inspection.axis_inspection.doctype.contract.contract.autoname"]
-	}
+	},
+	"Salary Slip":{
+		"validate":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.update_salary_slip"]
+		#"after_submit":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.update_actual_paid"]
+}
 }
 
 
