@@ -27,20 +27,6 @@ refresh(frm) {
         }, __("Status"));
     }
 
-	
-else if(frm.doc.status!="Closed" && frm.doc.status!="Draft" ){
-		frappe.call({
-                "method": "frappe.client.set_value",
-                "args": {
-                    "doctype": "Sales Order",
-                    "name": frm.doc.name,
-                "fieldname": {
-                    "custom_status":frm.doc.status
-                },
-                }
-            })
-		cur_frm.refresh_fields("custom_status");
-	}
 
     setTimeout(() => {
         frm.remove_custom_button('Update Items');
@@ -102,6 +88,21 @@ else if(frm.doc.status!="Closed" && frm.doc.status!="Draft" ){
 		};
 	});
     },
+after_save(frm){
+	if(frm.doc.status!="Closed" && frm.doc.status!="Draft" ){
+			frappe.call({
+		        "method": "frappe.client.set_value",
+		        "args": {
+		            "doctype": "Sales Order",
+		            "name": frm.doc.name,
+		        "fieldname": {
+		            "custom_status":frm.doc.status
+		        },
+		        }
+		    })
+			cur_frm.refresh_fields("custom_status");
+		}
+},
     customer: function(frm,cdt,cdn) {
         frappe.call({
             method: "frappe.client.get_value",
