@@ -42,3 +42,12 @@ def update_actual_paid(doc,method):
 		doc1=frappe.get_doc('Employee Deductions',parent)
 		doc1.save()
 
+def remove_actual_paid(doc,method):
+    date=doc.start_date.strftime('%Y-%m-%d')
+    month=updateDeduction(date)
+    parent=frappe.db.get_value('Employee Deductions',{'employee':doc.employee},'name')
+    if parent:
+        name=frappe.db.get_value('Deduction Calculation',{'parenttype':'Employee Deductions','month':month,'parent':parent},'name')
+        frappe.db.set_value('Deduction Calculation', {"name": name}, "actual_paid", 0)
+        doc1=frappe.get_doc('Employee Deductions',parent)
+        doc1.save()

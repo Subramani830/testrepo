@@ -592,8 +592,10 @@ scheduler_events = {
 		"axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date",
 		"axis_inspection.axis_inspection.doctype.sales_order.sales_order.get_delivery_date_list"
 	],
- 	"hourly": ["axis_inspection.axis_inspection.api.get_applicant_list"
- 	]
+ 	"hourly": [
+		"axis_inspection.axis_inspection.api.get_applicant_list",
+		"axis_inspection.axis_inspection.doctype.sales_invoice.sales_invoice.validate_due_date"
+ 	 ]
 }
 
 override_doctype_dashboards = {
@@ -614,9 +616,10 @@ doc_events = {
 		"autoname": ["axis_inspection.axis_inspection.doctype.contract.contract.autoname"]
 	},
 	"Salary Slip":{
-		"validate":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.update_salary_slip"]
-		#"after_submit":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.update_actual_paid"]
-}
+		"validate":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.update_salary_slip"],
+		"on_submit":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.update_actual_paid"],
+		"on_cancel":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.remove_actual_paid"]
+	}
 }
 
 

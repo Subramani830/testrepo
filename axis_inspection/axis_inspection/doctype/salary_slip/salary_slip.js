@@ -36,30 +36,6 @@ before_submit:function(frm){
     }
     
 },
-on_submit:function(frm){
-    frappe.call({
-        method:"axis_inspection.axis_inspection.api.update_actual_paid",
-        async:false,
-        args:{
-          doctype:'Deduction Calculation',
-            employee:frm.doc.employee,
-            start_date:frm.doc.start_date
-        },
-       callback:function(r){
-            console.log(r)
-            frappe.call({
-                "method": "frappe.client.set_value",
-                "async":false,
-                "args": {
-                "doctype": "Deduction Calculation",
-                "name": r.message,
-                "fieldname": "actual_paid",
-                "value":frm.doc.employee_deduction
-                }
-            });
-        }
-    });
-},
 employee_deduction:function(frm){
     update_total_deduction(frm)
 }
