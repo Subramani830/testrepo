@@ -12,6 +12,7 @@ import math
 from axis_inspection.axis_inspection.doctype.job_applicant.job_applicant import send_mail_employee,send_mail_hr,sendmail_jobtitle_correction
 from axis_inspection.axis_inspection.doctype.employee_deductions.employee_deductions import updateDeduction
 from frappe.utils import flt,rounded, date_diff, money_in_words
+from frappe.core.doctype.communication.email import makes
 
 @frappe.whitelist()
 def get_sender_email(doctype,role,parenttype):
@@ -261,15 +262,4 @@ def get_balance(doctype,employee,start_date):
 	parent=frappe.db.get_value('Employee Deductions',{'employee':employee},'name')
 	if parent:
 		return frappe.db.get_value(doctype,{'parenttype':'Employee Deductions','month':month,'parent':parent},'balance')
-
-	
-@frappe.whitelist()
-def update_actual_paid(doctype,employee,start_date):
-	month=updateDeduction(start_date)
-	parent=frappe.db.get_value('Employee Deductions',{'employee':employee},'name')
-	if parent:
-		name=frappe.db.get_value(doctype,{'parenttype':'Employee Deductions','month':month,'parent':parent},'name')
-		#frappe.db.set_value(doctype, {"name": name}, "actual_paid", actual_paid)
-		#doc=frappe.get_doc('Employee Deductions',parent)
-		#doc.save()
-		return name
+		

@@ -16,8 +16,6 @@ from frappe.utils import flt
 class EmployeeDeductions(Document):
 	def validate(self):
 		self.validate_duplicate_record()
-		self.update_balance()
-		
 		
 	def validate_duplicate_record(self):
 		for row in self.deduction_calculation:
@@ -29,17 +27,6 @@ class EmployeeDeductions(Document):
 		""",(self.employee, self.name))
 		if employee:
 			frappe.throw(_("Employee {0} already exists for the Employee Deductions").format(self.employee))
-
-
-	def update_balance(self):
-		date=datetime.datetime.now().strftime('%b')+'-'+datetime.datetime.now().strftime('%y')
-		self.current_month_balance=frappe.db.get_value('Deduction Calculation',{'parent':self.name,'parenttype':'Employee Deductions','month':date},'balance')
-		idx=frappe.db.get_value('Deduction Calculation',{'parent':self.name,'parenttype':'Employee Deductions','month':date},'idx')
-		self.total_balance=0
-		if idx:
-			for v in self.get('deduction_calculation'):
-				if v.idx<=idx:
-					self.total_balance+=v.balance
 
 @frappe.whitelist()
 def updateDeduction(start_date):
@@ -67,12 +54,18 @@ def monthDiff(start_date,end_date):
 
 @frappe.whitelist()
 def get_month(month,name):
-	return  frappe.db.sql("""
-		select 	name,recurring,balance,total
-		from `tabDeduction Calculation` where
-		month=%s and
-		parent=%s and 
-		parenttype="Employee Deductions"
-		""",(month,name))
+	return frappe.db.get_list('Deduction Calculation',filters={'month':month,'parent':name,'parenttype':'Employee Deductions'},fields=['name','recurring','total','balance'])
 	 
-	
+@frappe.whitelist()	
+def update_balance(docList):
+	val=dict()
+	doc=json.loads(docList)
+	date=datetime.datetime.now().strftime('%b')+'-'+datetime.datetime.now().strftime('%y')
+	val['current_month_balance']=frappe.db.get_value('Deduction Calculation',{'parent':doc['name'],'parenttype':'Employee Deductions','month':date},'balance')
+	idx=frappe.db.get_value('Deduction Calculation',{'parent':doc['name'],'parenttype':'Employee Deductions','month':date},'idx')
+	val['total_balance']=0
+	if idx:
+		for v in doc.get('deduction_calculation'):
+			if v['idx']<=idx:
+				val['total_balance']+=v['balance']
+	return val

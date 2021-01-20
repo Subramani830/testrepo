@@ -2,8 +2,40 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Employee Deductions', {
-//refresh: function(frm) {
-//}
+refresh: function(frm) {
+	if(frm.doc.employee!=undefined){
+		frappe.call({
+			method: 'axis_inspection.axis_inspection.doctype.employee_deductions.employee_deductions.update_balance',
+			async:false,
+			args: {
+				docList:frm.doc
+			},
+			callback: function(r) {
+				frappe.call({
+					"method": "frappe.client.set_value",
+					"async":false,
+					"args": {
+					"doctype":'Employee Deductions',
+					"name": frm.doc.name,
+					"fieldname": "current_month_balance",
+					"value": r.message.current_month_balance
+					}
+				});
+				frappe.call({
+					"method": "frappe.client.set_value",
+					"async":false,
+					"args": {
+					"doctype":'Employee Deductions',
+					"name": frm.doc.name,
+					"fieldname": "total_balance",
+					"value": r.message.total_balance
+					}
+				});
+				cur_frm.refresh_fields("total_balance ","current_month_balance")
+			}
+		})
+	}
+}
 });
 frappe.ui.form.on('Deduction Detail', {
 	end_date:function(frm,cdt,cdn){
@@ -40,7 +72,6 @@ frappe.ui.form.on('Deduction Detail', 'retention_amount',function(frm,cdt, cdn){
 				amount:cur_row.doc.retention_amount
 			},
 			callback: function(r) {
-				cur_frm.refresh_fields();
 				for(var i=0;i<r.message.month_list.length;i++){
 					frappe.call({
 						method: 'axis_inspection.axis_inspection.doctype.employee_deductions.employee_deductions.get_month',
@@ -51,9 +82,9 @@ frappe.ui.form.on('Deduction Detail', 'retention_amount',function(frm,cdt, cdn){
 						},
 						callback: function(c) {
 							if(c.message["length"]>0){
-								frappe.model.set_value("Deduction Calculation",c.message[0][0],"recurring",r.message.deduction_amount+c.message[0][1]);
-								frappe.model.set_value("Deduction Calculation",c.message[0][0],"total",r.message.deduction_amount+c.message[0][2]);
-								frappe.model.set_value("Deduction Calculation",c.message[0][0],"balance",r.message.deduction_amount+c.message[0][3]);
+								frappe.model.set_value("Deduction Calculation",c.message[0].name,"recurring",r.message.deduction_amount+c.message[0].recurring);
+								frappe.model.set_value("Deduction Calculation",c.message[0].name,"total",r.message.deduction_amount+c.message[0].total);
+								frappe.model.set_value("Deduction Calculation",c.message[0].name,"balance",r.message.deduction_amount+c.message[0].balance);
 							}
 							else{							
 							var child = cur_frm.add_child("deduction_calculation");

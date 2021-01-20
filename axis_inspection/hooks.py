@@ -593,7 +593,9 @@ scheduler_events = {
 		"axis_inspection.axis_inspection.doctype.sales_order.sales_order.get_delivery_date_list"
 	],
  	"hourly": [
-		"axis_inspection.axis_inspection.api.get_applicant_list",
+		"axis_inspection.axis_inspection.api.get_applicant_list"
+	],
+	"all": [
 		"axis_inspection.axis_inspection.doctype.sales_invoice.sales_invoice.validate_due_date"
  	 ]
 }
