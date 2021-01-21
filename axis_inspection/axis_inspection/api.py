@@ -11,7 +11,7 @@ import math
 from axis_inspection.axis_inspection.doctype.job_applicant.job_applicant import send_mail_employee,send_mail_hr,sendmail_jobtitle_correction
 from axis_inspection.axis_inspection.doctype.employee_deductions.employee_deductions import updateDeduction
 from frappe.utils import flt,rounded, date_diff, money_in_words
-from frappe.core.doctype.communication.email import makes
+from frappe.core.doctype.communication.email import make
 
 @frappe.whitelist()
 def get_sender_email(doctype,role,parenttype):
