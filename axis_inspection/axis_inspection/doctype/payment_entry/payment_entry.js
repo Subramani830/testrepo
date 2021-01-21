@@ -78,6 +78,64 @@ frappe.ui.form.on('Payment Entry', {
                     }
                 });
             }
+	else if(item.reference_doctype=="Sales Invoice"){
+                frappe.call({
+                    method:"axis_inspection.axis_inspection.api.update_project1",
+                    async:false,
+                    args:{
+                        doctype:'Sales Invoice',
+                        name:item.reference_name
+                    },
+                    callback:function(r){
+			var project;
+			var task;
+			var branch;
+			var cost_center;
+			for(var i=0;i<r.message.length;i++){
+				if(r.message[i].project){project=r.message[i].project}
+				if(r.message[i].cost_center){cost_center=r.message[i].cost_center}
+				if(r.message[i].branch){branch=r.message[i].branch}
+                    }
+                        if(frm.doc.cost_center){}
+			else{console.log("modifying");
+			frm.set_value("cost_center",cost_center)}
+			if(frm.doc.project){}
+			else{frm.set_value("project",project)}
+			if(frm.doc.branch){}
+			else{frm.set_value("branch",branch)}
+                    }
+                });
+            }
+else if(item.reference_doctype=="Sales Order"){
+                frappe.call({
+                    method:"axis_inspection.axis_inspection.api.update_project2",
+                    async:false,
+                    args:{
+                        doctype:'Sales Order Item',
+                        name:item.reference_name,
+                        parenttype:'Sales Order'
+                    },
+                    callback:function(r){
+			var project;
+			var task;
+			var branch;
+			var cost_center;
+			for(var i=0;i<r.message.length;i++){
+				if(r.message[i].project){project=r.message[i].project}
+				if(r.message[i].task){task=r.message[i].task}
+				if(r.message[i].cost_center){cost_center=r.message[i].cost_center}
+				if(r.message[i].branch){branch=r.message[i].branch}
+                    }
+                        if(frm.doc.cost_center){}
+			else{console.log("modifying");
+			frm.set_value("cost_center",cost_center)}
+			if(frm.doc.project){}
+			else{frm.set_value("project",project)}
+			if(frm.doc.branch){}
+			else{frm.set_value("branch",branch)}
+                    }
+                });
+            }
         });
     }
 });

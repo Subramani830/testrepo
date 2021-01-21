@@ -6,8 +6,7 @@ import requests
 import json
 from bs4 import BeautifulSoup
 from datetime import date
-from datetime import timedelta
-from datetime import datetime
+from datetime import datetime, timedelta
 import math
 from axis_inspection.axis_inspection.doctype.job_applicant.job_applicant import send_mail_employee,send_mail_hr,sendmail_jobtitle_correction
 from axis_inspection.axis_inspection.doctype.employee_deductions.employee_deductions import updateDeduction
@@ -39,10 +38,9 @@ def get_email_list(doctype,role,parenttype):
         return frappe.db.get_list('Has Role',filters={'role':role,'parenttype':parenttype},fields={'parent'})
 
 
-@frappe.whitelist()
 def get_applicant_list():
-	previous_date = datetime.datetime.today() - datetime.timedelta(days=1)
-	for item in frappe.db.get_list("Communication", filters={"sent_or_received": "Received","subject":"New Job Application","communication_date":["between",[previous_date,datetime.datetime.now()]]}, fields = {"content","communication_date"}):
+	previous_date = datetime.today() - timedelta(days=1)
+	for item in frappe.db.get_list("Communication", filters={"sent_or_received": "Received","subject":"New Job Application","communication_date":["between",[previous_date,datetime.now()]]}, fields = {"content","communication_date"}):
 		soup = BeautifulSoup(item.content)
 		values=soup.get_text('\n')
 		z = values.split("\n")
@@ -195,6 +193,15 @@ def update_task(doctype,assign_to):
 @frappe.whitelist()
 def update_project(doctype,name,parenttype):
 	return frappe.db.get_list(doctype,filters={'parent':name,'parenttype':parenttype},fields=['project','task','branch','cost_center'])
+
+@frappe.whitelist()
+def update_project1(doctype,name):
+	return frappe.db.get_list(doctype,filters={'name':name},fields=['project','branch','cost_center'])
+
+@frappe.whitelist()
+def update_project2(doctype,name,parenttype):
+	return frappe.db.get_list(doctype,filters={'parent':name,'parenttype':parenttype},fields=['project','branch','cost_center'])
+
 
 @frappe.whitelist()
 def get_cost_center(doctype,name,parenttype):

@@ -213,7 +213,12 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Contract-contract_template_for_arabic",
 		"Contract-contract_terms_",
 		"Contract-contract_template_",
-		"Salary Slip-employee_deduction"	
+		"Salary Slip-employee_deduction",
+		"Sales Order Item-cost_center",
+		"Sales Order Item-branch",
+		"Sales Order Item-project",
+		"Delivery Note-branch",
+		"Delivery Note-cost_center"	
 		]
 	]
 ]

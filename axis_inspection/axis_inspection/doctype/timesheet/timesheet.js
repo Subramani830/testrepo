@@ -50,13 +50,21 @@ before_workflow_action: (frm) => {
 				});
 			}
 		});
-		frm.set_query("employee", function(frm, cdt, cdn) {
+		/*frm.set_query("employee", function(frm, cdt, cdn) {
 			return {
 				filters: {
 					name:["in",employee] 
 				}
 			};
-		});
+		});*/
+		frm.set_query("task","time_logs",function(){
+		return{
+		    filters: [
+		    ["Assign To","assign_to","=",frm.doc.employee]
+		    
+		    ]
+		    };
+        	});
 		frappe.call({
 			method: "axis_inspection.axis_inspection.api.get_user_role_billing",
 			async:false,
@@ -83,4 +91,3 @@ before_workflow_action: (frm) => {
 	}
 
 });
-
