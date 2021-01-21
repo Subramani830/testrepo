@@ -28,6 +28,27 @@ class EmployeeDeductions(Document):
 		if employee:
 			frappe.throw(_("Employee {0} already exists for the Employee Deductions").format(self.employee))
 
+	def on_update(self):
+		date=frappe.get_list("Deduction Detail",filters={"parenttype":"Employee Deductions","parent":self.name},fields=['start_date'],order_by='start_date')
+		start_date=(date[0].start_date).strftime("%Y-%m-%d")
+		end_date=datetime.datetime.today().strftime('%Y-%m-%d')
+
+		dates = [start_date,end_date]
+		start, end = [datetime.datetime.strptime(_, "%Y-%m-%d") for _ in dates]
+		monthList=[datetime.datetime.strptime('%2.2d-%2.2d' % (y, m), '%Y-%m').strftime('%b-%y') \
+		for y in range(start.year, end.year+1) \
+		for m in range(start.month if y==start.year else 1, end.month+1 if y == end.year else 13)]
+		
+		self.total_balance=0
+		for row in monthList:
+			for val in self.get('deduction_calculation'):
+				if val.month==row:
+					self.total_balance+=val.balance
+					if val.month==datetime.datetime.now().strftime('%b')+'-'+datetime.datetime.now().strftime('%y'):
+						self.current_month_balance=val.balance
+
+
+
 @frappe.whitelist()
 def updateDeduction(start_date):
 	date=datetime.datetime.strptime(start_date, '%Y-%m-%d')
@@ -54,18 +75,5 @@ def monthDiff(start_date,end_date):
 
 @frappe.whitelist()
 def get_month(month,name):
-	return frappe.db.get_list('Deduction Calculation',filters={'month':month,'parent':name,'parenttype':'Employee Deductions'},fields=['name','recurring','total','balance'])
-	 
-@frappe.whitelist()	
-def update_balance(docList):
-	val=dict()
-	doc=json.loads(docList)
-	date=datetime.datetime.now().strftime('%b')+'-'+datetime.datetime.now().strftime('%y')
-	val['current_month_balance']=frappe.db.get_value('Deduction Calculation',{'parent':doc['name'],'parenttype':'Employee Deductions','month':date},'balance')
-	idx=frappe.db.get_value('Deduction Calculation',{'parent':doc['name'],'parenttype':'Employee Deductions','month':date},'idx')
-	val['total_balance']=0
-	if idx:
-		for v in doc.get('deduction_calculation'):
-			if v['idx']<=idx:
-				val['total_balance']+=v['balance']
-	return val
+	return frappe.db.get_list('Deduction Calculation',filters={'month':month,'parent':name,'parenttype':'Employee Deductions'},fields=['name','recurring','total','balance','one_time'])
+	

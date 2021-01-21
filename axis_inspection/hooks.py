@@ -600,7 +600,7 @@ scheduler_events = {
  	"hourly": [
 		"axis_inspection.axis_inspection.api.get_applicant_list"
 	],
-	"all": [
+	"weekly": [
 		"axis_inspection.axis_inspection.doctype.sales_invoice.sales_invoice.validate_due_date"
  	 ]
 }

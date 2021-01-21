@@ -9,7 +9,7 @@ from datetime import date
 from datetime import datetime, timedelta
 import math
 from axis_inspection.axis_inspection.doctype.job_applicant.job_applicant import send_mail_employee,send_mail_hr,sendmail_jobtitle_correction
-from axis_inspection.axis_inspection.doctype.employee_deductions.employee_deductions import updateDeduction
+from axis_inspection.axis_inspection.doctype.employee_deductions.employee_deductions import  convertDateFormat
 from frappe.utils import flt,rounded, date_diff, money_in_words
 from frappe.core.doctype.communication.email import make
 
@@ -265,7 +265,7 @@ def update_clearance_process(doctype,employee,month,year):
 
 @frappe.whitelist()
 def get_balance(doctype,employee,start_date):
-	month=updateDeduction(start_date)
+	month=convertDateFormat(start_date)
 	parent=frappe.db.get_value('Employee Deductions',{'employee':employee},'name')
 	if parent:
 		return frappe.db.get_value(doctype,{'parenttype':'Employee Deductions','month':month,'parent':parent},'balance')

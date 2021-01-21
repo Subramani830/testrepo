@@ -2,40 +2,8 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Employee Deductions', {
-refresh: function(frm) {
-	if(frm.doc.employee!=undefined){
-		frappe.call({
-			method: 'axis_inspection.axis_inspection.doctype.employee_deductions.employee_deductions.update_balance',
-			async:false,
-			args: {
-				docList:frm.doc
-			},
-			callback: function(r) {
-				frappe.call({
-					"method": "frappe.client.set_value",
-					"async":false,
-					"args": {
-					"doctype":'Employee Deductions',
-					"name": frm.doc.name,
-					"fieldname": "current_month_balance",
-					"value": r.message.current_month_balance
-					}
-				});
-				frappe.call({
-					"method": "frappe.client.set_value",
-					"async":false,
-					"args": {
-					"doctype":'Employee Deductions',
-					"name": frm.doc.name,
-					"fieldname": "total_balance",
-					"value": r.message.total_balance
-					}
-				});
-				cur_frm.refresh_fields("total_balance ","current_month_balance")
-			}
-		})
-	}
-}
+//refresh: function(frm) {
+//}
 });
 frappe.ui.form.on('Deduction Detail', {
 	end_date:function(frm,cdt,cdn){
@@ -108,14 +76,29 @@ frappe.ui.form.on('Deduction Detail', 'retention_amount',function(frm,cdt, cdn){
 				start_date:cur_row.doc.start_date
 			},
 			callback: function(r) {
-				$.each(frm.doc.deduction_calculation,function(idx,deduction){
-					if(deduction.month==r.message){
-						deduction.one_time+=cur_row.doc.retention_amount
-						deduction.total+=cur_row.doc.retention_amount
-						deduction.balance=deduction.total-deduction.actual_paid
-					}
-				});
-					cur_frm.refresh_field('deduction_calculation')
+					frappe.call({
+						method: 'axis_inspection.axis_inspection.doctype.employee_deductions.employee_deductions.get_month',
+						async:false,
+						args: {
+							month:r.message,
+							name:frm.doc.name
+						},
+							callback: function(c) {
+								if(c.message["length"]>0){
+									frappe.model.set_value("Deduction Calculation",c.message[0].name,"one_time",cur_row.doc.retention_amount+c.message[0].one_time);
+									frappe.model.set_value("Deduction Calculation",c.message[0].name,"total",cur_row.doc.retention_amount+c.message[0].total);
+									frappe.model.set_value("Deduction Calculation",c.message[0].name,"balance",cur_row.doc.retention_amount+c.message[0].balance);
+								}
+								else{							
+								var child = cur_frm.add_child("deduction_calculation");
+								frappe.model.set_value(child.doctype, child.name, "month",r.message);
+								frappe.model.set_value(child.doctype, child.name, "one_time",cur_row.doc.retention_amount);
+								frappe.model.set_value(child.doctype, child.name, "total",cur_row.doc.retention_amount);
+								frappe.model.set_value(child.doctype, child.name, "balance",r.message.deduction_amount);
+								cur_frm.refresh_field("deduction_calculation");
+								}
+							}
+						});
 			}
 		});
 
