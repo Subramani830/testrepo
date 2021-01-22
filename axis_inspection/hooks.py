@@ -218,7 +218,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Sales Order Item-branch",
 		"Sales Order Item-project",
 		"Delivery Note-branch",
-		"Delivery Note-cost_center"	
+		"Delivery Note-cost_center",
+		"Quotation-sales_order"	
 		]
 	]
 ]

@@ -1,0 +1,134 @@
+{
+ "actions": [],
+ "creation": "2021-01-18 17:41:34.217086",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "section_break_2",
+  "earnings",
+  "column_break_1",
+  "deductions",
+  "section_break2",
+  "type_of_contract",
+  "salary",
+  "number_of_months",
+  "column_break_4",
+  "end_of_service_reason",
+  "duration_of_service",
+  "number_of_days",
+  "amount",
+  "equals"
+ ],
+ "fields": [
+  {
+   "fieldname": "type_of_contract",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type of Contract",
+   "options": "\nFixed Time\nUnlimited Period",
+   "reqd": 1
+  },
+  {
+   "fieldname": "salary",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Salary",
+   "reqd": 1
+  },
+  {
+   "fieldname": "number_of_months",
+   "fieldtype": "Int",
+   "label": "Number of Months"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "end_of_service_reason",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "End of Service Reason",
+   "options": "Expiration of contract terms, or the parties have agreed to terminate the contract.\nTermination of the contract by the worker, or the worker has quit work for other reasons not stated and in Article (81).\nThe worker and employer agree to terminate the contract.\nTermination of the contract by the employer.\nTermination of the contract by the employer for one of the terms and conditions stated in Article (80).\nLeaving work as a result of force majeure.\nThe worker terminates the labor contract within six months into the marriage contract or three months into birth.\nThe worker leaves work for one of the conditions stated in Article (81).\nThe worker leaves work without submitting his/her resignation, other than the conditions stated in Article (81).\nThe resignation of a worker.",
+   "reqd": 1
+  },
+  {
+   "fieldname": "number_of_days",
+   "fieldtype": "Int",
+   "label": "Number of days"
+  },
+  {
+   "fieldname": "duration_of_service",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Duration of service(years)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount"
+  },
+  {
+   "fieldname": "equals",
+   "fieldtype": "Button",
+   "label": "Calculate"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "earnings",
+   "fieldtype": "Table",
+   "label": "Earnings",
+   "options": "Salary Detail"
+  },
+  {
+   "fieldname": "deductions",
+   "fieldtype": "Table",
+   "label": "Deductions",
+   "options": "Salary Detail"
+  },
+  {
+   "fieldname": "section_break2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-01-21 18:17:00.646755",
+ "modified_by": "Administrator",
+ "module": "Axis Inspection",
+ "name": "End of Service Calculator",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

@@ -216,6 +216,21 @@ after_save(frm){
 }
 		})
 	}
+	if(frm.doc.workflow_state=="Approved")
+        {
+	if(frm.doc.quotation!=undefined){
+		    frappe.call({
+                "method": "frappe.client.set_value",
+                "args": {
+                    "doctype": "Quotation",
+                    "name": frm.doc.quotation,
+                "fieldname": {
+                    "sales_order":frm.doc.name
+                },
+                }
+            	})
+		}
+	}
 	},
 	quotation: function(frm) {
 		frappe.db.get_value("Quotation",{"name":frm.doc.quotation},"order_type",(r)=>{
