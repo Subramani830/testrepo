@@ -169,6 +169,18 @@ refresh: function(frm){
         bt.forEach(function(bt){
             frm.page.remove_inner_button(bt, 'Get items from')
 			});		
+},
+before_save:function(frm){
+if(frm.doc.contract != null){
+		    frappe.db.get_value("Contract",{"name":frm.doc.contract},"end_date",(r)=>{
+			console.log(r)
+		       if(r.end_date<=frappe.datetime.nowdate()){
+		           frappe.validated=false;
+		           frappe.msgprint(__("Contract "+frm.doc.contract+" has been expired."));
+		           
+		       }
+		})
+		}
 }
 
 });

@@ -3,12 +3,25 @@ frappe.ui.form.on('Contract', {
         if(frm.doc.docstatus === 1 && frm.doc.party_type=='Customer'){    
 		frm.add_custom_button(__('Sales Order'),
 		function() {
-		frm.trigger("make_sales_order")
+				if(frm.doc.end_date<=frappe.datetime.nowdate()){
+					frappe.validated=false;
+					frappe.msgprint(__("Contract "+frm.doc.name+" has been expired.")); 
+				}
+				else{
+				frm.trigger("make_sales_order")
+			}
 		}, __('Create'));
+	
 
 		frm.add_custom_button(__('Quotation'),
 		function() {
+			if(frm.doc.end_date<=frappe.datetime.nowdate()){
+				frappe.validated=false;
+				frappe.msgprint(__("Contract "+frm.doc.name+" has been expired.")); 
+			}
+			else{
 		frm.trigger("make_quotation")
+			}
 		}, __('Create'));
 		}
 		if(frm.doc.party_type=="Customer"){
@@ -200,9 +213,9 @@ party_type:function(frm){
 start_date:function(frm){
 	if(frm.doc.party_type=="Employee"){
 		if(frm.doc.start_date!=undefined && frm.doc.end_date!=undefined){
-			var duration=updateDuration(frm.doc.start_date,frm.doc.end_date)	
-			if(duration==1 ||duration==2||duration==3||duration==4||duration==5){
-				var duration1=duration+" Year"
+			var duration=getDateDifference(new Date(frm.doc.start_date),new Date(frm.doc.end_date))
+			if(duration["years"]>0&&duration["months"]==0&&duration["days"]==0){
+				var duration1=duration["years"]+" Year"
 				frm.set_value("duration",duration1);
 			}
 			else{
@@ -219,9 +232,9 @@ start_date:function(frm){
 end_date:function(frm){
 	if(frm.doc.party_type=="Employee"){
 		if(frm.doc.start_date!=undefined && frm.doc.end_date!=undefined){
-			var duration=updateDuration(frm.doc.start_date,frm.doc.end_date)	
-			if(duration==1 ||duration==2||duration==3||duration==4||duration==5){
-				var duration1=duration+" Year"
+			var duration=getDateDifference(new Date(frm.doc.start_date),new Date(frm.doc.end_date))
+			if(duration["years"]>0&&duration["months"]==0&&duration["days"]==0){
+				var duration1=duration["years"]+" Year"
 				frm.set_value("duration",duration1);
 			}
 			else{
@@ -406,18 +419,6 @@ function addDays(start_date, days) {
 	
   }
 
-  function updateDuration(start_date,end_date){
-	var date1 = new Date(start_date);
-	var date2 = new Date(end_date);
-	var Difference_In_Time = date2.getTime() - date1.getTime(); 
-	var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
-	var duration=Difference_In_Days/365
-
-	return duration
-	
-  }
-
-
   function sendEmail(name,email,template,attachment='[]'){
 		frappe.call({
 						method: "frappe.core.doctype.communication.email.make",
@@ -439,3 +440,32 @@ function addDays(start_date, days) {
 						}   
 					});
 }
+
+function getDateDifference(startDate,endDate) {
+	if (startDate > endDate) {
+	  console.error('Start date must be before end date');
+	  return null;
+	}
+	var startYear = startDate.getFullYear();
+	var startMonth = startDate.getMonth();
+	var startDay = startDate.getDate();
+  
+	var endYear = endDate.getFullYear();
+	var endMonth = endDate.getMonth();
+	var endDay = endDate.getDate();
+  
+	var february = (endYear % 4 == 0 && endYear % 100 != 0) || endYear % 400 == 0 ? 29 : 28;
+	var daysOfMonth = [31, february, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  
+	var startDateNotPassedInEndYear = (endMonth < startMonth) || endMonth == startMonth && endDay < startDay;
+	var years = endYear - startYear - (startDateNotPassedInEndYear ? 1 : 0);
+  
+	var months = (12 + endMonth - startMonth - (endDay < startDay ? 1 : 0)) % 12;
+  
+	var days = startDay <= endDay ? endDay - startDay : daysOfMonth[(12 + endMonth - 1) % 12] - startDay + endDay;
+	return {
+	  years: years,
+	  months: months,
+	  days: days
+	};
+  }

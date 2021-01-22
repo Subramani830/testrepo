@@ -245,6 +245,15 @@ after_save(frm){
 		           frappe.msgprint(__("90% of the Contract amount has been consumed. It cannot be used."));
 			}
 		})
+		}
+		if(frm.doc.contract != null){
+		    frappe.db.get_value("Contract",{"name":frm.doc.contract},"end_date",(r)=>{
+		       if(r.end_date<=frappe.datetime.nowdate()){
+		           frappe.validated=false;
+		           frappe.msgprint(__("Contract "+frm.doc.contract+" has been expired."));
+		           
+		       }
+		})
+		}
 	}
-}
 });
