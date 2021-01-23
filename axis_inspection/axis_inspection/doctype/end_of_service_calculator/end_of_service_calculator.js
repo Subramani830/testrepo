@@ -10,6 +10,8 @@ frappe.ui.form.on('End of Service Calculator', {
 			];
 		});
 },
+
+
 employee:function(frm){
   if(frm.doc.employee!=undefined){
 	frappe.call({
@@ -53,6 +55,8 @@ employee:function(frm){
 	});
             }
 },
+
+
 type_of_contract(frm){
 	var earn=0;
 	var deduct=0;
@@ -72,14 +76,17 @@ type_of_contract(frm){
 
 
 },
+
+
+
 	equals:function(frm){
 	    var reason1="Termination of the contract by the employer for one of the terms and conditions stated in Article (80).";
 	    var reason2="The worker leaves work without submitting his/her resignation, other than the conditions stated in Article (81).";
 	    var reason3="The resignation of a worker.";
-  	    if(frm.doc.type_of_contract!=""&&(frm.doc.end_of_service_reason==reason1 ||frm.doc.end_of_service_reason==reason2 || frm.doc.end_of_service_reason==reason3)){
+  	    if(frm.doc.type_of_contract!=""&&(frm.doc.end_of_service_reason==reason1 ||frm.doc.end_of_service_reason==reason2)&& frm.doc.end_of_service_reason!=reason3){
     	        frm.set_value("amount",0);
-    	    }else{
-    	        if(frm.doc.type_of_contract!=""){
+    	    }else if(frm.doc.type_of_contract!="" && frm.doc.end_of_service_reason!=reason1 && frm.doc.end_of_service_reason!=reason2 && frm.doc.end_of_service_reason!=reason3){
+    	        //if(frm.doc.type_of_contract!=""){
         	       // frm.set_value("amount",100);
 			if(frm.doc.salary!=undefined && frm.doc.duration_of_service!=undefined && frm.doc.number_of_months==undefined && frm.doc.number_of_days==undefined){
 			        if(frm.doc.duration_of_service<=5){
@@ -198,7 +205,188 @@ type_of_contract(frm){
 				}
 
 			}
-    	        }
-    	    }  
+    	        } else if(frm.doc.type_of_contract!="" && frm.doc.end_of_service_reason!=reason1 && frm.doc.end_of_service_reason!=reason2 && frm.doc.end_of_service_reason==reason3){
+			if(frm.doc.salary!=undefined && frm.doc.duration_of_service!=undefined && frm.doc.number_of_months==undefined && frm.doc.number_of_days==undefined){
+			if(frm.doc.duration_of_service<=1){
+    	    		frm.set_value("amount",0);
+			}else if(frm.doc.duration_of_service >1 && frm.doc.duration_of_service <=5){
+				frappe.call({
+							method:"axis_inspection.axis_inspection.doctype.end_of_service_calculator.end_of_service_calculator.resignation_amt_salary_year_small",
+							args:{
+					salary:frm.doc.salary,
+					year:frm.doc.duration_of_service
+					},
+							async:false,
+							callback: function(r){
+								frm.set_value("amount",r.message);
+						       }
+					})
+			
+			}else if(frm.doc.duration_of_service >=6 && frm.doc.duration_of_service <=9){
+				frappe.call({
+							method:"axis_inspection.axis_inspection.doctype.end_of_service_calculator.end_of_service_calculator.resignation_amt_salary_year_large",
+							args:{
+					salary:frm.doc.salary,
+					year:frm.doc.duration_of_service
+					},
+							async:false,
+							callback: function(r){
+								frm.set_value("amount",r.message);
+						       }
+					})
+			}else if(frm.doc.duration_of_service >=10){
+					frappe.call({
+							method:"axis_inspection.axis_inspection.doctype.end_of_service_calculator.end_of_service_calculator.get_amt_salary_year_large",
+							args:{
+					salary:frm.doc.salary,
+					year:frm.doc.duration_of_service
+					},
+							async:false,
+							callback: function(r){
+								frm.set_value("amount",r.message);
+						       }
+					})
+				
+			}
+			} else if(frm.doc.salary!=undefined && frm.doc.duration_of_service!=undefined && frm.doc.number_of_months!=undefined && frm.doc.number_of_days==undefined){
+			if(frm.doc.duration_of_service<=1){
+    	    		frm.set_value("amount",0);
+			}else if(frm.doc.duration_of_service >1 && frm.doc.duration_of_service <=5){
+				frappe.call({
+							method:"axis_inspection.axis_inspection.doctype.end_of_service_calculator.end_of_service_calculator.resignation_amt_salary_year_month_small",
+							args:{
+					salary:frm.doc.salary,
+					year:frm.doc.duration_of_service,
+					month:frm.doc.number_of_months
+					},
+							async:false,
+							callback: function(r){
+								frm.set_value("amount",r.message);
+						       }
+					})
+			
+			}else if(frm.doc.duration_of_service >=6 && frm.doc.duration_of_service <=9){
+				frappe.call({
+							method:"axis_inspection.axis_inspection.doctype.end_of_service_calculator.end_of_service_calculator.resignation_amt_salary_year_month_large",
+							args:{
+					salary:frm.doc.salary,
+					year:frm.doc.duration_of_service,
+					month:frm.doc.number_of_months
+					},
+							async:false,
+							callback: function(r){
+								frm.set_value("amount",r.message);
+						       }
+					})
+			}else if(frm.doc.duration_of_service >=10){
+					frappe.call({
+							method:"axis_inspection.axis_inspection.doctype.end_of_service_calculator.end_of_service_calculator.get_amt_salary_year_month_large",
+							args:{
+					salary:frm.doc.salary,
+					year:frm.doc.duration_of_service,
+					month:frm.doc.number_of_months
+					},
+							async:false,
+							callback: function(r){
+								frm.set_value("amount",r.message);
+						       }
+					})
+				
+			}
+			}else if(frm.doc.salary!=undefined && frm.doc.duration_of_service!=undefined && frm.doc.number_of_months==undefined && frm.doc.number_of_days!=undefined){
+			if(frm.doc.duration_of_service<=1){
+    	    		frm.set_value("amount",0);
+			}else if(frm.doc.duration_of_service >1 && frm.doc.duration_of_service <=5){
+				frappe.call({
+							method:"axis_inspection.axis_inspection.doctype.end_of_service_calculator.end_of_service_calculator.resignation_amt_salary_year_days_small",
+							args:{
+					salary:frm.doc.salary,
+					year:frm.doc.duration_of_service,
+					days:frm.doc.number_of_days
+					},
+							async:false,
+							callback: function(r){
+								frm.set_value("amount",r.message);
+						       }
+					})
+			
+			}else if(frm.doc.duration_of_service >=6 && frm.doc.duration_of_service <=9){
+				frappe.call({
+							method:"axis_inspection.axis_inspection.doctype.end_of_service_calculator.end_of_service_calculator.resignation_amt_salary_year_days_large",
+							args:{
+					salary:frm.doc.salary,
+					year:frm.doc.duration_of_service,
+					days:frm.doc.number_of_days
+					},
+							async:false,
+							callback: function(r){
+								frm.set_value("amount",r.message);
+						       }
+					})
+			}else if(frm.doc.duration_of_service >=10){
+					frappe.call({
+							method:"axis_inspection.axis_inspection.doctype.end_of_service_calculator.end_of_service_calculator.get_amt_salary_year_days_large",
+							args:{
+					salary:frm.doc.salary,
+					year:frm.doc.duration_of_service,
+					days:frm.doc.number_of_days
+					},
+							async:false,
+							callback: function(r){
+								frm.set_value("amount",r.message);
+						       }
+					})
+				
+			}
+			}else if(frm.doc.salary!=undefined && frm.doc.duration_of_service!=undefined && frm.doc.number_of_months!=undefined && frm.doc.number_of_days!=undefined){
+			if(frm.doc.duration_of_service<=1){
+    	    		frm.set_value("amount",0);
+			}else if(frm.doc.duration_of_service >1 && frm.doc.duration_of_service <=5){
+				frappe.call({
+							method:"axis_inspection.axis_inspection.doctype.end_of_service_calculator.end_of_service_calculator.resignation_amt_salary_year_month_days_small",
+							args:{
+					salary:frm.doc.salary,
+					year:frm.doc.duration_of_service,
+					month:frm.doc.number_of_months,
+					days:frm.doc.number_of_days
+					},
+							async:false,
+							callback: function(r){
+								frm.set_value("amount",r.message);
+						       }
+					})
+			
+			}else if(frm.doc.duration_of_service >=6 && frm.doc.duration_of_service <=9){
+				frappe.call({
+							method:"axis_inspection.axis_inspection.doctype.end_of_service_calculator.end_of_service_calculator.resignation_amt_salary_year_month_days_large",
+							args:{
+					salary:frm.doc.salary,
+					year:frm.doc.duration_of_service,
+					month:frm.doc.number_of_months,
+					days:frm.doc.number_of_days
+					},
+							async:false,
+							callback: function(r){
+								frm.set_value("amount",r.message);
+						       }
+					})
+			}else if(frm.doc.duration_of_service >=10){
+					frappe.call({
+							method:"axis_inspection.axis_inspection.doctype.end_of_service_calculator.end_of_service_calculator.get_amt_salary_year_month_days_large",
+							args:{
+					salary:frm.doc.salary,
+					year:frm.doc.duration_of_service,
+					month:frm.doc.number_of_months,
+					days:frm.doc.number_of_days
+					},
+							async:false,
+							callback: function(r){
+								frm.set_value("amount",r.message);
+						       }
+					})
+				
+			}
+			}
+		}  
 	}
 });

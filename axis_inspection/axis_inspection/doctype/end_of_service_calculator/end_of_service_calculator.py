@@ -81,6 +81,76 @@ def get_amt_salary_year_days_large(salary,year,days):
 	total= amt1+amt2+amt3;
 	return total;
 
+@frappe.whitelist()
+def resignation_amt_salary_year_small(salary,year):
+	amt1=(float(salary)/2)*int(year)/3;
+	return amt1;
+
+
+@frappe.whitelist()
+def resignation_amt_salary_year_large(salary,year):
+	remaining_year=int(year)-5;
+	amt1=(float(salary)/2)*5*(2/3);
+	amt2=float(salary)*int(remaining_year)*(2/3);
+	total=amt1+amt2;
+	return total;
+
+@frappe.whitelist()
+def resignation_amt_salary_year_month_small(salary,year,month):
+	amt1=(float(salary)/2)*int(year)/3;
+	amt2=(float(salary)/12)/6*int(month);
+	total=amt1+amt2;
+	return total;
+
+@frappe.whitelist()
+def resignation_amt_salary_year_month_large(salary,year,month):
+	remaining_year=int(year)-5;
+	amt1=(float(salary)/2)*5*(2/3);
+	amt2=float(salary)*int(remaining_year)*(2/3);
+	amt3=float(salary)/72*4*int(month)
+	total=amt1+amt2+amt3;
+	return total;
+
+
+@frappe.whitelist()
+def resignation_amt_salary_year_days_small(salary,year,days):
+	amt1=(float(salary)/2)*int(year)/3;
+	amt2=(float(salary)/359)/6*int(days);
+	total=amt1+amt2;
+	return total;
+
+@frappe.whitelist()
+def resignation_amt_salary_year_days_large(salary,year,days):
+	remaining_year=int(year)-5;
+	amt1=(float(salary)/2)*5*(2/3);
+	amt2=float(salary)*int(remaining_year)*(2/3);
+	amt3=(float(salary)/359)/6*4*int(days);
+	total=amt1+amt2+amt3;
+	return total;
+
+
+@frappe.whitelist()
+def resignation_amt_salary_year_month_days_small(salary,year,month,days):
+	amt1=(float(salary)/2)*int(year)/3;
+	amt2=(float(salary)/12)/6*int(month);
+	amt3=(float(salary)/359)/6*int(days);
+	total=amt1+amt2+amt3;
+	return total;
+
+@frappe.whitelist()
+def resignation_amt_salary_year_month_days_large(salary,year,month,days):
+	remaining_year=int(year)-5;
+	amt1=(float(salary)/2)*5*(2/3);
+	amt2=float(salary)*int(remaining_year)*(2/3);
+	amt3=float(salary)/72*4*int(month)
+	amt4=(float(salary)/359)/6*4*int(days);
+	total=amt1+amt2+amt3+amt4;
+	return total;
+
+
+
+
+
 
 
 
