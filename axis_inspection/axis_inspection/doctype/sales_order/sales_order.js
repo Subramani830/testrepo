@@ -29,7 +29,6 @@ refresh(frm) {
 
 
     setTimeout(() => {
-        frm.remove_custom_button('Update Items');
 	frm.remove_custom_button('Work Order', 'Create');
 	frm.remove_custom_button('Request for Raw Materials', 'Create');
 	frm.remove_custom_button('Subscription', 'Create');
