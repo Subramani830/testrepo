@@ -509,7 +509,14 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Purchase Receipt Item-uom-columns",
 				"Purchase Receipt Item-rate-columns",
 				"Opportunity Item-item_name-columns",
-				"Project-cost_center-mandatory_depends_on"
+				"Project-cost_center-mandatory_depends_on",
+				"Sales Order Item-item_weight_details-hidden",
+				"Sales Order Item-drop_ship_section-hidden",
+				"Sales Order Item-shopping_cart_section-hidden",
+				"Sales Order Item-planning_section-hidden",
+				"Sales Order Item-manufacturing_section_section-hidden",
+				"Sales Order Item-item_tax_template-hidden",
+				"Sales Order Item-warehouse_and_reference-hidden"
 			]
 	]
 	]
@@ -592,7 +599,10 @@ doctype_js = {
 	"Project" : "axis_inspection/doctype/project/project.js",
 	"Payment Entry" : "axis_inspection/doctype/payment_entry/payment_entry.js",
 	"Skill" : "axis_inspection/doctype/skill/skill.js",
-	"Salary Slip" : "axis_inspection/doctype/salary_slip/salary_slip.js"
+	"Salary Slip" : "axis_inspection/doctype/salary_slip/salary_slip.js",
+	"Delivery Note" : "axis_inspection/doctype/delivery_note/delivery_note.js",
+	"Payment Request" : "axis_inspection/doctype/payment_request/payment_request.js",
+	"Pick List" : "axis_inspection/doctype/pick_list/pick_list.js"
 }
 scheduler_events = {
 	"daily":  [
