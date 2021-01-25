@@ -1,6 +1,5 @@
 frappe.ui.form.on('Payment Entry', {
     refresh:function(frm){
-	console.log("refresh")
         $.each(frm.doc.references,function(idx, item){
             if(item.reference_doctype=="Purchase Invoice"){
                 frappe.call({
@@ -139,7 +138,6 @@ else if(item.reference_doctype=="Sales Order"){
         });
     },
 before_save:  function(frm) {
-console.log('r')
     $.each(frm.doc.references,function(idx,item){
         frappe.db.get_value("Sales Order",{"name":item.reference_name},"delivery_date",(r)=>{
             if(r.delivery_date<=frappe.datetime.nowdate()){
