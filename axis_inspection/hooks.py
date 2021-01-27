@@ -166,7 +166,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Employee-employee_skill_map",
 		"Employee-employment_status_",
 		"Payroll Entry-payroll_cost_center",
-		"Quotation-item_group",
 		"Task-purchase_order",
 		"Opportunity-customers_rfq",
 		"Supplier Quotation-suppliers_quotation",
@@ -220,7 +219,11 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Delivery Note-branch",
 		"Delivery Note-cost_center",
 		"Quotation-sales_order",
-		"Supplier Quotation-quotation_status"	
+		"Supplier Quotation-quotation_status",
+		"Employee Skill-expiration_date",
+		"Sales Order-cost_center",
+		"Sales Order-branch",
+		"Sales Invoice Item-branch"
 		]
 	]
 ]
@@ -281,7 +284,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Job Opening-job_title-default",
 				"Purchase Order Item-cost_center-reqd",
 				"Purchase Receipt Item-cost_center-reqd",
-				"Delivery Note Item-cost_center-reqd",
 				"Payment Entry-cost_center-reqd",
 				"Journal Entry Account-cost_center-reqd",
 				"Purchase Invoice-cost_center-reqd",
@@ -316,7 +318,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Sales Order-po_no-reqd",
 				"Purchase Order Item-project-reqd",
 				"Purchase Receipt Item-project-reqd",
-				"Delivery Note Item-project-reqd",
 				"Payment Entry-project-reqd",
 				"Journal Entry Account-project-reqd",
 				"Purchase Invoice-project-reqd",
@@ -516,7 +517,10 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Sales Order Item-planning_section-hidden",
 				"Sales Order Item-manufacturing_section_section-hidden",
 				"Sales Order Item-item_tax_template-hidden",
-				"Sales Order Item-warehouse_and_reference-hidden"
+				"Sales Order Item-warehouse_and_reference-hidden",
+				"Sales Order Item-ensure_delivery_based_on_produced_serial_no-hidden",
+				"Sales Invoice Item-project-hidden",
+				"Delivery Note Item-accounting_dimensions_section-hidden"
 			]
 	]
 	]
@@ -535,7 +539,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 {"dt": "Role", 
 		"filters":[
         [
-        "name","in",["CEO", "President","General Manager","Deputy General Manager","Transportation Manager","Payroll User"]
+        "name","in",["CEO", "President","General Manager","Deputy General Manager","Transportation Manager","Payroll User","Assets Manager","Assets User"]
 	]
 	]
 },
@@ -607,7 +611,8 @@ doctype_js = {
 scheduler_events = {
 	"daily":  [
 		"axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date",
-		"axis_inspection.axis_inspection.doctype.sales_order.sales_order.get_delivery_date_list"
+		"axis_inspection.axis_inspection.doctype.sales_order.sales_order.get_delivery_date_list",
+		"axis_inspection.axis_inspection.doctype.employee_skill_map.employee_skill_map.validate_expiry_date"
 	],
  	"hourly": [
 		"axis_inspection.axis_inspection.api.get_applicant_list"
