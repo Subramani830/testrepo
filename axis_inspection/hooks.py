@@ -520,7 +520,10 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Sales Order Item-warehouse_and_reference-hidden",
 				"Sales Order Item-ensure_delivery_based_on_produced_serial_no-hidden",
 				"Sales Invoice Item-project-hidden",
-				"Delivery Note Item-accounting_dimensions_section-hidden"
+				"Delivery Note Item-accounting_dimensions_section-hidden",
+				"Sales Order-naming_series-options",
+				"Quotation-naming_series-options",
+				"Sales Order-po_no-in_list_view"
 			]
 	]
 	]
