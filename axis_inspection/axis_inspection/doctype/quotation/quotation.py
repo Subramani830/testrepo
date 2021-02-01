@@ -17,5 +17,10 @@ def get_user_role():
 		return q[0]
 		
 		
-			
+@frappe.whitelist()
+def get_item_group(item_group):
+	g=item_group
+	r=g.replace(" ", "-")
+	name=frappe.db.get_list("Item Group",filters={'route':['like', '%'+r+'%']},fields=["name"])
+	return name
 	

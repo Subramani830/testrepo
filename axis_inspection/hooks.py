@@ -575,7 +575,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee-education-permlevel",
 				"Employee-external_work_history-permlevel",
 				"Employee-internal_work_history-permlevel",
-				"Employee-exit-permlevel"
+				"Employee-exit-permlevel",
+				"Employee-health_insurance_no-permlevel"
 			]
 	]
 	]
@@ -586,6 +587,17 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"name","in",
  			[
 			"Axis Job Offer Print Format","Axis PO Print Format","Axis PI Print Format","Axis PR Print Format","Axis SO Print Format","Axis SI Print Format","Axis DN Print Format","Axis Contract print Format","Company Contact Information Update","Universal Quotation"
+
+]
+	]
+]
+},
+{"dt": "Print Style",
+        "filters": [
+	[
+		"name","in",
+ 			[
+			"Axis Print Style"
 
 ]
 	]

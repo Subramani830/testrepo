@@ -1,0 +1,16 @@
+[
+ {
+  "css": ".print-heading {\n\ttext-align: right;\n\ttext-transform: uppercase;\n\tcolor: #666;\n\tpadding-top: -2%;\n\tmargin-top: -2%;\n\tpadding-bottom: 0%;\n\tmargin-bottom: 0%;\n\tborder-bottom: 1px solid #d1d8dd;\n}\n\n.print-heading h2 {\n\tfont-size: 14px;\n}\n\n.print-format th {\n\tbackground-color: #eee !important;\n\tborder-bottom: 0px !important;\n}\n\n.print-format {\n    margin-left: 1mm;\n    margin-right: 1mm;\n}\n\n/* modern format: for-test */",
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Print Style",
+  "modified": "2021-01-29 14:22:16.342251",
+  "name": "Axis Print Style",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "preview": null,
+  "print_style_name": "Axis Print Style",
+  "standard": 0
+ }
+]
