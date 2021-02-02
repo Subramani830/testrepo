@@ -223,7 +223,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Employee Skill-expiration_date",
 		"Sales Order-cost_center",
 		"Sales Order-branch",
-		"Sales Invoice Item-branch"
+		"Sales Invoice Item-branch",
+		"Sales Order-send_customer_email",
+		"Quotation-send_customer_email"
 		]
 	]
 ]

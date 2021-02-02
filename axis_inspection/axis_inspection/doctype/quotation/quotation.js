@@ -142,6 +142,7 @@ if(frm.doc.contract != null){
 		}
 },
 item_group(frm){
+var item_groups=[];
 	if(frm.doc.item_group!=undefined || frm.doc.item_group!=null){
 		frappe.call({
 				method:"axis_inspection.axis_inspection.doctype.quotation.quotation.get_item_group",
@@ -150,39 +151,19 @@ item_group(frm){
 		},
 			async:false,
 			callback: function(r){
-			cur_frm.clear_table("items");
 			for(var i=0;i<r.message.length;i++){
-				frappe.call({
-					    method: "frappe.client.get_list",
-				async:false,
-				    args: {
-					doctype: "Item",
-					fields: ["item_code","item_group","item_name"],
-					filters:{
-					    "item_group":r.message[i].name//frm.doc.item_group
-					},
-				   },
-				 callback: function(r) {
-				var count=0;
-				$.each(frm.doc.items, function(idx, item){
-				if(item.item_code){}
-				else{count++;}
-				})
-
-				if(count>0){
-				cur_frm.clear_table("items");
-				}
-				for(var i=0;i<r.message.length;i++){
-				var child = cur_frm.add_child("items");
-				child.item_code=r.message[i].item_code;
-				child.item_name=r.message[i].item_name;
-				cur_frm.refresh_field("items")
-				}
-				}
-				})
-
-
+			//console.log(r.message[i].name)
+			item_groups.push(r.message[i].name);
 			}
+
+			frm.fields_dict['items'].grid.get_field('item_code').get_query = function() {
+				return {
+					filters: {
+						item_group:["in",item_groups] 
+					}
+				};
+			};
+
 			}
 		})
 	}

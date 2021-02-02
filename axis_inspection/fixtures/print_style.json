@@ -1,10 +1,10 @@
 [
  {
-  "css": ".print-heading {\n\ttext-align: right;\n\ttext-transform: uppercase;\n\tcolor: #666;\n\tpadding-top: -2%;\n\tmargin-top: -2%;\n\tpadding-bottom: 0%;\n\tmargin-bottom: 0%;\n\tborder-bottom: 1px solid #d1d8dd;\n}\n\n.print-heading h2 {\n\tfont-size: 14px;\n}\n\n.print-format th {\n\tbackground-color: #eee !important;\n\tborder-bottom: 0px !important;\n}\n\n.print-format {\n    margin-left: 1mm;\n    margin-right: 1mm;\n}\n\n/* modern format: for-test */",
+  "css": ".print-heading {\n\ttext-align: right;\n\ttext-transform: uppercase;\n\tcolor: #666;\n\tpadding-top: 0%;\n\tmargin-top: 0%;\n\tpadding-bottom: 0%;\n\tmargin-bottom: 0%;\n\tborder-bottom: 1px solid #d1d8dd;\n}\n\n.print-heading h2 {\n\tfont-size: 14px;\n}\n\n.print-format th {\n\tbackground-color: #eee !important;\n\tborder-bottom: 0px !important;\n}\n\n.print-format {\n    padding-left: 0.1in;\n  \tmargin-left: 0mm;\n  \tpadding-right: 0.1in;\n  \tmargin-right: 0mm;\n}\n\n\n.letter-head-footer {\n\tmargin-bottom: 0mm !important;\n\tpadding-bottom: 0.9in;\n}\n",
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Print Style",
-  "modified": "2021-01-29 14:22:16.342251",
+  "modified": "2021-02-02 06:44:54.776749",
   "name": "Axis Print Style",
   "parent": null,
   "parentfield": null,
