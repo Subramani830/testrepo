@@ -9,6 +9,26 @@ frappe.ui.form.on('Asset Movement',{
                                     }
                                 };
                             };
+                            $.each(frm.doc.assets, function(idx, item){
+                                frm.fields_dict['assets'].grid.get_field('quality_inspection').get_query = function() {
+                                    return {
+                                        filters: {
+                                        reference_name:frm.doc.name,
+                                        reference_type:cdt,
+                                        status:"Accepted",
+                                        item_code:item.item_code
+                                        }
+                                    };
+                                };
+                            });
+                    
+    },
+    before_submit:function(frm,cdt,cdn){
+        $.each(frm.doc.assets, function(idx, item){
+            if(item.quality_inspection==undefined){
+                frappe.throw(__('Quality Inspection is required for Item '+item.item_code+' to submit.'))
+            }
+        });
     }
 });
 frappe.ui.form.on('Asset Movement Item', {

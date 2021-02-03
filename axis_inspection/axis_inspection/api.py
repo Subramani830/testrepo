@@ -270,3 +270,11 @@ def get_balance(doctype,employee,start_date):
 	if parent:
 		return frappe.db.get_value(doctype,{'parenttype':'Employee Deductions','month':month,'parent':parent},'balance')
 		
+@frappe.whitelist()
+def count_task(employee):
+	docname=frappe.db.sql(""" 
+	select count(parent) from `tabAssign To` 
+	where assign_to=%s
+	""",(employee))
+	return docname   
+	

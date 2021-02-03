@@ -225,7 +225,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Sales Order-branch",
 		"Sales Invoice Item-branch",
 		"Sales Order-send_customer_email",
-		"Quotation-send_customer_email"
+		"Quotation-send_customer_email",
+		"Asset Movement Item-quality_inspection",
+		"Employee-employee_name_in_arabic"
 		]
 	]
 ]
@@ -578,7 +580,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee-external_work_history-permlevel",
 				"Employee-internal_work_history-permlevel",
 				"Employee-exit-permlevel",
-				"Employee-health_insurance_no-permlevel"
+				"Employee-health_insurance_no-permlevel",
+				"Quality Inspection-reference_type-options",
 			]
 	]
 	]
