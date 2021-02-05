@@ -227,7 +227,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Sales Order-send_customer_email",
 		"Quotation-send_customer_email",
 		"Asset Movement Item-quality_inspection",
-		"Employee-employee_name_in_arabic"
+		"Employee-employee_name_in_arabic",
+		"Task-skill",
+		"Job Applicant-interview_scoring_sheet"
 		]
 	]
 ]
@@ -684,7 +686,8 @@ scheduler_events = {
 	"daily":  [
 		"axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date",
 		"axis_inspection.axis_inspection.doctype.sales_order.sales_order.get_delivery_date_list",
-		"axis_inspection.axis_inspection.doctype.employee_skill_map.employee_skill_map.validate_expiry_date"
+		"axis_inspection.axis_inspection.doctype.employee_skill_map.employee_skill_map.validate_expiry_date",
+		"axis_inspection.axis_inspection.doctype.employee.employee.send_daily_report"
 	],
  	"hourly": [
 		"axis_inspection.axis_inspection.api.get_applicant_list"

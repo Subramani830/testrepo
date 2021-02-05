@@ -145,7 +145,7 @@ def get_employee_filter(sales_order):
 				if e.parent not in employee:
 						employee.append(e.parent)     
 			
-	return employee
+	return skill
 
 @frappe.whitelist()
 def get_employee(task):
@@ -273,8 +273,14 @@ def get_balance(doctype,employee,start_date):
 @frappe.whitelist()
 def count_task(employee):
 	docname=frappe.db.sql(""" 
-	select count(parent) from `tabAssign To` 
+	select parent from `tabAssign To` 
 	where assign_to=%s
 	""",(employee))
 	return docname   
+
+
+@frappe.whitelist()
+def get_employee_list(skill):
+	parent=frappe.db.get_list("Employee Skill",filters={'skill':skill,'parenttype':'Employee Skill Map'},fields=["parent"])
+	return parent
 	

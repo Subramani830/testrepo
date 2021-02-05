@@ -11,6 +11,11 @@ frappe.ui.form.on('Task', {
 	frm.set_df_property("out_sourced", "read_only", frm.is_new() ? 0 : 1);
 	frm.set_df_property("in_house", "read_only", frm.is_new() ? 0 : 1);
 
+	//$("[data-fieldname='subject'").attr("title", "Please mention the order begin date");
+
+
+
+
     },
 	before_save: function(frm){
 	if(frm.doc.out_sourced==1 && frm.doc.in_house==1)
@@ -20,7 +25,7 @@ frappe.ui.form.on('Task', {
 	},
 project:function(frm){
 var sales_order;
-var employee=[];
+var skill=[];
 	frappe.call({
 		method: "frappe.client.get_value",
 		async:false,
@@ -45,8 +50,43 @@ var employee=[];
 		},
 		callback: function(r){
 			for(var i=0; i<r.message.length; i++){
-				employee.push(r.message[i]);
+				skill.push(r.message[i].skill);
 			}
+			frm.set_query("skill", function() {
+						return {
+							filters: {
+								name:["in",skill] 
+							}
+						};
+					});
+
+			/*frm.fields_dict['assign_'].grid.get_field('assign_to').get_query = function() {
+				return {
+					filters: {
+						name:["in",employee] 
+					}
+				};
+			};*/
+						
+		}
+	});
+	
+	
+},
+skill:function(frm){
+var employee=[];
+	if(frm.doc.skill!=undefined || frm.doc.skill!=null){
+		frappe.call({
+				method:"axis_inspection.axis_inspection.api.get_employee_list",
+				args:{
+		skill:frm.doc.skill
+		},
+			async:false,
+			callback: function(r){
+			for(var i=0;i<r.message.length;i++){
+			employee.push(r.message[i].parent);
+			}
+
 			frm.fields_dict['assign_'].grid.get_field('assign_to').get_query = function() {
 				return {
 					filters: {
@@ -54,10 +94,37 @@ var employee=[];
 					}
 				};
 			};
-						
-		}
-	});
-	
-	
+
+			}
+		})
+	}
 }
 });
+
+
+frappe.ui.form.on('Assign To',{
+ assign_to:function(frm,cdt, cdn){
+    var task=[];
+    var cur_grid =frm.get_field('assign_').grid;
+    var cur_doc = locals[cdt][cdn];
+    var cur_row = cur_grid.get_row(cur_doc.name);
+if(cur_row.doc.assign_to!=undefined){
+    frappe.call({
+        method: 'axis_inspection.axis_inspection.api.count_task',
+        async:false,
+        args: {
+            employee:cur_row.doc.assign_to
+        },
+        callback: function(r) {
+		for(var i=0;i<r.message.length;i++){
+		task.push(r.message[i][0]);
+		}
+            cur_doc.assigned_task=task+"";
+            cur_frm.refresh_field('assigned_task')
+        } 
+    });
+    cur_frm.refresh_field('assign_to')
+}
+cur_frm.refresh_field('assign_to')
+}
+})
