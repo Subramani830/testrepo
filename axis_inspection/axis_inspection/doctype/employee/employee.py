@@ -12,7 +12,7 @@ class Employee(NestedSet):
 
 
 def send_daily_report():
-    custom_filter = {'document': '','period':'30'}
+    custom_filter = {'document': '','period':'90'}
     date_time = global_date_format(now()) + ' ' + format_time(now())
     report = frappe.get_doc('Report', "Employee Documents Expiration Report")
     columns, data = report.get_data(limit=500 or 500, filters=custom_filter,as_dict=True)
@@ -22,7 +22,7 @@ def send_daily_report():
     #columns, data = make_links(columns, data)
     if len(data)!=0:
         for userlist in frappe.db.get_list('Has Role',filters={'role':('in',('HR User','HR Manager','CEO','Deputy General Manager')),'parenttype':'User'},fields={'parent'}):
-            message="Hi Documents are expiring within 30 days.Please click the below link to see the report."+frappe.render_template('frappe/templates/emails/auto_email_report.html', {
+            message="Hi, Documents are expiring within 90 days.Please click the below link to see the report."+frappe.render_template('frappe/templates/emails/auto_email_report.html', {
             'columns': columns,
             'data': data,
             'title':'',
@@ -34,7 +34,7 @@ def send_daily_report():
                 subject='Employee Documents Expiration Report',
                 message=message,
                 reference_doctype = "Employee",
-                reference_name = "Document Expiring in 30 Days"
+                reference_name = "Document Expiring in 90 Days"
             )
             print(userlist.parent)
 

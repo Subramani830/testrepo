@@ -28,9 +28,9 @@ frappe.query_reports["Employee Documents Expiration Report"] = {
 			"fieldname":"period",
 			"label": __("Period(no of days)"),
 			"fieldtype": "Select",
-			"options": ["30","50","90"],
-			"reqd": 1,
-			"default": "30"
+			"options": ["","30","50","90"]//,
+			//"reqd": 1,
+			//"default": "30"
 		}
 	]
 };
