@@ -6,6 +6,8 @@ from frappe.model.mapper import get_mapped_doc
 from . import __version__ as app_version
 from erpnext.hr.doctype.employee_onboarding.employee_onboarding import EmployeeOnboarding
 from erpnext.payroll.doctype.payroll_entry.payroll_entry import PayrollEntry
+from erpnext.accounts.doctype.sales_invoice.sales_invoice import SalesInvoice
+from axis_inspection.axis_inspection.doctype.timesheet.timesheet import get_project_timesheet_data
 
 app_name = "axis_inspection"
 app_title = "Axis Inspection"
@@ -16,7 +18,7 @@ app_color = "grey"
 app_email = "veena.h@promantia.com"
 app_license = "MIT"
 
-fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Letter Head",
+fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 {"dt": "Custom Field",
 		"filters": [
          [
@@ -229,7 +231,11 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Asset Movement Item-quality_inspection",
 		"Employee-employee_name_in_arabic",
 		"Task-skill",
-		"Job Applicant-interview_scoring_sheet"
+		"Job Applicant-interview_scoring_sheet",
+		"Sales Order Item-minimum_charge",
+		"Sales Order-subject",
+		"Project-subject",
+		"Training Program-location"
 		]
 	]
 ]
@@ -593,7 +599,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 	[
 		"name","in",
  			[
-			"Axis Job Offer Print Format","Axis PO Print Format","Axis PI Print Format","Axis PR Print Format","Axis SO Print Format","Axis SI Print Format","Axis DN Print Format","Axis Contract print Format","Company Contact Information Update","Universal Quotation"
+			"Axis Job Offer Print Format","Axis PO Print Format","Axis PI Print Format","Axis PR Print Format","Axis SO Print Format","Axis SI Print Format","Axis DN Print Format","Axis Contract print Format","Company Contact Information Update","Universal Quotation Dev"
 
 ]
 	]
@@ -680,7 +686,8 @@ doctype_js = {
 	"Salary Slip" : "axis_inspection/doctype/salary_slip/salary_slip.js",
 	"Delivery Note" : "axis_inspection/doctype/delivery_note/delivery_note.js",
 	"Payment Request" : "axis_inspection/doctype/payment_request/payment_request.js",
-	"Pick List" : "axis_inspection/doctype/pick_list/pick_list.js"
+	"Pick List" : "axis_inspection/doctype/pick_list/pick_list.js",
+	"Training Program" : "axis_inspection/doctype/training_program/training_program.js"
 }
 scheduler_events = {
 	"daily":  [
@@ -760,9 +767,22 @@ def fill_employee_details(self):
 		if self.validate_attendance:
 			return self.validate_employee_attendance()
 
+def add_timesheet_data(self):
+	self.set('timesheets', [])
+	if self.project:
+		for data in get_project_timesheet_data(self.project):
+			self.append('timesheets', {
+					'time_sheet': data.parent,
+					'billing_hours': data.billing_hours,
+					'billing_amount': data.billing_amt,
+					'timesheet_detail': data.name
+				})
+		self.calculate_billing_amount_for_timesheet()
+
 PayrollEntry.get_filter_condition=get_filter_condition
 PayrollEntry.fill_employee_details=fill_employee_details
 EmployeeOnboarding.validate_duplicate_employee_onboarding = validate_duplicate_employee_onboarding
+SalesInvoice.add_timesheet_data = add_timesheet_data
 
 
 
