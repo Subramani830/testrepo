@@ -235,7 +235,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 		"Sales Order Item-minimum_charge",
 		"Sales Order-subject",
 		"Project-subject",
-		"Training Program-location"
+		"Training Program-location",
+		"Sales Order-customers_purchase_order_valid_till"
 		]
 	]
 ]
