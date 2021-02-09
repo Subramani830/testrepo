@@ -16,7 +16,7 @@ def execute(filters=None):
 		for e in expiry_details:
 			if e.contract_end_date:
 				e.update({
-					"document": "Contract",
+					"document": "Employee Contract",
 					"expiry_date":datetime.strftime(e.contract_end_date, "%d-%m-%Y")
 				})
 			elif e.id_expiry_date:
@@ -106,7 +106,7 @@ def get_data(filters,conditions):
 		employee_list=frappe.db.sql(query, as_dict=True)
 		return employee_list
 
-	elif filters.get('document')=='Contract':
+	elif filters.get('document')=='Employee Contract':
 		query="""select e.id_number, e.employee_name,e.contract_end_date,DATEDIFF(contract_end_date, NOW()) as  remaining_days from `tabEmployee` e where status="Active" {conditions} """.format(conditions=conditions)
 		employee_list=frappe.db.sql(query, as_dict=True)
 		return employee_list
@@ -153,7 +153,7 @@ def get_conditions(filters):
 			conditions += " AND  DATEDIFF(e.visa_expiry_date, NOW()) <= '{}'".format(int(filters.get('period')))
 		elif filters.get('document')=='Driving License':
 			conditions += " AND  DATEDIFF(e.driving_license_expiry, NOW()) <= '{}'".format(int(filters.get('period')))
-		elif filters.get('document')=='Contract':
+		elif filters.get('document')=='Employee Contract':
 			conditions += " AND  DATEDIFF(e.contract_end_date, NOW()) <= '{}'".format(int(filters.get('period')))
 		elif filters.get('document')=='Skill':
 			conditions += " AND  DATEDIFF(s.expiration_date, NOW()) <= '{}'".format(int(filters.get('period')))
@@ -167,7 +167,7 @@ def get_conditions(filters):
 			conditions += " AND  DATEDIFF(e.visa_expiry_date, NOW()) >= 31 AND  DATEDIFF(e.visa_expiry_date, NOW()) <= '{}'".format(int(filters.get('period')))
 		elif filters.get('document')=='Driving License':
 			conditions += " AND  DATEDIFF(e.driving_license_expiry, NOW()) >= 31 AND  DATEDIFF(e.driving_license_expiry, NOW()) <= '{}'".format(int(filters.get('period')))
-		elif filters.get('document')=='Contract':
+		elif filters.get('document')=='Employee Contract':
 			conditions += " AND  DATEDIFF(e.contract_end_date, NOW()) >= 31 AND  DATEDIFF(e.contract_end_date, NOW()) <= '{}'".format(int(filters.get('period')))
 		elif filters.get('document')=='Skill':
 			conditions += " AND  DATEDIFF(s.expiration_date, NOW()) >= 31 AND  DATEDIFF(s.expiration_date, NOW()) <='{}'".format(int(filters.get('period')))
@@ -181,7 +181,7 @@ def get_conditions(filters):
 			conditions += " AND  DATEDIFF(e.visa_expiry_date, NOW()) >= 51 AND  DATEDIFF(e.visa_expiry_date, NOW()) <= '{}'".format(int(filters.get('period')))
 		elif filters.get('document')=='Driving License':
 			conditions += " AND  DATEDIFF(e.driving_license_expiry, NOW()) >= 51 AND  DATEDIFF(e.driving_license_expiry, NOW()) <= '{}'".format(int(filters.get('period')))
-		elif filters.get('document')=='Contract':
+		elif filters.get('document')=='Employee Contract':
 			conditions += " AND  DATEDIFF(e.contract_end_date, NOW()) >= 51 AND  DATEDIFF(e.contract_end_date, NOW()) <= '{}'".format(int(filters.get('period')))
 		elif filters.get('document')=='Skill':
 			conditions += " AND  DATEDIFF(s.expiration_date, NOW()) >= 51 AND  DATEDIFF(s.expiration_date, NOW()) <='{}'".format(int(filters.get('period')))			

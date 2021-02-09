@@ -302,8 +302,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 				"Purchase Invoice-cost_center-reqd",
 				"Sales Invoice-cost_center-reqd",
 				"Stock Entry Detail-cost_center-reqd",
-				"Material Request Item-cost_center-reqd",
-				"Contract-document_type-options",
+				"Material Request Item-cost_center-reqd"
 				"Customer-sales_team_section_break-hidden",
 				"Customer-sales_team_section-hidden",
 				"Employee-permanent_accommodation_type-hidden",
@@ -591,7 +590,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 				"Employee-exit-permlevel",
 				"Employee-health_insurance_no-permlevel",
 				"Quality Inspection-reference_type-options",
-				"Sales Order-delivery_date-label"
+				"Sales Order-delivery_date-label",
+				"Contract-party_type-options"
 			]
 	]
 	]
@@ -712,7 +712,8 @@ override_doctype_dashboards = {
 	"Supplier Quotation":["axis_inspection.axis_inspection.doctype.supplier_quotation.supplier_quotation_dashboard.get_dashboard_data"],
 	"Sales Order": ["axis_inspection.axis_inspection.doctype.sales_order.sales_order_dashboard.get_dashboard_data"],
 	"Material Request":["axis_inspection.axis_inspection.doctype.material_request.material_request_dashboard.get_dashboard_data"],
-	"Company":["axis_inspection.axis_inspection.doctype.company.company_dashboard.get_dashboard_data"]
+	"Company":["axis_inspection.axis_inspection.doctype.company.company_dashboard.get_dashboard_data"],
+	"Project":["axis_inspection.axis_inspection.doctype.project.project_dashboard.get_dashboard_data"]
 }
 
 doc_events = {
