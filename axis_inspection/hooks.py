@@ -590,6 +590,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 				"Employee-exit-permlevel",
 				"Employee-health_insurance_no-permlevel",
 				"Quality Inspection-reference_type-options",
+				"Sales Order-delivery_date-label"
 			]
 	]
 	]
