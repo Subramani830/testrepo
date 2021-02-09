@@ -23,7 +23,7 @@ frappe.ui.form.on('Employee Contract', {
 			});
 			}
 	},
-	party_name:function
+	party_name:function(frm,cdt,cdn){
 		if(frm.doc.party_type==="Employee"){
 			if(frm.doc.party_name!=undefined){
 				frappe.db.get_value("Employee",frm.doc.party_name,["leave_policy","holiday_list","default_shift"],(v)=>{
@@ -31,7 +31,6 @@ frappe.ui.form.on('Employee Contract', {
 					frm.set_value("holiday_list", v.holiday_list);
 					frm.set_value("shift_type", v.default_shift);
 				  })
-				  if(frm.doc.party_type=="Employee"){
 					var  contract_term=["Nationality","Nationality(Arabic)","Designation (Arabic)","Branch","Branch(Arabic)","Contract Type","Contract Duration (Arabic)","Other Allowance","Airport Destination","Airport Destination (Arabic)","Notice Period","Weekend Days","Roles and Responsibilities"]
 					frappe.call({
 						method: "frappe.client.get_list",
@@ -56,7 +55,7 @@ frappe.ui.form.on('Employee Contract', {
 					cur_frm.refresh_field("contract_term")	
 				}		  
 			}
-		}
+
 	},
 	after_save:function(frm){
 		if(frm.doc.party_type=="Employee"){
