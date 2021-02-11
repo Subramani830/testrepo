@@ -10,6 +10,27 @@ from frappe.utils.nestedset import NestedSet
 class Employee(NestedSet):
 		pass
 
+def safety_program_not_attended():
+	employee = ""
+	for userlist in frappe.db.get_list('Has Role',filters={'role':('in',('Safety Manager')),'parenttype':'User'},fields={'parent'}):
+		docVal = frappe.db.get_list("Employee", filters={"safety_training_program_attended":("=","")},fields=["name"])
+		for row in docVal:
+			employee +=row.name+','
+		msg="Hi, \r\nEmployees "+employee+" has no training Event, please create the training events. \r\nThank You"
+
+		try:
+			make(subject = "Employees haveing no training event", content=msg, recipients=userlist.parent, send_email=True)
+		  
+			msg = """Email send successfully to Employee"""
+			print(msg)
+		except:
+			print("could not send")
+		print(employee)
+		print(userlist.parent)
+
+
+
+
 
 def send_daily_report():
     custom_filter = {'document': '','period':'90'}

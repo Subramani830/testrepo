@@ -237,7 +237,14 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 		"Project-subject",
 		"Training Program-location",
 		"Sales Order-customers_purchase_order_valid_till",
-		"Salary Slip-overtime_bill"
+		"Salary Slip-overtime_bill",
+		"Training Program-section_break_10",
+		"Training Program-training_frequency",
+		"Training Program-column_break_12",
+		"Training Program-start_date",
+		"Training Program-end_date",
+		"Employee-safety_training_program_attended",
+		"Training Program-number_of_frequency"
 		]
 	]
 ]
@@ -698,7 +705,8 @@ scheduler_events = {
 		"axis_inspection.axis_inspection.doctype.document_set.document_set.validate_expiry_date",
 		"axis_inspection.axis_inspection.doctype.sales_order.sales_order.get_delivery_date_list",
 		"axis_inspection.axis_inspection.doctype.employee_skill_map.employee_skill_map.validate_expiry_date",
-		"axis_inspection.axis_inspection.doctype.employee.employee.send_daily_report"
+		"axis_inspection.axis_inspection.doctype.employee.employee.send_daily_report",
+		"axis_inspection.axis_inspection.doctype.employee.employee.safety_program_not_attended"
 	],
  	"hourly": [
 		"axis_inspection.axis_inspection.api.get_applicant_list"
@@ -730,6 +738,9 @@ doc_events = {
 		"validate":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.update_salary_slip"],
 		"on_submit":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.update_actual_paid"],
 		"on_cancel":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.remove_actual_paid"]
+	},
+	"Training Program":{
+		"on_update": ["axis_inspection.axis_inspection.doctype.training_program.training_program.auto_create_training_event"]
 	}
 }
 
