@@ -236,7 +236,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 		"Sales Order-subject",
 		"Project-subject",
 		"Training Program-location",
-		"Sales Order-customers_purchase_order_valid_till"
+		"Sales Order-customers_purchase_order_valid_till",
+		"Salary Slip-overtime_bill"
 		]
 	]
 ]
@@ -591,7 +592,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 				"Employee-health_insurance_no-permlevel",
 				"Quality Inspection-reference_type-options",
 				"Sales Order-delivery_date-label",
-				"Contract-party_type-options"
+				"Contract-party_type-options",
+				"Timesheet Detail-costing_rate-read_only"
 			]
 	]
 	]

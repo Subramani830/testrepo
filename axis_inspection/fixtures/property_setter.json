@@ -5326,5 +5326,21 @@
   "property": "label",
   "property_type": "Data",
   "value": "Customer's Purchase Order Valid Till"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Timesheet Detail",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "costing_rate",
+  "modified": "2021-02-10 18:35:49.890374",
+  "name": "Timesheet Detail-costing_rate-read_only",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "read_only",
+  "property_type": "Check",
+  "value": "1"
  }
 ]

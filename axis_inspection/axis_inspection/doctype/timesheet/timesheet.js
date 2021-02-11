@@ -3,6 +3,7 @@
 
 frappe.ui.form.on('Timesheet', {
 employee:function(frm,cdt,cdn){
+	
 	if(frm.doc.employee!==undefined){
 		frappe.call({
 			method:"axis_inspection.axis_inspection.api.get_reports_to",
@@ -15,7 +16,6 @@ employee:function(frm,cdt,cdn){
 					frm.set_value('department_manager',r.message)
 				}
 			});
-		
 }
 },
 before_workflow_action: (frm) => {
@@ -90,4 +90,33 @@ before_workflow_action: (frm) => {
 		
 	}
 
+});
+frappe.ui.form.on('Timesheet Detail',{
+	activity_type:function(frm,cdt,cdn){
+		var basic;
+		var hours;
+		frappe.call({
+			method:"axis_inspection.axis_inspection.api.get_contract",
+			async:false,
+					args: {
+						doctype: 'Employee',
+						name: frm.doc.employee
+					},
+				callback: function(r){
+					console.log(r)
+					for (var i=0;i<r.message.length;i++){
+						if(r.message[i].contract_term=='Basic Salary'){
+							basic=r.message[i].value
+						}
+						else if(r.message[i].contract_term=='Working Hours'){
+							hours=r.message[i].value
+						}
+					}
+				}
+			});
+			var	overtime=(basic/30)/hours
+			var row = locals[cdt][cdn];
+			row.costing_rate=overtime;
+			cur_frm.refresh_field("time_logs")
+	}
 });

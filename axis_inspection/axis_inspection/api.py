@@ -284,3 +284,8 @@ def get_employee_list(skill):
 	parent=frappe.db.get_list("Employee Skill",filters={'skill':skill,'parenttype':'Employee Skill Map'},fields=["parent"])
 	return parent
 	
+@frappe.whitelist()
+def get_contract(doctype,name):
+	docVal=frappe.db.get_value(doctype,{'name':name},'contract_no')
+	val=frappe.db.get_list('Contract Term Detail',filters={'parent':docVal,'parenttype':'Employee Contract','contract_term':['in',['Basic Salary','Working Hours']]},fields=['contract_term','value'])
+	return val
