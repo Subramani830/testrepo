@@ -630,7 +630,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 {"dt": "Role", 
 		"filters":[
         [
-        "name","in",["CEO", "President","General Manager","Deputy General Manager","Transportation Manager","Payroll User","Assets Manager","Assets User"]
+        "name","in",["CEO", "President","General Manager","Deputy General Manager","Transportation Manager","Payroll User","Assets Manager","Assets User","Safety Manager"]
 	]
 	]
 },
