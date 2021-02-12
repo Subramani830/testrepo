@@ -23,6 +23,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 		"filters": [
          [
              "name", "in", [
+		"Sales Order-reason",
 		"Job Applicant-interview_date",
 		"Job Applicant-interview_time",
 		"Job Applicant-department",

@@ -254,5 +254,37 @@ after_save(frm){
 		       }
 		})
 		}
+	},
+	delivery_date:function(frm){
+		if(frm.doc.workflow_state=="Approved"){
+			let d = new frappe.ui.Dialog({
+				title: 'Enter Reason',
+				fields: [
+					{
+						label: 'Reason',
+						fieldname: 'reason',
+						fieldtype: 'Small Text',
+						reqd:1
+					}
+				],
+				primary_action_label: 'Submit',
+				primary_action(values) {
+					frappe.model.set_value(frm.doc.doctype, frm.doc.name, "reason", values["reason"]);
+					frappe.model.set_value(frm.doc.doctype, frm.doc.name, "delivery_date", frm.doc.delivery_date);
+					frappe.call({
+						"method": "frappe.client.submit",
+						"args": {
+							  "doc":frm.doc
+						}
+					})
+					cur_frm.refresh_fields()
+					cur_frm.refresh_field('reason')
+					// window.location.reload();
+					d.hide();
+				}
+			});
+			
+			d.show();
+		}
 	}
 });

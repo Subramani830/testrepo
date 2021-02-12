@@ -12,5 +12,6 @@ class ResourcePlanning(Document):
 @frappe.whitelist()
 def get_item_group_list(item_group):
 	lft,rgt=frappe.db.get_value('Item Group',{'item_group_name':item_group},['lft','rgt'])
-	retrieved_item_group_list=frappe.db.get_list('Item Group',filters={'lft':['>',lft],'rgt':['<=',rgt]},fields={'name'})
-	return retrieved_item_group_list
+	if lft or rgt:
+		retrieved_item_group_list=frappe.db.get_list('Item Group',filters={'lft':['>',lft],'rgt':['<=',rgt]},fields={'name'})
+		return retrieved_item_group_list
