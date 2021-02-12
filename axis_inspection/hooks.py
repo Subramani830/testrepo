@@ -728,6 +728,7 @@ override_doctype_dashboards = {
 
 doc_events = {
     	"Asset Movement": {
+		"validate": ["axis_inspection.axis_inspection.doctype.asset_movement.asset_movement.validate"],
 		"on_submit": ["axis_inspection.axis_inspection.doctype.asset_movement.asset_movement.update_asset_details"],
 		"on_cancel": ["axis_inspection.axis_inspection.doctype.asset_movement.asset_movement.delete_asset_details"]
     },
@@ -741,6 +742,12 @@ doc_events = {
 	},
 	"Training Program":{
 		"on_update": ["axis_inspection.axis_inspection.doctype.training_program.training_program.auto_create_training_event"]
+	},
+	"Task":{
+		"validate":["axis_inspection.axis_inspection.doctype.task.task.validate"]
+	},
+	"Stock Entry":{
+		"validate":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.validate"]
 	}
 }
 
