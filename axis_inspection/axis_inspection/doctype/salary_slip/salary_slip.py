@@ -15,16 +15,15 @@ from axis_inspection.axis_inspection.doctype.employee_deductions.employee_deduct
 
 
 def update_salary_slip(doc,method):
-    if doc.overtime_bill==0:
-        amount=frappe.db.get_list('Timesheet',{'employee':doc.employee,'start_date':["between",[doc.start_date,doc.end_date]]},'total_costing_amount')
-        costing_amount=0
-        for row in amount:
-            costing_amount+=row.total_costing_amount
+    amount=frappe.db.get_list('Timesheet',{'employee':doc.employee,'start_date':["between",[doc.start_date,doc.end_date]],'workflow_state':'Completed'},'total_costing_amount')
+    costing_amount=0
+    for row in amount:
+        costing_amount+=row.total_costing_amount
 
-        doc.overtime_bill=costing_amount
-        doc.gross_pay=doc.overtime_bill
-        for row in doc.earnings:
-            doc.gross_pay+=row.amount
+    doc.overtime_bill=costing_amount
+    doc.gross_pay=doc.overtime_bill
+    for row in doc.earnings:
+        doc.gross_pay+=row.amount
 
     if doc.employee_deduction==0:
         month=convertDateFormat(doc.start_date)
