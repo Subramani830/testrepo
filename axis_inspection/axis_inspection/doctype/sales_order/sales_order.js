@@ -270,16 +270,10 @@ after_save(frm){
 				primary_action_label: 'Submit',
 				primary_action(values) {
 					frappe.model.set_value(frm.doc.doctype, frm.doc.name, "reason", values["reason"]);
-					frappe.model.set_value(frm.doc.doctype, frm.doc.name, "delivery_date", frm.doc.delivery_date);
-					frappe.call({
-						"method": "frappe.client.submit",
-						"args": {
-							  "doc":frm.doc
-						}
-					})
-					cur_frm.refresh_fields()
-					cur_frm.refresh_field('reason')
-					// window.location.reload();
+					cur_frm.refresh()
+					frm.refresh_field('reason')
+					frm.doc.docstatus = 1;
+					frm.save();
 					d.hide();
 				}
 			});
