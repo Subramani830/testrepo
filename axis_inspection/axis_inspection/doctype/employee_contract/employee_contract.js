@@ -14,11 +14,30 @@ frappe.ui.form.on('Employee Contract', {
 				},
 				callback:function(r){
 					for(var i=0;i<r.message.length;i++){
-						var child = cur_frm.add_child("contract_term");
-						frappe.model.set_value(child.doctype, child.name, "contract_term", r.message[i].offer_term);
-						frappe.model.set_value(child.doctype, child.name, "value", r.message[i].value);
-						cur_frm.refresh_field("contract_term");
-					}
+						frappe.call({
+							method: 'axis_inspection.axis_inspection.doctype.employee_contract.employee_contract.get_contract_term',
+							async:false,
+							args: {
+								contract_term:r.message[i].offer_term,
+								doc:frm.doc.contract_term
+							},
+						callback: function(c) {
+							console.log(c)
+							if(Object.keys(c).length === 0){
+								var child = cur_frm.add_child("contract_term");
+								frappe.model.set_value(child.doctype, child.name, "contract_term", r.message[i].offer_term);
+								frappe.model.set_value(child.doctype, child.name, "value", r.message[i].value);
+								cur_frm.refresh_field("contract_term");
+								}
+							else{ 
+									//if(term.contract_term===c.message[0].contract_term){
+									   frappe.model.set_value('Contract Term Detail', c.message, "value", r.message[i].value);
+									   cur_frm.refresh_field("value");
+									//}
+							}
+						}
+					});
+				}
 				}
 			});
 			}
@@ -31,8 +50,8 @@ frappe.ui.form.on('Employee Contract', {
 					frm.set_value("holiday_list", v.holiday_list);
 					frm.set_value("shift_type", v.default_shift);
 				  })
-				  var  contract_term=["Nationality","Nationality (Arabic)","Passport/ID Place of Issue","Passport/ID Place of Issue (Arabic)","Designation (Arabic)","Branch","Branch (Arabic)","Contract Type","Contract Duration (Arabic)","Other Allowance","Airport Destination","Airport Destination (Arabic)","Notice Period","Weekend Days","Roles and Responsibilities"]
-					frappe.call({
+				var  contract_term=["Nationality","Nationality (Arabic)","Passport/ID Place of Issue","Passport/ID Place of Issue (Arabic)","Designation","Designation (Arabic)","Branch","Branch (Arabic)","Contract Type","Contract Duration","Contract Duration (Arabic)","Basic Salary","Housing","Food","Transportation","Other Allowance","Total Salary","Overtime","Family Status","Airport Destination","Airport Destination (Arabic)","Notice Period","Weekend Days","Roles and Responsibilities"]					
+				frappe.call({
 						method: "frappe.client.get_list",
 						async:false,
 						args: {
