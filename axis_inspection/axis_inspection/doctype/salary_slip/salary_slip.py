@@ -25,15 +25,16 @@ def update_salary_slip(doc,method):
     for row in doc.earnings:
         doc.gross_pay+=row.amount
 
+    total_deduction=0
     if doc.employee_deduction==0:
         month=convertDateFormat(doc.start_date)
         parent=frappe.db.get_value('Employee Deductions',{'employee':doc.employee},'name')
         if parent:
             doc.employee_deduction=frappe.db.get_value('Deduction Calculation',{'parenttype':'Employee Deductions','month':month,'parent':parent},'balance')
-    
-    total_deduction=doc.employee_deduction
-    for row in doc.deductions:
-        total_deduction+=row.amount
+            total_deduction=doc.employee_deduction
+            for row in doc.deductions:
+                if doc.deductions:
+                    total_deduction = total_deduction+row.amount
 
     doc.total_deduction=total_deduction
     doc.net_pay = flt(doc.gross_pay) - (flt(doc.total_deduction) + flt(doc.total_loan_repayment))

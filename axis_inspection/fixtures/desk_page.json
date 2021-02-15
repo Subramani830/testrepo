@@ -2302,7 +2302,7 @@
    {
     "hidden": 0,
     "label": "Recruitment",
-    "links": "[\n    {\n        \"label\": \"Job Opening\",\n        \"name\": \"Job Opening\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Job Applicant\",\n        \"name\": \"Job Applicant\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Job Offer\",\n        \"name\": \"Job Offer\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Staffing Plan\",\n        \"name\": \"Staffing Plan\",\n        \"type\": \"doctype\"\n    }\n]",
+    "links": "[\n    {\n        \"label\": \"Job Opening\",\n        \"name\": \"Job Opening\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Job Applicant\",\n        \"name\": \"Job Applicant\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Job Offer\",\n        \"name\": \"Job Offer\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Employee Contract\",\n        \"name\": \"Employee Contract\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Documents\",\n        \"name\": \"Documents\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Document Set\",\n        \"name\": \"Document Set\",\n        \"onboard\": 1,\n        \"type\": \"doctype\"\n    },\n    {\n        \"label\": \"Staffing Plan\",\n        \"name\": \"Staffing Plan\",\n        \"type\": \"doctype\"\n    }\n]",
     "parent": "HR",
     "parentfield": "cards",
     "parenttype": "Desk Page"
@@ -2318,7 +2318,7 @@
    {
     "hidden": 0,
     "label": "Reports",
-    "links": "[\n    {\n        \"dependencies\": [\n            \"Employee\"\n        ],\n        \"doctype\": \"Employee\",\n        \"is_query_report\": true,\n        \"label\": \"Employee Birthday\",\n        \"name\": \"Employee Birthday\",\n        \"type\": \"report\"\n    },\n    {\n        \"dependencies\": [\n            \"Employee\"\n        ],\n        \"doctype\": \"Employee\",\n        \"is_query_report\": true,\n        \"label\": \"Employees working on a holiday\",\n        \"name\": \"Employees working on a holiday\",\n        \"type\": \"report\"\n    },\n    {\n        \"dependencies\": [\n            \"Employee\"\n        ],\n        \"doctype\": \"Employee\",\n        \"is_query_report\": true,\n        \"label\": \"Department Analytics\",\n        \"name\": \"Department Analytics\",\n        \"type\": \"report\"\n    }\n]",
+    "links": "[\n    {\n        \"dependencies\": [\n            \"Employee\"\n        ],\n        \"doctype\": \"Employee\",\n        \"is_query_report\": true,\n        \"label\": \"Employee Birthday\",\n        \"name\": \"Employee Birthday\",\n        \"type\": \"report\"\n    },\n    {\n        \"dependencies\": [\n            \"Employee\"\n        ],\n        \"doctype\": \"Employee\",\n        \"is_query_report\": true,\n        \"label\": \"Employees working on a holiday\",\n        \"name\": \"Employees working on a holiday\",\n        \"type\": \"report\"\n    },\n    {\n        \"dependencies\": [\n            \"Employee\"\n        ],\n        \"doctype\": \"Employee\",\n        \"is_query_report\": true,\n        \"label\": \"Department Analytics\",\n        \"name\": \"Department Analytics\",\n        \"type\": \"report\"\n    },\n    {\n        \"dependencies\": [\n            \"Employee\"\n        ],\n        \"doctype\": \"Employee\",\n        \"is_query_report\": true,\n        \"label\": \"Employee Documents Expiration Report\",\n        \"name\": \"Employee Documents Expiration Report\",\n        \"type\": \"report\"\n    }\n]",
     "parent": "HR",
     "parentfield": "cards",
     "parenttype": "Desk Page"
@@ -2354,7 +2354,7 @@
   "hide_custom": 0,
   "is_standard": 1,
   "label": "HR",
-  "modified": "2020-12-24 10:36:01.311060",
+  "modified": "2021-02-15 15:39:29.683408",
   "module": "HR",
   "name": "HR",
   "onboarding": "Human Resource",
