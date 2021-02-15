@@ -35,6 +35,7 @@ def set_reason_for_extension(reason, document, date):
     sales_order_doc = frappe.get_doc('Sales Order', document)
     sales_order_doc.reason_for_extension = reason
     sales_order_doc.delivery_date = date
-    sales_order_doc.db_set('delivery_date', date)
-	# sales_order_obj.update(record)
+    for item in sales_order_doc.items:
+        item.delivery_date=date
     sales_order_doc.submit()
+

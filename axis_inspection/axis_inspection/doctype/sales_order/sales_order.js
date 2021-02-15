@@ -277,14 +277,14 @@ after_save(frm){
 							  "date":frm.doc.delivery_date
 						}
 					})
+					frm.refresh_field('reason_for_extension')
+					frm.refresh_field('delivery_date')
+					window.location.reload();
 					d.hide();
 				}
 			});
 			
 			d.show();
 		}
-		frm.refresh_field('reason_for_extension')
-		frm.refresh_field('delivery_date')
-		window.location.reload();
 	}
 });
