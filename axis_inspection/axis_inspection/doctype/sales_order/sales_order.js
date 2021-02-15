@@ -158,7 +158,6 @@ after_save(frm){
 				    d.customer_item_code = row.customer_item_code;
 				    d.ensure_delivery_based_on_produced_serial_no = row.ensure_delivery_based_on_produced_serial_no;
 					d.delivery_date = row.delivery_date;
-					console.log(d.delivery_date)
 				    d.item_name = row.item_name;
 				    d.description = row.description;
 				    d.item_group = row.item_group;
@@ -270,8 +269,14 @@ after_save(frm){
 				],
 				primary_action_label: 'Submit',
 				primary_action(values) {
-					frappe.model.set_value(frm.doc.doctype, frm.doc.name, "reason", values["reason"]);
-					frm.refresh_field('reason')
+					frappe.model.set_value(frm.doc.doctype, frm.doc.name, "reason_for_extension", values["reason"]);
+					frm.refresh_field('reason_for_extension')
+					frappe.call({
+						"method": "frappe.client.submit",
+						"args": {
+							  "doc": frm.doc
+						}
+					})
 					d.hide();
 				}
 			});
