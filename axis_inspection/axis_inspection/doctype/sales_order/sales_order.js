@@ -269,12 +269,12 @@ after_save(frm){
 				],
 				primary_action_label: 'Submit',
 				primary_action(values) {
-					frappe.model.set_value(frm.doc.doctype, frm.doc.name, "reason_for_extension", values["reason"]);
-					frm.refresh_field('reason_for_extension')
 					frappe.call({
-						"method": "frappe.client.submit",
+						"method": "axis_inspection.axis_inspection.doctype.sales_order.sales_order.set_reason_for_extension",
 						"args": {
-							  "doc": frm.doc
+							  "reason": values["reason"],
+							  "document":frm.doc.name,
+							  "date":frm.doc.delivery_date
 						}
 					})
 					d.hide();
@@ -283,5 +283,8 @@ after_save(frm){
 			
 			d.show();
 		}
+		frm.refresh_field('reason_for_extension')
+		frm.refresh_field('delivery_date')
+		window.location.reload();
 	}
 });
