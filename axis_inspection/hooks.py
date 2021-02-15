@@ -23,7 +23,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 		"filters": [
          [
              "name", "in", [
-		"Sales Order-reason",
+		"Sales Order Item-standby_rate",
+		"Sales Order Item-overtime_rate",
+		"Sales Order-reason_for_extension",
 		"Job Applicant-interview_date",
 		"Job Applicant-interview_time",
 		"Job Applicant-department",
@@ -261,6 +263,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
 	[
 		"name","in",
  			[
+				"Sales Order-base_in_words-allow_on_submit",
+				"Sales Taxes and Charges-item_wise_tax_detail-allow_on_submit",
 				"Job Offer-status-options",
 				"Training Event-trainer_email-options",
 				"Sales Order-sec_warehouse-hidden",
