@@ -18,7 +18,7 @@ app_color = "grey"
 app_email = "veena.h@promantia.com"
 app_license = "MIT"
 
-fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master",
+fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Letter Head",
 {"dt": "Custom Field",
 		"filters": [
          [

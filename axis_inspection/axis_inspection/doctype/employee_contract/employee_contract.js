@@ -45,7 +45,7 @@ frappe.ui.form.on('Employee Contract', {
 	party_name:function(frm,cdt,cdn){
 		if(frm.doc.party_type==="Employee"){
 			if(frm.doc.party_name!=undefined){
-				var  contract_term=["Nationality","Nationality (Arabic)","Passport/ID Place of Issue","Passport/ID Place of Issue (Arabic)","Designation","Designation (Arabic)","Branch","Branch (Arabic)","Contract Type","Contract Duration","Contract Duration (Arabic)","Basic Salary","Housing","Food","Transportation","Other Allowance","Total Salary","Overtime","Family Status","Airport Destination","Airport Destination (Arabic)","Notice Period","Weekend Days","Roles and Responsibilities"]					
+				var  contract_term=["Nationality","Nationality (Arabic)","Passport/ID Place of Issue","Passport/ID Place of Issue (Arabic)","Designation","Designation (Arabic)","Branch","Branch (Arabic)","Contract Type","Contract Duration","Contract Duration (Arabic)","Basic Salary","Housing","Food","Transportation","Other Allowance","Total Salary","Overtime","Family Status","Airport Destination","Airport Destination (Arabic)","Notice Period","Working Hours","Weekend Days","Roles and Responsibilities"]					
 				frappe.call({
 						method: "frappe.client.get_list",
 						async:false,
@@ -55,6 +55,7 @@ frappe.ui.form.on('Employee Contract', {
 							filters:{
 								name:["in",contract_term]
 							},
+							"limit_page_length":0
 						},
 						callback: function(r) {
 							if(r.message.length>0){
