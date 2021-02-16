@@ -2,46 +2,46 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Employee Contract', {
-	document_name:function(frm,cdt,cdn){
-		if(frm.doc.document_type==="Job Offer" && frm.doc.document_name!=undefined){
-			frappe.call({
-				method:"axis_inspection.axis_inspection.api.get_job_offer_terms",
-				async:false,
-				args:{
-					doctype:'Job Offer Term',
-					parent:frm.doc.document_name,
-					parenttype:'Job Offer'
-				},
-				callback:function(r){
-					for(var i=0;i<r.message.length;i++){
-						frappe.call({
-							method: 'axis_inspection.axis_inspection.doctype.employee_contract.employee_contract.get_contract_term',
-							async:false,
-							args: {
-								contract_term:r.message[i].offer_term,
-								doc:frm.doc.contract_term
-							},
-						callback: function(c) {
-							console.log(c)
-							if(Object.keys(c).length === 0){
-								var child = cur_frm.add_child("contract_term");
-								frappe.model.set_value(child.doctype, child.name, "contract_term", r.message[i].offer_term);
-								frappe.model.set_value(child.doctype, child.name, "value", r.message[i].value);
-								cur_frm.refresh_field("contract_term");
-								}
-							else{ 
-									//if(term.contract_term===c.message[0].contract_term){
-									   frappe.model.set_value('Contract Term Detail', c.message, "value", r.message[i].value);
-									   cur_frm.refresh_field("value");
-									//}
-							}
-						}
-					});
-				}
-				}
-			});
-			}
-	},
+	// document_name:function(frm,cdt,cdn){
+	// 	if(frm.doc.document_type==="Job Offer" && frm.doc.document_name!=undefined){
+	// 		frappe.call({
+	// 			method:"axis_inspection.axis_inspection.api.get_job_offer_terms",
+	// 			async:false,
+	// 			args:{
+	// 				doctype:'Job Offer Term',
+	// 				parent:frm.doc.document_name,
+	// 				parenttype:'Job Offer'
+	// 			},
+	// 			callback:function(r){
+	// 				for(var i=0;i<r.message.length;i++){
+	// 					frappe.call({
+	// 						method: 'axis_inspection.axis_inspection.doctype.employee_contract.employee_contract.get_contract_term',
+	// 						async:false,
+	// 						args: {
+	// 							contract_term:r.message[i].offer_term,
+	// 							doc:frm.doc.contract_term
+	// 						},
+	// 					callback: function(c) {
+	// 						console.log(c)
+	// 						if(Object.keys(c).length === 0){
+	// 							var child = cur_frm.add_child("contract_term");
+	// 							frappe.model.set_value(child.doctype, child.name, "contract_term", r.message[i].offer_term);
+	// 							frappe.model.set_value(child.doctype, child.name, "value", r.message[i].value);
+	// 							cur_frm.refresh_field("contract_term");
+	// 							}
+	// 						else{ 
+	// 								//if(term.contract_term===c.message[0].contract_term){
+	// 								   frappe.model.set_value('Contract Term Detail', c.message, "value", r.message[i].value);
+	// 								   cur_frm.refresh_field("value");
+	// 								//}
+	// 						}
+	// 					}
+	// 				});
+	// 			}
+	// 			}
+	// 		});
+	// 		}
+	// },
 	party_name:function(frm,cdt,cdn){
 		if(frm.doc.party_type==="Employee"){
 			if(frm.doc.party_name!=undefined){
@@ -109,7 +109,7 @@ frappe.ui.form.on('Employee Contract', {
 			if(frm.doc.start_date!=undefined && frm.doc.end_date!=undefined){
 				var duration=getDateDifference(new Date(frm.doc.start_date),new Date(frm.doc.end_date))
 				if(duration["years"]>0&&duration["months"]==0&&duration["days"]==0){
-					var duration1=duration["years"]+" Year"
+					var duration1=duration["years"]
 					frm.set_value("duration",duration1);
 				}
 				else{
@@ -128,7 +128,7 @@ frappe.ui.form.on('Employee Contract', {
 			if(frm.doc.start_date!=undefined && frm.doc.end_date!=undefined){
 				var duration=getDateDifference(new Date(frm.doc.start_date),new Date(frm.doc.end_date))
 				if(duration["years"]>0&&duration["months"]==0&&duration["days"]==0){
-					var duration1=duration["years"]+" Year"
+					var duration1=duration["years"]
 					frm.set_value("duration",duration1);
 				}
 				else{

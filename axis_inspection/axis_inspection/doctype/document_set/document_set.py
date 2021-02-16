@@ -17,8 +17,20 @@ from frappe import _
 from six import string_types
 from frappe.utils import date_diff
 from frappe.core.doctype.communication.email import make
+
+
 class DocumentSet(Document):
-	pass
+	def validate(self):
+		document=frappe.db.sql("""
+			select name from `tabDocument Set`
+			where employee = %s
+				and name != %s
+		""",(self.employee, self.name))
+		if document:
+			frappe.throw(_("Document Set is already exists for the employee {0}.").format(self.employee))
+
+
+
 
 def validate_expiry_date():
 	docName=frappe.get_all("Document Set")

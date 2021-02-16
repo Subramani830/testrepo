@@ -152,7 +152,6 @@ var item_groups=[];
 			async:false,
 			callback: function(r){
 			for(var i=0;i<r.message.length;i++){
-			//console.log(r.message[i].name)
 			item_groups.push(r.message[i].name);
 			}
 

@@ -8,7 +8,7 @@ frappe.ui.form.on('Document Set', {
 			"async":false,
 			"args": {
 			"doctype": "Employee",
-			"name": frm.doc.employee_name,
+			"name": frm.doc.employee,
 			"fieldname": "document_set",
 			"value": frm.doc.name
 			}
