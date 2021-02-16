@@ -27,12 +27,38 @@ refresh: function(frm) {
 	}
 })
 },
-quotation:function(frm,cdt,cdn){
+customer:function(frm){
+	frm.set_query("quotation", function() {
+		return {
+			filters: {
+				"party_name":frm.doc.customer
+			}
+		};
+	})
+	frm.set_query("sales_order", function() {
+		return {
+			filters: {
+				"customer":frm.doc.customer
+			}
+		};
+	})
+},
+quotation:function(frm){
 	frappe.db.get_value("Quotation",{"name":frm.doc.quotation},"status",(r)=>{
 		frm.set_value('quotation_status',r.status)
 	})
+	if(frm.doc.quotation!=undefined){
+		frm.set_query("sales_order", function() {
+			return {
+				filters: {
+					"customer":frm.doc.customer,
+					"quotation":frm.doc.quotation
+				}
+			};
+		})
+	}
 },
-sales_order:function(frm,cdt,cdn){
+sales_order:function(frm){
 	frappe.db.get_value("Sales Order",{"name":frm.doc.sales_order},"status",(r)=>{
 		frm.set_value('sales_order_status',r.status)
 	})

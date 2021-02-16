@@ -35,7 +35,7 @@ def validate(self,method):
             qty=frappe.db.get_value('Asset Detail',{'parent':parent,'parenttype':'Resource Planning','asset_category':asset_category},'qty')
             if qty:
                 if asset_category_list[asset_category]>qty:
-                    frappe.throw(_("Asset Category '{0}' quantity should not be greater than {1}.").format(asset_category,qty)) 
+                    frappe.throw(_("As per Resource Planning {0} for Project {1}, a maximum of {2} {3} can be issued.").format(parent,self.project,qty,asset_category)) 
             else:
                 frappe.throw(_("Asset Category '{0}' is not defined in Resource Planing {1}.").format(asset_category,parent)) 
             
@@ -43,6 +43,9 @@ def validate(self,method):
 
 def count_qty(self):
     count_list = {}
+    asset_category_list=frappe.db.sql("""select a.asset_category,count(asset_category) as count from `tabAsset Movement Item` a ,`tabAsset Movement` t where t.name=a.parent and t.project=%s group by a.asset_category""",(self.project), as_dict=True)
+    for val in asset_category_list:
+        count_list[val.asset_category] = val.count
     for row in self.assets:
         category=frappe.db.get_value('Asset',row.asset,'asset_category')
         if not category in count_list:

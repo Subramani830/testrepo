@@ -6,7 +6,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "company",
+  "customer",
   "section_break_2",
   "quotation",
   "sales_order",
@@ -19,12 +19,6 @@
   "item_detail"
  ],
  "fields": [
-  {
-   "fieldname": "company",
-   "fieldtype": "Link",
-   "label": "Company",
-   "options": "Company"
-  },
   {
    "fieldname": "sales_order",
    "fieldtype": "Link",
@@ -76,13 +70,19 @@
    "read_only": 1
   },
   {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
    "fieldname": "section_break_2",
    "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-02-11 17:46:56.877744",
+ "modified": "2021-02-15 15:02:37.856837",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Resource Planning",

@@ -11,6 +11,9 @@
   "naming_series",
   "party_type",
   "is_signed",
+  "nationality",
+  "designation",
+  "branch",
   "cb_party",
   "party_name",
   "leave_policy",
@@ -186,6 +189,7 @@
    "options": "Contract Term Detail"
   },
   {
+   "fetch_from": "party_name.leave_policy",
    "fieldname": "leave_policy",
    "fieldtype": "Link",
    "label": "Leave Policy",
@@ -193,6 +197,7 @@
    "read_only": 1
   },
   {
+   "fetch_from": "party_name.holiday_list",
    "fieldname": "holiday_list",
    "fieldtype": "Link",
    "label": "Holiday List",
@@ -200,6 +205,7 @@
    "read_only": 1
   },
   {
+   "fetch_from": "party_name.default_shift",
    "fieldname": "shift_type",
    "fieldtype": "Link",
    "label": "Shift Type",
@@ -211,11 +217,32 @@
    "fieldtype": "Attach",
    "in_list_view": 1,
    "label": " Attach Job Offer"
+  },
+  {
+   "fetch_from": "party_name.nationality",
+   "fieldname": "nationality",
+   "fieldtype": "Data",
+   "label": "Nationality",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "party_name.designation",
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "party_name.branch",
+   "fieldname": "branch",
+   "fieldtype": "Data",
+   "label": "Branch",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2021-02-08 17:17:55.919157",
+ "modified": "2021-02-16 11:37:05.339745",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Employee Contract",

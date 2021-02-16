@@ -59,15 +59,28 @@ var skill=[];
 							}
 						};
 					});
-
-			/*frm.fields_dict['assign_'].grid.get_field('assign_to').get_query = function() {
-				return {
-					filters: {
-						name:["in",employee] 
-					}
-				};
-			};*/
-						
+					var itemList=[]
+					frappe.call({
+						method:"axis_inspection.axis_inspection.doctype.task.task.get_item_list",
+						async:false,
+						args: {
+							"sales_order":sales_order	
+						},
+						callback: function(r){
+							for(var i=0; i<r.message.length; i++){
+								itemList.push(r.message[i].item_code);
+							}
+							frm.set_query("service", function() {
+								return {
+									filters: {
+										"name":['in',itemList]
+									}
+								};
+							})
+								
+						}
+					});	
+			
 		}
 	});
 	
