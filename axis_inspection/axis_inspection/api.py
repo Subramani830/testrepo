@@ -148,13 +148,14 @@ def get_employee_filter(sales_order):
 	return skill
 
 @frappe.whitelist()
-def get_employee(task):
-	employee=[]
-	val=frappe.db.get_list("Assign To",filters={'parent':task},fields=["assign_to"])
+def get_project(employee):
+	project=[]
+	val=frappe.db.get_list("Assign To",filters={'assign_to':employee,'parenttype':'Task'},fields=["parent"])
 	for row in val:
-		if row.assign_to not in employee:
-			employee.append(row.assign_to)
-	return employee
+		project_name=frappe.db.get_value("Task",{'name':row.parent},'project')
+		if project_name not in project:
+			project.append(project_name)
+	return project
 
 @frappe.whitelist()
 def get_item_list(project):
@@ -289,3 +290,8 @@ def get_contract(doctype,name):
 	docVal=frappe.db.get_value(doctype,{'name':name},'contract_no')
 	val=frappe.db.get_list('Contract Term Detail',filters={'parent':docVal,'parenttype':'Employee Contract','contract_term':['in',['Basic Salary','Working Hours']]},fields=['contract_term','value'])
 	return val
+
+
+@frappe.whitelist()
+def get_task(employee,project):
+	return frappe.db.sql("""select t.name from `tabTask` t,`tabAssign To` a where t.name=a.parent and t.project=%s and a.assign_to=%s""",(project,employee), as_dict=True)

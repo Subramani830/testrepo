@@ -14,8 +14,11 @@
   "nationality",
   "designation",
   "branch",
+  "id_number",
+  "old_employee_id",
   "cb_party",
   "party_name",
+  "employee_name",
   "leave_policy",
   "holiday_list",
   "shift_type",
@@ -238,11 +241,32 @@
    "fieldtype": "Data",
    "label": "Branch",
    "read_only": 1
+  },
+  {
+   "fetch_from": "party_name.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "party_name.id_number",
+   "fieldname": "id_number",
+   "fieldtype": "Data",
+   "label": "ID Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "party_name.old_employee_id",
+   "fieldname": "old_employee_id",
+   "fieldtype": "Data",
+   "label": "Old Employee ID",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2021-02-16 11:37:05.339745",
+ "modified": "2021-02-17 18:52:38.237563",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Employee Contract",

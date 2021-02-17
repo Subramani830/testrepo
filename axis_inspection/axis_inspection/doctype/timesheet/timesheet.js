@@ -3,7 +3,7 @@
 
 frappe.ui.form.on('Timesheet', {
 employee:function(frm,cdt,cdn){
-	
+	var project=[];
 	if(frm.doc.employee!==undefined){
 		frappe.call({
 			method:"axis_inspection.axis_inspection.api.get_reports_to",
@@ -16,6 +16,26 @@ employee:function(frm,cdt,cdn){
 					frm.set_value('department_manager',r.message)
 				}
 			});
+
+			frappe.call({
+				method:"axis_inspection.axis_inspection.api.get_project",
+				async:false,
+				args: {
+					"employee":frm.doc.employee
+				},
+				callback: function(r){
+					for(var i=0; i<r.message.length; i++){
+						project.push(r.message[i]);
+					}
+				}
+			});
+			frm.set_query("project","time_logs",function(){
+				return{
+					filters: {
+						name:["in",project] 
+					}
+					}
+					});
 }
 },
 before_workflow_action: (frm) => {
@@ -29,42 +49,19 @@ before_workflow_action: (frm) => {
 	}
 },
 	refresh:function(frm){
-		var employee=[];
 		if(frm.doc.company){}
 		else{
 			frm.set_value('company','Axis Inspection Ltd.')
 		}
-		$.each(frm.doc.time_logs,function(idx, item){
-			if(item.task!=undefined){
-				frappe.call({
-					method:"axis_inspection.axis_inspection.api.get_employee",
-					async:false,
-					args: {
-						"task":item.task
-					},
-					callback: function(r){
-						for(var i=0; i<r.message.length; i++){
-							employee.push(r.message[i]);
-						}
-					}
-				});
-			}
-		});
-		/*frm.set_query("employee", function(frm, cdt, cdn) {
-			return {
-				filters: {
-					name:["in",employee] 
-				}
-			};
-		});*/
-		frm.set_query("task","time_logs",function(){
-		return{
-		    filters: [
-		    ["Assign To","assign_to","=",frm.doc.employee]
+
+		// frm.set_query("task","time_logs",function(){
+		// return{
+		//     filters: [
+		// 	["Assign To","assign_to","=",frm.doc.employee]
 		    
-		    ]
-		    };
-        	});
+		//     ]
+		//     };
+        // 	});
 		frappe.call({
 			method: "axis_inspection.axis_inspection.api.get_user_role_billing",
 			async:false,
@@ -118,5 +115,35 @@ frappe.ui.form.on('Timesheet Detail',{
 			var row = locals[cdt][cdn];
 			row.costing_rate=overtime;
 			cur_frm.refresh_field("time_logs")
-	}
+	},
+project:function(frm,cdt,cdn){
+	$.each(frm.doc.time_logs, function(idx, time){
+		var task=[]
+		if(time.project!=undefined){
+			frappe.call({
+				method:"axis_inspection.axis_inspection.api.get_task",
+				async:false,
+				args: {
+					"employee":frm.doc.employee,
+					"project":time.project
+				},
+				callback: function(r){
+					console.log(r)
+					for(var i=0; i<r.message.length; i++){
+						task.push(r.message[i]);
+					}
+				}
+			});
+			frm.fields_dict['time_logs'].grid.get_field('task').get_query = function() {
+				return {
+					filters: {
+						name:["in",task] 
+					}
+				};
+			};
+
+		}
+
+	});
+}
 });

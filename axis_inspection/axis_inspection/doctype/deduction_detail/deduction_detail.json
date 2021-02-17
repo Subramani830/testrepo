@@ -19,7 +19,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Deduction Name",
-   "options": "\nRetention\nTraffic Violation\nPunishment"
+   "options": "\nRetention\nTraffic Violation\nPunishment\nGeneral Deductions"
   },
   {
    "fieldname": "start_date",
@@ -59,7 +59,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-01-16 13:49:47.606677",
+ "modified": "2021-02-17 16:33:09.129060",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Deduction Detail",

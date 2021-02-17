@@ -8,7 +8,9 @@ from frappe.model.document import Document
 import json
 
 class EmployeeContract(Document):
+	#def validate(self):
 	pass
+
 
 @frappe.whitelist()
 def get_contract_term(contract_term,doc):

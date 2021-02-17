@@ -6,7 +6,8 @@
  "engine": "InnoDB",
  "field_order": [
   "item_group",
-  "qty"
+  "qty",
+  "actual_issued_quantity"
  ],
  "fields": [
   {
@@ -20,13 +21,19 @@
    "fieldname": "qty",
    "fieldtype": "Int",
    "in_list_view": 1,
-   "label": "Quantity"
+   "label": "Planned  Quantity"
+  },
+  {
+   "fieldname": "actual_issued_quantity",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Actual Issued Quantity"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-02-11 17:08:45.022693",
+ "modified": "2021-02-17 14:52:44.231248",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Item Details",

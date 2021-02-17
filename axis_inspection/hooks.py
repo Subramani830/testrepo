@@ -755,7 +755,8 @@ doc_events = {
 		"validate":["axis_inspection.axis_inspection.doctype.task.task.validate"]
 	},
 	"Stock Entry":{
-		"validate":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.validate"]
+		"validate":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.validate"],
+		"on_submit":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.on_submit"]
 	}
 }
 

@@ -45,10 +45,10 @@ frappe.ui.form.on('Employee Contract', {
 	party_name:function(frm,cdt,cdn){
 		if(frm.doc.party_type==="Employee"){
 			if(frm.doc.party_name!=undefined){
-				var  contract_term=["Nationality","Nationality (Arabic)","Passport/ID Place of Issue","Passport/ID Place of Issue (Arabic)","Designation","Designation (Arabic)","Branch","Branch (Arabic)","Contract Type","Contract Duration","Contract Duration (Arabic)","Basic Salary","Housing","Food","Transportation","Other Allowance","Total Salary","Overtime","Family Status","Airport Destination","Airport Destination (Arabic)","Notice Period","Working Hours","Weekend Days","Roles and Responsibilities"]					
+				var  contract_term=["Nationality","Nationality (Arabic)","Passport/ID Place of Issue","Passport/ID Place of Issue (Arabic)","Profession","Profession (Arabic)","Branch","Branch (Arabic)","Contract Duration","Overtime","Working Hours","Basic Salary","Housing Allowance","Food Allowance","Transportation Allowance","Other Allowance","Total","Airport Destination","Airport Destination (Arabic)"]				
 				frappe.call({
 						method: "frappe.client.get_list",
-						async:false,
+						async:false,          
 						args: {
 							doctype: "Contract Term",
 							fields: ["name"],
@@ -57,17 +57,17 @@ frappe.ui.form.on('Employee Contract', {
 							},
 							"limit_page_length":0
 						},
-						callback: function(r) {
-							if(r.message.length>0){
-								cur_frm.clear_table("contract_term")
-								for(var i=0;i<r.message.length;i++){
-									var child = cur_frm.add_child("contract_term");
-									  child.contract_term=r.message[i].name;
+							callback: function(r) {
+								if(r.message.length>0){
+									cur_frm.clear_table("contract_term")
+									for(var i=0;i<r.message.length;i++){
+										var child = cur_frm.add_child("contract_term");
+										child.contract_term=r.message[i].name;
+									}
 								}
 							}
-						}
-					})
-					cur_frm.refresh_field("contract_term")	
+						})
+						cur_frm.refresh_field("contract_term")	
 				}		  
 			}
 
@@ -151,6 +151,15 @@ frappe.ui.form.on('Employee Contract', {
 				}
 			});
 		}
+	},
+	before_save:function(frm){
+		$.each(frm.doc.contract_term,function(idx,term){
+			if(term.contract_term=="Overtime"){
+				if(term.value!=="Not Applicable"&&term.value!=="Applicable"){
+					frappe.throw(('Overtime value should be either "Not Applicable" or "Applicable"  '))
+				}
+			}
+		});
 	},
 on_submit:function(frm){
 	if(frm.doc.party_type=="Employee"){
