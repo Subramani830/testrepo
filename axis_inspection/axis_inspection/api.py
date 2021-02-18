@@ -295,3 +295,7 @@ def get_contract(doctype,name):
 @frappe.whitelist()
 def get_task(employee,project):
 	return frappe.db.sql("""select t.name from `tabTask` t,`tabAssign To` a where t.name=a.parent and t.project=%s and a.assign_to=%s""",(project,employee), as_dict=True)
+
+@frappe.whitelist()
+def get_employee_filters(project):
+	return frappe.db.sql("""select a.assign_to from `tabTask` t,`tabAssign To` a where t.name=a.parent and t.project=%s """,(project), as_dict=True)

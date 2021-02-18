@@ -44,10 +44,10 @@ customer:function(frm){
 	})
 },
 quotation:function(frm){
-	frappe.db.get_value("Quotation",{"name":frm.doc.quotation},"status",(r)=>{
-		frm.set_value('quotation_status',r.status)
-	})
 	if(frm.doc.quotation!=undefined){
+		frappe.db.get_value("Quotation",{"name":frm.doc.quotation},"status",(r)=>{
+			frm.set_value('quotation_status',r.status)
+		})
 		frm.set_query("sales_order", function() {
 			return {
 				filters: {
@@ -59,9 +59,11 @@ quotation:function(frm){
 	}
 },
 sales_order:function(frm){
-	frappe.db.get_value("Sales Order",{"name":frm.doc.sales_order},"status",(r)=>{
-		frm.set_value('sales_order_status',r.status)
-	})
+	if(frm.doc.sales_order!=undefined){
+		frappe.db.get_value("Sales Order",{"name":frm.doc.sales_order},"status",(r)=>{
+			frm.set_value('sales_order_status',r.status)
+		})
+	}
 }
 });
 

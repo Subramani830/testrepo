@@ -11,9 +11,12 @@
   "section_break_2",
   "employee",
   "employee_name",
+  "id_number",
+  "old_employee_id",
   "column_break_4",
   "designation",
   "branch",
+  "nationality",
   "section_break_8",
   "document_detail"
  ],
@@ -70,11 +73,32 @@
   {
    "fieldname": "section_break_8",
    "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "employee.id_number",
+   "fieldname": "id_number",
+   "fieldtype": "Data",
+   "label": "ID Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.old_employee_id",
+   "fieldname": "old_employee_id",
+   "fieldtype": "Data",
+   "label": "Old Employee ID",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.nationality",
+   "fieldname": "nationality",
+   "fieldtype": "Data",
+   "label": "Nationality",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-02-16 16:22:54.923129",
+ "modified": "2021-02-18 10:19:46.701526",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Document Set",

@@ -55,13 +55,37 @@ var items=[];
 		});
 		}
 	});
-frm.fields_dict['items'].grid.get_field('item_code').get_query = function() {
-                                return {
-                                    filters: {
-                                       name:["in",items] 
-                                    }
-                                };
-                            };
+	frm.fields_dict['items'].grid.get_field('item_code').get_query = function() {
+        return {
+			filters: {
+				name:["in",items] 
+			}
+		};
+	};
+
+	var employee=[]
+		frappe.call({
+			method:"axis_inspection.axis_inspection.api.get_employee_filters",
+			async:false,
+			args: {
+				"project":frm.doc.project
+			},
+			callback: function(r){
+				for(var i=0; i<r.message.length; i++){
+					if(!employee.includes(r.message[i].assign_to)){
+						employee.push(r.message[i].assign_to);
+					}
+					
+				}
+			}
+		});
+		frm.set_query("employee",function(){
+			return{
+				filters: {
+					name:["in",employee] 
+				}
+				}
+				});
 
 }
 })

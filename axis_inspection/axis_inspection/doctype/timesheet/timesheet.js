@@ -115,9 +115,12 @@ frappe.ui.form.on('Timesheet Detail',{
 			var row = locals[cdt][cdn];
 			row.costing_rate=overtime;
 			cur_frm.refresh_field("time_logs")
-	},
-project:function(frm,cdt,cdn){
-	$.each(frm.doc.time_logs, function(idx, time){
+	}
+});
+frappe.ui.form.on('Timesheet Detail', 'task',function(frm,cdt, cdn){
+	var cur_grid =frm.get_field('time_logs').grid;
+	var cur_doc = locals[cdt][cdn];
+	var cur_row = cur_grid.get_row(cur_doc.name);
 		var task=[]
 		if(time.project!=undefined){
 			frappe.call({
@@ -125,10 +128,9 @@ project:function(frm,cdt,cdn){
 				async:false,
 				args: {
 					"employee":frm.doc.employee,
-					"project":time.project
+					"project":cur_row.doc.project
 				},
 				callback: function(r){
-					console.log(r)
 					for(var i=0; i<r.message.length; i++){
 						task.push(r.message[i]);
 					}
@@ -145,5 +147,4 @@ project:function(frm,cdt,cdn){
 		}
 
 	});
-}
-});
+

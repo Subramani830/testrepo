@@ -250,7 +250,11 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Training Program-number_of_frequency",
 		"Asset Movement Item-asset_category",
 		"Task-service",
-		"Attendance-shift_time"
+		"Attendance-shift_time",
+		"Timesheet Detail-service",
+		"Stock Entry-employee",
+		"Delivery Note-time_sheet_list",
+		"Delivery Note-time_sheets"
 		]
 	]
 ]
