@@ -299,3 +299,10 @@ def get_task(employee,project):
 @frappe.whitelist()
 def get_employee_filters(project):
 	return frappe.db.sql("""select a.assign_to from `tabTask` t,`tabAssign To` a where t.name=a.parent and t.project=%s """,(project), as_dict=True)
+
+@frappe.whitelist()
+def employee_filter_based_on_department(doctype, txt, searchfield, start, page_len, filters):
+	user=filters['user']
+	q1=frappe.db.get_value('Employee',{'user_id':user},'department')
+	if q1:
+		return frappe.db.sql("""select name from `tabEmployee` where department=%s""",(q1))

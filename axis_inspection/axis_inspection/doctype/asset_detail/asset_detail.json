@@ -6,7 +6,8 @@
  "engine": "InnoDB",
  "field_order": [
   "asset_category",
-  "qty"
+  "qty",
+  "actual_issued_quantity"
  ],
  "fields": [
   {
@@ -21,12 +22,20 @@
    "in_list_view": 1,
    "label": "Asset Category",
    "options": "Asset Category"
+  },
+  {
+   "default": "0",
+   "fieldname": "actual_issued_quantity",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Actual Issued Quantity",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-02-12 17:45:35.515761",
+ "modified": "2021-02-19 17:57:42.153180",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Asset Detail",

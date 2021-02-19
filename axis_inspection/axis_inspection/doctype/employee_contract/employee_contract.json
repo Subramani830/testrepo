@@ -178,7 +178,8 @@
   {
    "fieldname": "duration",
    "fieldtype": "Data",
-   "label": "Duration"
+   "label": "Duration",
+   "read_only": 1
   },
   {
    "fieldname": "sb_contract",
@@ -266,7 +267,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2021-02-17 18:52:38.237563",
+ "modified": "2021-02-18 21:00:21.984545",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Employee Contract",

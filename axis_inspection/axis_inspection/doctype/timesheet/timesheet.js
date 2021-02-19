@@ -83,7 +83,31 @@ before_workflow_action: (frm) => {
 				
 				
                 }
-    });
+		   });
+			if(frappe.user_roles.includes('Department Manager')&&frappe.user_roles.includes('Employee')){
+				frm.set_query("employee",function(){
+					return{
+						query: "axis_inspection.axis_inspection.api.employee_filter_based_on_department",
+						filters: {
+							"user":frappe.session.user
+						}
+					};
+				});
+		   }
+		   else if(frappe.user_roles.includes('Employee')){
+			user=frappe.db.get_value('Employee',{'user_id':frappe.session.user},'name')
+			console.log(user)
+				if(user!=undefined)	{
+					frm.set_query("employee",function(){
+						return{
+							filters: {
+								"user_id":user
+							}
+						};
+					});
+				}
+		   }
+
 		
 	}
 
@@ -92,29 +116,32 @@ frappe.ui.form.on('Timesheet Detail',{
 	activity_type:function(frm,cdt,cdn){
 		var basic;
 		var hours;
-		frappe.call({
-			method:"axis_inspection.axis_inspection.api.get_contract",
-			async:false,
-					args: {
-						doctype: 'Employee',
-						name: frm.doc.employee
-					},
-				callback: function(r){
-					console.log(r)
-					for (var i=0;i<r.message.length;i++){
-						if(r.message[i].contract_term=='Basic Salary'){
-							basic=r.message[i].value
-						}
-						else if(r.message[i].contract_term=='Working Hours'){
-							hours=r.message[i].value
+		if(frm.doc.employee!=undefined){
+			frappe.call({
+				method:"axis_inspection.axis_inspection.api.get_contract",
+				async:false,
+						args: {
+							doctype: 'Employee',
+							name: frm.doc.employee
+						},
+					callback: function(r){
+						console.log(r)
+						for (var i=0;i<r.message.length;i++){
+							if(r.message[i].contract_term=='Basic Salary'){
+								basic=r.message[i].value
+							}
+							else if(r.message[i].contract_term=='Working Hours'){
+								hours=r.message[i].value
+							}
 						}
 					}
-				}
-			});
+				});
 			var	overtime=(basic/30)/hours
 			var row = locals[cdt][cdn];
 			row.costing_rate=overtime;
 			cur_frm.refresh_field("time_logs")
+		}
+		
 	}
 });
 frappe.ui.form.on('Timesheet Detail', 'task',function(frm,cdt, cdn){
@@ -122,7 +149,7 @@ frappe.ui.form.on('Timesheet Detail', 'task',function(frm,cdt, cdn){
 	var cur_doc = locals[cdt][cdn];
 	var cur_row = cur_grid.get_row(cur_doc.name);
 		var task=[]
-		if(time.project!=undefined){
+		if(time.project!=undefined &&frm.doc.employee!=undefined){
 			frappe.call({
 				method:"axis_inspection.axis_inspection.api.get_task",
 				async:false,

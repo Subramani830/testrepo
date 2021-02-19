@@ -152,15 +152,6 @@ frappe.ui.form.on('Employee Contract', {
 			});
 		}
 	},
-	before_save:function(frm){
-		$.each(frm.doc.contract_term,function(idx,term){
-			if(term.contract_term=="Overtime"){
-				if(term.value!=="Not Applicable"&&term.value!=="Applicable"){
-					frappe.throw(('Overtime value should be either "Not Applicable" or "Applicable"  '))
-				}
-			}
-		});
-	},
 on_submit:function(frm){
 	if(frm.doc.party_type=="Employee"){
 		var email;

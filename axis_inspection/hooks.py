@@ -254,7 +254,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Timesheet Detail-service",
 		"Stock Entry-employee",
 		"Delivery Note-time_sheet_list",
-		"Delivery Note-time_sheets"
+		"Delivery Note-time_sheets",
+		"Employee-overtime"
 		]
 	]
 ]
@@ -741,8 +742,8 @@ override_doctype_dashboards = {
 doc_events = {
     	"Asset Movement": {
 		"validate": ["axis_inspection.axis_inspection.doctype.asset_movement.asset_movement.validate"],
-		"on_submit": ["axis_inspection.axis_inspection.doctype.asset_movement.asset_movement.update_asset_details"],
-		"on_cancel": ["axis_inspection.axis_inspection.doctype.asset_movement.asset_movement.delete_asset_details"]
+		"on_submit": ["axis_inspection.axis_inspection.doctype.asset_movement.asset_movement.on_submit"],
+		"on_cancel": ["axis_inspection.axis_inspection.doctype.asset_movement.asset_movement.on_cancel"]
     },
 	"Contract":{
 		"autoname": ["axis_inspection.axis_inspection.doctype.contract.contract.autoname"]
@@ -760,7 +761,8 @@ doc_events = {
 	},
 	"Stock Entry":{
 		"validate":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.validate"],
-		"on_submit":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.on_submit"]
+		"on_submit":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.on_submit"],
+		"on_cancel":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.on_cancel"]
 	}
 }
 
