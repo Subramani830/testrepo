@@ -66,9 +66,9 @@ def get_columns():
 
 def get_data(filters,conditions):
 	query="""select c.name,c.party_type,c.party_name,c.start_date,c.end_date, (100 - ((DATEDIFF(c.end_date,Now()) / DATEDIFF(c.end_date, c.start_date))*100))as date_percentage from `tabContract` c WHERE  (100 - ((DATEDIFF(c.end_date,Now()) / DATEDIFF(c.end_date, c.start_date))*100))>=70{conditions}""".format(conditions=conditions)
-	sales_order=frappe.db.sql(query, as_dict=True)
+	contract=frappe.db.sql(query, as_dict=True)
 
-	return sales_order
+	return contract
 
 def get_conditions(filters):
 	conditions=""
