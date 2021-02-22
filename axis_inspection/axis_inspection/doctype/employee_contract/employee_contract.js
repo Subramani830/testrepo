@@ -75,7 +75,7 @@ frappe.ui.form.on('Employee Contract', {
 	after_save:function(frm){
 		if(frm.doc.party_type=="Employee"){
 			frappe.call({
-				method:"axis_inspection.axis_inspection.api.update_enployee",
+				method:"axis_inspection.axis_inspection.api.update_employee",
 				async:false,
 				args:{
 					name:frm.doc.party_name,
