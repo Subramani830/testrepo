@@ -468,7 +468,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Payroll Entry-payroll_frequency-options",
 				"Timesheet Detail-task-in_list_view",
 				"Timesheet Detail-task-reqd",
-				"Timesheet Detail-project-read_only",
 				"Project-estimated_costing-depends_on",
 				"Project-total_sales_amount-depends_on",
 				"Project-total_billable_amount-depends_on",
