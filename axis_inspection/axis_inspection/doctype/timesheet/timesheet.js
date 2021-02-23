@@ -84,7 +84,16 @@ before_workflow_action: (frm) => {
 				
                 }
 		   });
-			if(frappe.user_roles.includes('Department Manager')&&frappe.user_roles.includes('Employee')){
+			if(frappe.user_roles.includes('System Manager')&& frappe.session.user=='Administrator'){
+				frm.set_query("employee",function(){
+					return{
+						filters: {
+							"name":"None"
+						}
+					};
+				});
+		   }
+			else if(frappe.user_roles.includes('Department Manager')&&frappe.user_roles.includes('Employee')){
 				frm.set_query("employee",function(){
 					return{
 						query: "axis_inspection.axis_inspection.api.employee_filter_based_on_department",

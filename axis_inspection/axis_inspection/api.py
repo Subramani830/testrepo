@@ -306,3 +306,8 @@ def employee_filter_based_on_department(doctype, txt, searchfield, start, page_l
 	q1=frappe.db.get_value('Employee',{'user_id':user},'department')
 	if q1:
 		return frappe.db.sql("""select name from `tabEmployee` where department=%s""",(q1))
+
+@frappe.whitelist()
+def get_employee(task):
+	employee=[]
+	val=frappe.db.get_list("Assign To",filters={'parent':task},fields=["assign_to"])
