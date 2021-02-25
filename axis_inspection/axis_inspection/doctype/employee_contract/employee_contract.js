@@ -74,6 +74,16 @@ frappe.ui.form.on('Employee Contract', {
 	},
 	after_save:function(frm){
 		if(frm.doc.party_type=="Employee"){
+			 var ot;
+			    $.each(frm.doc.contract_term, function(idx, item){
+					if(item.contract_term=="Overtime"){
+						console.log(item.value)
+						ot = item.value
+				}
+			    });
+
+
+
 			frappe.call({
 				method:"axis_inspection.axis_inspection.api.update_employee",
 				async:false,
@@ -82,7 +92,8 @@ frappe.ui.form.on('Employee Contract', {
 					contract_no:frm.doc.name,
 					contract_start_date:frm.doc.start_date,
 					contract_end_date:frm.doc.end_date,
-					contract_date_end:frm.doc.duration
+					contract_date_end:frm.doc.duration,
+					over_time:ot
 				},
 				callback:function(r){
 					frappe.db.get_value("Employee",frm.doc.party_name,"probation_duration",(c)=>{

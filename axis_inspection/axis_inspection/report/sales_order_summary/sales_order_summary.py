@@ -15,6 +15,8 @@ def execute(filters=None):
 	for dicts in data:
 		if dicts['delivery_date'] != None:
 			dicts['delivery_date'] = str(datetime.strftime(dicts['delivery_date'], "%d-%m-%Y"))
+		if dicts['customers_purchase_order_valid_till'] != None:
+			dicts['customers_purchase_order_valid_till'] = str(datetime.strftime(dicts['customers_purchase_order_valid_till'], "%d-%m-%Y"))
 
 	chart = get_chart_data(data)
 
@@ -37,8 +39,14 @@ def get_columns():
 			"width": 200
 		},
 		{
-			"fieldname": "delivery_date",
+			"fieldname": "customers_purchase_order_valid_till",
 			"label": _("Delivery Date"),
+			"fieldtype": "date",
+			"width": 200
+		},
+		{
+			"fieldname": "delivery_date",
+			"label": _("Customer's Purchase Order Valid Till"),
 			"fieldtype": "date",
 			"width": 200
 		},
@@ -64,7 +72,7 @@ def get_columns():
 	return columns
 
 def get_data(filters,conditions):
-	query="""select so.name,so.status,so.delivery_date, (100 - ((DATEDIFF(so.delivery_date,Now()) / DATEDIFF(so.delivery_date, so.transaction_date))*100))as date_percentage,so.per_billed,so.per_delivered from `tabSales Order` so WHERE  (100 - ((DATEDIFF(so.delivery_date,Now()) / DATEDIFF(so.delivery_date, so.transaction_date))*100))>=70{conditions}""".format(conditions=conditions)
+	query="""select so.name,so.status,so.customers_purchase_order_valid_till,so.delivery_date, (100 - ((DATEDIFF(so.delivery_date,Now()) / DATEDIFF(so.delivery_date, so.customers_purchase_order_valid_till))*100))as date_percentage,so.per_billed,so.per_delivered from `tabSales Order` so WHERE  (100 - ((DATEDIFF(so.delivery_date,Now()) / DATEDIFF(so.delivery_date, so.customers_purchase_order_valid_till))*100))>=70{conditions}""".format(conditions=conditions)
 	sales_order=frappe.db.sql(query, as_dict=True)
 
 	return sales_order

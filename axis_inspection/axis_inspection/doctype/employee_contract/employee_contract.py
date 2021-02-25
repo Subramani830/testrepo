@@ -13,9 +13,10 @@ class EmployeeContract(Document):
 		for row in self.contract_term:
 			if row.contract_term=="Overtime":
 				if row.value=="Not Applicable" or row.value=="Applicable":
-					value=frappe.db.get_value('Employee',{'name':self.party_name},'overtime')
-					if row.value!=value:
-						frappe.throw(_("For the employee {0} overtime value should be {1} only.").format(self.party_name,value))
+					pass
+				#	value=frappe.db.get_value('Employee',{'name':self.party_name},'overtime')
+				#	if row.value!=value:
+				#		frappe.throw(_("For the employee {0} overtime value should be {1} only.").format(self.party_name,value))
 
 				elif row.value!="Not Applicable" or row.value!="Applicable":
 					frappe.throw(_('Overtime value should be either "Not Applicable" or "Applicable"'))

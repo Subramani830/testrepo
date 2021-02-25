@@ -17,11 +17,9 @@ def execute(filters=None):
 			dicts['start_date'] = str(datetime.strftime(dicts['start_date'], "%d-%m-%Y"))
 		if dicts['end_date'] != None:
 			dicts['end_date'] = str(datetime.strftime(dicts['end_date'], "%d-%m-%Y"))
-
 	chart = get_chart_data(data)
 
 	return columns, data, None, chart
-
 def get_columns():
 	columns = [
 		{
@@ -60,12 +58,30 @@ def get_columns():
 			"label": _("Date %"),
 			"fieldtype": "percent",
 			"width": 100
+		},
+		{
+			"fieldname": "maximum_value",
+			"label": _("Maximum Value"),
+			"fieldtype": "currency",
+			"width": 150
+		},
+		{
+			"fieldname": "amt_left",
+			"label": _("Amount Left"),
+			"fieldtype": "currency",
+			"width": 150
+		},
+		{
+			"fieldname": "amt_per",
+			"label": _("Amount Remaining%"),
+			"fieldtype": "percent",
+			"width": 150
 		}
 	]
 	return columns
 
 def get_data(filters,conditions):
-	query="""select c.name,c.party_type,c.party_name,c.start_date,c.end_date, (100 - ((DATEDIFF(c.end_date,Now()) / DATEDIFF(c.end_date, c.start_date))*100))as date_percentage from `tabContract` c WHERE  (100 - ((DATEDIFF(c.end_date,Now()) / DATEDIFF(c.end_date, c.start_date))*100))>=70{conditions}""".format(conditions=conditions)
+	query="""select c.name,c.party_type,c.party_name,c.start_date,c.end_date, (100 - ((DATEDIFF(c.end_date,Now()) / DATEDIFF(c.end_date, c.start_date))*100))as date_percentage, c.maximum_value, c.amt_left,((c.amt_left/c.maximum_value)*100)as amt_per from `tabContract` c WHERE  (100 - ((DATEDIFF(c.end_date,Now()) / DATEDIFF(c.end_date, c.start_date))*100))>=70{conditions}""".format(conditions=conditions)
 	contract=frappe.db.sql(query, as_dict=True)
 
 	return contract
@@ -81,13 +97,13 @@ def get_chart_data(data):
 	labels = []
 	date_per = []
 	#completed = []
-	#bill_per = []
+	amt_perc = []
 
 	for con in data:
 		labels.append(con.name)
 		date_per.append(con.date_percentage)
 		#completed.append(con.per_delivered)
-		#bill_per.append(con.per_billed)
+		amt_perc.append(con.amt_per)
 
 	return {
 		"data": {
@@ -96,11 +112,15 @@ def get_chart_data(data):
 				{
 					"name": "Date %",
 					"values": date_per[:30]
+				},
+				{
+					"name": "Amount %",
+					"values": amt_perc[:30]
 				}
 			]
 		},
 		"type": "bar",
-		"colors": ["#fc4f51"],
+		"colors": ["#fc4f51","#ffd343"],
 		"barOptions": {
 			"stacked": False
 		}

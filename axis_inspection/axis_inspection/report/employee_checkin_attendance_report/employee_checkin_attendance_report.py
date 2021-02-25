@@ -129,7 +129,7 @@ def get_columns():
 	return columns
 
 def get_data(filters,conditions):
-	query="""select a.employee, a.employee_name,e.department,e.designation,e.branch,a.attendance_date,a.in_time,a.out_time,a.working_hours,(CASE WHEN a.late_entry=1 THEN a.shift_time-a.working_hours ELSE a.late_entry END) as late_entry,(CASE WHEN a.early_exit=1 THEN a.shift_time-a.working_hours ELSE a.early_exit END) as early_exit,a.status from `tabAttendance` a LEFT JOIN `tabEmployee` e on a.employee=e.name where a.docstatus = 1 {conditions} ORDER BY a.attendance_date ASC""".format(conditions=conditions)
+	query="""select a.employee, a.employee_name,e.department,e.designation,e.branch,a.attendance_date,a.in_time,a.out_time,a.working_hours,(CASE WHEN a.late_entry=1 THEN CONCAT(HOUR(TIMEDIFF(TIME(SUBSTRING(a.in_time FROM 1 FOR 24)), s.start_time)) + (MINUTE(TIMEDIFF(TIME(SUBSTRING(a.in_time FROM 1 FOR 24)), s.start_time)))/60) ELSE a.late_entry END) as late_entry,(CASE WHEN a.early_exit=1 THEN CONCAT(HOUR(TIMEDIFF(s.end_time, TIME(SUBSTRING(a.out_time FROM 1 FOR 24)))) + (MINUTE(TIMEDIFF(s.end_time , TIME(SUBSTRING(a.out_time FROM 1 FOR 24)))))/60) ELSE a.early_exit END) as early_exit,a.status from `tabAttendance` a LEFT JOIN `tabEmployee` e on a.employee=e.name LEFT JOIN `tabShift Type` s on a.shift=s.name where a.docstatus = 1 {conditions} ORDER BY a.attendance_date ASC""".format(conditions=conditions)
 	employee_list=frappe.db.sql(query, as_dict=True)
 
 	return employee_list
