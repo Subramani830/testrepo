@@ -77,7 +77,6 @@ frappe.ui.form.on('Employee Contract', {
 			 var ot;
 			    $.each(frm.doc.contract_term, function(idx, item){
 					if(item.contract_term=="Overtime"){
-						console.log(item.value)
 						ot = item.value
 				}
 			    });
