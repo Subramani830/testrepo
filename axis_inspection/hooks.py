@@ -4,10 +4,13 @@ import frappe
 from frappe import _
 from frappe.model.mapper import get_mapped_doc
 from . import __version__ as app_version
+from frappe.utils import add_days, cint, cstr, flt, getdate, rounded, date_diff, money_in_words, formatdate
+from erpnext.payroll.doctype.payroll_period.payroll_period import get_period_factor, get_payroll_period
 from erpnext.hr.doctype.employee_onboarding.employee_onboarding import EmployeeOnboarding
 from erpnext.payroll.doctype.payroll_entry.payroll_entry import PayrollEntry
 from erpnext.accounts.doctype.sales_invoice.sales_invoice import SalesInvoice
 from axis_inspection.axis_inspection.doctype.timesheet.timesheet import get_project_timesheet_data
+from erpnext.payroll.doctype.salary_slip.salary_slip import SalarySlip
 
 app_name = "axis_inspection"
 app_title = "Axis Inspection"
@@ -816,11 +819,55 @@ def add_timesheet_data(self):
 				})
 		self.calculate_billing_amount_for_timesheet()
 
+def calculate_net_pay(self):
+	count=0
+	for row in self.earnings:
+		count+=1
+	if count<=0:
+		if self.salary_structure:
+			self.calculate_component_amounts("earnings")
+		self.gross_pay = self.get_component_totals("earnings")
+	else:
+		pass
+
+	num=0
+	for row in self.deductions:
+		num+=1
+	if num<=0:
+		if self.salary_structure:
+			self.calculate_component_amounts("deductions")
+		self.total_deduction = self.get_component_totals("deductions")
+	else:
+		pass
+
+	self.set_loan_repayment()
+
+	self.net_pay = flt(self.gross_pay) - (flt(self.total_deduction) + flt(self.total_loan_repayment))
+	self.rounded_total = rounded(self.net_pay)
+
+def calculate_component_amounts(self, component_type):
+		if not getattr(self, '_salary_structure_doc', None):
+			self._salary_structure_doc = frappe.get_doc('Salary Structure', self.salary_structure)
+
+		payroll_period = get_payroll_period(self.start_date, self.end_date, self.company)
+
+		self.add_structure_components(component_type)
+		self.add_additional_salary_components(component_type)
+		if component_type == "earnings":
+			self.add_employee_benefits(payroll_period)
+		else:
+			self.add_tax_components(payroll_period)
+
+		self.set_component_amounts_based_on_payment_days(component_type)
+
+
+
 PayrollEntry.get_filter_condition=get_filter_condition
 PayrollEntry.fill_employee_details=fill_employee_details
 EmployeeOnboarding.validate_duplicate_employee_onboarding = validate_duplicate_employee_onboarding
 SalesInvoice.add_timesheet_data = add_timesheet_data
-
+SalarySlip.calculate_net_pay = calculate_net_pay
+SalarySlip.calculate_component_amounts = calculate_component_amounts
 
 
 app_include_js = "/assets/js/axis_inspection.min.js"

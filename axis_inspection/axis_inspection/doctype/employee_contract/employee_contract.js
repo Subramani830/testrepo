@@ -174,7 +174,7 @@ on_submit:function(frm){
 					doctype:'File',
 					file_url:frm.doc.attach_job_offer,
 					attached_to_field:"attach_job_offer",
-					attached_to_doctype:" Employee Contract"
+					attached_to_doctype:"Employee Contract"
 				},
 				async:false,
 				callback: function(r){
@@ -229,6 +229,7 @@ function addDays(start_date, days) {
 		frappe.call({
 						method: "frappe.core.doctype.communication.email.make",
 						args: {
+							doctype: "Employee Contract",
 							subject: name,
 							communication_medium: "Email",
 							recipients: email,
@@ -237,7 +238,6 @@ function addDays(start_date, days) {
 							send_email:1,
 							attachments:attachment,
 							print_format:"Axis Contract Print Format",
-							doctype: " Employee Contract",
 							name: name,
 							print_letterhead: 0
 						},

@@ -253,7 +253,7 @@ def get_email(doctype,name):
 
 @frappe.whitelist()
 def get_file_name(doctype,file_url,attached_to_field,attached_to_doctype):
-		return frappe.db.get_value(doctype,{'file_url':file_url,"attached_to_field":attached_to_field,"attached_to_doctype":attached_to_doctype},'name')
+		return frappe.db.get_value(doctype,{"attached_to_field":attached_to_field,"attached_to_doctype":attached_to_doctype},'name')
 
 @frappe.whitelist()
 def update_clearance_process(doctype,employee,month,year):

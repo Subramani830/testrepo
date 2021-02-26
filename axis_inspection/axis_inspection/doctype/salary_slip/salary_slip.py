@@ -13,7 +13,7 @@ from frappe.utils import flt,rounded, date_diff, money_in_words
 from axis_inspection.axis_inspection.doctype.employee_deductions.employee_deductions import convertDateFormat
 
 
-
+@frappe.whitelist()
 def update_salary_slip(doc,method):
 #    amount=frappe.db.get_list('Timesheet',{'employee':doc.employee,'start_date':["between",[doc.start_date,doc.end_date]],'workflow_state':'Completed'},'total_costing_amount')
 #    costing_amount=0

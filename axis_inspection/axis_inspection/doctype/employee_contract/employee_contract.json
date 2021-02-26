@@ -144,7 +144,7 @@
    "fieldname": "document_type",
    "fieldtype": "Select",
    "label": "Document Type",
-   "options": "Job Offer"
+   "options": "\nJob Offer"
   },
   {
    "fieldname": "cb_links",
@@ -152,12 +152,12 @@
   },
   {
    "fieldname": "document_name",
-   "fieldtype": "Dynamic Link",
+   "fieldtype": "Link",
    "in_global_search": 1,
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Document Name",
-   "options": "document_type"
+   "options": "Job Offer"
   },
   {
    "fieldname": "amended_from",
@@ -267,7 +267,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2021-02-18 21:00:21.984545",
+ "modified": "2021-02-26 08:10:36.881158",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Employee Contract",
