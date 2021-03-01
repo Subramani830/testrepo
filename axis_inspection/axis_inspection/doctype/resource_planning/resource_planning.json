@@ -8,7 +8,7 @@
  "field_order": [
   "customer",
   "section_break_2",
-  "quotation",
+  "prevdoc_docname",
   "sales_order",
   "column_break_3",
   "quotation_status",
@@ -48,12 +48,6 @@
    "options": "Asset Detail"
   },
   {
-   "fieldname": "quotation",
-   "fieldtype": "Link",
-   "label": "Quotation",
-   "options": "Quotation"
-  },
-  {
    "fieldname": "column_break_3",
    "fieldtype": "Column Break"
   },
@@ -78,11 +72,17 @@
   {
    "fieldname": "section_break_2",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "prevdoc_docname",
+   "fieldtype": "Link",
+   "label": "Quotation",
+   "options": "Quotation"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-02-15 15:02:37.856837",
+ "modified": "2021-03-01 12:58:48.507275",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Resource Planning",

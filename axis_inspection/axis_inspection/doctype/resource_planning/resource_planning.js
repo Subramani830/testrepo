@@ -11,7 +11,6 @@ refresh: function(frm) {
 		},
 	async:false,
 	callback: function(r){
-		console.log(r)
 	for(var i=0;i<r.message.length;i++){
 			item_group.push(r.message[i].name);
 	}
@@ -44,15 +43,15 @@ customer:function(frm){
 	})
 },
 quotation:function(frm){
-	if(frm.doc.quotation!=undefined){
-		frappe.db.get_value("Quotation",{"name":frm.doc.quotation},"status",(r)=>{
+	if(frm.doc.prevdoc_docname!=undefined){
+		frappe.db.get_value("Quotation",{"name":frm.doc.prevdoc_docname},"status",(r)=>{
 			frm.set_value('quotation_status',r.status)
 		})
 		frm.set_query("sales_order", function() {
 			return {
 				filters: {
 					"customer":frm.doc.customer,
-					"quotation":frm.doc.quotation
+					"quotation":frm.doc.prevdoc_docname
 				}
 			};
 		})

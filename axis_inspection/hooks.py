@@ -744,7 +744,8 @@ override_doctype_dashboards = {
 	"Sales Order": ["axis_inspection.axis_inspection.doctype.sales_order.sales_order_dashboard.get_dashboard_data"],
 	"Material Request":["axis_inspection.axis_inspection.doctype.material_request.material_request_dashboard.get_dashboard_data"],
 	"Company":["axis_inspection.axis_inspection.doctype.company.company_dashboard.get_dashboard_data"],
-	"Project":["axis_inspection.axis_inspection.doctype.project.project_dashboard.get_dashboard_data"]
+	"Project":["axis_inspection.axis_inspection.doctype.project.project_dashboard.get_dashboard_data"],
+	"Quotation":["axis_inspection.axis_inspection.doctype.quotation.quotation_dashboard.get_dashboard_data"]
 }
 
 doc_events = {
