@@ -258,7 +258,13 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Stock Entry-employee",
 		"Delivery Note-time_sheet_list",
 		"Delivery Note-time_sheets",
-		"Employee-overtime"
+		"Employee-overtime",
+		"Quotation Item-minimum_charge",
+		"Quotation Item-standby_rate",
+		"Quotation Item-overtime_rate",
+		"Contract Item-minimum_charge"
+		"Contract Item-standby_rate",
+		"Contract Item-overtime_rate"
 		]
 	]
 ]
@@ -846,19 +852,19 @@ def calculate_net_pay(self):
 	self.rounded_total = rounded(self.net_pay)
 
 def calculate_component_amounts(self, component_type):
-		if not getattr(self, '_salary_structure_doc', None):
-			self._salary_structure_doc = frappe.get_doc('Salary Structure', self.salary_structure)
+	if not getattr(self, '_salary_structure_doc', None):
+		self._salary_structure_doc = frappe.get_doc('Salary Structure', self.salary_structure)
 
-		payroll_period = get_payroll_period(self.start_date, self.end_date, self.company)
+	payroll_period = get_payroll_period(self.start_date, self.end_date, self.company)
 
-		self.add_structure_components(component_type)
-		self.add_additional_salary_components(component_type)
-		if component_type == "earnings":
-			self.add_employee_benefits(payroll_period)
-		else:
-			self.add_tax_components(payroll_period)
+	self.add_structure_components(component_type)
+	self.add_additional_salary_components(component_type)
+	if component_type == "earnings":
+		self.add_employee_benefits(payroll_period)
+	else:
+		self.add_tax_components(payroll_period)
 
-		self.set_component_amounts_based_on_payment_days(component_type)
+	self.set_component_amounts_based_on_payment_days(component_type)
 
 
 

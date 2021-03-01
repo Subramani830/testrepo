@@ -12,7 +12,7 @@ def execute(filters=None):
 	columns = get_columns()
 	conditions,conditions1 = get_conditions(filters)
 	data = get_data(filters,conditions,conditions1)
-	print(data)
+	#print(data)
 	for dicts in data:
 		if dicts['qty_issued'] == 0.0:
 			dicts['qty_issued'] = None
@@ -65,6 +65,12 @@ def get_columns():
 			"width": 200
 		},
 		{
+			"fieldname": "s_name",
+			"label": _("Serial"),
+			"fieldtype": "Data",
+			"width": 200
+		},
+		{
 			"fieldname": "employee",
 			"label": _("Employee"),
 			"fieldtype": "Link",
@@ -82,13 +88,13 @@ def get_columns():
 	return columns
 
 def get_data(filters,conditions,conditions1):
-	query="""select sed.item_name,sed.item_code,(CASE WHEN se.stock_entry_type='Material Issue' THEN sed.qty ELSE 0 END)as qty_issued,(CASE WHEN se.stock_entry_type='Material Receipt' THEN sed.qty ELSE 0 END)as qty_return,(CASE WHEN se.stock_entry_type='Material Issue' THEN sed.qty ELSE -1*sed.qty END)as qty,se.employee,rp.name,se.name as se_name from `tabStock Entry` se \
+	query="""select sed.item_name,sed.item_code,(CASE WHEN se.stock_entry_type='Material Issue' THEN sed.qty ELSE 0 END)as qty_issued,(CASE WHEN se.stock_entry_type='Material Receipt' THEN sed.qty ELSE 0 END)as qty_return,(CASE WHEN se.stock_entry_type='Material Issue' THEN sed.qty ELSE -1*sed.qty END)as qty,se.employee,rp.name,se.name as s_name from `tabStock Entry` se \
 		JOIN `tabSales Order` so ON se.project=so.project \
 		JOIN `tabResource Planning` rp ON so.name=rp.sales_order \
 		LEFT JOIN `tabStock Entry Detail` sed ON se.name=sed.parent \
 		where se.docstatus = 1 {conditions} \
 		UNION \
-		SELECT ta.item_name,ta.item_code, (CASE WHEN tam.purpose='Issue' THEN 1 ELSE 0 END)as qty_issued,(CASE WHEN tam.purpose='Receipt' THEN 1 ELSE 0 END)as qty_return,(CASE WHEN tam.purpose='Issue' THEN 1 ELSE -1 END)as qty, (tami.to_employee)as employee,trp.name,tam.name as am_name FROM `tabAsset Movement` tam 
+		SELECT ta.item_name,ta.item_code, (CASE WHEN tam.purpose='Issue' THEN 1 ELSE 0 END)as qty_issued,(CASE WHEN tam.purpose='Receipt' THEN 1 ELSE 0 END)as qty_return,(CASE WHEN tam.purpose='Issue' THEN 1 ELSE -1 END)as qty, (tami.to_employee)as employee,trp.name,tam.name as s_name FROM `tabAsset Movement` tam 
 		JOIN `tabSales Order` tso ON tam.project=tso.project
 		JOIN `tabResource Planning` trp on tso.name=trp.sales_order 
 		LEFT JOIN `tabAsset Movement Item` tami on tam.name=tami.parent
