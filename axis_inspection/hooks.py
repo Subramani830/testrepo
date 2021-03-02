@@ -262,7 +262,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Quotation Item-minimum_charge",
 		"Quotation Item-standby_rate",
 		"Quotation Item-overtime_rate",
-		"Contract Item-minimum_charge"
+		"Contract Item-minimum_charge",
 		"Contract Item-standby_rate",
 		"Contract Item-overtime_rate"
 		]
@@ -621,7 +621,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Quality Inspection-reference_type-options",
 				"Sales Order-delivery_date-label",
 				"Contract-party_type-options",
-				"Timesheet Detail-costing_rate-read_only"
+				"Timesheet Detail-costing_rate-read_only",
+				"Stock Entry-from_bom-hidden",
+				"Supplier Quotation Item-manufacture_details-hidden"
 			]
 	]
 	]

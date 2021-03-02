@@ -17,6 +17,14 @@ if(frm.doc.from_warehouse!=undefined){
 		}
 	})
 }
+setTimeout(() => {
+	frm.remove_custom_button('Bill of Materials','Get items from');
+	frm.remove_custom_button('Expired Batches','Get items from');
+	frm.remove_custom_button('Bill of Materials','Get Items From');
+	frm.remove_custom_button('Expired Batches','Get Items From');
+	}, 10);
+
+
 },
 before_save:function(frm,cdt,cdn){
 	var count=0;
