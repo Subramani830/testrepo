@@ -10,6 +10,7 @@ from frappe import _
 
 class EmployeeContract(Document):
 	def validate(self):
+		validate_contract_term(self)
 		for row in self.contract_term:
 			if row.contract_term=="Overtime":
 				if row.value=="Not Applicable" or row.value=="Applicable":
@@ -28,3 +29,9 @@ def get_contract_term(contract_term,doc):
 	for row in contract_list:
 		if contract_term==row['contract_term']:
 			return row['name']
+
+def validate_contract_term(self):
+	contract_term_list=["Nationality","Nationality (Arabic)","Passport/ID Place of Issue","Passport/ID Place of Issue (Arabic)","Profession","Profession (Arabic)","Branch","Branch (Arabic)","Contract Duration","Overtime","Working Hours","Basic Salary","Housing Allowance","Food Allowance","Transportation Allowance","Other Allowance","Total","Airport Destination","Airport Destination (Arabic)"]	
+	for term in self.contract_term:
+		if (term.contract_term not in contract_term_list): 
+			frappe.throw(_('You cannot enter new contract term'))
