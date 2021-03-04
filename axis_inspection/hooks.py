@@ -623,7 +623,15 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Contract-party_type-options",
 				"Timesheet Detail-costing_rate-read_only",
 				"Stock Entry-from_bom-hidden",
-				"Supplier Quotation Item-manufacture_details-hidden"
+				"Supplier Quotation Item-manufacture_details-hidden",
+				"Contract Item-item_name-columns",
+				"Contract Item-item_code-columns",
+				"Contract Item-item_name-in_list_view",
+				"Quotation Item-item_code-columns",
+				"Quotation Item-item_name-columns",
+				"Quotation Item-uom-columns",
+				"Sales Order Item-item_code-columns",
+				"Sales Order Item-item_name-columns"
 			]
 	]
 	]

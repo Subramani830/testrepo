@@ -127,7 +127,8 @@ refresh: function(frm){
 		var bt = ['Opportunity']
         bt.forEach(function(bt){
             frm.page.remove_inner_button(bt, 'Get items from')
-			});		
+			});	
+		apply_filter(frm)	
 },
 before_save:function(frm){
 if(frm.doc.contract != null){
@@ -164,31 +165,34 @@ if(frm.doc.contract != null){
 
 },
 item_group(frm){
-var item_groups=[];
-	if(frm.doc.item_group!=undefined || frm.doc.item_group!=null){
-		frappe.call({
-				method:"axis_inspection.axis_inspection.doctype.quotation.quotation.get_item_group",
-				args:{
-		item_group:frm.doc.item_group
-		},
-			async:false,
-			callback: function(r){
-			for(var i=0;i<r.message.length;i++){
-			item_groups.push(r.message[i].name);
-			}
-
-			frm.fields_dict['items'].grid.get_field('item_code').get_query = function() {
-				return {
-					filters: {
-						item_group:["in",item_groups] 
-					}
-				};
-			};
-
-			}
-		})
-	}
+	apply_filter(frm)
 }
 
 });
+function apply_filter(frm){
+	var item_groups=[];
+		if(frm.doc.item_group!=undefined || frm.doc.item_group!=null){
+			frappe.call({
+					method:"axis_inspection.axis_inspection.doctype.quotation.quotation.get_item_group",
+					args:{
+			item_group:frm.doc.item_group
+			},
+				async:false,
+				callback: function(r){
+				for(var i=0;i<r.message.length;i++){
+				item_groups.push(r.message[i].name);
+				}
+	
+				frm.fields_dict['items'].grid.get_field('item_code').get_query = function() {
+					return {
+						filters: {
+							item_group:["in",item_groups] 
+						}
+					};
+				};
+	
+				}
+			})
+		}
+}
 

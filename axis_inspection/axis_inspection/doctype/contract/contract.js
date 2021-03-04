@@ -33,6 +33,14 @@ frappe.ui.form.on('Contract', {
 				};
 			});
 		}
+		frm.set_query("item_group",function(){
+			return{
+				filters: {
+				"parent_item_group":'Billing Items'
+				}
+			};
+		});
+		apply_filter(frm)
     },
 	make_quotation: function(frm) {
 		frappe.model.open_mapped_doc({
@@ -129,7 +137,11 @@ contract_template_for_arabic:function(frm){
 			}
 		});			
 	}
-}
+},
+item_group(frm){
+	apply_filter(frm)
+	}
+	
 });
 frappe.ui.form.on('Contract Item', 'item_code',function(frm,cdt, cdn)
 {
@@ -200,3 +212,30 @@ frappe.ui.form.on('Contract Item', 'rate',function(frm,cdt, cdn)
 	cur_row.doc.amount=cur_row.doc.rate*cur_row.doc.qty
 	cur_frm.refresh_field('items')
 });
+
+function apply_filter(frm){
+	var item_groups=[];
+		if(frm.doc.item_group!=undefined || frm.doc.item_group!=null){
+			frappe.call({
+					method:"axis_inspection.axis_inspection.doctype.quotation.quotation.get_item_group",
+					args:{
+			item_group:frm.doc.item_group
+			},
+				async:false,
+				callback: function(r){
+				for(var i=0;i<r.message.length;i++){
+				item_groups.push(r.message[i].name);
+				}
+	
+				frm.fields_dict['items'].grid.get_field('item_code').get_query = function() {
+					return {
+						filters: {
+							item_group:["in",item_groups] 
+						}
+					};
+				};
+	
+				}
+			})
+		}
+}

@@ -83,42 +83,53 @@ before_workflow_action: (frm) => {
 				
 				
                 }
-		   });
-			if(frappe.user_roles.includes('System Manager')&& frappe.session.user=='Administrator'){
-				frm.set_query("employee",function(){
-					return{
-						filters: {
-							"name":"None"
-						}
-					};
-				});
-		   }
-			else if(frappe.user_roles.includes('Department Manager')&&frappe.user_roles.includes('Employee')){
-				frm.set_query("employee",function(){
-					return{
-						query: "axis_inspection.axis_inspection.api.employee_filter_based_on_department",
-						filters: {
-							"user":frappe.session.user
-						}
-					};
-				});
-		   }
-		   else if(frappe.user_roles.includes('Employee')){
-			user=frappe.db.get_value('Employee',{'user_id':frappe.session.user},'name')
-			console.log(user)
-				if(user!=undefined)	{
-					frm.set_query("employee",function(){
-						return{
-							filters: {
-								"user_id":user
-							}
-						};
-					});
-				}
-		   }
-
+		   });			
 		
+	},
+timesheet_type:function(frm){
+	if(frm.doc.timesheet_type=='Overtime'){
+		frm.set_query("employee",function(){
+			return{
+				filters: {
+					"overtime":"Applicable"
+				}
+			};
+		});
 	}
+	else if(frappe.user_roles.includes('System Manager')&& frappe.session.user=='Administrator'){
+		frm.set_query("employee",function(){
+			return{
+				filters: {
+					"name":"None"
+				}
+			};
+		});
+   }
+	else if(frappe.user_roles.includes('Department Manager')&&frappe.user_roles.includes('Employee')){
+		frm.set_query("employee",function(){
+			return{
+				query: "axis_inspection.axis_inspection.api.employee_filter_based_on_department",
+				filters: {
+					"user":frappe.session.user
+				}
+			};
+		});
+   }
+   else if(frappe.user_roles.includes('Employee')){
+	user=frappe.db.get_value('Employee',{'user_id':frappe.session.user},'name')
+	console.log(user)
+		if(user!=undefined)	{
+			frm.set_query("employee",function(){
+				return{
+					filters: {
+						"user_id":user
+					}
+				};
+			});
+		}
+   }
+
+}
 
 });
 frappe.ui.form.on('Timesheet Detail',{
