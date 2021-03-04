@@ -264,7 +264,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Quotation Item-overtime_rate",
 		"Contract Item-minimum_charge",
 		"Contract Item-standby_rate",
-		"Contract Item-overtime_rate"
+		"Contract Item-overtime_rate",
+		"Contract-item_group"
 		]
 	]
 ]
