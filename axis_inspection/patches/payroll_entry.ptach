@@ -1,0 +1,32 @@
+diff --git erpnext/payroll/doctype/payroll_entry/payroll_entry.js erpnext/payroll/doctype/payroll_entry/payroll_entry.js
+index 0dcea88c89..a73c6c5da3 100644
+--- erpnext/payroll/doctype/payroll_entry/payroll_entry.js
++++ erpnext/payroll/doctype/payroll_entry/payroll_entry.js
+@@ -12,7 +12,7 @@ frappe.ui.form.on('Payroll Entry', {
+ 		}
+ 		frm.toggle_reqd(['payroll_frequency'], !frm.doc.salary_slip_based_on_timesheet);
+ 
+-		erpnext.accounts.dimensions.setup_dimension_filters(frm, frm.doctype);
++		//erpnext.accounts.dimensions.setup_dimension_filters(frm, frm.doctype);
+ 		frm.events.department_filters(frm);
+ 		frm.events.payroll_payable_account_filters(frm);
+ 	},
+@@ -49,7 +49,7 @@ frappe.ui.form.on('Payroll Entry', {
+ 					}
+ 				).toggleClass('btn-primary', !(frm.doc.employees || []).length);
+ 			}
+-			if ((frm.doc.employees || []).length && !frappe.model.has_workflow(frm.doctype)) {
++			if ((frm.doc.employees || []).length) {
+ 				frm.page.clear_primary_action();
+ 				frm.page.set_primary_action(__('Create Salary Slips'), () => {
+ 					frm.save('Submit').then(() => {
+@@ -168,7 +168,7 @@ frappe.ui.form.on('Payroll Entry', {
+ 
+ 	company: function (frm) {
+ 		frm.events.clear_employee_table(frm);
+-		erpnext.accounts.dimensions.update_dimension(frm, frm.doctype);
++		//erpnext.accounts.dimensions.update_dimension(frm, frm.doctype);
+ 	},
+ 
+ 	currency: function (frm) {
+

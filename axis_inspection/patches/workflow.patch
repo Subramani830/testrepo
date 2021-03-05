@@ -1,0 +1,17 @@
+diff --git frappe/model/workflow.py frappe/model/workflow.py
+index 3e8125f9b1..5d7086c5cd 100644
+--- frappe/model/workflow.py
++++ frappe/model/workflow.py
+@@ -120,8 +120,9 @@ def apply_workflow(doc, action):
+        return doc
+ 
+ @frappe.whitelist()
+-def can_cancel_document(doctype):
+-       workflow = get_workflow(doctype)
++def can_cancel_document(doc):
++       doc=frappe.get_doc(frappe.parse_json(doc))
++       workflow = get_workflow(doc.doctype)
+        for state_doc in workflow.states:
+                if state_doc.doc_status == '2':
+                        for transition in workflow.transitions:
+

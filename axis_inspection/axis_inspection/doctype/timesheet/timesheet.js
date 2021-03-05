@@ -100,7 +100,7 @@ timesheet_type:function(frm){
 		frm.set_query("employee",function(){
 			return{
 				filters: {
-					"name":"None"
+					"status":"Active"
 				}
 			};
 		});
