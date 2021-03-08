@@ -169,7 +169,7 @@ frappe.ui.form.on('Timesheet Detail', 'task',function(frm,cdt, cdn){
 	var cur_doc = locals[cdt][cdn];
 	var cur_row = cur_grid.get_row(cur_doc.name);
 		var task=[]
-		if(time.project!=undefined &&frm.doc.employee!=undefined){
+		if(cur_row.doc.project!=undefined &&frm.doc.employee!=undefined){
 			frappe.call({
 				method:"axis_inspection.axis_inspection.api.get_task",
 				async:false,

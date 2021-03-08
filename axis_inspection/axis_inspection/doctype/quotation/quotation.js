@@ -21,7 +21,10 @@ frappe.ui.form.on("Quotation", {
 			    d.image_view = row.image_view;
 			    d.qty = row.qty;
 			    d.stock_uom = row.stock_uom;
-			    d.uom = row.uom;
+				d.uom = row.uom;
+				d.minimum_charge=row.minimum_charge;
+				d.standby_rate=row.standby_rate;
+				d.overtime_rate=row.overtime_rate;
 			    cur_frm.refresh_field("items");
 			})     	 
 	 })
