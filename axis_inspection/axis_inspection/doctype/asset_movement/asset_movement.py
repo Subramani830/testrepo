@@ -37,7 +37,7 @@ def validate(self,method):
             if qty:
                 if asset_category_list[asset_category]>qty:
                     frappe.throw(_("As per Resource Planning {0} for Project {1}, a maximum of {2} {3} can be issued.").format(parent,self.project,qty,asset_category)) 
-            else:
+            elif parent:
                 frappe.throw(_("Asset Category '{0}' is not defined in Resource Planing {1}.").format(asset_category,parent)) 
     
     elif self.purpose=="Receipt":
@@ -48,7 +48,7 @@ def validate(self,method):
                 if asset_category_list[asset_category]>qty:
                     frappe.throw(_("As per Resource Planning {0} for Project {1}, a maximum of {2} {3} can be Recieved.").format(parent,self.project,qty,asset_category     ))
                     
-            else:
+            elif parent:
                 frappe.throw(_("Asset Category '{0}' is not defined in Resource Planing {1}.").format(asset_category,parent)) 
 
 

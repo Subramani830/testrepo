@@ -265,7 +265,25 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Contract Item-minimum_charge",
 		"Contract Item-standby_rate",
 		"Contract Item-overtime_rate",
-		"Contract-item_group"
+		"Contract-item_group",
+		"Journal Entry Account-division",
+		"Delivery Note-division",
+		"Stock Entry Detail-division",
+		"Stock Entry-division",
+		"Purchase Receipt Item-division",
+		"Payroll Entry-division",
+		"Payment Entry-division",
+		"Sales Order-division",
+		"Supplier Quotation Item-division",
+		"Supplier Quotation Item-column_break_67",
+		"Request for Quotation Item-division",
+		"Purchase Order Item-division",
+		"Purchase Invoice Item-division",
+		"Material Request Item-division",
+		"Employee-division",
+		"Purchase Invoice-division",
+		"Sales Invoice-division",
+		"Salary Slip-division"
 		]
 	]
 ]
@@ -632,7 +650,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Quotation Item-item_name-columns",
 				"Quotation Item-uom-columns",
 				"Sales Order Item-item_code-columns",
-				"Sales Order Item-item_name-columns"
+				"Sales Order Item-item_name-columns",
+				"Contract-title_field"
 			]
 	]
 	]

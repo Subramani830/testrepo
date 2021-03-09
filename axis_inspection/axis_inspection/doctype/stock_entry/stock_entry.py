@@ -15,7 +15,7 @@ def validate(self,method):
             if qty:
                 if item_group_list[item_group]>qty:
                     frappe.throw(_("As per Resource Planning {0} for Project {1}, a maximum of {2} {3} can be issued.").format(parent,self.project,qty,item_group))           
-            else:
+            elif parent:
                 frappe.throw(_("Item Group '{0}' is not defined in Resource Planing {1}.").format(item_group,parent)) 
 
     elif self.stock_entry_type=="Material Receipt":
@@ -26,7 +26,7 @@ def validate(self,method):
                 if item_group_list[item_group]>qty:
                     frappe.throw(_("As per Resource Planning {0} for Project {1}, a maximum of {2} {3} can be Recieved.").format(parent,self.project,qty,item_group))
                     
-            else:
+            elif  parent:
                 frappe.throw(_("Item Group '{0}' is not defined in Resource Planing {1}.").format(item_group,parent)) 
 
 

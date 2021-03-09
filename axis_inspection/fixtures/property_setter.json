@@ -5438,5 +5438,21 @@
   "property": "columns",
   "property_type": "Int",
   "value": "2"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Contract",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocType",
+  "field_name": null,
+  "modified": "2021-03-08 16:51:58.815172",
+  "name": "Contract-title_field",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "title_field",
+  "property_type": "Data",
+  "value": "price_list"
  }
 ]
