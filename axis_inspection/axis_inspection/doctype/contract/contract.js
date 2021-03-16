@@ -25,6 +25,8 @@ frappe.ui.form.on('Contract', {
 		}, __('Create'));
 		}
 		if(frm.doc.party_type=="Customer"){
+			apply_filter_customer(frm)
+
 			frm.set_query("contract_terms_and_conditions", function(frm, cdt, cdn) {
 				return {
 					filters: {
@@ -33,6 +35,10 @@ frappe.ui.form.on('Contract', {
 				};
 			});
 		}
+
+		if(frm.doc.party_type=="Supplier"){
+			apply_filter_supplier(frm)
+		}
 		frm.set_query("item_group",function(){
 			return{
 				filters: {
@@ -40,7 +46,7 @@ frappe.ui.form.on('Contract', {
 				}
 			};
 		});
-		apply_filter(frm)
+		
     },
 	make_quotation: function(frm) {
 		frappe.model.open_mapped_doc({
@@ -139,8 +145,13 @@ contract_template_for_arabic:function(frm){
 	}
 },
 item_group(frm){
-	apply_filter(frm)
+
+	if(frm.doc.party_type=="Customer"){
+	apply_filter_customer(frm)
+	} else{
+		apply_filter_supplier(frm)
 	}
+}
 	
 });
 frappe.ui.form.on('Contract Item', 'item_code',function(frm,cdt, cdn)
@@ -213,7 +224,7 @@ frappe.ui.form.on('Contract Item', 'rate',function(frm,cdt, cdn)
 	cur_frm.refresh_field('items')
 });
 
-function apply_filter(frm){
+function apply_filter_customer(frm){
 	var item_groups=[];
 		if(frm.doc.item_group!=undefined || frm.doc.item_group!=null){
 			frappe.call({
@@ -230,7 +241,36 @@ function apply_filter(frm){
 				frm.fields_dict['items'].grid.get_field('item_code').get_query = function() {
 					return {
 						filters: {
-							item_group:["in",item_groups] 
+							item_group:["in",item_groups],
+							is_sales_item:1 
+						}
+					};
+				};
+	
+				}
+			})
+		}
+}
+
+function apply_filter_supplier(frm){
+	var item_groups=[];
+		if(frm.doc.item_group!=undefined || frm.doc.item_group!=null){
+			frappe.call({
+					method:"axis_inspection.axis_inspection.doctype.quotation.quotation.get_item_group",
+					args:{
+			item_group:frm.doc.item_group
+			},
+				async:false,
+				callback: function(r){
+				for(var i=0;i<r.message.length;i++){
+				item_groups.push(r.message[i].name);
+				}
+	
+				frm.fields_dict['items'].grid.get_field('item_code').get_query = function() {
+					return {
+						filters: {
+							item_group:["in",item_groups],
+							is_purchase_item:1
 						}
 					};
 				};

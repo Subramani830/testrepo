@@ -189,7 +189,8 @@ function apply_filter(frm){
 				frm.fields_dict['items'].grid.get_field('item_code').get_query = function() {
 					return {
 						filters: {
-							item_group:["in",item_groups] 
+							item_group:["in",item_groups],
+							is_sales_item:1 
 						}
 					};
 				};
