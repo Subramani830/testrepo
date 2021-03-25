@@ -651,7 +651,11 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Quotation Item-uom-columns",
 				"Sales Order Item-item_code-columns",
 				"Sales Order Item-item_name-columns",
-				"Contract-title_field"
+				"Contract-title_field",
+				"Opportunity-naming_series-options",
+				"Opportunity-naming_series-default",
+				"Lead-naming_series-options",
+				"Lead-naming_series-default"
 			]
 	]
 	]
