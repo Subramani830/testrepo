@@ -15,11 +15,13 @@ frappe.ui.form.on('Project', {
 	},
 	sales_order(frm){
 		if(frm.doc.sales_order != null || frm.doc.sales_order != undefined){
-		    frappe.db.get_value("Sales Order",{"name":frm.doc.sales_order},["delivery_date","customers_purchase_order_valid_till"],(d)=>{
+		    frappe.db.get_value("Sales Order",{"name":frm.doc.sales_order},["delivery_date","customers_purchase_order_valid_till","location"],(d)=>{
 		frm.set_value("expected_start_date",d.customers_purchase_order_valid_till);
 		cur_frm.refresh_field("expected_start_date")
 		frm.set_value("expected_end_date",d.delivery_date);
-		cur_frm.refresh_field("expected_end_date")
+		cur_frm.refresh_field("expected_end_date")	
+		frm.set_value("location",d.location);
+		cur_frm.refresh_field("location")
 		})
 		}
 	}

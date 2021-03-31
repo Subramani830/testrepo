@@ -129,7 +129,12 @@ timesheet_type:function(frm){
 		}
    }
 
-}
+},
+	project:function(frm){
+		frappe.db.get_value("Project",{"name":frm.doc.project},"location",(r)=>{
+			frm.set_value('location',r.location)
+		})
+	}
 
 });
 frappe.ui.form.on('Timesheet Detail',{

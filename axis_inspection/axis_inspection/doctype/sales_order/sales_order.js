@@ -235,6 +235,9 @@ after_save(frm){
 		frappe.db.get_value("Quotation",{"name":frm.doc.quotation},"order_type",(r)=>{
 			frm.set_value('order_type',r.order_type)
 		})
+		frappe.db.get_value("Quotation",{"name":frm.doc.quotation},"location",(r)=>{
+			frm.set_value('location',r.location)
+		})
 	},
 	before_save:function(frm){
 		if(frm.doc.contract != undefined){

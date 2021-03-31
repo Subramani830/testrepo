@@ -281,7 +281,11 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Employee-division",
 		"Purchase Invoice-division",
 		"Sales Invoice-division",
-		"Salary Slip-division"
+		"Salary Slip-division",
+		"Sales Order-location",
+		"Project-location",
+		"Task-location",
+		"Timesheet-location"
 		]
 	]
 ]
@@ -651,7 +655,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Opportunity-naming_series-default",
 				"Lead-naming_series-options",
 				"Lead-naming_series-default",
-				"Stock Entry Detail-project-hidden"
+				"Stock Entry Detail-project-hidden",
+				"Stock Entry-scan_barcode-hidden"
 			]
 	]
 	]

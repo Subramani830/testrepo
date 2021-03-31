@@ -83,7 +83,9 @@ var skill=[];
 			
 		}
 	});
-	
+	frappe.db.get_value("Project",{"name":frm.doc.project},"location",(r)=>{
+			frm.set_value('location',r.location)
+		})
 	
 },
 skill:function(frm){
