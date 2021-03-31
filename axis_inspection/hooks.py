@@ -86,7 +86,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Journal Entry Account-branch",
 		"Purchase Invoice-branch",
 		"Sales Invoice-branch",
-		"Stock Entry Detail-branch",
 		"Material Request Item-branch",
 		"Employee-sponsor",
 		"Company-company_registration",
@@ -268,7 +267,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Contract-item_group",
 		"Journal Entry Account-division",
 		"Delivery Note-division",
-		"Stock Entry Detail-division",
 		"Stock Entry-division",
 		"Purchase Receipt Item-division",
 		"Payroll Entry-division",
@@ -340,7 +338,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Purchase Order-scan_barcode-hidden",
 				"Sales Invoice-scan_barcode-hidden",
 				"Material Request-scan_barcode-hidden",
-				"Stock Entry-scan_barcode-hidden",
 				"Purchase Invoice-scan_barcode-hidden",
 				"Job Opening-job_title-hidden",
 				"Job Opening-job_title-default",
@@ -383,7 +380,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Journal Entry Account-project-reqd",
 				"Purchase Invoice-project-reqd",
 				"Sales Invoice-project-reqd",
-				"Stock Entry Detail-project-reqd",
 				"Material Request Item-project-reqd",
 				"Sales Taxes and Charges-cost_center-depends_on",
 				"Lead-county-hidden",
@@ -401,7 +397,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Delivery Note-sales_team_section_break-hidden",
 				"Delivery Note-section_break1-hidden",
 				"Project-customer-fetch_from",
-				"Stock Entry-project-reqd",
 				"Lead-company-hidden",
 				"Address-county-hidden",
 				"Opportunity Item-item_name-columns",
@@ -655,7 +650,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Opportunity-naming_series-options",
 				"Opportunity-naming_series-default",
 				"Lead-naming_series-options",
-				"Lead-naming_series-default"
+				"Lead-naming_series-default",
+				"Stock Entry Detail-project-hidden"
 			]
 	]
 	]

@@ -15,7 +15,7 @@ def validate(self,method):
         if number_of_employee:
             if designation_list[designation]>number_of_employee:
                 frappe.throw(_("As per Resource Planning {0} for project {1} ,a maximum of {2} employees of Designation {3} can be assigned.").format(parent,self.project,number_of_employee,designation)) 
-        else:
+        elif parent:
             frappe.throw(_("Designation '{0}' is not defined in Resource Planing {1} .").format(designation,parent)) 
 
 def count_assign(self):
