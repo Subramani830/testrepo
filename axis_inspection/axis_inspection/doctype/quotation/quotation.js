@@ -142,27 +142,16 @@ if(frm.doc.contract != null){
 		           
 		       }
 		})
-			var count = 0;
-			var num = 0;
                        frappe.model.with_doc("Contract", frm.doc.contract, function() {
                             var tabletransfer= frappe.model.get_doc("Contract", frm.doc.contract)
                             $.each(frm.doc.items, function(idx, item){
-				count++;
-				num=0;
                                 $.each(tabletransfer.items, function(index, row){
-					num++;
-                                    if(item.item_code== row.item_code){ 
-					if(item.item_code!= row.item_code || item.qty != row.qty || item.uom != row.uom || item.rate != row.rate){
+					if(item.item_code!= row.item_code || item.uom != row.uom || item.rate != row.rate){
 		          		 frappe.validated=false;
 		          		 frappe.msgprint(__("Quotation items doesnot match with Contract."));
 					}
-                                    }
                                 })
                             })
-				if(count != num){
-		          		 frappe.validated=false;
-		          		 frappe.msgprint(__("Quotation items doesnot match with Contract."));
-                                    }
                         })
 		}
 
