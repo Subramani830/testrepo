@@ -51,6 +51,7 @@ class EmployeeDeductions(Document):
 
 @frappe.whitelist()
 def convertDateFormat(start_date):
+	start_date=str(start_date)
 	date=datetime.datetime.strptime(start_date, '%Y-%m-%d')
 	return date.strftime('%b-%y')
 	
