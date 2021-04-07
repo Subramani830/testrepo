@@ -380,7 +380,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Purchase Order Item-project-reqd",
 				"Purchase Receipt Item-project-reqd",
 				"Payment Entry-project-reqd",
-				"Journal Entry Account-project-reqd",
 				"Purchase Invoice-project-reqd",
 				"Sales Invoice-project-reqd",
 				"Material Request Item-project-reqd",
@@ -806,7 +805,11 @@ doc_events = {
 		"validate":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.validate"],
 		"on_submit":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.on_submit"],
 		"on_cancel":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.on_cancel"]
-	}
+	},
+    "Delivery Note":{
+             "validate":["axis_inspection.axis_inspection.doctype.delivery_note.delivery_note.validate_minimum_charge"]
+      }
+
 }
 
 

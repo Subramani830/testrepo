@@ -167,49 +167,51 @@ on_submit:function(frm){
 		var email;
 		var employee;
 		var attachment=[];
-		frappe.call({
-				method:"axis_inspection.axis_inspection.api.get_file_name",
+		if(frm.doc.attach_job_offer!=undefined){
+			frappe.call({
+					method:"axis_inspection.axis_inspection.api.get_file_name",
+					args:{
+						doctype:'File',
+						file_url:frm.doc.attach_job_offer,
+						attached_to_field:"attach_job_offer",
+						attached_to_doctype:"Employee Contract"
+					},
+					async:false,
+					callback: function(r){
+						if(r.message) {
+							if(!attachment.includes(r.message)){
+								attachment.push(r.message);
+							}
+						}
+					}
+				});
+			frappe.call({
+				method:"axis_inspection.axis_inspection.api.get_email",
 				args:{
-					doctype:'File',
-					file_url:frm.doc.attach_job_offer,
-					attached_to_field:"attach_job_offer",
-					attached_to_doctype:"Employee Contract"
+					doctype:'Employee',
+					name:frm.doc.party_name
 				},
 				async:false,
 				callback: function(r){
-					if(r.message) {
-						if(!attachment.includes(r.message)){
-							attachment.push(r.message);
-						}
+					for(var i=0;i<r.message.length;i++){
+					email=r.message[i].user_id;
+					employee=r.message[i].employee_name;
+
 					}
 				}
 			});
-		frappe.call({
-			method:"axis_inspection.axis_inspection.api.get_email",
-			args:{
-				doctype:'Employee',
-				name:frm.doc.party_name
-			},
-			async:false,
-			callback: function(r){
-				for(var i=0;i<r.message.length;i++){
-				email=r.message[i].user_id;
-				employee=r.message[i].employee_name;
-
-				}
-			}
-		});
+		}
 		if(email!==undefined){
 			var emailTemplate=
-			'<h3>Dear ' +employee+',</h3>'+
+			'<h3>Dear Mr./Ms. ' +employee+',</h3>'+
 			'<br>'+
-			'<h3>Heartly Congratulations!</h3>'+
-			'<br>'+
-			'<h3> We are happy to welcome you as a employee  for '+frm.doc.company+' Offer letter  and contract is attached with this. </h3>'+
+			'<h3>We are pleased to welcome you to our team here at'+frm.doc.company+'. Please find attached your Job Offer letter and your Employment Contract, and kindly revert them with your signed agreement.</h3>'+
 			'<br>'+
 			'<br>'+
-			'<h3>Regards</h3>'+
-			'<h3>HR Team</h3>';
+			'<h3>Hope to see you soon!</h3>'+
+			'<h3>Best Regards</h3>'+
+			'<h3>Human Resources</h3>'+
+			'<h3>'+frm.doc.company+'</h3>';
 			sendEmail(frm.doc.name,email,emailTemplate,attachment)
 		}
 }

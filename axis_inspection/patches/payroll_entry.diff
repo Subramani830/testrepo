@@ -1,0 +1,26 @@
+diff --git erpnext/payroll/doctype/payroll_entry/payroll_entry.py erpnext/payroll/doctype/payroll_entry/payroll_entry.py
+index 30ea432..a39f250 100644
+--- erpnext/payroll/doctype/payroll_entry/payroll_entry.py
++++ erpnext/payroll/doctype/payroll_entry/payroll_entry.py
+@@ -319,13 +319,19 @@ class PayrollEntry(Document):
+ 			{
+ 				"account": self.payment_account,
+ 				"bank_account": self.bank_account,
+-				"credit_in_account_currency": payment_amount
++				"credit_in_account_currency": payment_amount,
++				"project":self.project,
++				"branch":self.branch,
++				"division":self.division
+ 			},
+ 			{
+ 				"account": default_payroll_payable_account,
+ 				"debit_in_account_currency": payment_amount,
+ 				"reference_type": self.doctype,
+-				"reference_name": self.name
++				"reference_name": self.name,
++				"project":self.project,
++				"branch":self.branch,
++				"division":self.division
+ 			}
+ 		])
+ 		journal_entry.save(ignore_permissions = True)
