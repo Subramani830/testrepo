@@ -83,7 +83,14 @@ before_workflow_action: (frm) => {
 				
 				
                 }
-		   });			
+		   });	
+		frm.set_query("sales_order",function(){
+					return{
+						filters: {
+							"project":frm.doc.project
+						}
+					};
+				});		
 		
 	},
 timesheet_type:function(frm){

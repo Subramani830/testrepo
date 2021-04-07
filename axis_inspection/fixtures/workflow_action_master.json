@@ -2,6 +2,16 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
+  "modified": "2021-04-05 13:23:39.685018",
+  "name": "Send for Approval",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "workflow_action_name": "Send for Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
   "modified": "2020-10-20 14:36:09.810818",
   "name": "Cancel",
   "parent": null,
