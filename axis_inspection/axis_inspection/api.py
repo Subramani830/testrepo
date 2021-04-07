@@ -145,7 +145,19 @@ def get_employee_filter(sales_order):
 				if e.parent not in employee:
 						employee.append(e.parent)     
 			
-	return skill
+	return employee
+
+@frappe.whitelist()
+def get_skill_filter(sales_order):
+	skill_list=[]
+	item=frappe.db.get_list("Sales Order Item",filters={"parent":sales_order},fields={"item_code"})
+	for row in item:
+		skill=frappe.db.get_list('Employee Skill',filters={"parent":row.item_code,"parenttype":"Item"},fields={"skill"})
+		for val in skill:
+			if val.skill not in skill_list:
+				skill_list.append(val.skill)     
+			
+	return skill_list
 
 @frappe.whitelist()
 def get_project(employee):
