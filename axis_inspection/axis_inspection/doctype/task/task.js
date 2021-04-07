@@ -26,6 +26,7 @@ frappe.ui.form.on('Task', {
 project:function(frm){
 var sales_order;
 var skill=[];
+var employee=[]
 	frappe.call({
 		method: "frappe.client.get_value",
 		async:false,
@@ -50,15 +51,37 @@ var skill=[];
 		},
 		callback: function(r){
 			for(var i=0; i<r.message.length; i++){
-				skill.push(r.message[i].skill);
+				employee.push(r.message[i]);
 			}
+		}
+	});
+	frm.fields_dict['assign_'].grid.get_field('assign_to').get_query = function() {
+						return {
+							filters: {
+								name:["in",employee] 
+							}
+						};
+		};
+		frappe.call({
+				method:"axis_inspection.axis_inspection.api.get_skill_filter",
+				async:false,
+				args: {
+					"sales_order":sales_order	
+				},
+				callback: function(r){
+					for(var i=0; i<r.message.length; i++){
+						skill.push(r.message[i]);
+					}
+				}
+			});
 			frm.set_query("skill", function() {
 						return {
 							filters: {
-								name:["in",skill] 
-							}
+									name:["in",skill] 
+								}
 						};
 					});
+
 					var itemList=[]
 					frappe.call({
 						method:"axis_inspection.axis_inspection.doctype.task.task.get_item_list",
@@ -81,8 +104,6 @@ var skill=[];
 						}
 					});	
 			
-		}
-	});
 	frappe.db.get_value("Project",{"name":frm.doc.project},"location",(r)=>{
 			frm.set_value('location',r.location)
 		})
