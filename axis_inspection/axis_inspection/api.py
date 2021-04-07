@@ -155,7 +155,7 @@ def get_skill_filter(sales_order):
 		skill=frappe.db.get_list('Employee Skill',filters={"parent":row.item_code,"parenttype":"Item"},fields={"skill"})
 		for val in skill:
 			if val.skill not in skill_list:
-						skill_list.append(val.skill)     
+				skill_list.append(val.skill)     
 			
 	return skill_list
 
