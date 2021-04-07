@@ -17,7 +17,7 @@ refresh(frm){
 
 
 		$.each(frm.doc.items,function(idx, item){
-		if(item.supplier_quotation!=undefined){
+		if(item.supplier_quotation!=undefined&&(item.project==undefined||item.cost_center==undefined||item.branch==undefined)){
 		    frappe.call({
 		        method:"axis_inspection.axis_inspection.api.update_project",
 		        async:false,
@@ -32,6 +32,7 @@ refresh(frm){
 		                frappe.model.set_value(item.doctype, item.name, "task", r.message[i].task);
 				frappe.model.set_value(item.doctype, item.name, "cost_center", r.message[i].cost_center);
                         	frappe.model.set_value(item.doctype, item.name, "branch", r.message[i].branch);
+				cur_frm.refresh_field("items");
 		            }
 		        }
 		    });

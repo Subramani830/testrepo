@@ -3,6 +3,18 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
+  "modified": "2021-04-05 13:07:50.638881",
+  "name": "Initial Approval",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "style": "",
+  "workflow_state_name": "Initial Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
   "modified": "2020-12-23 15:50:36.041740",
   "name": "First Approval",
   "parent": null,
