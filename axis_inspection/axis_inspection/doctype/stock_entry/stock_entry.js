@@ -9,6 +9,8 @@ refresh: function(frm){
 			frm.set_value("to_warehouse",c.set_warehouse)
 		}
 	})
+	frm.remove_custom_button('Bill of Materials', "Get Items From");
+
 }
 if(frm.doc.from_warehouse!=undefined){
 	frappe.db.get_value("Material Request",{"name":frm.doc.material_request},"set_from_warehouse",(c)=>{
@@ -95,6 +97,9 @@ var items=[];
 				}
 				});
 
+},
+stock_entry_type: function(frm){
+	frm.remove_custom_button('Bill of Materials', "Get Items From");
 }
 })
 

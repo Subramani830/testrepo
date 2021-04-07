@@ -14,7 +14,7 @@ frappe.ui.form.on('Material Request', {
 		location.reload()
 	},
 	requested_for:function(frm) {
-				if(frm.doc.requested_for!==undefined){
+				if(frm.doc.requested_for!==undefined&&frm.doc.department_manager==undefined){
 		frappe.call({
 			method:"axis_inspection.axis_inspection.api.get_reports_to",
 			async:false,

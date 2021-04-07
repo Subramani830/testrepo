@@ -83,7 +83,14 @@ before_workflow_action: (frm) => {
 				
 				
                 }
-		   });			
+		   });	
+		frm.set_query("sales_order",function(){
+					return{
+						filters: {
+							"project":frm.doc.project
+						}
+					};
+				});		
 		
 	},
 timesheet_type:function(frm){
@@ -150,7 +157,6 @@ frappe.ui.form.on('Timesheet Detail',{
 							name: frm.doc.employee
 						},
 					callback: function(r){
-						console.log(r)
 						for (var i=0;i<r.message.length;i++){
 							if(r.message[i].contract_term=='Basic Salary'){
 								basic=r.message[i].value
@@ -200,3 +206,16 @@ frappe.ui.form.on('Timesheet Detail', 'task',function(frm,cdt, cdn){
 
 	});
 
+	frappe.ui.form.on('Timesheet Detail', 'service',function(frm,cdt, cdn){
+		var cur_grid =frm.get_field('time_logs').grid;
+		var cur_doc = locals[cdt][cdn];
+		var cur_row = cur_grid.get_row(cur_doc.name);
+		if(cur_row.doc.activity_type=='Standby' || cur_row.doc.activity_type=='Overtime'){
+			frappe.db.get_value('Item Price',{'item_code':cur_row.doc.service,'price_list':'Standard Selling'},'price_list_rate',(r)=>{
+				cur_row.doc.billing_rate=r.price_list_rate
+				cur_frm.refresh_fields();
+			});
+		}
+
+
+	});
