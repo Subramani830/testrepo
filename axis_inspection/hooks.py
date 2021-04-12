@@ -295,7 +295,12 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Timesheet-division",
 		"Timesheet-subject",
 		"Timesheet-visit",
-		"Timesheet-shift"
+		"Timesheet-shift",
+		"Supplier-company_registration",
+		"Task-total_qty",
+		"Task-total_hours",
+		"Asset-project",
+		"Sales Invoice-send_customer_email"
 		]
 	]
 ]
@@ -703,7 +708,12 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Purchase Receipt-rounded_total-permlevel",
 				"Purchase Receipt-in_words-permlevel",
 				"Purchase Receipt-disable_rounded_total-permlevel",
-				"Purchase Receipt-per_billed-permlevel"
+				"Purchase Receipt-per_billed-permlevel",
+				"Supplier-tax_id-reqd",
+				"Customer-tax_id-reqd",
+				"Sales Order-po_no-unique",
+				"Vehicle Service-service_item-options",
+				"Vehicle Service-frequency-options"
 			]
 	]
 	]
@@ -855,9 +865,12 @@ doc_events = {
 		"on_submit":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.on_submit"],
 		"on_cancel":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.on_cancel"]
 	},
-    "Delivery Note":{
-             "validate":["axis_inspection.axis_inspection.doctype.delivery_note.delivery_note.validate_minimum_charge"]
-      }
+	"Delivery Note":{
+	     "validate":["axis_inspection.axis_inspection.doctype.delivery_note.delivery_note.validate_minimum_charge"]
+	},
+	"Timesheet":{
+		"on_submit":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.on_submit"]
+	}
 
 }
 
