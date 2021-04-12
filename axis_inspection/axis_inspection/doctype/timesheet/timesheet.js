@@ -81,7 +81,6 @@ before_workflow_action: (frm) => {
 							"project":frm.doc.project
 						}
 					};
-<<<<<<< HEAD
 				});	
 		frm.fields_dict['asset_detail'].grid.get_field('asset').get_query = function() {
 			return {
@@ -99,9 +98,6 @@ before_workflow_action: (frm) => {
 				}
 			};
 		};
-=======
-				});		
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
 		
 	},
 timesheet_type:function(frm){
@@ -216,10 +212,6 @@ frappe.ui.form.on('Timesheet Detail', 'task',function(frm,cdt, cdn){
 		}
 
 	});
-<<<<<<< HEAD
-=======
-
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
 	frappe.ui.form.on('Timesheet Detail', 'service',function(frm,cdt, cdn){
 		var cur_grid =frm.get_field('time_logs').grid;
 		var cur_doc = locals[cdt][cdn];

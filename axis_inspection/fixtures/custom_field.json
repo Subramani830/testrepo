@@ -1363,7 +1363,6 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Supplier",
   "fetch_from": null,
   "fetch_if_empty": 0,
@@ -1416,8 +1415,6 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-=======
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "dt": "Timesheet",
   "fetch_from": null,
   "fetch_if_empty": 0,
@@ -1886,11 +1883,7 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Employee",
-=======
-  "dt": "Timesheet",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "employee_name_in_arabic",
@@ -1942,11 +1935,7 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Contract",
-=======
-  "dt": "Employee",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "holiday_list",
@@ -2570,19 +2559,11 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Journal Entry Account",
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "division",
   "fieldtype": "Link",
-=======
-  "dt": "Customer",
-  "fetch_from": null,
-  "fetch_if_empty": 0,
-  "fieldname": "blacklisted",
-  "fieldtype": "Check",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hidden": 0,
   "hide_border": 0,
   "hide_days": 0,
@@ -2593,7 +2574,6 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "cost_center",
   "label": "Division",
   "length": 0,
@@ -2602,16 +2582,6 @@
   "name": "Journal Entry Account-division",
   "no_copy": 0,
   "options": "Division",
-=======
-  "insert_after": "lead_name",
-  "label": "Blacklisted",
-  "length": 0,
-  "mandatory_depends_on": null,
-  "modified": "2020-10-22 13:24:06.643341",
-  "name": "Customer-blacklisted",
-  "no_copy": 0,
-  "options": null,
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "parent": null,
   "parentfield": null,
   "parenttype": null,
@@ -2623,11 +2593,7 @@
   "read_only": 0,
   "read_only_depends_on": null,
   "report_hide": 0,
-<<<<<<< HEAD
   "reqd": 1,
-=======
-  "reqd": 0,
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "search_index": 0,
   "translatable": 0,
   "unique": 0,
@@ -2645,11 +2611,7 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Asset Movement Item",
-=======
-  "dt": "Request for Quotation",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "quality_inspection",
@@ -2961,19 +2923,11 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Customer",
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "blacklisted",
   "fieldtype": "Check",
-=======
-  "dt": "Journal Entry Account",
-  "fetch_from": null,
-  "fetch_if_empty": 0,
-  "fieldname": "division",
-  "fieldtype": "Link",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hidden": 0,
   "hide_border": 0,
   "hide_days": 0,
@@ -2984,23 +2938,14 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "lead_name",
   "label": "Blacklisted",
-=======
-  "insert_after": "cost_center",
-  "label": "Division",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "length": 0,
   "mandatory_depends_on": null,
   "modified": "2020-10-22 13:24:06.643341",
   "name": "Customer-blacklisted",
   "no_copy": 0,
-<<<<<<< HEAD
   "options": null,
-=======
-  "options": "Division",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "parent": null,
   "parentfield": null,
   "parenttype": null,
@@ -3012,11 +2957,7 @@
   "read_only": 0,
   "read_only_depends_on": null,
   "report_hide": 0,
-<<<<<<< HEAD
   "reqd": 0,
-=======
-  "reqd": 1,
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "search_index": 0,
   "translatable": 0,
   "unique": 0,
@@ -3294,19 +3235,11 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Journal Entry Account",
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "branch",
   "fieldtype": "Link",
-=======
-  "dt": "Timesheet",
-  "fetch_from": null,
-  "fetch_if_empty": 0,
-  "fieldname": "timesheet_attachment",
-  "fieldtype": "Attach",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hidden": 0,
   "hide_border": 0,
   "hide_days": 0,
@@ -3317,7 +3250,6 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "dimension_col_break",
   "label": "Branch",
   "length": 0,
@@ -3326,16 +3258,6 @@
   "name": "Journal Entry Account-branch",
   "no_copy": 0,
   "options": "Branch",
-=======
-  "insert_after": "timesheet_type",
-  "label": "Timesheet Attachment",
-  "length": 0,
-  "mandatory_depends_on": null,
-  "modified": "2021-01-13 14:04:52.339626",
-  "name": "Timesheet-timesheet_attachment",
-  "no_copy": 0,
-  "options": null,
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "parent": null,
   "parentfield": null,
   "parenttype": null,
@@ -4197,19 +4119,11 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Sales Invoice",
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "send_customer_email",
   "fieldtype": "Check",
-=======
-  "dt": "Quotation",
-  "fetch_from": null,
-  "fetch_if_empty": 0,
-  "fieldname": "delivery_date",
-  "fieldtype": "Date",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hidden": 0,
   "hide_border": 0,
   "hide_days": 0,
@@ -4220,21 +4134,12 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "is_return",
   "label": "Send Customer Email",
   "length": 0,
   "mandatory_depends_on": null,
   "modified": "2021-04-12 12:50:46.752273",
   "name": "Sales Invoice-send_customer_email",
-=======
-  "insert_after": "valid_till",
-  "label": "Delivery Date",
-  "length": 0,
-  "mandatory_depends_on": null,
-  "modified": "2020-12-28 19:41:36.046440",
-  "name": "Quotation-delivery_date",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "no_copy": 0,
   "options": "0",
   "parent": null,
@@ -4269,13 +4174,8 @@
   "dt": "Timesheet",
   "fetch_from": null,
   "fetch_if_empty": 0,
-<<<<<<< HEAD
   "fieldname": "timesheet_attachment",
   "fieldtype": "Attach",
-=======
-  "fieldname": "sales_order",
-  "fieldtype": "Link",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hidden": 0,
   "hide_border": 0,
   "hide_days": 0,
@@ -4286,7 +4186,6 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "timesheet_type",
   "label": "Timesheet Attachment",
   "length": 0,
@@ -4295,16 +4194,6 @@
   "name": "Timesheet-timesheet_attachment",
   "no_copy": 0,
   "options": null,
-=======
-  "insert_after": "project",
-  "label": "Sales Order",
-  "length": 0,
-  "mandatory_depends_on": null,
-  "modified": "2021-04-01 15:08:29.693899",
-  "name": "Timesheet-sales_order",
-  "no_copy": 0,
-  "options": "Sales Order",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "parent": null,
   "parentfield": null,
   "parenttype": null,
@@ -4334,19 +4223,11 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Supplier",
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "priority",
   "fieldtype": "Select",
-=======
-  "dt": "Job Applicant",
-  "fetch_from": null,
-  "fetch_if_empty": 0,
-  "fieldname": "department_manager",
-  "fieldtype": "Data",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hidden": 0,
   "hide_border": 0,
   "hide_days": 0,
@@ -4357,21 +4238,12 @@
   "in_list_view": 1,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "image",
   "label": "Priority",
   "length": 0,
   "mandatory_depends_on": null,
   "modified": "2021-01-08 11:42:09.089141",
   "name": "Supplier-priority",
-=======
-  "insert_after": "interview_time",
-  "label": "Department Manager",
-  "length": 0,
-  "mandatory_depends_on": null,
-  "modified": "2020-10-15 13:00:19.181134",
-  "name": "Job Applicant-department_manager",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "no_copy": 0,
   "options": "\nLow\nNormal\nHigh",
   "parent": null,
@@ -4382,11 +4254,7 @@
   "print_hide": 0,
   "print_hide_if_no_value": 0,
   "print_width": null,
-<<<<<<< HEAD
   "read_only": 0,
-=======
-  "read_only": 1,
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "read_only_depends_on": null,
   "report_hide": 0,
   "reqd": 0,
@@ -4407,19 +4275,11 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Quotation",
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "delivery_date",
   "fieldtype": "Date",
-=======
-  "dt": "Training Program",
-  "fetch_from": null,
-  "fetch_if_empty": 0,
-  "fieldname": "start_date",
-  "fieldtype": "Datetime",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hidden": 0,
   "hide_border": 0,
   "hide_days": 0,
@@ -4430,21 +4290,12 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "valid_till",
   "label": "Delivery Date",
   "length": 0,
   "mandatory_depends_on": null,
   "modified": "2020-12-28 19:41:36.046440",
   "name": "Quotation-delivery_date",
-=======
-  "insert_after": "column_break_12",
-  "label": "Start Date",
-  "length": 0,
-  "mandatory_depends_on": null,
-  "modified": "2021-02-09 08:04:46.642316",
-  "name": "Training Program-start_date",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "no_copy": 0,
   "options": null,
   "parent": null,
@@ -4547,13 +4398,8 @@
   "label": "Start Date",
   "length": 0,
   "mandatory_depends_on": null,
-<<<<<<< HEAD
   "modified": "2021-02-09 08:04:46.642316",
   "name": "Training Program-start_date",
-=======
-  "modified": "2021-04-01 15:12:01.750742",
-  "name": "Timesheet-subject",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "no_copy": 0,
   "options": null,
   "parent": null,
@@ -4789,11 +4635,7 @@
   "collapsible_depends_on": null,
   "columns": 0,
   "default": null,
-<<<<<<< HEAD
   "depends_on": "eval:doc.training_frequency!='Every Day'",
-=======
-  "depends_on": "",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
@@ -5151,11 +4993,7 @@
  },
  {
   "allow_in_quick_entry": 0,
-<<<<<<< HEAD
   "allow_on_submit": 0,
-=======
-  "allow_on_submit": 1,
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "bold": 0,
   "collapsible": 0,
   "collapsible_depends_on": null,
@@ -5217,13 +5055,8 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Timesheet Detail",
   "fetch_from": "task.service",
-=======
-  "dt": "Sales Order",
-  "fetch_from": null,
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "fetch_if_empty": 0,
   "fieldname": "service",
   "fieldtype": "Data",
@@ -5237,21 +5070,12 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "task",
   "label": "Service",
   "length": 0,
   "mandatory_depends_on": null,
   "modified": "2021-02-18 14:46:42.124043",
   "name": "Timesheet Detail-service",
-=======
-  "insert_after": "delivery_date",
-  "label": "Contract (Service Agreement)",
-  "length": 0,
-  "mandatory_depends_on": null,
-  "modified": "2021-04-01 18:08:38.272144",
-  "name": "Sales Order-contract",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "no_copy": 0,
   "options": null,
   "parent": null,
@@ -5642,7 +5466,6 @@
   "collapsible": 0,
   "collapsible_depends_on": null,
   "columns": 0,
-<<<<<<< HEAD
   "default": null,
   "depends_on": null,
   "description": null,
@@ -5696,9 +5519,6 @@
   "collapsible_depends_on": null,
   "columns": 0,
   "default": null,
-=======
-  "default": "100",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "depends_on": null,
   "description": null,
   "docstatus": 0,
@@ -5706,15 +5526,9 @@
   "dt": "Contact",
   "fetch_from": null,
   "fetch_if_empty": 0,
-<<<<<<< HEAD
   "fieldname": "contact_of_accounts_team_and_email_id",
   "fieldtype": "Data",
   "hidden": 0,
-=======
-  "fieldname": "date_percentage",
-  "fieldtype": "Percent",
-  "hidden": 1,
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hide_border": 0,
   "hide_days": 0,
   "hide_seconds": 0,
@@ -5724,21 +5538,12 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "contact_of_procurement__team_and_email_id",
   "label": "Contact of Accounts Team and Email ID",
   "length": 0,
   "mandatory_depends_on": null,
   "modified": "2020-12-16 15:30:29.505374",
   "name": "Contact-contact_of_accounts_team_and_email_id",
-=======
-  "insert_after": "contract",
-  "label": "Date percentage",
-  "length": 0,
-  "mandatory_depends_on": null,
-  "modified": "2020-12-29 05:09:25.561934",
-  "name": "Sales Order-date_percentage",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "no_copy": 0,
   "options": null,
   "parent": null,
@@ -5770,19 +5575,11 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Employee",
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "employment_status_",
   "fieldtype": "Select",
-=======
-  "dt": "Quotation",
-  "fetch_from": null,
-  "fetch_if_empty": 0,
-  "fieldname": "customer_rfq_number",
-  "fieldtype": "Data",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hidden": 0,
   "hide_border": 0,
   "hide_days": 0,
@@ -5790,29 +5587,17 @@
   "ignore_user_permissions": 0,
   "ignore_xss_filter": 0,
   "in_global_search": 0,
-<<<<<<< HEAD
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
   "insert_after": "employee_number",
   "label": "Employment Status ",
-=======
-  "in_list_view": 1,
-  "in_preview": 0,
-  "in_standard_filter": 0,
-  "insert_after": "contract_remaining_value",
-  "label": "Customer RFQ Number",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "length": 0,
   "mandatory_depends_on": null,
   "modified": "2020-12-24 07:08:39.307591",
   "name": "Employee-employment_status_",
   "no_copy": 0,
-<<<<<<< HEAD
   "options": "Active\nLong Leave\nResigned\nTerminated\nAbsconded\nRetired",
-=======
-  "options": null,
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "parent": null,
   "parentfield": null,
   "parenttype": null,
@@ -5884,7 +5669,6 @@
  },
  {
   "allow_in_quick_entry": 0,
-<<<<<<< HEAD
   "allow_on_submit": 1,
   "bold": 0,
   "collapsible": 0,
@@ -5937,8 +5721,6 @@
  },
  {
   "allow_in_quick_entry": 0,
-=======
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "allow_on_submit": 0,
   "bold": 0,
   "collapsible": 0,
@@ -6169,7 +5951,6 @@
   "ignore_user_permissions": 0,
   "ignore_xss_filter": 0,
   "in_global_search": 0,
-<<<<<<< HEAD
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
@@ -6233,19 +6014,6 @@
   "name": "Employee-safety_training_program_attended",
   "no_copy": 0,
   "options": "Training Event",
-=======
-  "in_list_view": 0,
-  "in_preview": 0,
-  "in_standard_filter": 0,
-  "insert_after": "in_house",
-  "label": "out sourced",
-  "length": 0,
-  "mandatory_depends_on": "",
-  "modified": "2020-11-02 12:35:51.076378",
-  "name": "Task-out_sourced",
-  "no_copy": 0,
-  "options": null,
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "parent": null,
   "parentfield": null,
   "parenttype": null,
@@ -6270,28 +6038,16 @@
   "collapsible": 0,
   "collapsible_depends_on": null,
   "columns": 0,
-<<<<<<< HEAD
   "default": "0",
-=======
-  "default": null,
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "depends_on": null,
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Task",
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "out_sourced",
   "fieldtype": "Check",
-=======
-  "dt": "Quotation",
-  "fetch_from": null,
-  "fetch_if_empty": 0,
-  "fieldname": "location",
-  "fieldtype": "Link",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hidden": 0,
   "hide_border": 0,
   "hide_days": 0,
@@ -6302,21 +6058,12 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "in_house",
   "label": "out sourced",
   "length": 0,
   "mandatory_depends_on": "",
   "modified": "2020-11-02 12:35:51.076378",
   "name": "Task-out_sourced",
-=======
-  "insert_after": "customer_rfq_number",
-  "label": "Location",
-  "length": 0,
-  "mandatory_depends_on": null,
-  "modified": "2021-03-31 14:42:53.816630",
-  "name": "Quotation-location",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "no_copy": 0,
   "options": "Location",
   "parent": null,
@@ -6400,19 +6147,11 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Material Request",
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "requested_for",
   "fieldtype": "Link",
-=======
-  "dt": "Contract Item",
-  "fetch_from": null,
-  "fetch_if_empty": 0,
-  "fieldname": "overtime_rate",
-  "fieldtype": "Data",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hidden": 0,
   "hide_border": 0,
   "hide_days": 0,
@@ -6423,23 +6162,14 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "more_info",
   "label": "Requested For",
-=======
-  "insert_after": "stock_qty",
-  "label": "Overtime Rate",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "length": 0,
   "mandatory_depends_on": null,
   "modified": "2020-12-07 12:49:33.828556",
   "name": "Material Request-requested_for",
   "no_copy": 0,
-<<<<<<< HEAD
   "options": "Employee",
-=======
-  "options": null,
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "parent": null,
   "parentfield": null,
   "parenttype": null,
@@ -6833,19 +6563,11 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Sales Order Item",
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "standby_rate",
   "fieldtype": "Data",
-=======
-  "dt": "Sales Order",
-  "fetch_from": null,
-  "fetch_if_empty": 0,
-  "fieldname": "customers_purchase_order_valid_till",
-  "fieldtype": "Date",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hidden": 0,
   "hide_border": 0,
   "hide_days": 0,
@@ -6856,21 +6578,12 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "minimum_charge",
   "label": "Standby Rate",
   "length": 0,
   "mandatory_depends_on": null,
   "modified": "2021-02-15 14:24:05.105392",
   "name": "Sales Order Item-standby_rate",
-=======
-  "insert_after": "po_date",
-  "label": "Delivery Date",
-  "length": 0,
-  "mandatory_depends_on": null,
-  "modified": "2021-01-15 10:59:53.430492",
-  "name": "Sales Order-customers_purchase_order_valid_till",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "no_copy": 0,
   "options": null,
   "parent": null,
@@ -6902,17 +6615,10 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Task",
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "skill",
-=======
-  "dt": "Timesheet",
-  "fetch_from": "employee.nationality",
-  "fetch_if_empty": 0,
-  "fieldname": "nationality",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "fieldtype": "Link",
   "hidden": 0,
   "hide_border": 0,
@@ -6964,13 +6670,8 @@
   "dt": "Sales Order",
   "fetch_from": null,
   "fetch_if_empty": 0,
-<<<<<<< HEAD
   "fieldname": "customers_purchase_order_valid_till",
   "fieldtype": "Date",
-=======
-  "fieldname": "standby_rate",
-  "fieldtype": "Data",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hidden": 0,
   "hide_border": 0,
   "hide_days": 0,
@@ -6981,21 +6682,12 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "po_date",
   "label": "Delivery Date",
   "length": 0,
   "mandatory_depends_on": null,
   "modified": "2021-01-15 10:59:53.430492",
   "name": "Sales Order-customers_purchase_order_valid_till",
-=======
-  "insert_after": "minimum_charge",
-  "label": "Standby Rate",
-  "length": 0,
-  "mandatory_depends_on": null,
-  "modified": "2021-03-01 11:57:12.193300",
-  "name": "Quotation Item-standby_rate",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "no_copy": 0,
   "options": null,
   "parent": null,
@@ -7287,13 +6979,8 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Purchase Invoice",
   "fetch_from": null,
-=======
-  "dt": "Timesheet",
-  "fetch_from": "employee.contract_no",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "fetch_if_empty": 0,
   "fieldname": "division",
   "fieldtype": "Link",
@@ -7344,11 +7031,7 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Contract",
-=======
-  "dt": "Sales Order Item",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "maximum_value",
@@ -7608,13 +7291,8 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Contract",
   "fetch_from": null,
-=======
-  "dt": "Timesheet",
-  "fetch_from": "employee.designation",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "fetch_if_empty": 0,
   "fieldname": "amt_left",
   "fieldtype": "Data",
@@ -7665,11 +7343,7 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Sales Invoice",
-=======
-  "dt": "Sales Order Item",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "month_of_work",
@@ -7776,13 +7450,8 @@
   "dt": "Request for Quotation Item",
   "fetch_from": null,
   "fetch_if_empty": 0,
-<<<<<<< HEAD
   "fieldname": "division",
   "fieldtype": "Link",
-=======
-  "fieldname": "allocate",
-  "fieldtype": "Table",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hidden": 0,
   "hide_border": 0,
   "hide_days": 0,
@@ -7845,23 +7514,14 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "cost_center",
   "label": "Project",
-=======
-  "insert_after": "material_request_item",
-  "label": "Task",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "length": 0,
   "mandatory_depends_on": null,
   "modified": "2021-04-09 14:16:31.632635",
   "name": "Asset-project",
   "no_copy": 0,
-<<<<<<< HEAD
   "options": "Project",
-=======
-  "options": "Task",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "parent": null,
   "parentfield": null,
   "parenttype": null,
@@ -7894,11 +7554,7 @@
   "dt": "Timesheet",
   "fetch_from": "employee.nationality",
   "fetch_if_empty": 0,
-<<<<<<< HEAD
   "fieldname": "nationality",
-=======
-  "fieldname": "division",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "fieldtype": "Link",
   "hidden": 0,
   "hide_border": 0,
@@ -7910,23 +7566,14 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "department_manager",
   "label": "Nationality",
-=======
-  "insert_after": "designation",
-  "label": "Division",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "length": 0,
   "mandatory_depends_on": null,
   "modified": "2021-04-01 13:50:57.736537",
   "name": "Timesheet-nationality",
   "no_copy": 0,
-<<<<<<< HEAD
   "options": "Country",
-=======
-  "options": "Division",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "parent": null,
   "parentfield": null,
   "parenttype": null,
@@ -8112,13 +7759,8 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Timesheet",
   "fetch_from": "employee.designation",
-=======
-  "dt": "Sales Order",
-  "fetch_from": null,
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "fetch_if_empty": 0,
   "fieldname": "designation",
   "fieldtype": "Link",
@@ -8132,7 +7774,6 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "nationality",
   "label": "Designation",
   "length": 0,
@@ -8141,16 +7782,6 @@
   "name": "Timesheet-designation",
   "no_copy": 0,
   "options": "Designation",
-=======
-  "insert_after": "reason",
-  "label": "Location",
-  "length": 0,
-  "mandatory_depends_on": null,
-  "modified": "2021-03-31 15:56:34.488066",
-  "name": "Sales Order-location",
-  "no_copy": 0,
-  "options": "Location",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "parent": null,
   "parentfield": null,
   "parenttype": null,
@@ -8180,19 +7811,11 @@
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Sales Order",
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "location",
   "fieldtype": "Link",
-=======
-  "dt": "Sales Invoice",
-  "fetch_from": null,
-  "fetch_if_empty": 0,
-  "fieldname": "month_of_work",
-  "fieldtype": "Select",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hidden": 0,
   "hide_border": 0,
   "hide_days": 0,
@@ -8203,7 +7826,6 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "reason",
   "label": "Location",
   "length": 0,
@@ -8212,16 +7834,6 @@
   "name": "Sales Order-location",
   "no_copy": 0,
   "options": "Location",
-=======
-  "insert_after": "ses_number",
-  "label": "Month of Work",
-  "length": 0,
-  "mandatory_depends_on": null,
-  "modified": "2021-01-11 12:19:18.217053",
-  "name": "Sales Invoice-month_of_work",
-  "no_copy": 0,
-  "options": "\nJanuary\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "parent": null,
   "parentfield": null,
   "parenttype": null,
@@ -8663,7 +8275,6 @@
   "collapsible_depends_on": null,
   "columns": 0,
   "default": null,
-<<<<<<< HEAD
   "depends_on": null,
   "description": null,
   "docstatus": 0,
@@ -8673,17 +8284,6 @@
   "fetch_if_empty": 0,
   "fieldname": "clearance_process",
   "fieldtype": "Link",
-=======
-  "depends_on": "",
-  "description": null,
-  "docstatus": 0,
-  "doctype": "Custom Field",
-  "dt": "Quotation",
-  "fetch_from": "contact_person.designation",
-  "fetch_if_empty": 0,
-  "fieldname": "designation",
-  "fieldtype": "Data",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "hidden": 0,
   "hide_border": 0,
   "hide_days": 0,
@@ -8694,21 +8294,12 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "letter_head",
   "label": "Clearance Process",
   "length": 0,
   "mandatory_depends_on": "eval:doc.workflow_state==\"First Approval\"",
   "modified": "2020-12-29 12:41:10.239719",
   "name": "Leave Application-clearance_process",
-=======
-  "insert_after": "phone",
-  "label": "Designation",
-  "length": 0,
-  "mandatory_depends_on": null,
-  "modified": "2020-12-29 15:12:50.759668",
-  "name": "Quotation-designation",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "no_copy": 0,
   "options": "Clearance Process",
   "parent": null,
@@ -8893,7 +8484,6 @@
   "columns": 0,
   "default": null,
   "depends_on": null,
-<<<<<<< HEAD
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
@@ -8946,8 +8536,6 @@
   "columns": 0,
   "default": null,
   "depends_on": "",
-=======
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
@@ -10194,20 +9782,12 @@
   "collapsible": 0,
   "collapsible_depends_on": null,
   "columns": 0,
-<<<<<<< HEAD
   "default": null,
-=======
-  "default": "Services",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "depends_on": null,
   "description": null,
   "docstatus": 0,
   "doctype": "Custom Field",
-<<<<<<< HEAD
   "dt": "Timesheet",
-=======
-  "dt": "Quotation",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "fetch_from": null,
   "fetch_if_empty": 0,
   "fieldname": "location",
@@ -10222,13 +9802,8 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "amended_from",
   "label": "Location",
-=======
-  "insert_after": "items_section",
-  "label": "Item Group",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "length": 0,
   "mandatory_depends_on": null,
   "modified": "2021-03-31 18:37:02.137246",
@@ -10279,13 +9854,8 @@
   "in_list_view": 0,
   "in_preview": 0,
   "in_standard_filter": 0,
-<<<<<<< HEAD
   "insert_after": "date_of_retirement",
   "label": "Overtime",
-=======
-  "insert_after": "contract_end_date",
-  "label": "Contract Duration(Year)",
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "length": 0,
   "mandatory_depends_on": null,
   "modified": "2021-02-18 19:01:54.230921",
@@ -10295,11 +9865,7 @@
   "parent": null,
   "parentfield": null,
   "parenttype": null,
-<<<<<<< HEAD
   "permlevel": 0,
-=======
-  "permlevel": 1,
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "precision": "",
   "print_hide": 0,
   "print_hide_if_no_value": 0,
@@ -12460,61 +12026,6 @@
   "dt": "Purchase Receipt Item",
   "fetch_from": null,
   "fetch_if_empty": 0,
-<<<<<<< HEAD
-=======
-  "fieldname": "task",
-  "fieldtype": "Link",
-  "hidden": 0,
-  "hide_border": 0,
-  "hide_days": 0,
-  "hide_seconds": 0,
-  "ignore_user_permissions": 0,
-  "ignore_xss_filter": 0,
-  "in_global_search": 0,
-  "in_list_view": 0,
-  "in_preview": 0,
-  "in_standard_filter": 0,
-  "insert_after": "project",
-  "label": "Task",
-  "length": 0,
-  "mandatory_depends_on": null,
-  "modified": "2020-12-21 16:21:38.581969",
-  "name": "Purchase Receipt Item-task",
-  "no_copy": 0,
-  "options": "Task",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "permlevel": 0,
-  "precision": "",
-  "print_hide": 0,
-  "print_hide_if_no_value": 0,
-  "print_width": null,
-  "read_only": 0,
-  "read_only_depends_on": null,
-  "report_hide": 0,
-  "reqd": 0,
-  "search_index": 0,
-  "translatable": 0,
-  "unique": 0,
-  "width": null
- },
- {
-  "allow_in_quick_entry": 0,
-  "allow_on_submit": 0,
-  "bold": 0,
-  "collapsible": 0,
-  "collapsible_depends_on": null,
-  "columns": 0,
-  "default": null,
-  "depends_on": null,
-  "description": null,
-  "docstatus": 0,
-  "doctype": "Custom Field",
-  "dt": "Purchase Receipt Item",
-  "fetch_from": null,
-  "fetch_if_empty": 0,
->>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "fieldname": "branch",
   "fieldtype": "Link",
   "hidden": 0,
