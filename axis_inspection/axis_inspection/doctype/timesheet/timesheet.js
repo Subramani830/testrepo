@@ -53,15 +53,6 @@ before_workflow_action: (frm) => {
 		else{
 			frm.set_value('company','Axis Inspection Ltd.')
 		}
-
-		// frm.set_query("task","time_logs",function(){
-		// return{
-		//     filters: [
-		// 	["Assign To","assign_to","=",frm.doc.employee]
-		    
-		//     ]
-		//     };
-        // 	});
 		frappe.call({
 			method: "axis_inspection.axis_inspection.api.get_user_role_billing",
 			async:false,
@@ -90,7 +81,23 @@ before_workflow_action: (frm) => {
 							"project":frm.doc.project
 						}
 					};
-				});		
+				});	
+		frm.fields_dict['asset_detail'].grid.get_field('asset').get_query = function() {
+			return {
+				filters: {
+					project:frm.doc.project,
+					status:"Submitted"
+				}
+			};
+		};	
+		frm.fields_dict['consumable_detail'].grid.get_field('item_code').get_query = function() {
+			return {
+				filters: {
+					"is_stock_item":1,
+					"is_fixed_asset":0
+				}
+			};
+		};
 		
 	},
 timesheet_type:function(frm){
@@ -150,7 +157,7 @@ frappe.ui.form.on('Timesheet Detail',{
 		var hours;
 		if(frm.doc.employee!=undefined){
 			frappe.call({
-				method:"axis_inspection.axis_inspection.api.get_contract",
+				method:"axis_inspection.axis_inspection.api.get_employee_contract",
 				async:false,
 						args: {
 							doctype: 'Employee',
@@ -205,15 +212,22 @@ frappe.ui.form.on('Timesheet Detail', 'task',function(frm,cdt, cdn){
 		}
 
 	});
-
 	frappe.ui.form.on('Timesheet Detail', 'service',function(frm,cdt, cdn){
 		var cur_grid =frm.get_field('time_logs').grid;
 		var cur_doc = locals[cdt][cdn];
 		var cur_row = cur_grid.get_row(cur_doc.name);
 		if(cur_row.doc.activity_type=='Standby' || cur_row.doc.activity_type=='Overtime'){
-			frappe.db.get_value('Item Price',{'item_code':cur_row.doc.service,'price_list':'Standard Selling'},'price_list_rate',(r)=>{
-				cur_row.doc.billing_rate=r.price_list_rate
-				cur_frm.refresh_fields();
+			frappe.call({
+				method:"axis_inspection.axis_inspection.doctype.timesheet.timesheet.get_bill_rate",
+				async:false,
+				args: {
+					"item_code":cur_row.doc.service,
+					"project":frm.doc.project
+				},
+				callback: function(r){
+					cur_row.doc.billing_rate=r.message
+					cur_frm.refresh_fields();
+				}
 			});
 		}
 
