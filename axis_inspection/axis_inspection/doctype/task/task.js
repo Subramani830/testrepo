@@ -166,5 +166,68 @@ var employee=[]
 							})
 								
 						}
+<<<<<<< HEAD
 					});
+=======
+					});	
+			
+	frappe.db.get_value("Project",{"name":frm.doc.project},"location",(r)=>{
+			frm.set_value('location',r.location)
+		})
+	
+},
+skill:function(frm){
+var employee=[];
+	if(frm.doc.skill!=undefined || frm.doc.skill!=null){
+		frappe.call({
+				method:"axis_inspection.axis_inspection.api.get_employee_list",
+				args:{
+		skill:frm.doc.skill
+		},
+			async:false,
+			callback: function(r){
+			for(var i=0;i<r.message.length;i++){
+			employee.push(r.message[i].parent);
+			}
+
+			frm.fields_dict['assign_'].grid.get_field('assign_to').get_query = function() {
+				return {
+					filters: {
+						name:["in",employee] 
+					}
+				};
+			};
+
+			}
+		})
+	}
+}
+});
+
+
+frappe.ui.form.on('Assign To',{
+ assign_to:function(frm,cdt, cdn){
+    var task=[];
+    var cur_grid =frm.get_field('assign_').grid;
+    var cur_doc = locals[cdt][cdn];
+    var cur_row = cur_grid.get_row(cur_doc.name);
+if(cur_row.doc.assign_to!=undefined){
+    frappe.call({
+        method: 'axis_inspection.axis_inspection.api.count_task',
+        async:false,
+        args: {
+            employee:cur_row.doc.assign_to
+        },
+        callback: function(r) {
+		for(var i=0;i<r.message.length;i++){
+		task.push(r.message[i][0]);
+		}
+            cur_doc.assigned_task=task+"";
+            cur_frm.refresh_field('assigned_task')
+        } 
+    });
+    cur_frm.refresh_field('assign_to')
+}
+cur_frm.refresh_field('assign_to')
+>>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
 }

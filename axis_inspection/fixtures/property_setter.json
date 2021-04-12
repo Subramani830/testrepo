@@ -1,6 +1,7 @@
 [
  {
   "default_value": null,
+<<<<<<< HEAD
   "doc_type": "Stock Entry Detail",
   "docstatus": 0,
   "doctype": "Property Setter",
@@ -17,6 +18,8 @@
  },
  {
   "default_value": null,
+=======
+>>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
   "doc_type": "Purchase Receipt",
   "docstatus": 0,
   "doctype": "Property Setter",

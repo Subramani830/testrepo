@@ -295,12 +295,16 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Timesheet-division",
 		"Timesheet-subject",
 		"Timesheet-visit",
+<<<<<<< HEAD
 		"Timesheet-shift",
 		"Supplier-company_registration",
 		"Task-total_qty",
 		"Task-total_hours",
 		"Asset-project",
 		"Sales Invoice-send_customer_email"
+=======
+		"Timesheet-shift"
+>>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
 		]
 	]
 ]
@@ -708,12 +712,16 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Purchase Receipt-rounded_total-permlevel",
 				"Purchase Receipt-in_words-permlevel",
 				"Purchase Receipt-disable_rounded_total-permlevel",
+<<<<<<< HEAD
 				"Purchase Receipt-per_billed-permlevel",
 				"Supplier-tax_id-reqd",
 				"Customer-tax_id-reqd",
 				"Sales Order-po_no-unique",
 				"Vehicle Service-service_item-options",
 				"Vehicle Service-frequency-options"
+=======
+				"Purchase Receipt-per_billed-permlevel"
+>>>>>>> aa1c56fcbc2f4a08b5f80c6295de1c867b98234c
 			]
 	]
 	]
