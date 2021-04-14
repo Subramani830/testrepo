@@ -35,3 +35,26 @@ def validate_contract_term(self):
 	for term in self.contract_term:
 		if (term.contract_term not in contract_term_list): 
 			frappe.throw(_('You cannot enter new contract term'))
+
+@frappe.whitelist()
+def create_salary_structure(doc,method):
+	contract_terms=frappe.db.get_list("Contract Term Detail",filters={'parent':doc.name,'parenttype':'Employee Contract'},fields={'*'})
+	employee_name=frappe.db.get_value("Employee",{'name':doc.party_name},'employee_name')
+	pi_doc=frappe.get_doc(dict(doctype = 'Salary Structure',
+		name=employee_name,
+		company=doc.company
+	)).insert(ignore_mandatory=True)
+	for term in contract_terms:
+		salary_component_type=frappe.db.get_value("Salary Component",{'name':term.contract_term},'type')
+		if salary_component_type:
+			if salary_component_type=="Earning":
+				pi_doc.append('earnings',{
+					'salary_component':term.contract_term,
+					'amount':term.value
+				})
+			else:
+				pi_doc.append('deductions',{
+					'salary_component':term.contract_term,
+					'amount':term.value
+				})
+	pi_doc.save()

@@ -870,6 +870,9 @@ doc_events = {
 	},
 	"Timesheet":{
 		"on_submit":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.on_submit"]
+	},
+	"Employee Contract":{
+		"on_submit": ["axis_inspection.axis_inspection.doctype.employee_contract.employee_contract.create_salary_structure"]
 	}
 
 }
