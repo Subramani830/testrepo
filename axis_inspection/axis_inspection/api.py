@@ -270,7 +270,7 @@ def get_file_name(doctype,file_url,attached_to_field,attached_to_doctype):
 @frappe.whitelist()
 def update_clearance_process(doctype,employee,month,year):
 	nameList=[]
-	start_date_list= frappe.db.get_list(doctype,filters={'employee':employee,'workflow_state':'Approved'},fields=['start_date','name'])
+	start_date_list= frappe.db.get_list(doctype,filters={'employee':employee},fields=['start_date','name'])
 	for row in start_date_list:
 		if row.start_date.month==int(month) and row.start_date.year==int(year):
 			if row.name not in nameList:
@@ -323,4 +323,19 @@ def employee_filter_based_on_department(doctype, txt, searchfield, start, page_l
 @frappe.whitelist()
 def get_employee(task):
 	employee=[]
-	val=frappe.db.get_list("Assign To",filters={'parent':task},fields=["assign_to"])
+	assign_to_list=frappe.db.get_list("Assign To",filters={'parent':task},fields=["assign_to"])
+	for row in assign_to_list:
+		if row.assign_to not in employee:
+			employee.append(row.assign_to)
+	return employee
+
+@frappe.whitelist()
+def validate_stock_entry(stock_entry_type):
+	items=[]
+	stock_entry=frappe.db.get_list("Stock Entry",filters={'stock_entry_type':'Material Issue','docstatus':1},fields=["name"])
+	for row in stock_entry:
+		item_list=frappe.db.get_list('Stock Entry Detail',filters={'parent':row.name,'parenttype':'Stock Entry'},fields=['item_code'])
+		for val in item_list:
+			if val.item_code not in items:
+				items.append(val.item_code)
+	return items

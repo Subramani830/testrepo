@@ -59,9 +59,9 @@ before_workflow_action: (frm) => {
 			 callback: function(r){
 				if(r.message==0){
 					var df1 = frappe.meta.get_docfield("Timesheet Detail","billable", cur_frm.doc.name);
-            				df1.hidden = 1;
+            				df1.hidden = 0;
 					var df2 = frappe.meta.get_docfield("Timesheet Detail","billing_hours", cur_frm.doc.name);
-            				df2.hidden = 1;
+            				df2.hidden = 0;
 					var df3 = frappe.meta.get_docfield("Timesheet Detail","billing_rate", cur_frm.doc.name);
             				df3.hidden = 1;
 					var df4 = frappe.meta.get_docfield("Timesheet Detail","billing_amount", cur_frm.doc.name);
@@ -90,9 +90,24 @@ before_workflow_action: (frm) => {
 				}
 			};
 		};	
+		var items=[]
+		frappe.call({
+			method:"axis_inspection.axis_inspection.api.validate_stock_entry",
+			async:false,
+			args: {
+				"stock_entry_type":'Material Issue'
+			},
+			callback: function(r){
+				for(var i=0; i<r.message.length; i++){
+					items.push(r.message[i]);
+				}
+			}
+		});
+		
 		frm.fields_dict['consumable_detail'].grid.get_field('item_code').get_query = function() {
 			return {
 				filters: {
+					'item_code':['in',items],
 					"is_stock_item":1,
 					"is_fixed_asset":0
 				}

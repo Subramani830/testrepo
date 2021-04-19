@@ -8,6 +8,11 @@
  "field_order": [
   "company",
   "employee",
+  "employee_name",
+  "column_break_4",
+  "id_number",
+  "border_no",
+  "section_break_7",
   "employee_cost_details",
   "total_cost",
   "amended_from"
@@ -47,12 +52,41 @@
    "options": "Employee Costs",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "employee.id_number",
+   "fieldname": "id_number",
+   "fieldtype": "Data",
+   "label": "ID Number",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "employee.border_number",
+   "fieldname": "border_no",
+   "fieldtype": "Data",
+   "label": "Border Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2020-10-29 10:45:37.588284",
+ "modified": "2021-04-14 15:04:35.025524",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Employee Costs",
