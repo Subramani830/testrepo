@@ -297,10 +297,17 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Timesheet-visit",
 		"Timesheet-shift",
 		"Supplier-company_registration",
-		"Task-total_qty",
-		"Task-total_hours",
 		"Asset-project",
-		"Sales Invoice-send_customer_email"
+		"Sales Invoice-send_customer_email",
+		"Salary Structure-employee",
+		"Sales Order-maximum_value",
+		"Task-section_break_56",
+		"Task-consumable_detail",
+		"Task-asset_detail",
+		"Timesheet-consumable_detail",
+		"Timesheet-asset_detail",
+		"Sales Invoice-contract",
+		"Delivery Note-contract"
 		]
 	]
 ]
@@ -713,7 +720,12 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Customer-tax_id-reqd",
 				"Sales Order-po_no-unique",
 				"Vehicle Service-service_item-options",
-				"Vehicle Service-frequency-options"
+				"Vehicle Service-frequency-options",
+				"Sales Invoice-write_off_cost_center-permlevel",
+				"Sales Invoice-write_off_account-permlevel",
+				"Sales Invoice-write_off_outstanding_amount-permlevel",
+				"Sales Invoice-base_write_off_amount-permlevel",
+				"Sales Invoice-write_off_amount-permlevel",
 			]
 	]
 	]
@@ -811,7 +823,8 @@ doctype_js = {
 	"Delivery Note" : "axis_inspection/doctype/delivery_note/delivery_note.js",
 	"Payment Request" : "axis_inspection/doctype/payment_request/payment_request.js",
 	"Pick List" : "axis_inspection/doctype/pick_list/pick_list.js",
-	"Training Program" : "axis_inspection/doctype/training_program/training_program.js"
+	"Training Program" : "axis_inspection/doctype/training_program/training_program.js",
+	"Quality Inspection" : "axis_inspection/doctype/quality_inspection/quality_inspection.js"
 }
 scheduler_events = {
 	"daily":  [
@@ -869,7 +882,8 @@ doc_events = {
 	     "validate":["axis_inspection.axis_inspection.doctype.delivery_note.delivery_note.validate_minimum_charge"]
 	},
 	"Timesheet":{
-		"on_submit":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.on_submit"]
+		"on_submit":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.on_submit"],
+		"on_cancel":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.on_cancel"]
 	},
 	"Employee Contract":{
 		"on_submit": ["axis_inspection.axis_inspection.doctype.employee_contract.employee_contract.create_salary_structure"]

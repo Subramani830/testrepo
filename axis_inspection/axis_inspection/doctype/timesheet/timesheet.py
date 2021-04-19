@@ -18,21 +18,81 @@ class Timesheet(Document):
 	pass
 
 def on_submit(self,method):
-	total_hours=0
-	total_qty=0
-	for val in self.asset_detail:
-		total_hours+=val.hours
-
-	for val in self.consumable_detail:
-		total_qty+=val.quantity
-
 	for row in self.time_logs:
 		task=row.task
 		if task!=None:break
+	update_asset_details(self,task)
+	update_consumable_item_details(self,task)
+
+def on_cancel(self,method):
+	delete_asset_and_consumable_detail(self)
+
+def update_asset_details(self,task):
 	doc=frappe.get_doc('Task',task)
-	doc.db_set('total_hours',total_hours)
-	doc.db_set('total_qty',total_qty)
-	
+	for val in self.asset_detail:
+		name=frappe.db.get_value('Asset Item',{'parent':task,'parenttype':'Task','asset':val.asset},'name')
+		if name:
+			hours=frappe.db.get_value('Asset Item',{'parent':task,'parenttype':'Task','asset':val.asset},'hours')
+			total_hours=hours+val.hours
+			asset_detail_doc=frappe.get_doc("Asset Item",name)
+			asset_detail_doc.update({
+				'hours':total_hours
+			})
+			asset_detail_doc.save()
+		else:
+			doc.append('asset_detail', {
+				'asset': val.asset,
+				'hours': val.hours
+			})
+			doc.save()
+
+def update_consumable_item_details(self,task):
+	doc=frappe.get_doc('Task',task)
+	for val in self.consumable_detail:
+		name=frappe.db.get_value('Consumable Detail',{'parent':task,'parenttype':'Task','item_code':val.item_code},['name'])
+		if name:
+			qty=frappe.db.get_value('Consumable Detail',{'parent':task,'parenttype':'Task','item_code':val.item_code},['quantity'])
+			total_qty=qty+val.quantity
+			item_detail_doc=frappe.get_doc("Consumable Detail",name)
+			item_detail_doc.update({
+				'quantity':total_qty
+			})
+			item_detail_doc.save()
+		else:
+			doc.append('consumable_detail', {
+			'item_code': val.item_code,
+			'quantity':val.quantity
+			})
+			doc.save()
+
+def delete_asset_and_consumable_detail(self):
+	for row in self.time_logs:
+		task=row.task
+		if task!=None:break
+	for val in self.asset_detail:
+		name,hours=frappe.db.get_value('Asset Item',{'parent':task,'parenttype':'Task','asset':val.asset},['name','hours'])
+		if val.hours==hours:
+			frappe.db.delete("Asset Item",name)
+		else:
+			total_hours=hours-val.hours
+			asset_detail_doc=frappe.get_doc("Asset Item",name)
+			asset_detail_doc.update({
+				'hours':total_hours
+			})
+			asset_detail_doc.save()
+		
+	for val in self.consumable_detail:
+		name,qty=frappe.db.get_value('Consumable Detail',{'parenttype':'Task','parent':task,'item_code':val.item_code},['name','quantity'])
+		if val.quantity==qty:
+			frappe.db.delete("Consumable Detail",name)
+		else:
+			total_qty=qty-val.quantity
+			item_detail_doc=frappe.get_doc("Consumable Detail",name)
+			item_detail_doc.update({
+				'quantity':total_qty
+			})
+			item_detail_doc.save()
+
 
 @frappe.whitelist()
 def get_project_timesheet_data(project, parent=None):

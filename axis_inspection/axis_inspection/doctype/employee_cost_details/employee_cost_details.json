@@ -6,7 +6,8 @@
  "engine": "InnoDB",
  "field_order": [
   "document_name",
-  "cost"
+  "cost",
+  "remark"
  ],
  "fields": [
   {
@@ -23,12 +24,17 @@
    "in_list_view": 1,
    "label": "Cost",
    "options": "Currency"
+  },
+  {
+   "fieldname": "remark",
+   "fieldtype": "Text",
+   "label": "Remark"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2020-12-21 15:33:30.343512",
+ "modified": "2021-04-14 15:12:16.149599",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Employee Cost Details",

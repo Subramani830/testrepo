@@ -134,26 +134,30 @@ refresh: function(frm){
 		apply_filter(frm)	
 },
 before_save:function(frm){
-	if(frm.doc.contract != null){
-		frappe.db.get_value("Contract",{"name":frm.doc.contract},"end_date",(r)=>{
-		       if(r.end_date<=frappe.datetime.nowdate()){
-		           frappe.validated=false;
-		           frappe.msgprint(__("Contract "+frm.doc.contract+" has been expired."));
-		           
-		       }
-		})
-               frappe.model.with_doc("Contract", frm.doc.contract, function() {
-                	var tabletransfer= frappe.model.get_doc("Contract", frm.doc.contract)
+	var count = 0;
+	var num = 0;
+        frappe.model.with_doc("Contract", frm.doc.contract, function() {
+            var tabletransfer= frappe.model.get_doc("Contract", frm.doc.contract)
 			$.each(frm.doc.items, function(idx, item){
-				$.each(tabletransfer.items, function(index, row){
-					if(item.item_code!= row.item_code || item.uom != row.uom || item.rate != row.rate){
-				  		 //frappe.validated=false;
-				  		 //frappe.msgprint(__("Quotation items doesnot match with Contract."));
+				count++;
+				num=0;
+                $.each(tabletransfer.items, function(index, row){
+					num++;
+					if(item.item_code== row.item_code){ 
+						if(item.item_code!= row.item_code || item.qty != row.qty || item.uom != row.uom || item.rate != row.rate){
+							if(item.item_code!= row.item_code || item.uom != row.uom || item.rate != row.rate){
+								frappe.validated=false;
+								frappe.msgprint(__("Quotation items doesnot match with Contract."));
+							}
+						}
 					}
-                       		 })
-                    	})
                 })
-	}
+			})
+				if(count>num){
+	          		 frappe.validated=false;
+		          		 frappe.msgprint(__("Quotation items doesnot match with Contract."));
+ 				}
+	});
 
 },
 item_group(frm){

@@ -28,6 +28,15 @@ frappe.ui.form.on('Material Request', {
 			});
 			}
 	},
+refresh:function(frm){
+	frm.set_query( "tc_name", function() {
+		        return {
+		            filters: {
+		                "buying":1
+		            }
+		        };
+		    })
+},
 before_save:function(frm) {
   $.each(frm.doc.items,function(idx,item){
 	if(item.sales_order!=undefined){
