@@ -29,6 +29,18 @@ employee:function(frm,cdt,cdn){
 					}
 				}
 			});
+			frappe.call({
+				method:"axis_inspection.axis_inspection.api.get_working_hours",
+				async:false,
+				args: {
+					"parent":frm.doc.employee_name
+				},
+				callback: function(r){
+					for(var i=0; i<r.message.length; i++){
+						frm.set_value('working_hour',r.message)
+					}
+				}
+			});
 			frm.set_query("project","time_logs",function(){
 				return{
 					filters: {

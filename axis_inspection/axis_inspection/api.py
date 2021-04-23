@@ -339,3 +339,7 @@ def validate_stock_entry(stock_entry_type):
 			if val.item_code not in items:
 				items.append(val.item_code)
 	return items
+
+@frappe.whitelist()
+def get_working_hours(parent):
+	return frappe.db.get_value('Contract Term Detail',{'parent':parent,'parenttype':'Employee Contract','contract_term':'Working Hours'},'value')

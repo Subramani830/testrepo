@@ -318,7 +318,36 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Material Request Item-reference_no",
 		"Timesheet-customer",
 		"Timesheet Detail-shift",
-		"Timesheet Detail-visit"
+		"Timesheet Detail-visit",
+		"Supplier-company_registration",
+		"Asset-project",
+		"Sales Invoice-send_customer_email",
+		"Salary Structure-employee",
+		"Task-section_break_56",
+		"Task-consumable_detail",
+		"Task-asset_detail",
+		"Timesheet-consumable_detail",
+		"Timesheet-asset_detail",
+		"Sales Invoice-contract",
+		"Delivery Note-contract",
+		"Sales Invoice-location",
+		"Delivery Note-location",
+		"Attendance-early_exit_duration",
+		"Attendance-late_entry_duration",
+		"Salary Slip-attendance_deduction_amount",
+		"Salary Slip-attendance_deduction_hours",
+		"Sales Invoice-sales_order",
+		"Salary Component-is_project_allwoance",
+		"Contract-bank_account",
+		"Quotation-bank_account",
+		"Sales Order-bank_account",
+		"Sales Invoice-bank_account",
+		"Request for Quotation-bank_account",
+		"Supplier Quotation-bank_account",
+		"Purchase Order-bank_account",
+		"Purchase Invoice-bank_account",
+		"Sales Invoice Timesheet-visit",
+		"Timesheet-working_hour",
 		]
 	]
 ]
@@ -738,7 +767,10 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Sales Invoice-base_write_off_amount-permlevel",
 				"Sales Invoice-write_off_amount-permlevel",
 				"Journal Entry Account-reference_type-options",
-				"Timesheet-employee-reqd"
+				"Timesheet-employee-reqd",
+				"Sales Invoice-is_pos-hidden",
+				"Loan Disbursement-customer_details_section",
+				"Material Request-set_warehouse-hidden"
 			]
 	]
 	]
@@ -877,7 +909,7 @@ doc_events = {
 		"autoname": ["axis_inspection.axis_inspection.doctype.contract.contract.autoname"]
 	},
 	"Salary Slip":{
-		"validate":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.update_salary_slip"],
+		"validate":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.validate"],
 		"on_submit":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.update_actual_paid"],
 		"on_cancel":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.remove_actual_paid"]
 	},
@@ -901,6 +933,9 @@ doc_events = {
 	},
 	"Employee Contract":{
 		"on_submit": ["axis_inspection.axis_inspection.doctype.employee_contract.employee_contract.create_salary_structure"]
+	},
+	"Attendance":{
+		"validate":["axis_inspection.axis_inspection.doctype.attendance.attendance.validate"]
 	}
 
 }
