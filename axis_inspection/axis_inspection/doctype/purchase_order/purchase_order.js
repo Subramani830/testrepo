@@ -11,7 +11,6 @@ refresh(frm){
 	    setTimeout(() => {
 		frm.remove_custom_button('Product Bundle','Get Items From');
 		frm.remove_custom_button('Product Bundle','Get items from');
-		frm.remove_custom_button('Update Items');
 		frm.remove_custom_button('Subscription','Create');
 		}, 10);
 
