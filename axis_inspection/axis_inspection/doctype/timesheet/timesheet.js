@@ -29,6 +29,18 @@ employee:function(frm,cdt,cdn){
 					}
 				}
 			});
+			frappe.call({
+				method:"axis_inspection.axis_inspection.api.get_working_hours",
+				async:false,
+				args: {
+					"parent":frm.doc.employee_name
+				},
+				callback: function(r){
+					for(var i=0; i<r.message.length; i++){
+						frm.set_value('working_hour',r.message)
+					}
+				}
+			});
 			frm.set_query("project","time_logs",function(){
 				return{
 					filters: {
@@ -37,6 +49,7 @@ employee:function(frm,cdt,cdn){
 					}
 					});
 }
+get_absent_days(frm)
 },
 before_workflow_action: (frm) => {
 	if(frm.doc.workflow_state=="Draft")
@@ -49,6 +62,10 @@ before_workflow_action: (frm) => {
 	}
 },
 	refresh:function(frm){
+	if(frm.doc.timesheet_date == undefined){
+		frm.set_value("timesheet_date",frappe.datetime.nowdate())
+		}
+
 		if(frm.doc.company){}
 		else{
 			frm.set_value('company','Axis Inspection Ltd.')
@@ -113,6 +130,15 @@ before_workflow_action: (frm) => {
 				}
 			};
 		};
+
+		 frm.set_query("task","time_logs",function(){
+		 return{
+		     filters: [
+		 	["Assign To","assign_to","=",frm.doc.employee]
+		    
+		     ]
+		     };
+         	});
 		
 	},
 timesheet_type:function(frm){
@@ -163,7 +189,42 @@ timesheet_type:function(frm){
 		frappe.db.get_value("Project",{"name":frm.doc.project},"location",(r)=>{
 			frm.set_value('location',r.location)
 		})
+	},
+timesheet_date: function(frm){
+	if(frm.doc.timesheet_date!=undefined){
+	frappe.call({
+		method: 'axis_inspection.axis_inspection.doctype.timesheet.timesheet.convertDateFormat',
+		async:false,
+		args: {
+			start_date:frm.doc.timesheet_date
+		},
+		callback: function(c) {
+		frm.set_value("month_and_year",c.message)
+
+		}
+	});
 	}
+	get_absent_days(frm)
+},
+before_save: function(frm){
+ var dates=[' '];
+	frappe.call({
+		method:"axis_inspection.axis_inspection.doctype.timesheet.timesheet.get_duplicate_entry",
+		async:false,
+		args:{
+			"doc":frm.doc
+		},
+		callback: function(r){
+			for(var i=0;i<r.message.length;i++){
+			dates.push(r.message[i][0][0])
+			}
+			if(dates.length>1){
+				frappe.validated=false;
+				frappe.throw(__("Timesheet has been already created for employee on "+ dates  +"."))
+			}
+		}
+	})
+}
 
 });
 frappe.ui.form.on('Timesheet Detail',{
@@ -248,3 +309,25 @@ frappe.ui.form.on('Timesheet Detail', 'task',function(frm,cdt, cdn){
 
 
 	});
+
+	function get_absent_days(frm){
+		var absent_days = 0.0;
+		if(frm.doc.employee!=undefined && frm.doc.timesheet_date!=undefined){
+			frappe.call({
+				method:"axis_inspection.axis_inspection.doctype.timesheet.timesheet.get_absent_days",
+				async:false,
+				args: {
+					"employee":frm.doc.employee,
+					"start_date":frm.doc.timesheet_date
+				},
+				callback: function(r){
+					for(var i=0; i<r.message.length; i++){
+						absent_days += r.message[i].total_leave_days;
+					}
+				frm.set_value("absent_days",absent_days)
+				}
+			})
+
+		}
+
+	}

@@ -50,3 +50,16 @@ before_save:function(frm) {
   });
 }
 });
+
+
+frappe.ui.form.on('Material Request Item', {
+	items_add(frm,cdt,cdn) {
+	    var cur_grid =frm.get_field('items').grid;
+		var cur_doc = locals[cdt][cdn];
+		var cur_row = cur_grid.get_row(cur_doc.name);
+		if (frm.doc.reference_no!=undefined){
+    		cur_row.doc.reference_no=frm.doc.reference_no
+    		cur_frm.refresh_fields();
+		}
+	}
+})

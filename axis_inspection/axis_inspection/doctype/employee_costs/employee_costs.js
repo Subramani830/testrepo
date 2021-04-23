@@ -39,6 +39,23 @@ frappe.ui.form.on('Employee Costs', {
 		doc.naming_series='ACC-JV-.YYYY.-';
                 frappe.set_route('Form', 'Journal Entry', doc.name);
             },'Create')
+            frm.page.add_inner_button('Purchase Invoice', function(){
+                var doc = frappe.model.get_new_doc('Purchase Invoice');
+                doc.reference_no = frm.doc.name;
+		doc.company=frm.doc.company;
+		doc.naming_series='ACC-PINV-.YYYY.-';
+                frappe.set_route('Form', 'Purchase Invoice', doc.name);
+            },'Create')
+            frm.page.add_inner_button('Material Request', function(){
+                var doc = frappe.model.get_new_doc('Material Request');
+                doc.reference_no = frm.doc.name;
+		doc.company=frm.doc.company;
+		doc.requested_for=frm.doc.employee;
+		doc.material_request_type = "Purchase";
+		doc.transaction_date = frappe.datetime.get_today();
+		doc.naming_series='MAT-MR-.YYYY.-';
+                frappe.set_route('Form', 'Material Request', doc.name);
+            },'Create')
 	}
 },
 onload: function(frm){
