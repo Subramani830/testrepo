@@ -68,7 +68,7 @@ function update_clearance_process_filter(frm){
         frm.set_query( "clearance_process", function() {
             return {
                 filters: {
-                    "name":["in",name]
+                    "name":["in",frm.doc.employee_name] 
                 }
             };
         })

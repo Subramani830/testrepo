@@ -8,5 +8,8 @@ def get_data():
 			{
 				'items': ['Journal Entry']
 			},
+			{
+				'items': ['Purchase Invoice','Material Request']
+			},
 		]
 	}
