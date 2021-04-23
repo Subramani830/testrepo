@@ -294,8 +294,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Timesheet-sales_order",
 		"Timesheet-division",
 		"Timesheet-subject",
-		"Timesheet-visit",
-		"Timesheet-shift",
 		"Supplier-company_registration",
 		"Asset-project",
 		"Sales Invoice-send_customer_email",
@@ -307,7 +305,20 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Timesheet-consumable_detail",
 		"Timesheet-asset_detail",
 		"Sales Invoice-contract",
-		"Delivery Note-contract"
+		"Delivery Note-contract",
+		"Timesheet-timesheet_date",
+		"Timesheet-month_and_year",
+		"Vehicle-company_number",
+		"Timesheet-absent_days",
+		"Timesheet-contract_no",
+		"Timesheet-contract_name",
+		"Purchase Invoice-reference_no",
+		"Purchase Invoice Item-reference_no",
+		"Material Request-reference_no",
+		"Material Request Item-reference_no",
+		"Timesheet-customer",
+		"Timesheet Detail-shift",
+		"Timesheet Detail-visit"
 		]
 	]
 ]
@@ -726,6 +737,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Sales Invoice-write_off_outstanding_amount-permlevel",
 				"Sales Invoice-base_write_off_amount-permlevel",
 				"Sales Invoice-write_off_amount-permlevel",
+				"Journal Entry Account-reference_type-options",
+				"Timesheet-employee-reqd"
 			]
 	]
 	]
@@ -824,7 +837,8 @@ doctype_js = {
 	"Payment Request" : "axis_inspection/doctype/payment_request/payment_request.js",
 	"Pick List" : "axis_inspection/doctype/pick_list/pick_list.js",
 	"Training Program" : "axis_inspection/doctype/training_program/training_program.js",
-	"Quality Inspection" : "axis_inspection/doctype/quality_inspection/quality_inspection.js"
+	"Quality Inspection" : "axis_inspection/doctype/quality_inspection/quality_inspection.js",
+	"Journal Entry" : "axis_inspection/doctype/journal_entry/journal_entry.js"
 }
 scheduler_events = {
 	"daily":  [

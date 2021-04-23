@@ -1,6 +1,22 @@
 [
  {
   "default_value": null,
+  "doc_type": "Journal Entry Account",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "reference_type",
+  "modified": "2021-04-20 14:09:26.231108",
+  "name": "Journal Entry Account-reference_type-options",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "options",
+  "property_type": "Text",
+  "value": "\nSales Invoice\nPurchase Invoice\nJournal Entry\nSales Order\nPurchase Order\nExpense Claim\nAsset\nLoan\nPayroll Entry\nEmployee Advance\nExchange Rate Revaluation\nInvoice Discounting\nFees\nEmployee Costs"
+ },
+ {
+  "default_value": null,
   "doc_type": "Sales Invoice",
   "docstatus": 0,
   "doctype": "Property Setter",
@@ -6270,5 +6286,21 @@
   "property": "options",
   "property_type": "Text",
   "value": "\nOne Time\nMileage\nMonthly\nQuarterly\nHalf Yearly\nYearly"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Timesheet",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "employee",
+  "modified": "2021-04-23 08:14:06.192770",
+  "name": "Timesheet-employee-reqd",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "reqd",
+  "property_type": "Check",
+  "value": "1"
  }
 ]
