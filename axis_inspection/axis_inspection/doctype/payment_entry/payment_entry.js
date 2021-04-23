@@ -20,7 +20,7 @@ frappe.ui.form.on('Payment Entry', {
 				if(r.message[i].task){task=r.message[i].task}
 				if(r.message[i].cost_center){cost_center=r.message[i].cost_center}
 				if(r.message[i].branch){branch=r.message[i].branch}
-			console.log(r.message[i].project)
+			
 			
                         //frappe.model.set_value(item.doctype, item.name, "project_name", r.message[i].project);
                         //frappe.model.set_value(item.doctype, item.name, "task", r.message[i].task);
@@ -28,7 +28,7 @@ frappe.ui.form.on('Payment Entry', {
                         //frappe.model.set_value(item.doctype, item.name, "branch", r.message[i].branch);
                     }
                         if(frm.doc.cost_center){}
-			else{console.log("modifying");
+			else{
 			frm.set_value("cost_center",cost_center)}
 			if(frm.doc.project){}
 			else{frm.set_value("project",project)}
@@ -38,6 +38,12 @@ frappe.ui.form.on('Payment Entry', {
 			else{frm.set_value("task",task)}
                     }
                 });
+		if(frm.doc.division==undefined){
+			frappe.db.get_value("Purchase Invoice", {"name":item.reference_name},"division",(d)=>{
+				frm.set_value("division",d.division)
+		
+		})
+		}
             }
 	else if(item.reference_doctype=="Purchase Order"){
                 frappe.call({
@@ -58,7 +64,7 @@ frappe.ui.form.on('Payment Entry', {
 				if(r.message[i].task){task=r.message[i].task}
 				if(r.message[i].cost_center){cost_center=r.message[i].cost_center}
 				if(r.message[i].branch){branch=r.message[i].branch}
-			console.log(r.message[i].project)
+
 			
                         //frappe.model.set_value(item.doctype, item.name, "project_name", r.message[i].project);
                         //frappe.model.set_value(item.doctype, item.name, "task", r.message[i].task);
@@ -66,7 +72,7 @@ frappe.ui.form.on('Payment Entry', {
                         //frappe.model.set_value(item.doctype, item.name, "branch", r.message[i].branch);
                     }
                         if(frm.doc.cost_center){}
-			else{console.log("modifying");
+			else{
 			frm.set_value("cost_center",cost_center)}
 			if(frm.doc.project){}
 			else{frm.set_value("project",project)}
@@ -96,7 +102,7 @@ frappe.ui.form.on('Payment Entry', {
 				if(r.message[i].branch){branch=r.message[i].branch}
                     }
                         if(frm.doc.cost_center){}
-			else{console.log("modifying");
+			else{
 			frm.set_value("cost_center",cost_center)}
 			if(frm.doc.project){}
 			else{frm.set_value("project",project)}
@@ -126,7 +132,7 @@ else if(item.reference_doctype=="Sales Order"){
 				if(r.message[i].branch){branch=r.message[i].branch}
                     }
                         if(frm.doc.cost_center){}
-			else{console.log("modifying");
+			else{
 			frm.set_value("cost_center",cost_center)}
 			if(frm.doc.project){}
 			else{frm.set_value("project",project)}

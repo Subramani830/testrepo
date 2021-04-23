@@ -10,6 +10,10 @@ from frappe.model.document import Document
 from erpnext.manufacturing.doctype.workstation.workstation import (check_if_within_operating_hours,
 	WorkstationHolidayError)
 from erpnext.manufacturing.doctype.manufacturing_settings.manufacturing_settings import get_mins_between_operations
+from datetime import date
+from datetime import datetime
+import calendar
+from datetime import date, timedelta
 
 class OverlapError(frappe.ValidationError): pass
 class OverWorkLoggedError(frappe.ValidationError): pass
@@ -109,4 +113,44 @@ def get_project_timesheet_data(project, parent=None):
 def get_bill_rate(item_code,project):
 	sales_order=frappe.db.get_value('Project',{'name':project},'sales_order')
 	return frappe.db.get_value('Sales Order Item',{'parent':sales_order,'item_code':item_code},'rate')
+
+
+@frappe.whitelist()
+def convertDateFormat(start_date):
+	start_date=str(start_date)
+	date=datetime.strptime(start_date, '%Y-%m-%d')
+	return date.strftime('%B-%Y')
+
+
+@frappe.whitelist()
+def get_absent_days(employee,start_date):
+	date=start_date
+	convert_date = datetime.strptime(date, '%Y-%m-%d')
+	month_start_date = convert_date.replace(day=1)
+	months=month_start_date.month
+	month_end_date = month_start_date.replace(month=months+1)  - timedelta(1)
+	
+	days=frappe.db.get_list("Leave Application",filters={"employee":employee,"from_date":["between",[month_start_date,month_end_date]],"status":"Approved"},fields={"name","total_leave_days"})
+
+	return days
+
+
+@frappe.whitelist()
+def get_duplicate_entry(doc):
+	days = []
+	result=json.loads(doc)
+	for time_sheet in frappe.db.get_list("Timesheet", filters={"employee":result['employee'],"month_and_year":result['month_and_year'],"customer":result['customer'],"name":["!=",result['name']]},fields=["name"]):
+		if(time_sheet):
+			for i in result['time_logs']:
+				f_time = i['from_time']
+				day= datetime.strptime(f_time,'%Y-%m-%d %H:%M:%S')
+				dt=day.date()
+				day_time=frappe.db.sql("""select date(from_time) from `tabTimesheet Detail` where parent = '{name}' and date(from_time)='{dates}' """.format(name=time_sheet['name'],dates=dt))
+				for time in day_time:
+					days.append(day_time)
+				
+	return days
+
+
+
 
