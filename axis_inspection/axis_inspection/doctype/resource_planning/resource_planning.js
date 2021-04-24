@@ -11,10 +11,11 @@ refresh: function(frm) {
 		},
 	async:false,
 	callback: function(r){
+	if(r.message!=null){
 	for(var i=0;i<r.message.length;i++){
 			item_group.push(r.message[i].name);
 	}
-
+	}
 	frm.fields_dict['item_detail'].grid.get_field('item_group').get_query = function() {
 		return {
 			filters: {
@@ -62,6 +63,64 @@ sales_order:function(frm){
 		frappe.db.get_value("Sales Order",{"name":frm.doc.sales_order},"status",(r)=>{
 			frm.set_value('sales_order_status',r.status)
 		})
+	}
+
+	if(frm.doc.sales_order!=undefined && frm.doc.sales_order!=null){
+	frappe.call({
+		method:"axis_inspection.axis_inspection.doctype.resource_planning.resource_planning.get_resource_planning_employee_detail",
+		async:false,
+		args:{
+			sales_order:frm.doc.sales_order,
+			name:frm.doc.name
+		},
+		callback:function(r){
+		cur_frm.clear_table("employee_detail");
+		if(r.message.length!=0){
+			for(var i=0;i<r.message.length;i++){
+			var child = cur_frm.add_child("employee_detail");
+		        child.designation=r.message[i].designation;
+			child.number_of_employee=r.message[i].no_emp;
+			} cur_frm.refresh_field("employee_detail");
+		}
+		}
+	})
+	frappe.call({
+		method:"axis_inspection.axis_inspection.doctype.resource_planning.resource_planning.get_resource_planning_asset_detail",
+		async:false,
+		args:{
+			sales_order:frm.doc.sales_order,
+			name:frm.doc.name
+		},
+		callback:function(r){
+		cur_frm.clear_table("asset_detail");
+		if(r.message.length!=0){
+			for(var i=0;i<r.message.length;i++){
+			var child = cur_frm.add_child("asset_detail");
+		        child.asset_category=r.message[i].asset_category;
+			child.qty=r.message[i].qty;
+			} cur_frm.refresh_field("asset_detail");
+		}
+		}
+	})
+	frappe.call({
+		method:"axis_inspection.axis_inspection.doctype.resource_planning.resource_planning.get_resource_planning_item_detail",
+		async:false,
+		args:{
+			sales_order:frm.doc.sales_order,
+			name:frm.doc.name
+		},
+		callback:function(r){
+		cur_frm.clear_table("item_detail");
+		if(r.message.length!=0){
+			for(var i=0;i<r.message.length;i++){
+			var child = cur_frm.add_child("item_detail");
+		        child.item_group=r.message[i].item_group;
+			child.qty=r.message[i].qty;
+			} cur_frm.refresh_field("item_detail");
+		}
+		}
+	})
+
 	}
 }
 });

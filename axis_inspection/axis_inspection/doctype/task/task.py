@@ -26,11 +26,7 @@ def count_assign(self):
             count_list[val.designation] = val.count
 
     for row in self.assign_:
-        task=frappe.db.get_value('Assign To',{'employee':row.employee},'parent')
-        if task and task!=self.name:
-            frappe.throw(_("Employee {0} is already assigned to task {1}.").format(row.employee_name,task))
-
-        elif not row.designation in count_list :
+        if not row.designation in count_list :
             if row.designation!=None:
                 count_list[row.designation] = 1
         else:

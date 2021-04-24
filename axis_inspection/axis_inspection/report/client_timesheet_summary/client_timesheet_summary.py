@@ -101,7 +101,6 @@ def get_data(filters,holiday_map):
 				data.update(total)
 		record.append(data)
 	
-	print(record)
 
 	return record#description_data
 
