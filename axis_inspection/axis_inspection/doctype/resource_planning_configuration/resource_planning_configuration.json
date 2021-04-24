@@ -1,0 +1,84 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2021-04-05 19:09:52.134799",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "item_code",
+  "item_name",
+  "employee_details",
+  "asset_detail",
+  "item_details"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_details",
+   "fieldtype": "Table",
+   "label": "Item Details",
+   "options": "Item Details"
+  },
+  {
+   "default": "RES-PLAN-CONFIG-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "options": "RES-PLAN-CONFIG-.YYYY.-",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee_details",
+   "fieldtype": "Table",
+   "label": "Employee Details",
+   "options": "Employee Details"
+  },
+  {
+   "fieldname": "asset_detail",
+   "fieldtype": "Table",
+   "label": "Asset Detail",
+   "options": "Asset Detail"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item Code",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "item_code.item_name",
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-04-22 16:48:51.113598",
+ "modified_by": "Administrator",
+ "module": "Axis Inspection",
+ "name": "Resource Planning Configuration",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
