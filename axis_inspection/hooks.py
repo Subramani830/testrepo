@@ -348,6 +348,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Purchase Invoice-bank_account",
 		"Sales Invoice Timesheet-visit",
 		"Timesheet-working_hour",
+		"Attendance-total_delay_duration"
 		]
 	]
 ]
@@ -479,7 +480,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Lead-mobile_no-reqd",
 				"Lead-address_line1-reqd",
 				"Lead-city-reqd",
-				"Material Request-set_warehouse-reqd",
 				"Material Request-schedule_date-reqd",
 				"Material Request Item-manufacture_details-hidden",
 				"Material Request Item-bom_no-hidden",
@@ -758,7 +758,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Purchase Receipt-per_billed-permlevel",
 				"Supplier-tax_id-reqd",
 				"Customer-tax_id-reqd",
-				"Sales Order-po_no-unique",
 				"Vehicle Service-service_item-options",
 				"Vehicle Service-frequency-options",
 				"Sales Invoice-write_off_cost_center-permlevel",
