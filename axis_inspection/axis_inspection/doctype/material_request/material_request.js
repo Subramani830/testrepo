@@ -36,6 +36,14 @@ refresh:function(frm){
 		            }
 		        };
 		    })
+	frm.fields_dict['items'].grid.get_field('warehouse').get_query = function() {
+					return {
+						filters: {
+							is_group:0,
+							company:frm.doc.company
+						}
+					};
+				};
 },
 before_save:function(frm) {
   $.each(frm.doc.items,function(idx,item){

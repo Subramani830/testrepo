@@ -787,7 +787,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Delivery Note-grand_total-permlevel",
 				"Delivery Note-rounding_adjustment-permlevel",
 				"Delivery Note-rounded_total-permlevel",
-				"Delivery Note-in_words-permlevel"
+				"Delivery Note-in_words-permlevel",
+				"Delivery Note-terms_section_break-hidden"
 			]
 	]
 	]
