@@ -17,7 +17,7 @@ frappe.ui.form.on('Employee Costs', {
                 if(r.message.length>0){
                     cur_frm.clear_table("employee_cost_details")
                 for(var i=0;i<r.message.length;i++){
-                    if(r.message[i].name == "IQAMA Transfer"||r.message[i].name == "Labor Documents"||r.message[i].name == "Medical Insurance"||r.message[i].name == "Medical Test"||r.message[i].name == "IQAMA"||r.message[i].name == "Visa"||r.message[i].name == "Exit/Re-Entry Visa"||r.message[i].name == "Agent Documents"||r.message[i].name == "Technical License"||r.message[i].name == "Flight Ticket"||r.message[i].name == "GRO"){
+                    if(r.message[i].name.toLowerCase() == "iqama transfer"||r.message[i].name.toLowerCase() == "labor documents"||r.message[i].name.toLowerCase() == "medical insurance"||r.message[i].name.toLowerCase() == "medical test"||r.message[i].name.toLowerCase() == "iqama"||r.message[i].name.toLowerCase() == "visa"||r.message[i].name.toLowerCase() == "exit/re-entry visa"||r.message[i].name.toLowerCase() == "agent documents"||r.message[i].name.toLowerCase() == "technical license"||r.message[i].name.toLowerCase() == "flight ticket"||r.message[i].name.toLowerCase() == "gro"){
          
                     var child = cur_frm.add_child("employee_cost_details");
                     child.document_name=r.message[i].name;
