@@ -1,7 +1,4 @@
 frappe.ui.form.on("Salary Slip", {
-refresh: function(frm) {
-    update_clearance_process_filter(frm)
-},
 employee:function(frm){
     update_clearance_process_filter(frm)
 },

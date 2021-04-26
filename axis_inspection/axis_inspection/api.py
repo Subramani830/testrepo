@@ -342,4 +342,4 @@ def validate_stock_entry(stock_entry_type):
 
 @frappe.whitelist()
 def get_working_hours(parent):
-	return frappe.db.get_value('Contract Term Detail',{'parent':parent,'parenttype':'Employee Contract','contract_term':'Working Hours'},'value')
+	return frappe.db.get_value('Contract Term Detail',{'parent':parent,'parenttype':'Employee Contract','contract_term':'Working Hours','status':'Submitted'},'value')

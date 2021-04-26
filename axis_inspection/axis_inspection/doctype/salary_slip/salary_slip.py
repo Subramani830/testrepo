@@ -40,10 +40,15 @@ def update_salary_slip(self):
     for row in self.deductions:
         total_deduction+=row.amount
 
-    working_hours=int(get_working_hours(self.employee_name))
-    amount=(self.gross_pay/30)/working_hours
-    self.attendance_deduction_amount=self.attendance_deduction_hours*amount*2
-    total_deduction+=self.attendance_deduction_amount
+    working_hours=get_working_hours(self.employee_name)
+    if working_hours:
+        hours=float(working_hours)
+        amount=(self.gross_pay/30)/hours
+        self.attendance_deduction_amount=self.attendance_deduction_hours*amount*2
+        total_deduction+=self.attendance_deduction_amount
+    else:
+         frappe.throw(_("For the employee {0} Employee Contract is not found.").format(self.employee_name)) 
+    
     self.total_deduction=total_deduction
     self.net_pay = flt(self.gross_pay) - (flt(self.total_deduction) + flt(self.total_loan_repayment))
     self.rounded_total = rounded(self.net_pay)
