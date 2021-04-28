@@ -146,7 +146,7 @@ before_save:function(frm){
 					num++;
 					item_name.push(row.item_code)
 					if(item.item_code== row.item_code){ 
-						if(item.item_code!= row.item_code || item.qty != row.qty || item.uom != row.uom || item.rate != row.rate){
+						if(item.item_code!= row.item_code || item.uom != row.uom || item.rate != row.rate){
 							if(item.item_code!= row.item_code || item.uom != row.uom || item.rate != row.rate){
 								frappe.validated=false;
 								frappe.msgprint(__("Quotation items doesnot match with Contract."));
