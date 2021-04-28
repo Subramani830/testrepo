@@ -520,7 +520,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee-last_name-reqd",
 				"Employee-salutation-reqd",
 				"Employee-employment_type-reqd",
-				"Employee-final_confirmation_date-reqd",
 				"Employee-notice_number_of_days-reqd",
 				"Employee-notice_number_of_days-default",
 				"Employee-date_of_retirement-hidden",
@@ -788,7 +787,11 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Delivery Note-rounding_adjustment-permlevel",
 				"Delivery Note-rounded_total-permlevel",
 				"Delivery Note-in_words-permlevel",
-				"Delivery Note-terms_section_break-hidden"
+				"Delivery Note-terms_section_break-hidden",
+				"Quotation-order_type-options",
+				"Quotation-order_type-default",
+				"Delivery Note-base_total_taxes_and_charges-permlevel",
+				"Delivery Note-total_taxes_and_charges-permlevel"
 			]
 	]
 	]
@@ -954,6 +957,9 @@ doc_events = {
 	},
 	"Attendance":{
 		"validate":["axis_inspection.axis_inspection.doctype.attendance.attendance.validate"]
+	},
+	"Sales Order":{
+		"validate":["axis_inspection.axis_inspection.doctype.sales_order.sales_order.validate"]
 	}
 
 }
