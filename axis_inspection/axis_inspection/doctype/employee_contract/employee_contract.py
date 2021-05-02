@@ -42,6 +42,8 @@ def create_salary_structure(doc,method):
 	employee_name=frappe.db.get_value("Employee",{'name':doc.party_name},'employee_name')
 	pi_doc=frappe.get_doc(dict(doctype = 'Salary Structure',
 		name=employee_name,
+		employee=doc.name,
+		contract_date_start=doc.start_date,
 		company=doc.company
 	)).insert(ignore_mandatory=True)
 	for term in contract_terms:
