@@ -292,9 +292,9 @@ frappe.ui.form.on('Timesheet Detail', 'task',function(frm,cdt, cdn){
 		var cur_grid =frm.get_field('time_logs').grid;
 		var cur_doc = locals[cdt][cdn];
 		var cur_row = cur_grid.get_row(cur_doc.name);
-		if(cur_row.doc.activity_type=='Standby' || cur_row.doc.activity_type=='Overtime'){
+		if(cur_row.doc.activity_type=='Standby'){
 			frappe.call({
-				method:"axis_inspection.axis_inspection.doctype.timesheet.timesheet.get_bill_rate",
+				method:"axis_inspection.axis_inspection.doctype.timesheet.timesheet.get_stand_rate",
 				async:false,
 				args: {
 					"item_code":cur_row.doc.service,
@@ -306,8 +306,20 @@ frappe.ui.form.on('Timesheet Detail', 'task',function(frm,cdt, cdn){
 				}
 			});
 		}
-
-
+		else if(cur_row.doc.activity_type=='Overtime'){
+			frappe.call({
+				method:"axis_inspection.axis_inspection.doctype.timesheet.timesheet.get_overtime_rate",
+				async:false,
+				args: {
+					"item_code":cur_row.doc.service,
+					"project":frm.doc.project
+				},
+				callback: function(r){
+					cur_row.doc.billing_rate=r.message
+					cur_frm.refresh_fields();
+				}
+			});
+		}
 	});
 
 	function get_absent_days(frm){

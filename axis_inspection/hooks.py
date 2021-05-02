@@ -347,7 +347,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Purchase Invoice-bank_account",
 		"Sales Invoice Timesheet-visit",
 		"Timesheet-working_hour",
-		"Attendance-total_delay_duration"
+		"Attendance-total_delay_duration",
+		"Timesheet-po_no"
 		]
 	]
 ]
@@ -946,7 +947,7 @@ doc_events = {
 		"on_cancel":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.on_cancel"]
 	},
 	"Delivery Note":{
-	     "validate":["axis_inspection.axis_inspection.doctype.delivery_note.delivery_note.validate_minimum_charge"]
+	     "validate":["axis_inspection.axis_inspection.doctype.delivery_note.delivery_note.validate_minimum_charge"],
 	},
 	"Timesheet":{
 		"on_submit":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.on_submit"],
