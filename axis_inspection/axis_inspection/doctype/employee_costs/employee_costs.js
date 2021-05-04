@@ -56,12 +56,35 @@ frappe.ui.form.on('Employee Costs', {
 		doc.naming_series='MAT-MR-.YYYY.-';
                 frappe.set_route('Form', 'Material Request', doc.name);
             },'Create')
+            frm.page.add_inner_button('Payment Entry', function(){
+                var doc = frappe.model.get_new_doc('Payment Entry');
+                doc.employee_costs = frm.doc.name;
+		doc.company=frm.doc.company;
+		doc.party_type="Employee";
+		doc.payment_type = "Pay";
+		doc.party=frm.doc.employee;
+		doc.party_name=frm.doc.employee_name;
+		doc.posting_date = frappe.datetime.get_today();
+		doc.naming_series='ACC-PAY-.YYYY.-';
+                frappe.set_route('Form', 'Payment Entry', doc.name);
+            },'Create')
 	}
 },
-onload: function(frm){
-
+before_save: function(frm){
+	frm.set_value("status","Draft");
+},
+on_submit: function(frm){
+	frm.set_value("status","Submitted")
+},
+before_cancel: function(frm){
+	frm.set_value("status","Cancelled")
+},
+make_supplier_quotation: function(frm) {
+	frappe.model.open_mapped_doc({
+		method: "axis_inspection.axis_inspection.doctype.employee_costs.employee_costs.make_payment_entry",
+		frm: frm
+	})
 }
-
 });
 frappe.ui.form.on('Employee Cost Details' , {
  cost:function(frm,cdt,cdn){

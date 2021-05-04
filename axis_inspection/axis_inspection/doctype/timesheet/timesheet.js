@@ -224,6 +224,40 @@ before_save: function(frm){
 			}
 		}
 	})
+
+	var absent_dates=[' '];
+	if (frm.doc.absent_days > 0){
+		$.each(frm.doc.time_logs,function(idx,item){
+			if(frm.doc.employee!=undefined && frm.doc.timesheet_date!=undefined){
+				frappe.call({
+					method:"axis_inspection.axis_inspection.doctype.timesheet.timesheet.get_absent_days",
+					async:false,
+					args: {
+						"employee":frm.doc.employee,
+						"start_date":frm.doc.timesheet_date
+					},
+					callback: function(r){
+console.log(r)
+						for(var i=0; i<r.message.length; i++){
+							frappe.db.get_value("Attendance",{"leave_application":r.message[i].name,"attendance_date":item.from_time},["attendance_date"],(d)=>{
+							if (d.attendance_date!=undefined){
+								absent_dates.push(d.attendance_date)
+							}
+							if(absent_dates.length>1){
+								frappe.validated=false;
+								frappe.throw(__("From Time cannot be on " + absent_dates+ " employee is absent on that day."))
+							}
+
+							})
+						}
+					}
+				})
+
+			}
+			
+		});
+	}
+
 }
 
 });
@@ -292,9 +326,9 @@ frappe.ui.form.on('Timesheet Detail', 'task',function(frm,cdt, cdn){
 		var cur_grid =frm.get_field('time_logs').grid;
 		var cur_doc = locals[cdt][cdn];
 		var cur_row = cur_grid.get_row(cur_doc.name);
-		if(cur_row.doc.activity_type=='Standby' || cur_row.doc.activity_type=='Overtime'){
+		if(cur_row.doc.activity_type=='Standby'){
 			frappe.call({
-				method:"axis_inspection.axis_inspection.doctype.timesheet.timesheet.get_bill_rate",
+				method:"axis_inspection.axis_inspection.doctype.timesheet.timesheet.get_stand_rate",
 				async:false,
 				args: {
 					"item_code":cur_row.doc.service,
@@ -306,8 +340,20 @@ frappe.ui.form.on('Timesheet Detail', 'task',function(frm,cdt, cdn){
 				}
 			});
 		}
-
-
+		else if(cur_row.doc.activity_type=='Overtime'){
+			frappe.call({
+				method:"axis_inspection.axis_inspection.doctype.timesheet.timesheet.get_overtime_rate",
+				async:false,
+				args: {
+					"item_code":cur_row.doc.service,
+					"project":frm.doc.project
+				},
+				callback: function(r){
+					cur_row.doc.billing_rate=r.message
+					cur_frm.refresh_fields();
+				}
+			});
+		}
 	});
 
 	function get_absent_days(frm){

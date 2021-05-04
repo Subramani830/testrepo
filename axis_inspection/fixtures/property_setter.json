@@ -337,22 +337,6 @@
  },
  {
   "default_value": null,
-  "doc_type": "Material Request",
-  "docstatus": 0,
-  "doctype": "Property Setter",
-  "doctype_or_field": "DocField",
-  "field_name": "set_warehouse",
-  "modified": "2021-04-23 12:32:42.674161",
-  "name": "Material Request-set_warehouse-hidden",
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "property": "hidden",
-  "property_type": "Check",
-  "value": "1"
- },
- {
-  "default_value": null,
   "doc_type": "Journal Entry Account",
   "docstatus": 0,
   "doctype": "Property Setter",

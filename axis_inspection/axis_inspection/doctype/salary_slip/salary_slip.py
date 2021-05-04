@@ -46,8 +46,6 @@ def update_salary_slip(self):
         amount=(self.gross_pay/30)/hours
         self.attendance_deduction_amount=self.attendance_deduction_hours*amount*2
         total_deduction+=self.attendance_deduction_amount
-    else:
-         frappe.throw(_("For the employee {0} Employee Contract is not found.").format(self.employee_name)) 
     
     self.total_deduction=total_deduction
     self.net_pay = flt(self.gross_pay) - (flt(self.total_deduction) + flt(self.total_loan_repayment))

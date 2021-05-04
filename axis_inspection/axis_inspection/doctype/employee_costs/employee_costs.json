@@ -12,6 +12,7 @@
   "column_break_4",
   "id_number",
   "border_no",
+  "status",
   "section_break_7",
   "employee_cost_details",
   "total_cost",
@@ -81,12 +82,20 @@
   {
    "fieldname": "section_break_7",
    "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Status",
+   "options": "\nDraft\nPaid\nSubmitted\nCancelled"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-04-14 15:04:35.025524",
+ "modified": "2021-05-04 05:06:47.318613",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Employee Costs",

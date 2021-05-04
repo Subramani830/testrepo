@@ -18,8 +18,8 @@ def calculate_late_entry_early_entry(self):
     if self.in_time!=None and self.out_time!=None:
         date = datetime.date(1, 1, 1)
         late_entry=0
-        early_exit=0
-        if  self.late_entry==1:   
+        early_exit=0 
+        if  self.late_entry==1:  
             in_time=self.in_time.time()   
             shift_time, late_entry_grace_period=frappe.db.get_value('Shift Type',{'name':self.shift},['start_time','late_entry_grace_period'])
             shift_start_time= shift_time+timedelta(minutes=cint(late_entry_grace_period))
@@ -56,7 +56,26 @@ def calculate_late_entry_early_entry(self):
         self.total_delay_duration=(datetime.datetime.min + total_duration).time()
     
     else:
-        time1=datetime.time(0,0,0)
-        self.late_entry_duration=0
-        self.early_exit_duration=0
-        self.total_delay_duration=0
+        if self.early_exit==1  and self.late_entry==1:
+            late_entry=string_to_timeformat(self.late_entry_duration)
+            early_exit=string_to_timeformat(self.early_exit_duration)
+            self.total_delay_duration=calculate_total_delay_duration(late_entry,early_exit)
+
+        elif self.late_entry==1 and self.early_exit!=1:
+            late_entry=string_to_timeformat(self.late_entry_duration)
+            early_exit=datetime.timedelta(0,0)
+            self.total_delay_duration=calculate_total_delay_duration(late_entry,early_exit)
+
+        elif self.late_entry!=1 and self.early_exit==1:
+            early_exit=string_to_timeformat(self.early_exit_duration)
+            late_entry=datetime.timedelta(0,0)
+            self.total_delay_duration=calculate_total_delay_duration(late_entry,early_exit)
+
+
+def  string_to_timeformat(time):
+    date = datetime.date(1, 1, 1)
+    timeval= datetime.datetime.strptime(time, '%H:%M:%S').time()
+    return datetime.datetime.combine(date.min,timeval ) - datetime.datetime.min
+
+def calculate_total_delay_duration(late_entry,early_exit):
+    return late_entry+early_exit

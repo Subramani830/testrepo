@@ -1,0 +1,271 @@
+diff --git frappe/core/doctype/doctype/doctype.py frappe/core/doctype/doctype/doctype.py
+index 9d37849..94c0e0c 100644
+--- frappe/core/doctype/doctype/doctype.py
++++ frappe/core/doctype/doctype/doctype.py
+@@ -709,15 +709,18 @@ def validate_fields(meta):
+ 			if d.options=="[Select]" or d.options==d.parent:
+ 				return
+ 			if d.options != d.parent:
+-				options = frappe.db.get_value("DocType", d.options, "name")
+-				if not options:
+-					frappe.throw(_("{0}: Options must be a valid DocType for field {1} in row {2}").format(docname, d.label, d.idx), WrongOptionsDoctypeLinkError)
+-				elif not (options == d.options):
+-					frappe.throw(_("{0}: Options {1} must be the same as doctype name {2} for the field {3}")
+-						.format(docname, d.options, options, d.label), DoctypeLinkError)
+-				else:
+-					# fix case
+-					d.options = options
++				try:
++					options = frappe.db.get_value("DocType", d.options, "name")
++					if not options:
++						frappe.throw(_("{0}: Options must be a valid DocType for field {1} in row {2}").format(docname, d.label, d.idx), WrongOptionsDoctypeLinkError)
++					elif not (options == d.options):
++						frappe.throw(_("{0}: Options {1} must be the same as doctype name {2} for the field {3}")
++							.format(docname, d.options, options, d.label), DoctypeLinkError)
++					else:
++						# fix case
++						d.options = options
++				except:
++					pass
+ 
+ 	def check_hidden_and_mandatory(docname, d):
+ 		if d.hidden and d.reqd and not d.default:
+diff --git frappe/email/doctype/notification/notification.json frappe/email/doctype/notification/notification.json
+index 2a8ee1a..f2cf325 100644
+--- frappe/email/doctype/notification/notification.json
++++ frappe/email/doctype/notification/notification.json
+@@ -1,5 +1,6 @@
+ {
+  "actions": [],
++ "allow_import": 1,
+  "allow_rename": 1,
+  "autoname": "Prompt",
+  "creation": "2014-07-11 17:18:09.923399",
+@@ -291,7 +292,7 @@
+  "icon": "fa fa-envelope",
+  "index_web_pages_for_search": 1,
+  "links": [],
+- "modified": "2020-09-03 10:33:23.084590",
++ "modified": "2021-02-22 16:42:39.317106",
+  "modified_by": "Administrator",
+  "module": "Email",
+  "name": "Notification",
+@@ -301,6 +302,7 @@
+    "create": 1,
+    "delete": 1,
+    "export": 1,
++   "import": 1,
+    "read": 1,
+    "report": 1,
+    "role": "System Manager",
+diff --git frappe/public/js/frappe/file_uploader/FileUploader.vue frappe/public/js/frappe/file_uploader/FileUploader.vue
+index f8d9253..58bffa8 100644
+--- frappe/public/js/frappe/file_uploader/FileUploader.vue
++++ frappe/public/js/frappe/file_uploader/FileUploader.vue
+@@ -130,7 +130,7 @@ export default {
+ 			default: true
+ 		},
+ 		disable_file_browser: {
+-			default: false
++			default: true
+ 		},
+ 		allow_multiple: {
+ 			default: true
+diff --git frappe/public/js/frappe/form/controls/data.js frappe/public/js/frappe/form/controls/data.js
+index bbf9a89..355f358 100644
+--- frappe/public/js/frappe/form/controls/data.js
++++ frappe/public/js/frappe/form/controls/data.js
+@@ -61,7 +61,7 @@ frappe.ui.form.ControlData = frappe.ui.form.ControlInput.extend({
+ 						// check if name exists
+ 						frappe.db.get_value(this.doctype, this.$input.val(),
+ 							'name', (val) => {
+-								if (val && val.name) {
++								if (val) {
+ 									this.set_description(__('{0} already exists. Select another name', [val.name]));
+ 								}
+ 							},
+diff --git frappe/public/js/frappe/form/controls/markdown_editor.js frappe/public/js/frappe/form/controls/markdown_editor.js
+index b134b44..81e47a0 100644
+--- frappe/public/js/frappe/form/controls/markdown_editor.js
++++ frappe/public/js/frappe/form/controls/markdown_editor.js
+@@ -44,9 +44,5 @@ frappe.ui.form.ControlMarkdownEditor = frappe.ui.form.ControlCode.extend({
+ 			.then(() => {
+ 				this.update_preview();
+ 			});
+-	},
+-
+-	set_disp_area(value) {
+-		this.disp_area && $(this.disp_area).text(value);
+ 	}
+ });
+diff --git frappe/public/js/frappe/form/form.js frappe/public/js/frappe/form/form.js
+index 9e6d3f0..c8ccc96 100644
+--- frappe/public/js/frappe/form/form.js
++++ frappe/public/js/frappe/form/form.js
+@@ -662,6 +662,35 @@ frappe.ui.form.Form = class FrappeForm {
+ 		var me = this;
+ 		return new Promise(resolve => {
+ 			this.validate_form_action("Submit");
++			if (this.doctype.toLowerCase()=="delivery note"){
++				frappe.confirm(__("Total amount of Delivery Note is less than total amount of timesheet.Do you want to submit {0}", [this.docname]), function() {
++					frappe.validated = true;
++					me.script_manager.trigger("before_submit").then(function() {
++						if(!frappe.validated) {
++							return me.handle_save_fail(btn, on_error);
++						}
++	
++						me.save('Submit', function(r) {
++							if(r.exc) {
++								me.handle_save_fail(btn, on_error);
++							} else {
++								frappe.utils.play_sound("submit");
++								callback && callback();
++								me.script_manager.trigger("on_submit")
++									.then(() => resolve(me))
++									.then(() => {
++										if (frappe.route_hooks.after_submit) {
++											let route_callback = frappe.route_hooks.after_submit;
++											delete frappe.route_hooks.after_submit;
++											route_callback(me);
++										}
++									});
++							}
++						}, btn, () => me.handle_save_fail(btn, on_error), resolve);
++					});
++				}, () => me.handle_save_fail(btn, on_error) );
++			}
++			else{
+ 			frappe.confirm(__("Permanently Submit {0}?", [this.docname]), function() {
+ 				frappe.validated = true;
+ 				me.script_manager.trigger("before_submit").then(function() {
+@@ -688,9 +717,9 @@ frappe.ui.form.Form = class FrappeForm {
+ 					}, btn, () => me.handle_save_fail(btn, on_error), resolve);
+ 				});
+ 			}, () => me.handle_save_fail(btn, on_error) );
++			}
+ 		});
+ 	}
+-
+ 	savecancel(btn, callback, on_error) {
+ 		const me = this;
+ 		this.validate_form_action('Cancel');
+diff --git frappe/public/js/frappe/form/grid.js frappe/public/js/frappe/form/grid.js
+index 394af9e..401dac4 100644
+--- frappe/public/js/frappe/form/grid.js
++++ frappe/public/js/frappe/form/grid.js
+@@ -763,13 +763,6 @@ export default class Grid {
+ 			// download
+ 			this.setup_download();
+ 
+-			const value_formatter_map = {
+-				"Date": val => val ? frappe.datetime.user_to_str(val) : val,
+-				"Int": val => cint(val),
+-				"Check": val => cint(val),
+-				"Float": val => flt(val),
+-			};
+-
+ 			// upload
+ 			frappe.flags.no_socketio = true;
+ 			$(this.wrapper).find(".grid-upload").removeClass('hidden').on("click", () => {
+@@ -797,9 +790,16 @@ export default class Grid {
+ 										var fieldname = fieldnames[ci];
+ 										var df = frappe.meta.get_docfield(me.df.options, fieldname);
+ 
+-										d[fieldnames[ci]] = value_formatter_map[df.fieldtype]
+-											? value_formatter_map[df.fieldtype](value)
+-											: value;
++										// convert date formatting
++										if (df.fieldtype==="Date" && value) {
++											value = frappe.datetime.user_to_str(value);
++										}
++
++										if (df.fieldtype==="Int" || df.fieldtype==="Check") {
++											value = cint(value);
++										}
++
++										d[fieldnames[ci]] = value;
+ 									});
+ 								}
+ 							}
+diff --git frappe/public/js/frappe/form/grid_row.js frappe/public/js/frappe/form/grid_row.js
+index 827fbfd..733c1be 100644
+--- frappe/public/js/frappe/form/grid_row.js
++++ frappe/public/js/frappe/form/grid_row.js
+@@ -393,16 +393,11 @@ export default class GridRow {
+ 		// sync get_query
+ 		field.get_query = this.grid.get_field(df.fieldname).get_query;
+ 
+-		if (!field.df.onchange_modified) {
+-			var field_on_change_function = field.df.onchange;
+-			field.df.onchange = function(e) {
+-				field_on_change_function && field_on_change_function(e);
+-				me.grid.grid_rows[this.doc.idx - 1].refresh_field(this.df.fieldname);
+-			};
+-
+-			field.df.onchange_modified = true;
+-		}
+-
++		var field_on_change_function = field.df.onchange;
++		field.df.onchange = function(e) {
++			field_on_change_function && field_on_change_function(e);
++			me.grid.grid_rows[this.doc.idx - 1].refresh_field(field.df.fieldname);
++		};
+ 		field.refresh();
+ 		if(field.$input) {
+ 			field.$input
+diff --git frappe/public/js/frappe/form/layout.js frappe/public/js/frappe/form/layout.js
+index 1348203..d610625 100644
+--- frappe/public/js/frappe/form/layout.js
++++ frappe/public/js/frappe/form/layout.js
+@@ -525,7 +525,7 @@ frappe.ui.form.Layout = Class.extend({
+ 			return;
+ 		}
+ 
+-		var parent = this.frm ? this.frm.doc : this.doc || null;
++		var parent = this.frm ? this.frm.doc : null;
+ 
+ 		if(typeof(expression) === 'boolean') {
+ 			out = expression;
+diff --git frappe/public/js/frappe/form/save.js frappe/public/js/frappe/form/save.js
+index 6e3a404..8386cb6 100644
+--- frappe/public/js/frappe/form/save.js
++++ frappe/public/js/frappe/form/save.js
+@@ -215,6 +215,10 @@ frappe.ui.form.save = function (frm, action, callback, btn) {
+ 				$(btn).prop("disabled", false);
+ 				frappe.ui.form.is_saving = false;
+ 
++				if (!r.exc) {
++					frappe.show_alert({message: __('Saved'), indicator: 'green'});
++				}
++
+ 				if (r) {
+ 					var doc = r.docs && r.docs[0];
+ 					if (doc) {
+diff --git frappe/public/js/frappe/form/toolbar.js frappe/public/js/frappe/form/toolbar.js
+index c7fb69a..ab62723 100644
+--- frappe/public/js/frappe/form/toolbar.js
++++ frappe/public/js/frappe/form/toolbar.js
+@@ -186,7 +186,7 @@ frappe.ui.form.Toolbar = Class.extend({
+ 	},
+ 	set_indicator: function() {
+ 		var indicator = frappe.get_indicator(this.frm.doc);
+-		if (this.frm.save_disabled && indicator && [__('Saved'), __('Not Saved')].includes(indicator[0])) {
++		if (this.frm.save_disabled && [__('Saved'), __('Not Saved')].includes(indicator[0])) {
+ 			return;
+ 		}
+ 		if(indicator) {
+@@ -272,12 +272,12 @@ frappe.ui.form.Toolbar = Class.extend({
+ 			});
+ 		}
+ 
+-		if (frappe.user_roles.includes("System Manager")) {
++		if (frappe.user_roles.includes("System Manager") && me.frm.meta.issingle === 0) {
+ 			let is_doctype_form = me.frm.doctype === 'DocType';
+ 			let doctype = is_doctype_form ? me.frm.docname : me.frm.doctype;
+ 			let is_doctype_custom = is_doctype_form ? me.frm.doc.custom : false;
+ 
+-			if (doctype != 'DocType' && !is_doctype_custom && me.frm.meta.issingle === 0) {
++			if (doctype != 'DocType' && !is_doctype_custom) {
+ 				this.page.add_menu_item(__("Customize"), function() {
+ 					if (me.frm.meta && me.frm.meta.custom) {
+ 						frappe.set_route('Form', 'DocType', doctype);
