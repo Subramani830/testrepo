@@ -22,7 +22,7 @@ def validate(self,document):
 
 def validate_po_no_duplicate(self):
     if self.po_no:
-       duplicate = frappe.db.sql("""select po_no from `tabSales Order` where po_no = %s and docstatus != 2 """, (self.po_no))
+       duplicate = frappe.db.sql("""select po_no from `tabSales Order` where po_no = %s and docstatus != 2 and name!=%s """, (self.po_no,self.name))
        if duplicate:
            frappe.throw(_("Customer's Purchase order No {0} already used").format(self.po_no, duplicate[0][0]))
 
