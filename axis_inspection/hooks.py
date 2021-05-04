@@ -351,7 +351,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Payment Entry Reference-employee_costs",
 		"Project-contract",
 		"Sales Invoice-delivery_note",
-		"Payment Entry-contract"
+		"Payment Entry-contract",
+		"Employee-purchase_order"
 
 		]
 	]
