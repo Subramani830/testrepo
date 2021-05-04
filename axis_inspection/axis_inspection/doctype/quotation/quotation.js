@@ -1,7 +1,7 @@
 frappe.ui.form.on("Quotation", {
 	contract: function(frm) {
 
-		if(frm.doc.contract!=undefined){
+		if(frm.doc.contract!=undefined && frm.doc.contract!=null){
    		 frappe.model.with_doc("Contract", frm.doc.contract, function() {
      		  var transfer= frappe.model.get_doc("Contract", frm.doc.contract)
 			  frm.doc.selling_price_list=transfer.price_list;
@@ -137,34 +137,36 @@ before_save:function(frm){
 	var count = 0;
 	var num = 0;
 	var item_name = [];
-        frappe.model.with_doc("Contract", frm.doc.contract, function() {
-            var tabletransfer= frappe.model.get_doc("Contract", frm.doc.contract)
-			$.each(frm.doc.items, function(idx, item){
-				count++;
-				num=0;
-                $.each(tabletransfer.items, function(index, row){
-					num++;
-					item_name.push(row.item_code)
-					if(item.item_code== row.item_code){ 
-						if(item.item_code!= row.item_code || item.uom != row.uom || item.rate != row.rate){
+	if(frm.doc.contract!=undefined && frm.doc.contract!=null){
+		frappe.model.with_doc("Contract", frm.doc.contract, function() {
+		    var tabletransfer= frappe.model.get_doc("Contract", frm.doc.contract)
+				$.each(frm.doc.items, function(idx, item){
+					count++;
+					num=0;
+		        $.each(tabletransfer.items, function(index, row){
+						num++;
+						item_name.push(row.item_code)
+						if(item.item_code== row.item_code){ 
 							if(item.item_code!= row.item_code || item.uom != row.uom || item.rate != row.rate){
-								frappe.validated=false;
-								frappe.msgprint(__("Quotation items doesnot match with Contract."));
+								if(item.item_code!= row.item_code || item.uom != row.uom || item.rate != row.rate){
+									frappe.validated=false;
+									frappe.msgprint(__("Quotation items doesnot match with Contract."));
+								}
 							}
 						}
-					}
-                })
-		if(!(item_name.includes(item.item_code))){
-				frappe.validated=false;
-				frappe.msgprint(__("Quotation items doesnot match with Contract."));
-		}
+		        })
+			if(!(item_name.includes(item.item_code))){
+					frappe.validated=false;
+					frappe.msgprint(__("Quotation items doesnot match with Contract."));
+			}
 
-			})
-				if(count>num){
-	          		 frappe.validated=false;
-		          		 frappe.msgprint(__("Quotation items doesnot match with Contract."));
- 				}
-	});
+				})
+					if(count>num){
+			  		 frappe.validated=false;
+				  		 frappe.msgprint(__("Quotation items doesnot match with Contract."));
+	 				}
+		});
+	}
 
 
 },

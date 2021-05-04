@@ -287,7 +287,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Timesheet-location",
 		"Vehicle-company_number",
 		"Timesheet-nationality",
-		"Timesheet-contract_no",
 		"Timesheet-designation",
 		"Timesheet-customer_badge_no",
 		"Timesheet-project",
@@ -328,7 +327,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Timesheet-consumable_detail",
 		"Timesheet-asset_detail",
 		"Sales Invoice-contract",
-		"Delivery Note-contract",
 		"Sales Invoice-location",
 		"Delivery Note-location",
 		"Attendance-early_exit_duration",
@@ -347,7 +345,15 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Purchase Invoice-bank_account",
 		"Sales Invoice Timesheet-visit",
 		"Timesheet-working_hour",
-		"Attendance-total_delay_duration"
+		"Attendance-total_delay_duration",
+		"Timesheet-po_no",
+		"Payment Entry-employee_costs",
+		"Payment Entry Reference-employee_costs",
+		"Project-contract",
+		"Sales Invoice-delivery_note",
+		"Payment Entry-contract",
+		"Employee-purchase_order"
+
 		]
 	]
 ]
@@ -766,7 +772,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Timesheet-employee-reqd",
 				"Sales Invoice-is_pos-hidden",
 				"Loan Disbursement-customer_details_section",
-				"Material Request-set_warehouse-hidden",
 				"Delivery Note Item-rate-permlevel",
 				"Delivery Note Item-amount-permlevel",
 				"Delivery Note Item-base_rate-permlevel",
@@ -946,7 +951,7 @@ doc_events = {
 		"on_cancel":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.on_cancel"]
 	},
 	"Delivery Note":{
-	     "validate":["axis_inspection.axis_inspection.doctype.delivery_note.delivery_note.validate_minimum_charge"]
+	     "validate":["axis_inspection.axis_inspection.doctype.delivery_note.delivery_note.validate_minimum_charge"],
 	},
 	"Timesheet":{
 		"on_submit":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.on_submit"],
@@ -959,7 +964,7 @@ doc_events = {
 		"validate":["axis_inspection.axis_inspection.doctype.attendance.attendance.validate"]
 	},
 	"Sales Order":{
-		"validate":["axis_inspection.axis_inspection.doctype.sales_order.sales_order.validate"]
+		"on_submit":["axis_inspection.axis_inspection.doctype.sales_order.sales_order.validate"]
 	}
 
 }

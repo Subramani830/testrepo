@@ -96,10 +96,12 @@ frappe.ui.form.on('Payment Entry', {
 			var task;
 			var branch;
 			var cost_center;
+			var contract
 			for(var i=0;i<r.message.length;i++){
 				if(r.message[i].project){project=r.message[i].project}
 				if(r.message[i].cost_center){cost_center=r.message[i].cost_center}
 				if(r.message[i].branch){branch=r.message[i].branch}
+				if(r.message[i].contract){contract=r.message[i].contract}
                     }
                         if(frm.doc.cost_center){}
 			else{
@@ -108,6 +110,8 @@ frappe.ui.form.on('Payment Entry', {
 			else{frm.set_value("project",project)}
 			if(frm.doc.branch){}
 			else{frm.set_value("branch",branch)}
+			if(frm.doc.contract){}
+			else{frm.set_value("contract",contract)}
                     }
                 });
             }
@@ -154,5 +158,41 @@ before_save:  function(frm) {
 		});
 	}
     }); 
+},
+employee_costs: function(frm){
+	if(frm.doc.employee_costs!=undefined && frm.doc.party==undefined){
+	frappe.db.get_value("Employee Costs",{"name":frm.doc.employee_costs},"employee",(e)=>{
+	frm.set_value("party_type","Employee")
+	frm.set_value("party",e.employee)
+	cur_frm.refresh_field("party");
+	frm.set_value("payment_type","Pay")
+	});
+	}
+},
+on_submit: function(frm){
+	if(frm.doc.employee_costs!=undefined && frm.doc.employee_costs != null){
+		    frappe.call({
+                "method": "frappe.client.set_value",
+                "args": {
+                    "doctype": "Employee Costs",
+                    "name": frm.doc.employee_costs,
+                "fieldname": {
+                    "status":"Paid"
+                },
+                }
+            })
+}
 }
 });
+
+frappe.ui.form.on('Payment Entry Reference', {
+	references_add(frm,cdt,cdn) {
+	    var cur_grid =frm.get_field('references').grid;
+		var cur_doc = locals[cdt][cdn];
+		var cur_row = cur_grid.get_row(cur_doc.name);
+		if (frm.doc.employee_costs!=undefined){
+    		cur_row.doc.employee_costs=frm.doc.employee_costs
+    		cur_frm.refresh_fields();
+		}
+	}
+})

@@ -19,7 +19,7 @@ def validate_minimum_charge(doc,method):
         minimum_charge=frappe.db.get_value('Contract Item',{'parent':parent,'item_code':row.item_code},'minimum_charge')
         if minimum_charge:
             if minimum_charge>row.amount:
-                frappe.throw('Item'+row.item_code+'amount is less than minimum charge')
+                frappe.throw('Item '+row.item_code+' amount is less than minimum charge')
     
     set_billing_hours_and_amount(doc)
 

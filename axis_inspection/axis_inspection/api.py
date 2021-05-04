@@ -209,7 +209,7 @@ def update_project(doctype,name,parenttype):
 
 @frappe.whitelist()
 def update_project1(doctype,name):
-	return frappe.db.get_list(doctype,filters={'name':name},fields=['project','branch','cost_center'])
+	return frappe.db.get_list(doctype,filters={'name':name},fields=['project','branch','cost_center','contract'])
 
 @frappe.whitelist()
 def update_project2(doctype,name,parenttype):

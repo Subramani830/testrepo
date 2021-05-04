@@ -110,9 +110,15 @@ def get_project_timesheet_data(project, parent=None):
 
 
 @frappe.whitelist()
-def get_bill_rate(item_code,project):
+def get_stand_rate(item_code,project):
 	sales_order=frappe.db.get_value('Project',{'name':project},'sales_order')
-	return frappe.db.get_value('Sales Order Item',{'parent':sales_order,'item_code':item_code},'rate')
+	return frappe.db.get_value('Sales Order Item',{'parent':sales_order,'item_code':item_code},'standby_rate')
+
+
+@frappe.whitelist()
+def get_overtime_rate(item_code,project):
+	sales_order=frappe.db.get_value('Project',{'name':project},'sales_order')
+	return frappe.db.get_value('Sales Order Item',{'parent':sales_order,'item_code':item_code},'overtime_rate')
 
 
 @frappe.whitelist()
