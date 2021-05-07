@@ -67,6 +67,12 @@ frappe.query_reports["Client Timesheet Report"] = {
 			"label":__("Customer"),
 			"fieldtype":"Link",
 			"options":"Customer"
-		}
+		},
+		{
+			"fieldname":"status",
+			"label":__("Status"),
+			"fieldtype":"Select",
+			"options":["","Draft","Submitted"]
+		},
 	]
 };

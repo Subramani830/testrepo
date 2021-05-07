@@ -41,10 +41,10 @@ def update_salary_slip(self):
         total_deduction+=row.amount
 
     working_hours=get_working_hours(self.employee_name)
+    earnings=get_earnings(self.salary_structure)
     if working_hours:
         hours=float(working_hours)
-        amount=(self.gross_pay/30)/hours
-        self.attendance_deduction_amount=self.attendance_deduction_hours*amount*2
+        self.attendance_deduction_amount=((earnings/self.total_working_days)/hours)*self.attendance_deduction_hours
         total_deduction+=self.attendance_deduction_amount
     
     self.total_deduction=total_deduction
@@ -83,3 +83,10 @@ def update_attendance_deduction(self):
    
     total_hours=total_seconds/3600
     self.attendance_deduction_hours=total_hours
+
+def get_earnings(salary_structure):
+    earnings=0.0
+    earnings_list=frappe.db.sql("""select amount from `tabSalary Detail` where parentfield="Earnings" and parenttype="Salary Structure" and parent=%s""",(salary_structure),as_dict=True)
+    for row in earnings_list:
+        earnings+=row['amount']
+    return earnings
