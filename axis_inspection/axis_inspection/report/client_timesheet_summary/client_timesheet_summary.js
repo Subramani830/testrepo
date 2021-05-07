@@ -63,6 +63,12 @@ frappe.query_reports["Client Timesheet Summary"] = {
 			"reqd": 1
 		},
 		{
+			"fieldname":"status",
+			"label": __("Status"),
+			"fieldtype": "Select",
+			"options": ["","Draft","Submitted"]
+		},
+		{
 			"fieldname":"department",
 			"label": __("Department"),
 			"fieldtype": "Link",

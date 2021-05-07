@@ -1,6 +1,7 @@
 frappe.ui.form.on('Sales Invoice', {
 refresh(frm) {
 		// your code here
+if(frm.doc.month_of_work==""){
 	var today = new Date();
         var month = new Array();
         month[0] = "January";
@@ -17,6 +18,7 @@ refresh(frm) {
         month[11] = "December";
         var n = month[today.getMonth()];
         frm.set_value("month_of_work", n);
+}
 },
 	after_workflow_action: (frm) =>{
 	    var rem;
