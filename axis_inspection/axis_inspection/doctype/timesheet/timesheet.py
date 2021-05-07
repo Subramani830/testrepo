@@ -151,7 +151,7 @@ def get_duplicate_entry(doc):
 				f_time = i['from_time']
 				day= datetime.strptime(f_time,'%Y-%m-%d %H:%M:%S')
 				dt=day.date()
-				day_time=frappe.db.sql("""select date(from_time) from `tabTimesheet Detail` where parent = '{name}' and date(from_time)='{dates}' """.format(name=time_sheet['name'],dates=dt))
+				day_time=frappe.db.sql("""select date(from_time) from `tabTimesheet Detail` where parent = '{name}' and date(from_time)='{dates}' and docstatus != 2 """.format(name=time_sheet['name'],dates=dt))
 				for time in day_time:
 					days.append(day_time)
 				
