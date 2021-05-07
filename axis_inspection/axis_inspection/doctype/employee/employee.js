@@ -14,39 +14,6 @@ frappe.ui.form.on('Employee', {
 	    		}
     		});
 	},
-after_save:function(frm,cdt,cdn){
-	if(frm.doc.status=="Active"){
-		frappe.call({
-			method:"axis_inspection.axis_inspection.api.create_warehouse",
-			async:false,
-			args:{
-				doctype:'Warehouse',
-				employee_warehouse:frm.doc.name,
-				company:frm.doc.company,
-				warehouse_name:frm.doc.employee_name
-			}
-		})	
-	}
-	else if(frm.doc.status=="Left"){
-		frappe.call({
-			method:"axis_inspection.axis_inspection.api.delete_warehouse",
-			async:false,
-			args:{
-				doctype:'Warehouse',
-				employee_warehouse:frm.doc.name,
-				company:frm.doc.company,
-				warehouse_name:frm.doc.employee_name
-			},
-			callback:function(r){
-				if(r.message!=undefined){
-						frm.set_value('status','Active')
-						frappe.throw(('Status cannot be "Left" as Stock is available for '+r.message+'.'))
-					
-				}			}
-		})	
-	}
-	
-},
 validate:function(frm){
 	var regex = /^[0-9]{10}$/;
 	if (regex.test(frm.doc.id_number) != true && frm.doc.id_number!=undefined && frm.doc.id_number!=""){
