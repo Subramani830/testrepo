@@ -550,8 +550,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee-permanent_address-reqd",
 				"Employee-prefered_contact_email-reqd",
 				"Employee-current_address-reqd",
-				"Employee-valid_upto-reqd",
-				"Employee-marital_status-reqd",
 				"Employee Advance-repay_unclaimed_amount_from_salary-hidden",
 				"Purchase Order Item-manufacture_details-hidden",
 				"Purchase Order Item-bom-hidden",
@@ -798,7 +796,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Delivery Note-base_total_taxes_and_charges-permlevel",
 				"Delivery Note-total_taxes_and_charges-permlevel",
 				"Employee-health_insurance_provider-mandatory_depends_on",
-				"Employee-passport_number-mandatory_depends_on"
+				"Employee-passport_number-mandatory_depends_on",
+				"Employee-valid_upto-mandatory_depends_on",
+				"Employee-marital_status-mandatory_depends_on"
 			]
 	]
 	]

@@ -140,6 +140,14 @@ before_workflow_action: (frm) => {
 		     };
          	});
 		
+
+	if(frm.doc.amended_from != undefined){
+		if(frm.doc.employee == undefined){
+			frappe.db.get_value("Timesheet",{"name":frm.doc.amended_from},"employee",(e)=>{
+				frm.set_value("employee",e.employee)
+			})
+		}
+	}
 	},
 timesheet_type:function(frm){
 	if(frm.doc.timesheet_type=='Overtime'){
