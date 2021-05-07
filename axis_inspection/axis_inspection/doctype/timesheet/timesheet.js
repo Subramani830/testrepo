@@ -172,7 +172,6 @@ timesheet_type:function(frm){
    }
    else if(frappe.user_roles.includes('Employee')){
 	user=frappe.db.get_value('Employee',{'user_id':frappe.session.user},'name')
-	console.log(user)
 		if(user!=undefined)	{
 			frm.set_query("employee",function(){
 				return{
@@ -220,7 +219,7 @@ before_save: function(frm){
 			}
 			if(dates.length>1){
 				frappe.validated=false;
-				frappe.throw(__("Timesheet has been already created for employee on "+ dates  +"."))
+			//	frappe.throw(__("Timesheet has been already created for employee on "+ dates  +"."))
 			}
 		}
 	})
@@ -292,36 +291,6 @@ frappe.ui.form.on('Timesheet Detail',{
 		
 	}
 });
-frappe.ui.form.on('Timesheet Detail', 'task',function(frm,cdt, cdn){
-	var cur_grid =frm.get_field('time_logs').grid;
-	var cur_doc = locals[cdt][cdn];
-	var cur_row = cur_grid.get_row(cur_doc.name);
-		var task=[]
-		if(cur_row.doc.project!=undefined &&frm.doc.employee!=undefined){
-			frappe.call({
-				method:"axis_inspection.axis_inspection.api.get_task",
-				async:false,
-				args: {
-					"employee":frm.doc.employee,
-					"project":cur_row.doc.project
-				},
-				callback: function(r){
-					for(var i=0; i<r.message.length; i++){
-						task.push(r.message[i]);
-					}
-				}
-			});
-			frm.fields_dict['time_logs'].grid.get_field('task').get_query = function() {
-				return {
-					filters: {
-						name:["in",task] 
-					}
-				};
-			};
-
-		}
-
-	});
 	frappe.ui.form.on('Timesheet Detail', 'service',function(frm,cdt, cdn){
 		var cur_grid =frm.get_field('time_logs').grid;
 		var cur_doc = locals[cdt][cdn];

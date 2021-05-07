@@ -352,8 +352,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Project-contract",
 		"Sales Invoice-delivery_note",
 		"Payment Entry-contract",
-		"Employee-purchase_order"
-
+		"Employee-purchase_order",
+		"Sales Invoice-year_of_work",
+		"Item-inspection_required_before_asset_movement"
 		]
 	]
 ]
@@ -419,7 +420,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Journal Entry Account-cost_center-reqd",
 				"Purchase Invoice-cost_center-reqd",
 				"Sales Invoice-cost_center-reqd",
-				"Stock Entry Detail-cost_center-reqd",
 				"Material Request Item-cost_center-reqd"
 				"Customer-sales_team_section_break-hidden",
 				"Customer-sales_team_section-hidden",
@@ -543,7 +543,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee-bank_ac_no-mandatory_depends_on",
 				"Employee-salary_mode-options",
 				"Employee-payroll_cost_center-reqd",
-				"Employee-health_insurance_provider-reqd",
 				"Employee-cell_number-reqd",
 				"Employee-personal_email-reqd",
 				"Employee-permanent_address-reqd",
@@ -607,7 +606,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Clearance Process-purpose_of_clearance_process-options",
 				"Timesheet Detail-costing_rate-permlevel",
 				"Timesheet Detail-costing_amount-permlevel",
-				"Employee-passport_number-reqd",
 				"Supplier Quotation Item-project-mandatory_depends_on",
 				"Material Request Item-uom-width",
 				"Material Request Item-uom-print_width",
@@ -796,7 +794,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Quotation-order_type-options",
 				"Quotation-order_type-default",
 				"Delivery Note-base_total_taxes_and_charges-permlevel",
-				"Delivery Note-total_taxes_and_charges-permlevel"
+				"Delivery Note-total_taxes_and_charges-permlevel",
+				"Employee-health_insurance_provider-mandatory_depends_on",
+				"Employee-passport_number-mandatory_depends_on"
 			]
 	]
 	]

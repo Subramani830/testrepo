@@ -72,42 +72,6 @@ def get_applicant_list():
 		else:
 			sendmail_jobtitle_correction(aname,mail,apply_for)
 
-
-@frappe.whitelist()
-def create_warehouse(doctype,employee_warehouse,company,warehouse_name):
-		parent_warehouse=frappe.db.get_value(doctype,{'warehouse_name':'Employees','is_group':1},'name')
-		if parent_warehouse:
-			val=frappe.db.get_list(doctype,filters={'employee_warehouse':employee_warehouse},fields={'warehouse_name','name'})
-			if not val:
-					frappe.get_doc(dict(doctype=doctype,
-							company=company,
-							employee_warehouse=employee_warehouse,
-							parent_warehouse=parent_warehouse,
-							warehouse_name=warehouse_name)).insert()
-			else:
-					for w in val:
-						if w.warehouse_name!=warehouse_name:
-								for row in val:
-										doc= frappe.get_doc('Warehouse',row.name)
-										doc.warehouse_name=warehouse_name
-										doc.save()
-		else:
-			frappe.throw('Please Create Parent Warehouse as "Employees".')
-
-@frappe.whitelist()
-def delete_warehouse(doctype,employee_warehouse,company,warehouse_name):
-	docVal=frappe.db.get_value(doctype,{'employee_warehouse':employee_warehouse},'name')
-	if docVal:
-			bins = frappe.db.sql("select * from `tabBin` where warehouse = %s",
-			docVal, as_dict=1)
-			if not bins:
-				frappe.get_doc(dict(
-					doctype = doctype,
-					name=docVal,
-				)).delete()
-			else:
-				return docVal
-
 @frappe.whitelist()
 def get_designation(doctype,name):
 	job_title=frappe.db.get_value(doctype,{'name':name},'job_title')

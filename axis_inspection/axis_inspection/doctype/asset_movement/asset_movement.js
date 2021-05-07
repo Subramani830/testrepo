@@ -16,7 +16,7 @@ frappe.ui.form.on('Asset Movement',{
                                         reference_name:frm.doc.name,
                                         reference_type:cdt,
                                         status:"Accepted",
-                                        item_code:item.item_code
+                                        item_code:item.item_code,
                                         }
                                     };
                                 };
@@ -25,9 +25,11 @@ frappe.ui.form.on('Asset Movement',{
     },
     before_submit:function(frm,cdt,cdn){
         $.each(frm.doc.assets, function(idx, item){
-            if(item.quality_inspection==undefined){
+            frappe.db.get_value("Item",{"item_code":item.item_code}, "inspection_required_before_asset_movement",(c)=>{
+            if(item.quality_inspection==undefined && c.inspection_required_before_asset_movement==1){
                 frappe.throw(__('Quality Inspection is required for Item '+item.item_code+' to submit.'))
             }
+        });
         });
     }
 });

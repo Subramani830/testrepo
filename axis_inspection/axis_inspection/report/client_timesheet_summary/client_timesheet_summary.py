@@ -39,7 +39,7 @@ def execute(filters=None):
 	holiday_list = list(set(holiday_list))
 	holiday_map = get_holiday(holiday_list, filters["month"])
 	
-	data = get_data(filters,holiday_map)
+	data = get_data(filters,holiday_map,conditions)
 	return columns, data, None
 
 def get_columns(filters):
@@ -58,14 +58,14 @@ def get_columns(filters):
 
 	return columns, days
 
-def get_data(filters,holiday_map):
+def get_data(filters,holiday_map, conditions):
 	weak_off = []
 	record = []
 	total_w = 0.0
 
 	query="""SELECT DISTINCT td.activity_type as description from `tabTimesheet` t \
 		LEFT JOIN `tabTimesheet Detail` td ON t.name = td.parent \
-		where t.employee='{employee}' and t.customer='{customer}' and month(t.timesheet_date)='{month}' and year(t.timesheet_date)='{year}' """.format(employee=filters.get('employee'),customer=filters.get('customer'),year=filters.get('year'),month=cint(filters.month))
+		where t.employee='{employee}' and t.customer='{customer}' and month(t.timesheet_date)='{month}' and year(t.timesheet_date)='{year}' {conditions} """.format(employee=filters.get('employee'),customer=filters.get('customer'),year=filters.get('year'),month=cint(filters.month),conditions=conditions)
 	description_data=frappe.db.sql(query, as_dict=True)
 
 
@@ -74,9 +74,9 @@ def get_data(filters,holiday_map):
 	leaves = frappe.db.sql(query , as_dict=1)
 
 
-	query="""SELECT td.activity_type as description, day(td.from_time) as day, td.hours as hours from `tabTimesheet` t \
+	query="""SELECT DISTINCT td.activity_type as description, day(td.from_time) as day, ( SELECT SUM(ttd.hours) from `tabTimesheet Detail` ttd WHERE ttd.activity_type=td.activity_type and day(ttd.from_time)=day(td.from_time) and ttd.parent=td.parent) as hours from `tabTimesheet` t \
 	LEFT JOIN `tabTimesheet Detail` td ON t.name = td.parent \
-	where t.employee='{employee}' and t.customer='{customer}' and month(t.timesheet_date)='{month}' and year(t.timesheet_date)='{year}' """.format(employee=filters.get('employee'),customer=filters.get('customer'),year=filters.get('year'),month=cint(filters.month))
+	where td.docstatus != 2 and t.employee='{employee}' and t.customer='{customer}' and month(t.timesheet_date)='{month}' and year(t.timesheet_date)='{year}' {conditions}""".format(employee=filters.get('employee'),customer=filters.get('customer'),year=filters.get('year'),month=cint(filters.month),conditions=conditions)
 	timesheet_data=frappe.db.sql(query, as_dict=True)
 
 	for hm in next(iter(holiday_map.values())):
@@ -110,10 +110,11 @@ def get_conditions(filters):
 
 	filters["total_days_in_month"] = monthrange(cint(filters.year), cint(filters.month))[1]
 
-	conditions = " and month(attendance_date) = %(month)s and year(attendance_date) = %(year)s"
+	conditions = " AND  t.company = '{}'".format(filters.get('company'))
 
-	if filters.get("company"): conditions += " and company = %(company)s"
-	if filters.get("employee"): conditions += " and employee = %(employee)s"
+	if filters.get("status"): 
+		if filters.get("status")=='Draft': conditions += "and t.docstatus= 0 " 
+		elif filters.get("status")=='Submitted': conditions += "and t.docstatus = 1"
 
 	return conditions, filters
 

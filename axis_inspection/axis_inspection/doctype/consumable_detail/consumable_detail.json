@@ -7,6 +7,7 @@
  "field_order": [
   "item_code",
   "item_name",
+  "date",
   "quantity"
  ],
  "fields": [
@@ -31,12 +32,18 @@
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Quantity"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-04-09 16:42:23.844072",
+ "modified": "2021-05-06 15:04:56.599819",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Consumable Detail",
