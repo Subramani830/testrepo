@@ -264,11 +264,11 @@ frappe.ui.form.on('Timesheet Detail',{
 	activity_type:function(frm,cdt,cdn){
 		var basic;
 		var hours;
-		if(frm.doc.employee!=undefined){
+		if(frm.doc.employee!=undefined&&frm.doc.project!=undefined){
 			frappe.call({
 				method:"axis_inspection.axis_inspection.api.get_employee_contract",
 				async:false,
-						args: {
+							args: {
 							doctype: 'Employee',
 							name: frm.doc.employee
 						},
@@ -287,8 +287,25 @@ frappe.ui.form.on('Timesheet Detail',{
 			var row = locals[cdt][cdn];
 			row.costing_rate=overtime;
 			cur_frm.refresh_field("time_logs")
+
+			if((row.activity_type!='Standby'||row.activity_type!="Overtime")&&row.activity_type!=undefined){
+				frappe.call({
+					method:"axis_inspection.axis_inspection.api.get_billing_rate",
+					async:false,
+								args: {
+								doctype: 'Activity Cost',
+								employee: frm.doc.employee,
+								project:frm.doc.project,
+								activity_type:row.activity_type
+							},
+						callback: function(r){
+								row.billing_rate=r.message
+							//	row.costing_rate=r.message[0].costing_rate
+							cur_frm.refresh_field("time_logs")
+						}
+				});
+			}
 		}
-		
 	}
 });
 	frappe.ui.form.on('Timesheet Detail', 'service',function(frm,cdt, cdn){
