@@ -354,7 +354,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Payment Entry-contract",
 		"Employee-purchase_order",
 		"Sales Invoice-year_of_work",
-		"Item-inspection_required_before_asset_movement"
+		"Item-inspection_required_before_asset_movement",
+		"Activity Cost-section_break_10",
+		"Activity Cost-activity_cost_detail"
 		]
 	]
 ]

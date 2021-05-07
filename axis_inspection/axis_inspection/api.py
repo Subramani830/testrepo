@@ -307,3 +307,17 @@ def validate_stock_entry(stock_entry_type):
 @frappe.whitelist()
 def get_working_hours(parent):
 	return frappe.db.get_value('Contract Term Detail',{'parent':parent,'parenttype':'Employee Contract','contract_term':'Working Hours'},'value')
+
+@frappe.whitelist()
+def get_billing_rate(doctype,employee,project,activity_type):
+	name=frappe.db.get_value(doctype,{'employee':employee,'activity_type':activity_type},'name')
+	if name:
+		billing_rate=frappe.db.get_value('Activity Cost Detail',{'parent':name,'parenttype':'Activity Cost','project':project},'name')
+		if not billing_rate:
+			billing_rate=frappe.db.get_value(doctype,{'employee':employee,'name':name,'activity_type':activity_type},'billing_rate')
+			if not billing_rate:
+				return frappe.db.get_value('Activity Type',{'activity_type':activity_type},'billing_rate')
+			else:
+				return billing_rate
+		else:
+			return billing_rate
