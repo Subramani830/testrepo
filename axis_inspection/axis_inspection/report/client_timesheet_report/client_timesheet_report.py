@@ -107,7 +107,7 @@ def get_columns():
 
 def get_data(filters):
 	conditions=get_conditions(filters)
-	query= """select t.name,t.start_date,t.employee,t.project,td.task,t.contract_no,t.sales_order,t.po_no,s.customer,at.asset_name,at.hours,cd.item_name,cd.quantity from `tabTimesheet` t LEFT JOIN `tabTimesheet Detail` td  on td.parent=t.name LEFT JOIN `tabSales Order` s on t.sales_order=s.name LEFT JOIN `tabAsset Item` at on t.name=at.parent LEFT JOIN `tabConsumable Detail` cd on t.name=cd.parent where t.status!="Cancelled" {conditions}""".format(conditions=conditions)
+	query="""select  DISTINCT t.name,t.start_date,t.employee,t.project,td.task,t.contract_no,t.sales_order,t.po_no,s.customer,at.asset_name,at.hours,cd.item_name,cd.quantity from `tabTimesheet` t LEFT JOIN `tabTimesheet Detail` td  on td.parent=t.name LEFT JOIN `tabSales Order` s on t.sales_order=s.name LEFT JOIN `tabAsset Item` at on t.name=at.parent LEFT JOIN `tabConsumable Detail` cd on t.name=cd.parent where t.status!="Cancelled"{conditions}""".format(conditions=conditions)
 	return frappe.db.sql(query, as_list=True)
 
 def get_conditions(filters):
@@ -132,6 +132,8 @@ def get_conditions(filters):
 		conditions += " AND  t.po_no = '{}'".format(filters.get('po_no'))
 	if filters.get('customer'):
 		conditions += " AND  s.customer = '{}'".format(filters.get('customer'))
+	if filters.get('status'):
+		conditions += " AND  t.status= '{}'".format(filters.get('status'))
 
 	return conditions
 

@@ -353,8 +353,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Sales Invoice-delivery_note",
 		"Payment Entry-contract",
 		"Employee-purchase_order",
-		"Sales Invoice-year_of_work"
-
+		"Sales Invoice-year_of_work",
+		"Item-inspection_required_before_asset_movement"
 		]
 	]
 ]
@@ -420,7 +420,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Journal Entry Account-cost_center-reqd",
 				"Purchase Invoice-cost_center-reqd",
 				"Sales Invoice-cost_center-reqd",
-				"Stock Entry Detail-cost_center-reqd",
 				"Material Request Item-cost_center-reqd"
 				"Customer-sales_team_section_break-hidden",
 				"Customer-sales_team_section-hidden",
