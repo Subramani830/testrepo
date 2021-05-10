@@ -107,7 +107,35 @@ def get_columns():
 
 def get_data(filters):
 	conditions=get_conditions(filters)
-	query="""select  DISTINCT t.name,t.start_date,t.employee,t.project,td.task,t.contract_no,t.sales_order,t.po_no,s.customer,at.asset_name,at.hours,cd.item_name,cd.quantity from `tabTimesheet` t LEFT JOIN `tabTimesheet Detail` td  on td.parent=t.name LEFT JOIN `tabSales Order` s on t.sales_order=s.name LEFT JOIN `tabAsset Item` at on t.name=at.parent LEFT JOIN `tabConsumable Detail` cd on t.name=cd.parent where t.status!="Cancelled"{conditions}""".format(conditions=conditions)
+	query="""SELECT DISTINCT 
+		a.name, a.date, a.employee, a.project, a.task, a.contract_no, a.sales_order, a.po_no, a.customer, a.asset_name, a.hours, a.item_name, a.quantity FROM 
+		( 
+		SELECT  DISTINCT t.name,at.date,t.employee,t.project,td.task,
+		t.contract_no,t.sales_order,t.po_no,s.customer,at.asset_name,
+		(select SUM(tat.hours) from `tabAsset Item` tat WHERE at.parent=tat.parent and at.date=tat.date and at.asset=tat.asset) as hours,
+		(CASE WHEN at.date=cd.date THEN cd.item_name ELSE NULL END)as item_name,
+		(CASE WHEN at.date=cd.date THEN (SELECT SUM(tcd.quantity) FROM `tabConsumable Detail` tcd where cd.parent = tcd.parent and cd.date = tcd.date and cd.item_code = tcd.item_code) ELSE NULL END)as quantity
+		from `tabTimesheet` t 
+		LEFT JOIN `tabTimesheet Detail` td  on td.parent=t.name 
+		LEFT JOIN `tabSales Order` s on t.sales_order=s.name 
+		LEFT JOIN `tabAsset Item` at on t.name=at.parent 
+		LEFT JOIN `tabConsumable Detail` cd on t.name=cd.parent AND cd.date=at.date
+		where t.status!="Cancelled" {conditions}
+		UNION 
+		select  DISTINCT t.name,cd.date,t.employee,t.project,td.task,
+		t.contract_no,t.sales_order,t.po_no,s.customer, 
+		(CASE WHEN cd.date=at.date THEN at.asset_name ELSE NULL END)as asset_name, 
+		(CASE WHEN cd.date=at.date THEN (select SUM(tat.hours) from `tabAsset Item` tat WHERE at.parent=tat.parent and at.date=tat.date and at.asset=tat.asset) ELSE NULL END)as hours,
+		cd.item_name,
+		(SELECT SUM(tcd.quantity) FROM `tabConsumable Detail` tcd where cd.parent = tcd.parent and cd.date = tcd.date and cd.item_code = tcd.item_code) as quantity
+		from `tabTimesheet` t 
+		LEFT JOIN `tabTimesheet Detail` td  on td.parent=t.name 
+		LEFT JOIN `tabSales Order` s on t.sales_order=s.name 
+		LEFT JOIN `tabConsumable Detail` cd on t.name=cd.parent
+		LEFT JOIN `tabAsset Item` at on t.name=at.parent  AND at.date=cd.date
+		where t.status!="Cancelled"
+		{conditions}
+		) a ORDER BY date;""".format(conditions=conditions)
 	return frappe.db.sql(query, as_list=True)
 
 def get_conditions(filters):
@@ -115,9 +143,9 @@ def get_conditions(filters):
 	if filters.get('company'):
 		conditions += " AND  t.company = '{}'".format(filters.get('company'))
 	if filters.get('start_date'):
-		conditions += " AND  t.start_date >= '{}'".format(filters.get('start_date'))
+		conditions += " AND  coalesce(at.date, cd.date) >= '{}'".format(filters.get('start_date'))
 	if filters.get('end_date'):
-		conditions += " AND  t.end_date <= '{}'".format(filters.get('end_date'))
+		conditions += " AND  COALESCE(at.date, cd.date) <= '{}'".format(filters.get('end_date'))
 	if filters.get('employee'):
 		conditions += " AND  t.employee = '{}'".format(filters.get('employee'))
 	if filters.get('sales_order'):
