@@ -1,0 +1,15 @@
+diff --git erpnext/payroll/doctype/payroll_entry/payroll_entry.py erpnext/payroll/doctype/payroll_entry/payroll_entry.py
+index 30ea432..64dd24f 100644
+--- erpnext/payroll/doctype/payroll_entry/payroll_entry.py
++++ erpnext/payroll/doctype/payroll_entry/payroll_entry.py
+@@ -114,6 +114,9 @@ class PayrollEntry(Document):
+ 		self.created = 1
+ 		emp_list = [d.employee for d in self.get_emp_list()]
+ 		if emp_list:
++			from axis_inspection.axis_inspection.doctype.salary_slip.salary_slip import update_earnings
++			for emp in emp_list:
++				update_earnings(emp, self)
+ 			args = frappe._dict({
+ 				"salary_slip_based_on_timesheet": self.salary_slip_based_on_timesheet,
+ 				"payroll_frequency": self.payroll_frequency,
+
