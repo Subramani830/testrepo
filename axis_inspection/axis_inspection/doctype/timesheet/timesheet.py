@@ -34,9 +34,9 @@ def on_cancel(self,method):
 def update_asset_details(self,task):
 	doc=frappe.get_doc('Task',task)
 	for val in self.asset_detail:
-		name=frappe.db.get_value('Asset Item',{'parent':task,'parenttype':'Task','asset':val.asset},'name')
+		name=frappe.db.get_value('Asset Item',{'parent':task,'parenttype':'Task','asset':val.asset,'date':val.date},'name')
 		if name:
-			hours=frappe.db.get_value('Asset Item',{'parent':task,'parenttype':'Task','asset':val.asset},'hours')
+			hours=frappe.db.get_value('Asset Item',{'parent':task,'parenttype':'Task','asset':val.asset,'date':val.date},'hours')
 			total_hours=hours+val.hours
 			asset_detail_doc=frappe.get_doc("Asset Item",name)
 			asset_detail_doc.update({
@@ -46,6 +46,7 @@ def update_asset_details(self,task):
 		else:
 			doc.append('asset_detail', {
 				'asset': val.asset,
+				'date':val.date,
 				'hours': val.hours
 			})
 			doc.save()
@@ -53,9 +54,9 @@ def update_asset_details(self,task):
 def update_consumable_item_details(self,task):
 	doc=frappe.get_doc('Task',task)
 	for val in self.consumable_detail:
-		name=frappe.db.get_value('Consumable Detail',{'parent':task,'parenttype':'Task','item_code':val.item_code},['name'])
+		name=frappe.db.get_value('Consumable Detail',{'parent':task,'parenttype':'Task','item_code':val.item_code,'date':val.date},['name'])
 		if name:
-			qty=frappe.db.get_value('Consumable Detail',{'parent':task,'parenttype':'Task','item_code':val.item_code},['quantity'])
+			qty=frappe.db.get_value('Consumable Detail',{'parent':task,'parenttype':'Task','item_code':val.item_code,'date':val.date},['quantity'])
 			total_qty=qty+val.quantity
 			item_detail_doc=frappe.get_doc("Consumable Detail",name)
 			item_detail_doc.update({
@@ -65,7 +66,8 @@ def update_consumable_item_details(self,task):
 		else:
 			doc.append('consumable_detail', {
 			'item_code': val.item_code,
-			'quantity':val.quantity
+			'quantity':val.quantity,
+			'date':val.date
 			})
 			doc.save()
 
@@ -74,7 +76,7 @@ def delete_asset_and_consumable_detail(self):
 		task=row.task
 		if task!=None:break
 	for val in self.asset_detail:
-		name,hours=frappe.db.get_value('Asset Item',{'parent':task,'parenttype':'Task','asset':val.asset},['name','hours'])
+		name,hours=frappe.db.get_value('Asset Item',{'parent':task,'parenttype':'Task','asset':val.asset,'date':val.date},['name','hours'])
 		if val.hours==hours:
 			frappe.db.delete("Asset Item",name)
 		else:
@@ -86,7 +88,7 @@ def delete_asset_and_consumable_detail(self):
 			asset_detail_doc.save()
 		
 	for val in self.consumable_detail:
-		name,qty=frappe.db.get_value('Consumable Detail',{'parenttype':'Task','parent':task,'item_code':val.item_code},['name','quantity'])
+		name,qty=frappe.db.get_value('Consumable Detail',{'parenttype':'Task','parent':task,'item_code':val.item_code,'date':val.date},['name','quantity'])
 		if val.quantity==qty:
 			frappe.db.delete("Consumable Detail",name)
 		else:
@@ -156,7 +158,6 @@ def get_duplicate_entry(doc):
 					days.append(day_time)
 				
 	return days
-
 
 
 

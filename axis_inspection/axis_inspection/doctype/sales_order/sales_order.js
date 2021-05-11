@@ -134,8 +134,8 @@ after_save(frm){
 		if(frm.doc.contract!=undefined){
 	   		 frappe.model.with_doc("Contract", frm.doc.contract, function() {
 	     		  var transfer= frappe.model.get_doc("Contract", frm.doc.contract)
-				   frm.doc.naming_series='SAL-ORD-.YYYY.-';
-				   cur_frm.refresh_field("naming_series");
+				  // frm.doc.naming_series='SAL-ORD-.YYYY.-';
+				   //cur_frm.refresh_field("naming_series");
 				   frm.doc.order_type='Sales'; 
 				   cur_frm.refresh_field("order_type");
 				   frm.doc.selling_price_list=transfer.price_list

@@ -291,7 +291,7 @@ frappe.ui.form.on('Timesheet Detail',{
 						}
 					}
 				});
-			var	overtime=(basic/30)/hours
+			var	overtime=((basic*12/365)/hours)*1.5
 			var row = locals[cdt][cdn];
 			row.costing_rate=overtime;
 			cur_frm.refresh_field("time_logs")

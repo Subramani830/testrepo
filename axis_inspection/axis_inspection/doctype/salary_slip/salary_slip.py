@@ -99,8 +99,8 @@ def update_earnings(employee,self):
        if component_list:
            for component in component_list:
                 total_working_days=frappe.db.sql("""
-                select distinct count(from_time) as working_days from `tabTimesheet Detail`
-                where activity_type='On Duty' and docstatus=1 and from_time 
+                select count(DISTINCT DATE(from_time)) as working_days from `tabTimesheet Detail`
+                where activity_type IN ('On Duty','Overtime','Standby') and docstatus=1 and from_time 
                 BETWEEN %s and DATE_ADD(%s, INTERVAL 1 DAY)
                 """,(self.start_date,self.end_date),as_dict=True)               
                 if total_working_days:
