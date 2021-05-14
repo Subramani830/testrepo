@@ -158,6 +158,3 @@ def get_duplicate_entry(doc):
 					days.append(day_time)
 				
 	return days
-
-
-

@@ -22,10 +22,11 @@ def validate(self,method):
 
 @frappe.whitelist()
 def update_salary_slip(self):
-    amount=frappe.db.get_list('Timesheet',{'employee':self.employee,'start_date':["between",[self.start_date,self.end_date]]},'total_costing_amount')
-    costing_amount=0
-    for row in amount:
-	        costing_amount+=row.total_costing_amount
+    #amount=frappe.db.get_list('Timesheet',{'employee':self.employee,'start_date':["between",[self.start_date,self.end_date]]},'total_costing_amount')
+    
+    costing_amount=get_overtime_bill(self)
+    #for row in amount:
+	        #costing_amount+=row.total_costing_amount
 
     self.overtime_bill=costing_amount
     self.gross_pay=self.overtime_bill
@@ -116,4 +117,14 @@ def update_earnings(employee,self):
                             doc.save()
                             doc.submit()
                         else:
-                            frappe.db.sql("""update `tabAdditional Salary` set amount=%s where employee=%s and salary_component=%s and payroll_date=%s""",(amount,employee,component.salary_component,self.start_date))         
+                            frappe.db.sql("""update `tabAdditional Salary` set amount=%s where employee=%s and salary_component=%s and payroll_date=%s""",(amount,employee,component.salary_component,self.start_date))
+
+
+def get_overtime_bill(self):
+    total_costing_amount=0.0
+    timesheet=frappe.db.get_list('Timesheet',{'employee':self.employee,'start_date':["between",[self.start_date,self.end_date]],'docstatus':1},'name')
+    for val in timesheet:
+        costing_amount_list=frappe.db.get_list('Timesheet Detail',filters={'activity_type':'Overtime','parent':val.name},fields=['costing_amount'])
+        for row in costing_amount_list:
+            total_costing_amount=total_costing_amount+row.costing_amount
+    return total_costing_amount

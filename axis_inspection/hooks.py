@@ -356,7 +356,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Sales Invoice-year_of_work",
 		"Item-inspection_required_before_asset_movement",
 		"Activity Cost-section_break_10",
-		"Activity Cost-activity_cost_detail"
+		"Activity Cost-activity_cost_detail",
+		"Purchase Order-reason_for_update_items",
+		"Sales Order-reason_for_update_items"
 		]
 	]
 ]
@@ -798,7 +800,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee-health_insurance_provider-mandatory_depends_on",
 				"Employee-passport_number-mandatory_depends_on",
 				"Employee-valid_upto-mandatory_depends_on",
-				"Employee-marital_status-mandatory_depends_on"
+				"Employee-marital_status-mandatory_depends_on",
+				"Asset Movement Item-target_location-reqd"
 			]
 	]
 	]
