@@ -6622,5 +6622,21 @@
   "property": "permlevel",
   "property_type": "Int",
   "value": "1"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Asset Movement Item",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "target_location",
+  "modified": "2021-05-12 13:14:05.624243",
+  "name": "Asset Movement Item-target_location-reqd",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "property": "reqd",
+  "property_type": "Check",
+  "value": "1"
  }
 ]

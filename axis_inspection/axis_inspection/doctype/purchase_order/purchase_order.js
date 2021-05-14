@@ -6,12 +6,53 @@ refresh(frm){
 				cur_frm.refresh_field("taxes_and_charges");
 			})
 		}
+		if(frm.doc.docstatus == 1) {
+			if(!in_list(["Closed", "Delivered"], frm.doc.status)) {
+				if(frm.doc.status !== 'Closed' && flt(frm.doc.per_received) < 100 && flt(frm.doc.per_billed) < 100) {
+					frm.add_custom_button(__('Update items'), () => {
+						let d = new frappe.ui.Dialog({
+							title: 'Enter Reason',
+							fields: [
+								{
+									label: 'Reason',
+									fieldname: 'reason',
+									fieldtype: 'Small Text',
+									reqd:1
+								}
+							],
+							primary_action_label: 'Submit',
+							primary_action(values) {
+								frappe.call({
+									"method": "axis_inspection.axis_inspection.doctype.purchase_order.purchase_order.set_reason_for_update_items",
+									"args": {
+										  "reason": values["reason"],
+										  "document":frm.doc.name
+									}
+								})
+								frm.refresh_field('reason_for_update_items')
+								window.location.reload();
+								d.hide();
+							}
+						});
+						
+						d.show();
+						erpnext.utils.update_child_items({
+							frm: frm,
+							child_docname: "items",
+							child_doctype: "Purchase Order Detail",
+							cannot_add_row: false,
+						})
+					});
+				}
+			}
+		}
 },
 	onload_post_render: function(frm) {
 	    setTimeout(() => {
 		frm.remove_custom_button('Product Bundle','Get Items From');
 		frm.remove_custom_button('Product Bundle','Get items from');
 		frm.remove_custom_button('Subscription','Create');
+		frm.remove_custom_button('Update Items');
 		}, 10);
 
 

@@ -77,7 +77,7 @@ if(cur_row.doc.assign_to!=undefined){
 		for(var i=0;i<r.message.length;i++){
 		task.push(r.message[i][0]);
 		}
-            cur_doc.assigned_task=task+"";
+          //  cur_doc.assigned_task=task+"";
             cur_frm.refresh_field('assigned_task')
         } 
     });
