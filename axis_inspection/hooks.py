@@ -358,7 +358,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Activity Cost-section_break_10",
 		"Activity Cost-activity_cost_detail",
 		"Purchase Order-reason_for_update_items",
-		"Sales Order-reason_for_update_items"
+		"Sales Order-reason_for_update_items",
+		"Sales Order-maximum_value"
 		]
 	]
 ]
