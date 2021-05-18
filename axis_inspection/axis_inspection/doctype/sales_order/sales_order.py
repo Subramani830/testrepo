@@ -47,3 +47,8 @@ def set_reason_for_extension(reason, document, date):
         item.delivery_date=date
     sales_order_doc.submit()
 
+@frappe.whitelist()
+def set_reason_for_update_items(reason, document):
+    sales_order_doc  = frappe.get_doc('Sales Order', document)
+    sales_order_doc .reason_for_update_items = reason
+    sales_order_doc .submit()
