@@ -345,7 +345,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Purchase Invoice-bank_account",
 		"Sales Invoice Timesheet-visit",
 		"Timesheet-working_hour",
-		"Attendance-total_delay_duration",
 		"Timesheet-po_no",
 		"Payment Entry-employee_costs",
 		"Payment Entry Reference-employee_costs",
@@ -359,7 +358,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Activity Cost-activity_cost_detail",
 		"Purchase Order-reason_for_update_items",
 		"Sales Order-reason_for_update_items",
-		"Sales Order-maximum_value"
+		"Sales Order-maximum_value",
+		"Attendance-total_delay"
 		]
 	]
 ]
