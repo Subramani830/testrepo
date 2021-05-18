@@ -78,12 +78,11 @@ def remove_actual_paid(self,method):
 
 
 def update_attendance_deduction(self):
-    total_seconds=0.0
-    records=frappe.db.sql("""select total_delay_duration from `tabAttendance` where employee=%s AND(attendance_date BETWEEN %s AND %s) """,(self.employee,self.start_date,self.end_date),as_dict=True)
+    total_hours=0.0
+    records=frappe.db.sql("""select total_delay from `tabAttendance` where employee=%s AND(attendance_date BETWEEN %s AND %s) """,(self.employee,self.start_date,self.end_date),as_dict=True)
     for row in records:
-        total_seconds=total_seconds+row['total_delay_duration'].total_seconds()
-   
-    total_hours=total_seconds/3600
+        total_hours=total_hours+row['total_delay']
+        
     self.attendance_deduction_hours=total_hours
 
 def get_earnings(salary_structure):
@@ -100,25 +99,19 @@ def update_earnings(employee,self):
        if component_list:
            for component in component_list:
                 total_working_days=frappe.db.sql("""
-                select count(DISTINCT DATE(from_time)) as working_days from `tabTimesheet Detail`
-                where activity_type IN ('On Duty','Overtime','Standby') and docstatus=1 and from_time 
-                BETWEEN %s and DATE_ADD(%s, INTERVAL 1 DAY)
-                """,(self.start_date,self.end_date),as_dict=True)               
+                select count(DISTINCT DATE(td.from_time)) as working_days from `tabTimesheet Detail` td join  `tabTimesheet` t
+           on(t.name=td.parent) where td.activity_type IN ('On Duty','Overtime','Standby') and td.docstatus=1 and td.from_time 
+                BETWEEN %s and DATE_ADD(%s, INTERVAL 1 DAY) and t.employee=%s
+                """,(self.start_date,self.end_date,employee),as_dict=True)               
                 if total_working_days:
                     for val in total_working_days:
-                        amount_per_day=round(((component.amount*12)/365),2)
-                        amount=amount_per_day*val.working_days
-                        if not frappe.db.exists('Additional Salary',{'employee':employee,'salary_component':component.salary_component,'payroll_date':self.start_date}):
-                            doc=frappe.get_doc(dict(doctype = 'Additional Salary',
-                                                    employee=employee,
-                                                    salary_component=component.salary_component,
-                                                    payroll_date=self.start_date,
-                                                    amount=amount))
-                            doc.save()
-                            doc.submit()
+                        if val.working_days!=0:
+                            amount_per_day=round(((component.amount*12)/365),2)
+                            amount=amount_per_day*val.working_days
+                            create_additional_salary(employee,component.salary_component,self.start_date,amount)
                         else:
-                            frappe.db.sql("""update `tabAdditional Salary` set amount=%s where employee=%s and salary_component=%s and payroll_date=%s""",(amount,employee,component.salary_component,self.start_date))
-
+                            amount=0
+                            create_additional_salary(employee,component.salary_component,self.start_date,amount)
 
 def get_overtime_bill(self):
     total_costing_amount=0.0
@@ -128,3 +121,15 @@ def get_overtime_bill(self):
         for row in costing_amount_list:
             total_costing_amount=total_costing_amount+row.costing_amount
     return total_costing_amount
+
+def create_additional_salary(employee,salary_component,start_date,amount):
+    if not frappe.db.exists('Additional Salary',{'employee':employee,'salary_component':salary_component,'payroll_date':start_date}):
+        doc=frappe.get_doc(dict(doctype = 'Additional Salary',
+                employee=employee,
+                salary_component=salary_component,
+                payroll_date=start_date,
+                amount=amount))
+        doc.save()
+        doc.submit()
+    else:
+        frappe.db.sql("""update `tabAdditional Salary` set amount=%s where employee=%s and salary_component=%s and payroll_date=%s""",(amount,employee,salary_component,start_date))
