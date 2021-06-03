@@ -173,7 +173,7 @@ def update_project(doctype,name,parenttype):
 
 @frappe.whitelist()
 def update_project1(doctype,name):
-	return frappe.db.get_list(doctype,filters={'name':name},fields=['project','branch','cost_center','contract'])
+	return frappe.db.get_list(doctype,filters={'name':name},fields=['project','branch','cost_center','contract','bank_account'])
 
 @frappe.whitelist()
 def update_project2(doctype,name,parenttype):
@@ -305,8 +305,10 @@ def validate_stock_entry(stock_entry_type):
 	return items
 
 @frappe.whitelist()
-def get_working_hours(parent):
-	return frappe.db.get_value('Contract Term Detail',{'parent':parent,'parenttype':'Employee Contract','contract_term':'Working Hours'},'value')
+def get_working_hours(employee_name):
+	parent=frappe.db.get_value('Employee Contract',{'employee_name':employee_name,'docstatus':1},'name')
+	if parent:
+		return frappe.db.get_value('Contract Term Detail',{'parent':parent,'parenttype':'Employee Contract','contract_term':'Working Hours'},'value')
 
 @frappe.whitelist()
 def get_billing_rate(doctype,employee,project,activity_type):

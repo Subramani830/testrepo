@@ -33,7 +33,7 @@ employee:function(frm,cdt,cdn){
 				method:"axis_inspection.axis_inspection.api.get_working_hours",
 				async:false,
 				args: {
-					"parent":frm.doc.employee_name
+				"employee_name":frm.doc.employee_name
 				},
 				callback: function(r){
 					for(var i=0; i<r.message.length; i++){
