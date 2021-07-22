@@ -1,6 +1,7 @@
 frappe.ui.form.on("Salary Slip", {
     employee: function (frm) {
         update_clearance_process_filter(frm)
+        update_additional_salary(frm);
     },
     start_date: function (frm) {
         update_clearance_process_filter(frm)
@@ -16,6 +17,15 @@ frappe.ui.form.on("Salary Slip", {
     }
 });
 
+function update_additional_salary(frm) {
+    frappe.call({
+        method: "axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.additional_salary",
+        async: false,
+        args: {
+            doc: frm.doc
+        }
+    })
+}
 
 function get_month_name(start_date) {
     var date = new Date(start_date)
