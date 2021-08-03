@@ -1080,7 +1080,7 @@ def calculate_component_amounts(self, component_type):
 	else:
 		self.add_tax_components(payroll_period)
 
-	self.set_component_amounts_based_on_payment_days(component_type)
+	self.set_component_amounts_based_on_payment_days()
 
 def create_journal_entry(self, je_payment_amount, user_remark):
 	default_payroll_payable_account = self.get_default_payroll_payable_account()
