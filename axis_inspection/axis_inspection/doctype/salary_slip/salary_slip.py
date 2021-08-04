@@ -31,14 +31,14 @@ def additional_salary(doc):
         create_additional_salary(doc['employee'], 'Overtime',
                                     doc['start_date'], costing_amount)
 
-        # if doc['employee_deduction'] != 0:
-        month = convertDateFormat(doc['end_date'])
-        parent = frappe.db.get_value('Employee Deductions', {
-                                    'employee': doc['employee']}, 'name')
-        if parent:
-            employee_deduction = frappe.db.get_value('Deduction Calculation', {
-                                                        'parenttype': 'Employee Deductions', 'month': month, 'parent': parent}, 'balance')
-            create_additional_salary(doc['employee'], 'Employee Deduction', doc['start_date'], employee_deduction)
+        if doc['employee_deduction'] != 0:
+            month = convertDateFormat(doc['end_date'])
+            parent = frappe.db.get_value('Employee Deductions', {
+                                        'employee': doc['employee']}, 'name')
+            if parent:
+                employee_deduction = frappe.db.get_value('Deduction Calculation', {
+                                                            'parenttype': 'Employee Deductions', 'month': month, 'parent': parent}, 'balance')
+                create_additional_salary(doc['employee'], 'Employee Deduction', doc['start_date'], employee_deduction)
 
 
         working_hours = get_working_hours(doc['employee_name'])

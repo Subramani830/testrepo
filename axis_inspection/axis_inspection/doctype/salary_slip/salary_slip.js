@@ -14,6 +14,11 @@ frappe.ui.form.on("Salary Slip", {
     },
     employee_deduction: function (frm) {
         update_total_deduction(frm)
+    },
+    validate: function (frm) {
+        if (frm.doc.status === "Draft") {
+            update_additional_salary(frm);
+        }
     }
 });
 
