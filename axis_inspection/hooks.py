@@ -956,7 +956,8 @@ doc_events = {
 		"autoname": ["axis_inspection.axis_inspection.doctype.contract.contract.autoname"]
 	},
 	"Salary Slip":{
-		"validate":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.validate"],
+		"validate":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.validate",
+					"axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.additional_salary"],
 		"on_submit":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.on_submit"],
 		"on_cancel":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.on_cancel"]
 	},
