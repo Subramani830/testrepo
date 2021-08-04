@@ -13,11 +13,11 @@ from axis_inspection.axis_inspection.api import get_working_hours
 
 
 @frappe.whitelist()
-def additional_salary(doc):
+def additional_salary(doc,method):
     def get_overtime_bill(doc):
         total_costing_amount = 0.0
-        timesheet = frappe.db.get_list('Timesheet', {'employee': doc['employee'], 'timesheet_date': [
-                                    "between", [doc['start_date'], doc['end_date']]], 'timesheet_type': 'Client', 'docstatus': 1}, 'name')
+        timesheet = frappe.db.get_list('Timesheet', {'employee': doc.employee, 'timesheet_date': [
+                                    "between", [doc.start_date, doc.end_date]], 'timesheet_type': 'Client', 'docstatus': 1}, 'name')
         for val in timesheet:
             costing_amount_list = frappe.db.get_list('Timesheet Detail', filters={
                                                     'activity_type': 'Overtime', 'parent': val.name}, fields=['costing_amount'])
@@ -25,28 +25,28 @@ def additional_salary(doc):
                 total_costing_amount = total_costing_amount+row.costing_amount
         return total_costing_amount
 
-    doc = json.loads(doc)
-    if 'employee' in doc.keys() and doc['employee'] != None:
+    #doc = json.loads(doc)
+    if doc.employee != None:
         costing_amount = get_overtime_bill(doc)
-        create_additional_salary(doc['employee'], 'Overtime',
-                                    doc['start_date'], costing_amount)
+        create_additional_salary(doc.employee, 'Overtime',
+                                    doc.start_date, costing_amount)
 
-        if doc['employee_deduction'] != 0:
-            month = convertDateFormat(doc['end_date'])
+        if doc.employee_deduction != 0:
+            month = convertDateFormat(doc.end_date)
             parent = frappe.db.get_value('Employee Deductions', {
-                                        'employee': doc['employee']}, 'name')
+                                        'employee': doc.employee}, 'name')
             if parent:
                 employee_deduction = frappe.db.get_value('Deduction Calculation', {
                                                             'parenttype': 'Employee Deductions', 'month': month, 'parent': parent}, 'balance')
-                create_additional_salary(doc['employee'], 'Employee Deduction', doc['start_date'], employee_deduction)
+                create_additional_salary(doc.employee, 'Employee Deduction', doc.start_date, employee_deduction)
 
 
-        working_hours = get_working_hours(doc['employee_name'])
-        earnings = get_earnings(doc['salary_structure'])
+        working_hours = get_working_hours(doc.employee_name)
+        earnings = get_earnings(doc.salary_structure)
         if working_hours:
             hours = float(working_hours)
-            attendance_deduction_amount = ((earnings/doc['total_working_days'])/hours)*doc['attendance_deduction_hours']
-            create_additional_salary(doc['employee'], 'Attendance Deduction', doc['start_date'], attendance_deduction_amount)
+            attendance_deduction_amount = ((earnings/doc.total_working_days)/hours)*doc.attendance_deduction_hours
+            create_additional_salary(doc.employee, 'Attendance Deduction', doc.start_date, attendance_deduction_amount)
 
 
 def validate(self, method):
