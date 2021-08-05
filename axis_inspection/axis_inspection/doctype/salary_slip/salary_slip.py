@@ -81,7 +81,7 @@ def update_salary_slip(self):
         if parent:
             self.employee_deduction = frappe.db.get_value('Deduction Calculation', {
                                                           'parenttype': 'Employee Deductions', 'month': month, 'parent': parent}, 'balance')
-    total_deduction = self.employee_deduction
+    #total_deduction = self.employee_deduction
     for row in self.deductions:
         total_deduction += row.amount
 
@@ -91,7 +91,7 @@ def update_salary_slip(self):
         hours = float(working_hours)
         self.attendance_deduction_amount = (
             (earnings/self.total_working_days)/hours)*self.attendance_deduction_hours
-        total_deduction += self.attendance_deduction_amount
+        #total_deduction += self.attendance_deduction_amount
 
     self.total_deduction = total_deduction
     self.net_pay = flt(self.gross_pay) - \
