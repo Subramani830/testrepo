@@ -362,7 +362,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Contract-order_type",
 		"Delivery Note-order_type",
 		"Sales Invoice-order_type",
-		"Timesheet-order_type"
+		"Timesheet-order_type",
+		"Deduction Detail-salary_component_name"
 		]
 	]
 ]
@@ -817,7 +818,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Purchase Order Item-item_name-read_only",
 				"Sales Invoice Item-item_name-read_only",
 				"Sales Invoice Item-item_code-reqd",
-				"Delivery Note Item-item_name-read_only"
+				"Delivery Note Item-item_name-read_only",
+				"Deduction Detail-deduction_name-in_list_view"
 			]
 	]
 	]

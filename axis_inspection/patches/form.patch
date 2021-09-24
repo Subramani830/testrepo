@@ -1,3 +1,6 @@
+#Added a Validation for Delivery Note.
+#Before sumbit,it should calculate Total amount of Delivery Note and total amount of timesheet.
+#if Total amount of Delivery Note is less than total amount of timesheet.then,it should popup confirmation window.
 diff --git frappe/public/js/frappe/form/form.js frappe/public/js/frappe/form/form.js
 index 9e6d3f0..e336505 100644
 --- frappe/public/js/frappe/form/form.js

@@ -2,8 +2,17 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Employee Deductions', {
-//refresh: function(frm) {
-//}
+	refresh: function(frm) {
+		frm.fields_dict['deduction_detail'].grid.get_field('salary_component_name').get_query = function(doc, cdt, cdn) {
+			var child = locals[cdt][cdn];
+			//console.log(child);
+			return {    
+				filters: {
+					type: 'Deduction'
+				}
+			}
+		}
+	}
 });
 frappe.ui.form.on('Deduction Detail', {
 	end_date:function(frm,cdt,cdn){
