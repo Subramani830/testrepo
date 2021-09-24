@@ -6830,5 +6830,22 @@
   "property": "read_only",
   "property_type": "Check",
   "value": "1"
+ },
+ {
+    "default_value": null,
+    "doc_type": "Deduction Detail",
+    "docstatus": 0,
+    "doctype": "Property Setter",
+    "doctype_or_field": "DocField",
+    "field_name": "deduction_name",
+    "modified": "2021-09-23 17:04:07.056175",
+    "name": "Deduction Detail-deduction_name-in_list_view",
+    "parent": null,
+    "parentfield": null,
+    "parenttype": null,
+    "property": "hidden",
+    "property_type": "Check",
+    "row_name": null,
+    "value": "1"
  }
 ]

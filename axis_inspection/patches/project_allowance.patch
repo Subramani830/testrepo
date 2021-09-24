@@ -1,3 +1,5 @@
+#To modify earning component in salary slip.
+#On click of create salary slip,to update earning table by calculating project allowance for each employee
 diff --git erpnext/payroll/doctype/payroll_entry/payroll_entry.py erpnext/payroll/doctype/payroll_entry/payroll_entry.py
 index 30ea432..64dd24f 100644
 --- erpnext/payroll/doctype/payroll_entry/payroll_entry.py
