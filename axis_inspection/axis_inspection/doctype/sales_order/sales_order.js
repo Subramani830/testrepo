@@ -103,7 +103,7 @@ refresh(frm) {
 						primary_action_label: 'Submit',
 						primary_action(values) {
 							frappe.call({
-								"method": "axis_inspection.axis_inspection.doctype.sales_order.sales_order.set_reason_for_extension",
+								"method": "axis_inspection.axis_inspection.doctype.sales_order.sales_order.set_reason_for_update_items",
 								"args": {
 									  "reason": values["reason"],
 									  "document":frm.doc.name

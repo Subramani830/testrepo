@@ -358,8 +358,12 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Activity Cost-activity_cost_detail",
 		"Purchase Order-reason_for_update_items",
 		"Sales Order-reason_for_update_items",
-		"Sales Order-maximum_value",
-		"Attendance-total_delay"
+		"Attendance-total_delay",
+		"Contract-order_type",
+		"Delivery Note-order_type",
+		"Sales Invoice-order_type",
+		"Timesheet-order_type",
+		"Deduction Detail-salary_component_name"
 		]
 	]
 ]
@@ -802,7 +806,20 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Employee-passport_number-mandatory_depends_on",
 				"Employee-valid_upto-mandatory_depends_on",
 				"Employee-marital_status-mandatory_depends_on",
-				"Asset Movement Item-target_location-reqd"
+				"Asset Movement Item-target_location-reqd",
+				"Request for Quotation Item-item_name-read_only",
+				"Quotation Item-item_name-read_only",
+				"Sales Order Item-item_name-read_only",
+				"Purchase Invoice Item-item_name-read_only",
+				"Purchase Invoice Item-item_code-reqd",
+				"Purchase Receipt Item-item_name-read_only",
+				"Material Request Item-item_name-read_only",
+				"Supplier Quotation Item-item_name-read_only",
+				"Purchase Order Item-item_name-read_only",
+				"Sales Invoice Item-item_name-read_only",
+				"Sales Invoice Item-item_code-reqd",
+				"Delivery Note Item-item_name-read_only",
+				"Deduction Detail-deduction_name-in_list_view"
 			]
 	]
 	]
@@ -941,9 +958,10 @@ doc_events = {
 		"autoname": ["axis_inspection.axis_inspection.doctype.contract.contract.autoname"]
 	},
 	"Salary Slip":{
-		"validate":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.validate"],
-		"on_submit":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.update_actual_paid"],
-		"on_cancel":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.remove_actual_paid"]
+		"validate":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.validate",
+					"axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.additional_salary"],
+		"on_submit":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.on_submit"],
+		"on_cancel":["axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.on_cancel"]
 	},
 	"Training Program":{
 		"on_update": ["axis_inspection.axis_inspection.doctype.training_program.training_program.auto_create_training_event"]
@@ -1067,10 +1085,113 @@ def calculate_component_amounts(self, component_type):
 
 	self.set_component_amounts_based_on_payment_days(component_type)
 
+def create_journal_entry(self, je_payment_amount, user_remark):
+	default_payroll_payable_account = self.get_default_payroll_payable_account()
+	precision = frappe.get_precision("Journal Entry Account", "debit_in_account_currency")
 
+	journal_entry = frappe.new_doc('Journal Entry')
+	journal_entry.voucher_type = 'Bank Entry'
+	journal_entry.user_remark = _('Payment of {0} from {1} to {2}')\
+		.format(user_remark, self.start_date, self.end_date)
+	journal_entry.company = self.company
+	journal_entry.posting_date = self.posting_date
+
+	payment_amount = flt(je_payment_amount, precision)
+
+	journal_entry.set("accounts", [
+		{
+			"account": self.payment_account,
+			"bank_account": self.bank_account,
+			"credit_in_account_currency": payment_amount,
+			"division": self.division,
+			"branch": self.branch,
+			"project": self.project
+		},
+		{
+			"account": default_payroll_payable_account,
+			"debit_in_account_currency": payment_amount,
+			"reference_type": self.doctype,
+			"reference_name": self.name,
+			"division": self.division,
+			"branch": self.branch,
+			"project": self.project
+		}
+	])
+	journal_entry.save(ignore_permissions = True)
+
+
+def make_accrual_jv_entry(self):
+		self.check_permission('write')
+		earnings = self.get_salary_component_total(component_type = "earnings") or {}
+		deductions = self.get_salary_component_total(component_type = "deductions") or {}
+		default_payroll_payable_account = self.get_default_payroll_payable_account()
+		jv_name = ""
+		precision = frappe.get_precision("Journal Entry Account", "debit_in_account_currency")
+
+		if earnings or deductions:
+			journal_entry = frappe.new_doc('Journal Entry')
+			journal_entry.voucher_type = 'Journal Entry'
+			journal_entry.user_remark = _('Accrual Journal Entry for salaries from {0} to {1}')\
+				.format(self.start_date, self.end_date)
+			journal_entry.company = self.company
+			journal_entry.posting_date = self.posting_date
+
+			accounts = []
+			payable_amount = 0
+
+			# Earnings
+			for acc_cc, amount in earnings.items():
+				payable_amount += flt(amount, precision)
+				accounts.append({
+						"account": acc_cc[0],
+						"debit_in_account_currency": flt(amount, precision),
+						"party_type": '',
+						"cost_center": acc_cc[1] or self.cost_center,
+						"project": self.project,
+						"branch": self.branch,
+						"division": self.division
+					})
+
+			# Deductions
+			for acc_cc, amount in deductions.items():
+				payable_amount -= flt(amount, precision)
+				accounts.append({
+						"account": acc_cc[0],
+						"credit_in_account_currency": flt(amount, precision),
+						"cost_center": acc_cc[1] or self.cost_center,
+						"party_type": '',
+						"project": self.project,
+						"branch": self.branch,
+						"division": self.division
+					})
+
+			# Payable amount
+			accounts.append({
+				"account": default_payroll_payable_account,
+				"credit_in_account_currency": flt(payable_amount, precision),
+				"party_type": '',
+				"cost_center": self.cost_center,
+				"branch": self.branch,
+				"division": self.division
+			})
+
+			journal_entry.set("accounts", accounts)
+			journal_entry.title = default_payroll_payable_account
+			journal_entry.save()
+
+			try:
+				journal_entry.submit()
+				jv_name = journal_entry.name
+				self.update_salary_slip_status(jv_name = jv_name)
+			except Exception as e:
+				frappe.msgprint(e)
+
+		return jv_name
 
 PayrollEntry.get_filter_condition=get_filter_condition
 PayrollEntry.fill_employee_details=fill_employee_details
+PayrollEntry.create_journal_entry=create_journal_entry
+PayrollEntry.make_accrual_jv_entry= make_accrual_jv_entry
 EmployeeOnboarding.validate_duplicate_employee_onboarding = validate_duplicate_employee_onboarding
 SalesInvoice.add_timesheet_data = add_timesheet_data
 SalarySlip.calculate_net_pay = calculate_net_pay

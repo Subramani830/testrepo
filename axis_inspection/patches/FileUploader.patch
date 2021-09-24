@@ -1,3 +1,4 @@
+#For Hiding the uploaded-file option from Upload dialog
 --- frappe/public/js/frappe/file_uploader/FileUploader.vue
 +++ frappe/public/js/frappe/file_uploader/FileUploader.vue
 @@ -130,7 +130,7 @@ export default {
