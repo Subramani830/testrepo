@@ -239,14 +239,15 @@ def get_overtime_bill(self):
 
 
 def create_additional_salary(employee, salary_component, start_date, amount):
-    if not frappe.db.exists('Additional Salary', {'employee': employee, 'salary_component': salary_component, 'payroll_date': start_date}):
-        doc = frappe.get_doc(dict(doctype='Additional Salary',
-                                  employee=employee,
-                                  salary_component=salary_component,
-                                  payroll_date=start_date,
-                                  amount=amount))
-        doc.save()
-        doc.submit()
-    else:
-        frappe.db.sql("""update `tabAdditional Salary` set amount=%s where employee=%s and salary_component=%s and payroll_date=%s""",
-                      (amount, employee, salary_component, start_date))
+    if amount!=0.0:
+        if not frappe.db.exists('Additional Salary', {'employee': employee, 'salary_component': salary_component, 'payroll_date': start_date}):
+            doc = frappe.get_doc(dict(doctype='Additional Salary',
+                                    employee=employee,
+                                    salary_component=salary_component,
+                                    payroll_date=start_date,
+                                    amount=amount))
+            doc.save()
+            doc.submit()
+        else:
+            frappe.db.sql("""update `tabAdditional Salary` set amount=%s where employee=%s and salary_component=%s and payroll_date=%s""",
+                        (amount, employee, salary_component, start_date))
