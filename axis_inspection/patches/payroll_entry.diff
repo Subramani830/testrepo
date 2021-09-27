@@ -1,3 +1,6 @@
+#Coping custom fields from Payroll Entry to Journal Entry.
+#when creating journal entry from payroll entry, division branch and project should be filled.
+#As these fields are custom field,not exists in core code.so,added it through patches.
 diff --git erpnext/payroll/doctype/payroll_entry/payroll_entry.py erpnext/payroll/doctype/payroll_entry/payroll_entry.py
 index 30ea432..a39f250 100644
 --- erpnext/payroll/doctype/payroll_entry/payroll_entry.py
