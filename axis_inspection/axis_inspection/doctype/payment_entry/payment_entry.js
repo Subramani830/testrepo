@@ -41,8 +41,9 @@ frappe.ui.form.on('Payment Entry', {
 				});
 				if (frm.doc.division == undefined) {
 					frappe.db.get_value("Purchase Invoice", { "name": item.reference_name }, "division", (d) => {
-						frm.set_value("division", d.division)
-
+						if(frm.doc.division!=d.division){
+							frm.set_value("division", d.division)
+						}
 					})
 				}
 			}
@@ -152,15 +153,19 @@ frappe.ui.form.on('Payment Entry', {
 			var bank_account = get_bank_account(item.reference_doctype, item.reference_name)
 			//frappe.db.get_value(item.reference_doctype, { 'name': item.reference_name }, "bank_account", (r) => {
 			if (item.reference_doctype == "Purchase Invoice") {
-				frm.set_value("bank_account", bank_account)
+				if(frm.doc.bank_account!=bank_account){
+					frm.set_value("bank_account", bank_account)
+				}
 			}
 			else if (item.reference_doctype == "Sales Invoice") {
-				frm.set_value("bank_account", bank_account)
+				if(frm.doc.bank_account!=bank_account){
+					frm.set_value("bank_account", bank_account)
+				}
 			}
-			//});
+			// });
 		});
 
-	},
+	 },
 	before_save: function (frm) {
 		var bank_account;
 		$.each(frm.doc.references, function (idx, item) {
