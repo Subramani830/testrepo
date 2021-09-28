@@ -13,11 +13,11 @@ from axis_inspection.axis_inspection.api import get_working_hours
 from datetime import datetime
 
 @frappe.whitelist()
-def additional_salary(doc,method):
+def additional_salary(doc,method=None):
     def get_overtime_bill(doc):
         total_costing_amount = 0.0
-        timesheet = frappe.db.get_list('Timesheet', {'employee': doc.employee, 'timesheet_date': [
-                                    "between", [doc.start_date, doc.end_date]], 'timesheet_type': 'Client', 'docstatus': 1}, 'name')
+        timesheet = frappe.db.get_list('Timesheet', {'employee': doc['employee'], 'timesheet_date': [
+                                    "between", [doc['start_date'], doc['end_date']]], 'timesheet_type': 'Client', 'docstatus': 1}, 'name')
         for val in timesheet:
             costing_amount_list = frappe.db.get_list('Timesheet Detail', filters={
                                                     'activity_type': 'Overtime', 'parent': val.name}, fields=['costing_amount'])
@@ -25,50 +25,49 @@ def additional_salary(doc,method):
                 total_costing_amount = total_costing_amount+row.costing_amount
         return total_costing_amount
 
-    #doc = json.loads(doc)
-    if doc.employee != None:
+    doc = json.loads(doc)
+    if doc['employee'] != None:
         costing_amount = get_overtime_bill(doc)
-        create_additional_salary(doc.employee, 'Overtime',
-                                    doc.start_date, costing_amount)
+        create_additional_salary(doc['employee'], 'Overtime',
+                                    doc['start_date'], costing_amount)
 
-        if doc.employee_deduction != 0:
-            month = convertDateFormat(doc.end_date)
-            parent = frappe.db.get_value('Employee Deductions', {
-                                        'employee': doc.employee}, 'name')
-            if parent:
-                employee_deductions = frappe.db.sql("""
-                    SELECT *
-                    FROM
-                        `tabDeduction Detail`
-                    WHERE
-                        `tabDeduction Detail`.parent = %(parent)s
-                        AND `tabDeduction Detail`.parenttype = 'Employee Deductions'
-                        AND %(start_date)s >=`tabDeduction Detail`.start_date AND %(end_date)s <=`tabDeduction Detail`.end_date
-                    """, {
-                        'parent': parent,
-                        'start_date':doc.start_date ,
-                        'end_date': doc.end_date
-                    }, as_dict=True)
-                # employee_deduction = frappe.db.get_value('Deduction Detail', {
-                    #'parenttype': 'Employee Deductions', 'month': month, 'parent': parent}, ['balance','salary_component_name'])
-                if employee_deductions:
-                    for record in employee_deductions:   
-                        if record.deduction_type=="One Time":                                      
-                            create_additional_salary(doc.employee, record.salary_component_name, doc.start_date, record.retention_amount)
-                        else:
-                            num_months = (record.end_date.year - record.start_date.year) * 12 + (record.end_date.month - record.start_date.month)
-                            try:
-                                recurring_amount=record.retention_amount/(num_months+1)
-                            except Exception:
-                                recurring_amount=record.retention_amount
-                            create_additional_salary(doc.employee, record.salary_component_name, doc.start_date, recurring_amount)
+        #if doc.employee_deduction != 0:
+        month = convertDateFormat(doc['end_date'])
+        parent = frappe.db.get_value('Employee Deductions', {
+                                    'employee': doc['employee']}, 'name')
+        if parent:
+            employee_deductions = frappe.db.sql("""
+                SELECT *
+                FROM
+                    `tabDeduction Detail`
+                WHERE
+                    `tabDeduction Detail`.parent = %(parent)s
+                    AND `tabDeduction Detail`.parenttype = 'Employee Deductions'
+                    AND %(end_date)s BETWEEN `tabDeduction Detail`.start_date AND `tabDeduction Detail`.end_date
+                """, {
+                    'parent': parent,
+                    'end_date': doc['end_date']
+                }, as_dict=True)
+            # employee_deduction = frappe.db.get_value('Deduction Detail', {
+                #'parenttype': 'Employee Deductions', 'month': month, 'parent': parent}, ['balance','salary_component_name'])
+            if employee_deductions:
+                for record in employee_deductions:   
+                    if record.deduction_type=="One Time":                                      
+                        create_additional_salary(doc['employee'], record.salary_component_name, doc['start_date'], record.retention_amount)
+                    else:
+                        num_months = (record.end_date.year - record.start_date.year) * 12 + (record.end_date.month - record.start_date.month)
+                        try:
+                            recurring_amount=record.retention_amount/(num_months+1)
+                        except Exception:
+                            recurring_amount=record.retention_amount
+                        create_additional_salary(doc['employee'], record.salary_component_name, doc['start_date'], recurring_amount)
 
-        working_hours = get_working_hours(doc.employee_name)
-        earnings = get_earnings(doc.salary_structure)
+        working_hours = get_working_hours(doc['employee_name'])
+        earnings = get_earnings(doc['salary_structure'])
         if working_hours:
             hours = float(working_hours)
-            attendance_deduction_amount = ((earnings/doc.total_working_days)/hours)*doc.attendance_deduction_hours
-            create_additional_salary(doc.employee, 'Attendance Deduction', doc.start_date, attendance_deduction_amount)
+            attendance_deduction_amount = ((earnings/doc['total_working_days'])/hours)*doc['attendance_deduction_hours']
+            create_additional_salary(doc['employee'], 'Attendance Deduction', doc['start_date'], attendance_deduction_amount)
 
 
 def validate(self, method):
@@ -96,42 +95,40 @@ def update_salary_slip(self):
         self.gross_pay += row.amount
 
     total_deduction = 0
-    if self.employee_deduction == 0:
-        month = convertDateFormat(self.end_date)
-        parent = frappe.db.get_value('Employee Deductions', {
-                                     'employee': self.employee}, 'name')
-        if parent:
-            #self.employee_deduction = frappe.db.get_value('Deduction Calculation', {
-            employee_deductions = frappe.db.sql("""
-                SELECT *
-                FROM
-                    `tabDeduction Detail`
-                WHERE
-                    `tabDeduction Detail`.parent = %(parent)s
-                    AND `tabDeduction Detail`.parenttype = 'Employee Deductions'
-                    AND %(start_date)s >=`tabDeduction Detail`.start_date AND %(end_date)s <=`tabDeduction Detail`.end_date
-                """, {
-                    'parent': parent,
-                    'start_date':self.start_date ,
-                    'end_date': self.end_date
-                }, as_dict=True)
-            # employee_deduction = frappe.db.get_value('Deduction Detail', {
-                #'parenttype': 'Employee Deductions', 'month': month, 'parent': parent}, ['balance','salary_component_name'])
-            total_employee_deduction=0
-            if employee_deductions:
-                for record in employee_deductions:   
-                    if record.deduction_type=="One Time":                                      
-                        total_employee_deduction +=record.retention_amount
-                    else:
-                        num_months = (record.end_date.year - record.start_date.year) * 12 + (record.end_date.month - record.start_date.month)
-                        try:
-                            recurring_amount=record.retention_amount/(num_months+1)
-                            total_employee_deduction +=recurring_amount
-                        except Exception:
-                            recurring_amount=record.retention_amount 
-                            total_employee_deduction +=recurring_amount
-            self.employee_deduction=total_employee_deduction                                            
-    
+    month = convertDateFormat(self.end_date)
+    parent = frappe.db.get_value('Employee Deductions', {
+                                    'employee': self.employee}, 'name')
+    if parent:
+        #self.employee_deduction = frappe.db.get_value('Deduction Calculation', {
+        employee_deductions = frappe.db.sql("""
+            SELECT *
+            FROM
+                `tabDeduction Detail`
+            WHERE
+                `tabDeduction Detail`.parent = %(parent)s
+                AND `tabDeduction Detail`.parenttype = 'Employee Deductions'
+                AND %(end_date)s BETWEEN `tabDeduction Detail`.start_date AND `tabDeduction Detail`.end_date
+            """, {
+                'parent': parent,
+                'end_date': self.end_date
+            }, as_dict=True)
+        # employee_deduction = frappe.db.get_value('Deduction Detail', {
+            #'parenttype': 'Employee Deductions', 'month': month, 'parent': parent}, ['balance','salary_component_name'])
+        total_employee_deduction=0
+        if employee_deductions:
+            for record in employee_deductions:   
+                if record.deduction_type=="One Time":                                      
+                    total_employee_deduction +=record.retention_amount
+                else:
+                    num_months = (record.end_date.year - record.start_date.year) * 12 + (record.end_date.month - record.start_date.month)
+                    try:
+                        recurring_amount=record.retention_amount/(num_months+1)
+                        total_employee_deduction +=recurring_amount
+                    except Exception:
+                        recurring_amount=record.retention_amount 
+                        total_employee_deduction +=recurring_amount
+        self.employee_deduction=total_employee_deduction                                            
+
     #total_deduction = self.employee_deduction
     for row in self.deductions:
         total_deduction += row.amount
@@ -239,14 +236,15 @@ def get_overtime_bill(self):
 
 
 def create_additional_salary(employee, salary_component, start_date, amount):
-    if not frappe.db.exists('Additional Salary', {'employee': employee, 'salary_component': salary_component, 'payroll_date': start_date}):
-        doc = frappe.get_doc(dict(doctype='Additional Salary',
-                                  employee=employee,
-                                  salary_component=salary_component,
-                                  payroll_date=start_date,
-                                  amount=amount))
-        doc.save()
-        doc.submit()
-    else:
-        frappe.db.sql("""update `tabAdditional Salary` set amount=%s where employee=%s and salary_component=%s and payroll_date=%s""",
-                      (amount, employee, salary_component, start_date))
+    if amount!=0.0:
+        if not frappe.db.exists('Additional Salary', {'employee': employee, 'salary_component': salary_component, 'payroll_date': start_date}):
+            doc = frappe.get_doc(dict(doctype='Additional Salary',
+                                    employee=employee,
+                                    salary_component=salary_component,
+                                    payroll_date=start_date,
+                                    amount=amount))
+            doc.save()
+            doc.submit()
+        else:
+            frappe.db.sql("""update `tabAdditional Salary` set amount=%s where employee=%s and salary_component=%s and payroll_date=%s""",
+                        (amount, employee, salary_component, start_date))
