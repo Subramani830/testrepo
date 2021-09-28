@@ -14,21 +14,18 @@ frappe.ui.form.on("Salary Slip", {
     },
     employee_deduction: function (frm) {
         update_total_deduction(frm)
-    },
-    end_date:function(frm){
-        update_additional_salary(frm)
     }
 });
 
-function update_additional_salary(frm) {
-    frappe.call({
-        method: "axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.additional_salary",
-        async: false,
-        args: {
-            doc: frm.doc
-        }
-    })
-}
+// function update_additional_salary(frm) {
+//     frappe.call({
+//         method: "axis_inspection.axis_inspection.doctype.salary_slip.salary_slip.additional_salary",
+//         async: false,
+//         args: {
+//             doc: frm.doc
+//         }
+//     })
+// }
 
 function get_month_name(start_date) {
     var date = new Date(start_date)
