@@ -819,7 +819,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Sales Invoice Item-item_name-read_only",
 				"Sales Invoice Item-item_code-reqd",
 				"Delivery Note Item-item_name-read_only",
-				"Deduction Detail-deduction_name-in_list_view"
+				"Deduction Detail-deduction_name-in_list_view",
+				"Employee Deductions-main-title_field"
 			]
 	]
 	]
