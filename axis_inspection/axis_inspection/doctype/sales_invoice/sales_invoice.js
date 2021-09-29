@@ -58,6 +58,29 @@ before_save:  function(frm) {
         });
 	}
     }); 
+},
+ses_number:function(frm){
+    if(frm.doc.ses_number){
+        if(frm.doc.docstatus==1){
+            frappe.confirm('Are you sure to update the SES Number?',
+            () => {
+                // action to perform if Yes is selected
+                frappe.call({
+                    "method": "axis_inspection.axis_inspection.doctype.sales_invoice.sales_invoice.submit_SI_record",
+                    "args": {
+                          "doctype": frm.doc.doctype,
+                          "docname": frm.doc.name,
+                          "ses_no":frm.doc.ses_number
+                    },
+                    callback:function(){
+                        frm.reload_doc()
+                    }
+                })
+            }, () => {
+                // action to perform if No is selected
+            })
+        }
+    }
 }
 
 });
