@@ -40,3 +40,7 @@ def validate_due_date():
 												content = message,
 												send_email = True
 								)
+
+@frappe.whitelist()
+def submit_SI_record(docname,doctype,ses_no):
+	frappe.db.set_value('Sales Invoice',docname,{'ses_number':ses_no})
