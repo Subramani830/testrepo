@@ -363,7 +363,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Delivery Note-order_type",
 		"Sales Invoice-order_type",
 		"Timesheet-order_type",
-		"Deduction Detail-salary_component_name"
+		"Deduction Detail-salary_component_name",
+		"Payment Entry-petty_cash_request",
+		"Petty Cash Request-petty_cash_account"
 		]
 	]
 ]
@@ -919,7 +921,8 @@ doctype_js = {
 	"Pick List" : "axis_inspection/doctype/pick_list/pick_list.js",
 	"Training Program" : "axis_inspection/doctype/training_program/training_program.js",
 	"Quality Inspection" : "axis_inspection/doctype/quality_inspection/quality_inspection.js",
-	"Journal Entry" : "axis_inspection/doctype/journal_entry/journal_entry.js"
+	"Journal Entry" : "axis_inspection/doctype/journal_entry/journal_entry.js",
+	"Petty Cash Request" : "axis_inspection/doctype/petty_cash_request/petty_cash_request.js"
 }
 scheduler_events = {
 	"daily":  [
@@ -989,6 +992,9 @@ doc_events = {
 	},
 	"Sales Order":{
 		"on_submit":["axis_inspection.axis_inspection.doctype.sales_order.sales_order.validate"]
+	},
+	"Payment Entry":{
+		"on_submit":["axis_inspection.axis_inspection.doctype.petty_cash_request.petty_cash_request.update_petty_cash_request_status"]
 	}
 
 }
