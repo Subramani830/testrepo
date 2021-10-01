@@ -1,0 +1,31 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2021-10-01 08:13:27.660811",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": "Axis_dev",
+ "modified": "2021-10-01 09:59:06.873594",
+ "modified_by": "Administrator",
+ "module": "Axis Inspection",
+ "name": "Asset Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT DISTINCT\n    `tabAsset`.`name`,\n    `tabAsset`.`asset_name`,\n    `tabAsset`.`asset_category`,\n    `tabAsset Category`.`asset_main_category`,\n    `tabAsset`.`purchase_date`,\n    `tabAsset`.`gross_purchase_amount`,\n    `tabAsset`.`gross_purchase_amount` - `tabAsset`.`opening_accumulated_depreciation` AS \"beginning_balance\",\n    `tabAsset`.`opening_accumulated_depreciation`,\n    `tabAsset`.`number_of_depreciations_booked`,\n    `tabAsset Finance Book`.`depreciation_method`,\n    `tabAsset Finance Book`.`total_number_of_depreciations`,\n    (SELECT max(accumulated_depreciation_amount) from `tabDepreciation Schedule` where parent = `tabAsset`.`name` AND journal_entry is NOT NULL AND MONTH(`tabDepreciation Schedule`.schedule_date)=MONTH(%(date)s) AND YEAR(`tabDepreciation Schedule`.schedule_date)=YEAR(%(date)s)) as \"total_depreciation_booked\",\n    (SELECT max(accumulated_depreciation_amount) from `tabDepreciation Schedule` where parent = `tabAsset`.`name` AND journal_entry is NOT NULL AND MONTH(`tabDepreciation Schedule`.schedule_date)=MONTH(%(date)s) AND YEAR(`tabDepreciation Schedule`.schedule_date)=YEAR(%(date)s)) - `tabAsset`.`opening_accumulated_depreciation` as \"current_depreciation\",\n    `tabAsset`.`gross_purchase_amount` - (SELECT max(accumulated_depreciation_amount) from `tabDepreciation Schedule` where parent = `tabAsset`.`name` AND journal_entry is NOT NULL AND MONTH(`tabDepreciation Schedule`.schedule_date)=MONTH(%(date)s) AND YEAR(`tabDepreciation Schedule`.schedule_date)=YEAR(%(date)s)) as \"net_book_value\"\nFROM\n    `tabAsset`\n    LEFT JOIN `tabAsset Finance Book` ON (`tabAsset Finance Book`.`parent` = `tabAsset`.`name`)\n    LEFT JOIN `tabAsset Category` ON (`tabAsset Category`.`name` = `tabAsset`.`asset_category`)\nWHERE\n    `tabAsset`.`docstatus` = 1\nORDER BY\n    `tabAsset`.`gross_purchase_amount` DESC",
+ "ref_doctype": "Asset",
+ "report_name": "Asset Report",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Lokesh Channabasavegowda"
+  }
+ ]
+}
