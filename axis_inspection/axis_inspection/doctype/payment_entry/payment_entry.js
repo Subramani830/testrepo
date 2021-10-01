@@ -165,7 +165,7 @@ frappe.ui.form.on('Payment Entry', {
 			// });
 		});
 
-	 },
+	},
 	before_save: function (frm) {
 		var bank_account;
 		$.each(frm.doc.references, function (idx, item) {
@@ -182,8 +182,8 @@ frappe.ui.form.on('Payment Entry', {
 						frm.set_value("bank_account", bank_account)
 					}
 					else {
-						var account = get_bank_account(item.reference_doctype, item.reference_name)
-						if (bank_account != account) {
+						var account,is_opening = get_bank_account(item.reference_doctype, item.reference_name)
+						if (bank_account != account && is_opening=='No') {
 							frappe.throw(item.reference_doctype + ' ' + item.reference_name + ' should be allow for bank_Account  "' + account + '".');
 						}
 					}
@@ -232,6 +232,7 @@ frappe.ui.form.on('Payment Entry Reference', {
 
 function get_bank_account(doctype, name) {
 	var account;
+	var is_opening;
 	frappe.call({
 		method: 'frappe.client.get_value',
 		"async": false,
@@ -241,12 +242,13 @@ function get_bank_account(doctype, name) {
 				'name': name
 			},
 			'fieldname': [
-				"bank_account"
+				"bank_account","is_opening"
 			]
 		},
 		callback: function (r) {
 			account = r.message.bank_account
+			is_opening = r.message.is_opening
 		}
 	});
-	return account
+	return account,is_opening
 }
