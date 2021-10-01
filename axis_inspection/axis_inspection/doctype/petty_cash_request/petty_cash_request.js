@@ -10,7 +10,7 @@ frappe.ui.form.on('Petty Cash Request', {
         if(frm.doc.docstatus==1){
             frm.add_custom_button(__('Payment Entry'), function(){
                 frappe.call({
-                    method:"axis_inspection.axis_inspection.doctype.payment_entry.payment_entry.create_payment_entry_record",
+                    method:"axis_inspection.axis_inspection.doctype.petty_cash_request.petty_cash_request.create_payment_entry_record",
                     args: {
                         'doc': frm.doc
                     },
