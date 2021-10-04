@@ -31,3 +31,18 @@ def set_billing_hours_and_amount(doc):
 
         if not timesheet.billing_amount and ts_doc.total_billable_amount:
             timesheet.billing_amount = ts_doc.total_billable_amount
+
+@frappe.whitelist()
+def get_timesheets():
+    timesheets = frappe.db.sql("""
+	SELECT
+		`tabSales Invoice Timesheet`.time_sheet as time_sheet
+	FROM
+		`tabDelivery Note`, `tabSales Invoice Timesheet`
+	WHERE
+		`tabDelivery Note`.name = `tabSales Invoice Timesheet`.parent
+		AND `tabDelivery Note`.status not in ('Cancelled','Return Issued')
+	""", as_dict=True)
+
+    if len(timesheets)>0:
+        return timesheets

@@ -6864,5 +6864,22 @@
     "property_type": "Data",
     "row_name": null,
     "value": "employee_name"
- }
+ },
+ {
+    "default_value": null,
+    "doc_type": "Delivery Note Item",
+    "docstatus": 0,
+    "doctype": "Property Setter",
+    "doctype_or_field": "DocField",
+    "field_name": "against_sales_order",
+    "modified": "2021-10-04 10:59:11.521717",
+    "name": "Delivery Note Item-against_sales_order-reqd",
+    "parent": null,
+    "parentfield": null,
+    "parenttype": null,
+    "property": "reqd",
+    "property_type": "Check",
+    "row_name": null,
+    "value": "1"
+   }
 ] 
