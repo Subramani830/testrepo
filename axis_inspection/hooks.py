@@ -365,7 +365,10 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Timesheet-order_type",
 		"Deduction Detail-salary_component_name",
 		"Payment Entry-petty_cash_request",
-		"Petty Cash Request-petty_cash_account"
+		"Petty Cash Request-petty_cash_account",
+		"Journal Entry-attach",
+		"Material Request-prefered_email",
+		"Material Request-reports_to"
 		]
 	]
 ]
@@ -822,7 +825,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 				"Sales Invoice Item-item_code-reqd",
 				"Delivery Note Item-item_name-read_only",
 				"Deduction Detail-deduction_name-in_list_view",
-				"Employee Deductions-main-title_field"
+				"Employee Deductions-main-title_field",
+				"Delivery Note Item-against_sales_order-reqd"
 			]
 	]
 	]
