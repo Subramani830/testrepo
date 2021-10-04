@@ -27,6 +27,18 @@ frappe.ui.form.on('Material Request', {
 				}
 			});
 			}
+		if(frm.doc.requested_for){
+			frappe.call({
+				method:"axis_inspection.axis_inspection.doctype.material_request.material_request.get_reports_to",
+				async:false,
+					args: {
+						name: frm.doc.requested_for
+					},
+				callback: function(r){
+					frm.set_value('reports_to',r.message)
+				}
+			});
+		}
 	},
 refresh:function(frm){
 	frm.set_query( "tc_name", function() {
