@@ -35,7 +35,8 @@ frappe.ui.form.on('Material Request', {
 						name: frm.doc.requested_for
 					},
 				callback: function(r){
-					frm.set_value('reports_to',r.message)
+					frm.set_value('reports_to',r.message[0])
+					frm.set_value('reports_to_employee_name',r.message[1])
 				}
 			});
 		}
