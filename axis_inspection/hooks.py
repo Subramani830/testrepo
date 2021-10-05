@@ -368,7 +368,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Petty Cash Request-petty_cash_account",
 		"Journal Entry-attach",
 		"Material Request-prefered_email",
-		"Material Request-reports_to"
+		"Material Request-reports_to",
+		"Material Request-reports_to_employee_name"
 		]
 	]
 ]
@@ -984,7 +985,8 @@ doc_events = {
 		"on_cancel":["axis_inspection.axis_inspection.doctype.stock_entry.stock_entry.on_cancel"]
 	},
 	"Delivery Note":{
-	     "validate":["axis_inspection.axis_inspection.doctype.delivery_note.delivery_note.validate_minimum_charge"],
+	     "validate":["axis_inspection.axis_inspection.doctype.delivery_note.delivery_note.validate_minimum_charge",
+		 			"axis_inspection.axis_inspection.doctype.delivery_note.delivery_note.get_timesheets_check"],
 	},
 	"Timesheet":{
 		"on_submit":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.on_submit"],
