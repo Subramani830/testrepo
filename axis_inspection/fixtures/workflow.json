@@ -256,109 +256,109 @@
   "workflow_state_field": "workflow_state"
  },
  {
-  "docstatus": 0,
-  "doctype": "Workflow",
-  "document_type": "Material Request",
-  "is_active": 0,
-  "modified": "2021-04-07 14:23:51.904538",
-  "name": "Material Request Workflow",
-  "override_status": 0,
-  "parent": null,
-  "parentfield": null,
-  "parenttype": null,
-  "send_email_alert": 1,
-  "states": [
-   {
-    "allow_edit": "All",
-    "doc_status": "0",
-    "is_optional_state": 0,
-    "message": null,
-    "next_action_email_template": null,
-    "parent": "Material Request Workflow",
-    "parentfield": "states",
-    "parenttype": "Workflow",
-    "state": "Open",
-    "update_field": null,
-    "update_value": null
+    "docstatus": 0,
+    "doctype": "Workflow",
+    "document_type": "Material Request",
+    "is_active": 1,
+    "modified": "2021-10-05 09:17:53.929385",
+    "name": "Material Request Workflow",
+    "override_status": 0,
+    "parent": null,
+    "parentfield": null,
+    "parenttype": null,
+    "send_email_alert": 1,
+    "states": [
+     {
+      "allow_edit": "All",
+      "doc_status": "0",
+      "is_optional_state": 0,
+      "message": null,
+      "next_action_email_template": null,
+      "parent": "Material Request Workflow",
+      "parentfield": "states",
+      "parenttype": "Workflow",
+      "state": "Open",
+      "update_field": null,
+      "update_value": null
+     },
+     {
+      "allow_edit": "All",
+      "doc_status": "1",
+      "is_optional_state": 0,
+      "message": null,
+      "next_action_email_template": null,
+      "parent": "Material Request Workflow",
+      "parentfield": "states",
+      "parenttype": "Workflow",
+      "state": "Approved",
+      "update_field": "status",
+      "update_value": "Submitted"
+     },
+     {
+      "allow_edit": "All",
+      "doc_status": "0",
+      "is_optional_state": 0,
+      "message": null,
+      "next_action_email_template": null,
+      "parent": "Material Request Workflow",
+      "parentfield": "states",
+      "parenttype": "Workflow",
+      "state": "Rejected",
+      "update_field": "status",
+      "update_value": ""
+     },
+     {
+      "allow_edit": "All",
+      "doc_status": "2",
+      "is_optional_state": 0,
+      "message": null,
+      "next_action_email_template": null,
+      "parent": "Material Request Workflow",
+      "parentfield": "states",
+      "parenttype": "Workflow",
+      "state": "Cancelled",
+      "update_field": "status",
+      "update_value": "Cancelled"
+     }
+    ],
+    "transitions": [
+     {
+      "action": "Approve",
+      "allow_self_approval": 1,
+      "allowed": "All",
+      "condition": "doc.prefered_email==frappe.session.user",
+      "next_state": "Approved",
+      "parent": "Material Request Workflow",
+      "parentfield": "transitions",
+      "parenttype": "Workflow",
+      "state": "Open"
+     },
+     {
+      "action": "Reject",
+      "allow_self_approval": 1,
+      "allowed": "All",
+      "condition": "doc.prefered_email==frappe.session.user",
+      "next_state": "Rejected",
+      "parent": "Material Request Workflow",
+      "parentfield": "transitions",
+      "parenttype": "Workflow",
+      "state": "Open"
+     },
+     {
+      "action": "Cancel",
+      "allow_self_approval": 1,
+      "allowed": "All",
+      "condition": "doc.prefered_email==frappe.session.user",
+      "next_state": "Cancelled",
+      "parent": "Material Request Workflow",
+      "parentfield": "transitions",
+      "parenttype": "Workflow",
+      "state": "Approved"
+     }
+    ],
+    "workflow_name": "Material Request Workflow",
+    "workflow_state_field": "workflow_state"
    },
-   {
-    "allow_edit": "Department Manager",
-    "doc_status": "1",
-    "is_optional_state": 0,
-    "message": null,
-    "next_action_email_template": null,
-    "parent": "Material Request Workflow",
-    "parentfield": "states",
-    "parenttype": "Workflow",
-    "state": "Approved",
-    "update_field": "status",
-    "update_value": "Submitted"
-   },
-   {
-    "allow_edit": "Department Manager",
-    "doc_status": "0",
-    "is_optional_state": 0,
-    "message": null,
-    "next_action_email_template": null,
-    "parent": "Material Request Workflow",
-    "parentfield": "states",
-    "parenttype": "Workflow",
-    "state": "Rejected",
-    "update_field": "status",
-    "update_value": ""
-   },
-   {
-    "allow_edit": "Department Manager",
-    "doc_status": "2",
-    "is_optional_state": 0,
-    "message": null,
-    "next_action_email_template": null,
-    "parent": "Material Request Workflow",
-    "parentfield": "states",
-    "parenttype": "Workflow",
-    "state": "Cancelled",
-    "update_field": "status",
-    "update_value": "Cancelled"
-   }
-  ],
-  "transitions": [
-   {
-    "action": "Approve",
-    "allow_self_approval": 1,
-    "allowed": "Department Manager",
-    "condition": "",
-    "next_state": "Approved",
-    "parent": "Material Request Workflow",
-    "parentfield": "transitions",
-    "parenttype": "Workflow",
-    "state": "Open"
-   },
-   {
-    "action": "Reject",
-    "allow_self_approval": 1,
-    "allowed": "Department Manager",
-    "condition": null,
-    "next_state": "Rejected",
-    "parent": "Material Request Workflow",
-    "parentfield": "transitions",
-    "parenttype": "Workflow",
-    "state": "Open"
-   },
-   {
-    "action": "Cancel",
-    "allow_self_approval": 1,
-    "allowed": "Department Manager",
-    "condition": null,
-    "next_state": "Cancelled",
-    "parent": "Material Request Workflow",
-    "parentfield": "transitions",
-    "parenttype": "Workflow",
-    "state": "Approved"
-   }
-  ],
-  "workflow_name": "Material Request Workflow",
-  "workflow_state_field": "workflow_state"
- },
  {
   "docstatus": 0,
   "doctype": "Workflow",
