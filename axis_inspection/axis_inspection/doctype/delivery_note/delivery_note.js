@@ -10,34 +10,6 @@ frappe.ui.form.on('Delivery Note', {
             });
         }
         }); 
-    },
-    refresh:function(frm,cdt,cdn){
-        timesheet_filter(frm, cdt, cdn)
-    },
-    onload:function(frm,cdt,cdn){
-        timesheet_filter(frm, cdt, cdn)
     }
 
 }); 
-
-function timesheet_filter(frm, cdt, cdn){
-	frappe.call({
-		method: 'axis_inspection.axis_inspection.doctype.delivery_note.delivery_note.get_timesheets',
-		callback: function(response){
-            if(response.message){
-                var timesheet_list=[];
-                for(var i=0; i<response.message.length; i++){
-                    timesheet_list.push(response.message[i].name)
-                }
-                timesheet_list.push('')
-                frm.set_query("time_sheet", "time_sheets", function(doc, cdt, cdn) {
-                    return {
-                        filters: {
-                            time_sheet: ['not in',comp_list]
-                        }
-                    };
-                });
-            }
-		}
-	})
-}
