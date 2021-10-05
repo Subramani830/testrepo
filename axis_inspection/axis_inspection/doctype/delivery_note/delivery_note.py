@@ -33,7 +33,7 @@ def set_billing_hours_and_amount(doc):
             timesheet.billing_amount = ts_doc.total_billable_amount
 
 @frappe.whitelist()
-def get_timesheets():
+def get_timesheets_check(doc,method=None):
     timesheets = frappe.db.sql("""
 	SELECT
 		`tabSales Invoice Timesheet`.time_sheet as time_sheet
@@ -45,4 +45,7 @@ def get_timesheets():
 	""", as_dict=True)
 
     if len(timesheets)>0:
-        return timesheets
+        if doc.time_sheets:
+            for rec in doc.time_sheets:
+                if rec.time_sheet in timesheets:
+                    frappe.throw('Timesheet {0} is already added.So please remove and then save it')
