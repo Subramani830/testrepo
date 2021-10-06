@@ -34,8 +34,8 @@ def set_billing_hours_and_amount(doc):
 
 @frappe.whitelist()
 def get_timesheets_check(doc,method=None):
-    if doc.time_sheets:
-        for rec in doc.time_sheets:
+    if doc.timesheets:
+        for rec in doc.timesheets:
             timesheets = frappe.db.sql("""
             SELECT
                 `tabSales Invoice Timesheet`.time_sheet
@@ -49,5 +49,5 @@ def get_timesheets_check(doc,method=None):
                 'time_sheet': rec.time_sheet
             },as_dict=True)
 
-            if len(timesheets)>0:
+            if len(timesheets)>1:
                 frappe.throw('Timesheet {0} is already used.So please remove it'.format(rec.time_sheet))

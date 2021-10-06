@@ -37,6 +37,7 @@ frappe.ui.form.on('Material Request', {
 				callback: function(r){
 					frm.set_value('reports_to',r.message[0])
 					frm.set_value('reports_to_employee_name',r.message[1])
+					frm.set_value('prefered_email',r.message[2])
 				}
 			});
 		}
