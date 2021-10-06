@@ -127,7 +127,7 @@ def get_overtime_rate(item_code,project):
 def convertDateFormat(start_date):
 	start_date=str(start_date)
 	date=datetime.strptime(start_date, '%Y-%m-%d')
-	return date.strftime('%B-%Y')
+	return date.strftime('%B'),date.strftime('%Y')
 
 
 @frappe.whitelist()
@@ -147,7 +147,7 @@ def get_absent_days(employee,start_date):
 def get_duplicate_entry(doc):
 	days = []
 	result=json.loads(doc)
-	for time_sheet in frappe.db.get_list("Timesheet", filters={"employee":result['employee'],"month_and_year":result['month_and_year'],"customer":result['customer'],"name":["!=",result['name']]},fields=["name"]):
+	for time_sheet in frappe.db.get_list("Timesheet", filters={"employee":result['employee'],"year_of_work":result['year_of_work'],"month_of_work":result['month_of_work'],"customer":result['customer'],"name":["!=",result['name']]},fields=["name"]):
 		if(time_sheet):
 			for i in result['time_logs']:
 				f_time = i['from_time']
@@ -158,3 +158,7 @@ def get_duplicate_entry(doc):
 					days.append(day_time)
 				
 	return days
+
+def check_attachement(doc,method=None):
+	if not doc.timesheet_attachment:
+		frappe.throw('Attachment is mandatory')

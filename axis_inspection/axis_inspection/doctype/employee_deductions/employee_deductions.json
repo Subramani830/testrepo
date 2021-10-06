@@ -56,7 +56,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-01-16 20:43:19.923881",
+ "modified": "2021-10-05 12:31:21.751585",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Employee Deductions",
@@ -75,7 +75,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1
