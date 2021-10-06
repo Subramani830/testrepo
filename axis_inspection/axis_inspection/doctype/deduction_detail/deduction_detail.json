@@ -5,7 +5,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "deduction_name",
+  "salary_component",
   "deduction_type",
   "start_date",
   "end_date",
@@ -14,13 +14,6 @@
   "remarks"
  ],
  "fields": [
-  {
-   "fieldname": "deduction_name",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Deduction Name",
-   "options": "\nRetention\nTraffic Violation\nPunishment\nGeneral Deductions"
-  },
   {
    "fieldname": "start_date",
    "fieldtype": "Date",
@@ -54,12 +47,19 @@
   {
    "fieldname": "column_break_6",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "salary_component_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Salary Component",
+   "options": "Salary Component"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-02-17 16:33:09.129060",
+ "modified": "2021-10-05 13:03:10.498185",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Deduction Detail",

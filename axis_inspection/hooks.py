@@ -305,7 +305,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Sales Invoice-contract",
 		"Delivery Note-contract",
 		"Timesheet-timesheet_date",
-		"Timesheet-month_and_year",
 		"Vehicle-company_number",
 		"Timesheet-absent_days",
 		"Timesheet-contract_no",
@@ -363,13 +362,15 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Delivery Note-order_type",
 		"Sales Invoice-order_type",
 		"Timesheet-order_type",
-		"Deduction Detail-salary_component_name",
 		"Payment Entry-petty_cash_request",
 		"Petty Cash Request-petty_cash_account",
-		"Journal Entry-attach",
 		"Material Request-prefered_email",
 		"Material Request-reports_to",
-		"Material Request-reports_to_employee_name"
+		"Material Request-reports_to_employee_name",
+		"Timesheet-month_of_work",
+		"Timesheet-year_of_work",
+		"Sales Invoice Timesheet-year_of_work",
+		"Sales Invoice Timesheet-month_of_work"
 		]
 	]
 ]
