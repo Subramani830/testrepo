@@ -49,5 +49,5 @@ def get_timesheets_check(doc,method=None):
                 'time_sheet': rec.time_sheet
             },as_dict=True)
 
-            if len(timesheets)>0:
+            if len(timesheets)>1:
                 frappe.throw('Timesheet {0} is already used.So please remove it'.format(rec.time_sheet))

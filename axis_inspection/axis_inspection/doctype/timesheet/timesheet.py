@@ -158,3 +158,7 @@ def get_duplicate_entry(doc):
 					days.append(day_time)
 				
 	return days
+
+def check_attachement(doc,method=None):
+	if not doc.timesheet_attachment:
+		frappe.throw('Attachment is mandatory')

@@ -370,7 +370,13 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Timesheet-month_of_work",
 		"Timesheet-year_of_work",
 		"Sales Invoice Timesheet-year_of_work",
-		"Sales Invoice Timesheet-month_of_work"
+		"Sales Invoice Timesheet-month_of_work",
+		"Timesheet-timesheet_reference_no",
+		"Timesheet-shift",
+		"Timesheet-visit",
+		"Sales Invoice Timesheet-time_sheet_reference_no",
+		"Sales Invoice Timesheet-employee",
+		"Sales Invoice Timesheet-shift",
 		]
 	]
 ]
@@ -956,7 +962,8 @@ override_doctype_dashboards = {
 	"Company":["axis_inspection.axis_inspection.doctype.company.company_dashboard.get_dashboard_data"],
 	"Project":["axis_inspection.axis_inspection.doctype.project.project_dashboard.get_dashboard_data"],
 	"Quotation":["axis_inspection.axis_inspection.doctype.quotation.quotation_dashboard.get_dashboard_data"],
-	"Petty Cash Request":["axis_inspection.axis_inspection.doctype.petty_cash_request.petty_cash_request_dashboard.get_dashboard_data"]
+	"Petty Cash Request":["axis_inspection.axis_inspection.doctype.petty_cash_request.petty_cash_request_dashboard.get_dashboard_data"],
+	"Timesheet":["axis_inspection.axis_inspection.doctype.timesheet.timesheet_dashboard.get_dashboard_data"]
 }
 
 doc_events = {
@@ -990,7 +997,8 @@ doc_events = {
 		 			"axis_inspection.axis_inspection.doctype.delivery_note.delivery_note.get_timesheets_check"],
 	},
 	"Timesheet":{
-		"on_submit":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.on_submit"],
+		"before_submit":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.check_attachement"],
+		"on_submit":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.on_submit",],
 		"on_cancel":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.on_cancel"]
 	},
 	"Employee Contract":{
