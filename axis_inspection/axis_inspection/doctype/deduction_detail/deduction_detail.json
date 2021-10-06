@@ -5,7 +5,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "salary_component",
+  "salary_component_name",
   "deduction_type",
   "start_date",
   "end_date",
