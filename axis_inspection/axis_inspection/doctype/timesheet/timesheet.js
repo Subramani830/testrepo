@@ -206,8 +206,8 @@ timesheet_date: function(frm){
 			start_date:frm.doc.timesheet_date
 		},
 		callback: function(c) {
-		frm.set_value("month_and_year",c.message)
-
+		frm.set_value("month_of_work",c.message[0])
+		frm.set_value("year_of_work",c.message[1])
 		}
 	});
 	}
