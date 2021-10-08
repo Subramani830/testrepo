@@ -8,12 +8,14 @@
   "month",
   "recurring",
   "one_time",
+  "previous_month_balance",
   "total",
   "actual_paid",
   "balance"
  ],
  "fields": [
   {
+   "columns": 1,
    "fieldname": "month",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -21,6 +23,8 @@
    "read_only": 1
   },
   {
+   "columns": 2,
+   "default": "0",
    "fieldname": "total",
    "fieldtype": "Currency",
    "in_list_view": 1,
@@ -31,11 +35,11 @@
    "default": "0",
    "fieldname": "balance",
    "fieldtype": "Currency",
-   "in_list_view": 1,
    "label": "Balance",
    "read_only": 1
   },
   {
+   "columns": 2,
    "default": "0",
    "fieldname": "actual_paid",
    "fieldtype": "Currency",
@@ -44,6 +48,8 @@
    "read_only": 1
   },
   {
+   "columns": 1,
+   "default": "0",
    "fieldname": "recurring",
    "fieldtype": "Currency",
    "in_list_view": 1,
@@ -51,18 +57,28 @@
    "read_only": 1
   },
   {
+   "columns": 2,
    "default": "0",
    "fieldname": "one_time",
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "One Time",
    "read_only": 1
+  },
+  {
+   "columns": 2,
+   "default": "0",
+   "fieldname": "previous_month_balance",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Previous Month Balance",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-01-18 19:05:47.592399",
+ "modified": "2021-10-08 08:58:18.309457",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Deduction Calculation",

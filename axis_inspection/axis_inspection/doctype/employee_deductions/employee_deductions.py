@@ -48,25 +48,49 @@ class EmployeeDeductions(Document):
 						self.current_month_balance=val.balance
 
 
-
 @frappe.whitelist()
 def convertDateFormat(start_date):
 	start_date=str(start_date)
 	date=datetime.datetime.strptime(start_date, '%Y-%m-%d')
 	return date.strftime('%b-%y')
-	
+
+@frappe.whitelist()	
+def fetch_salary_slip_amount(start_date,end_date,employee):
+	deduction_amount=0
+	salary_slip_deduction = frappe.db.sql("""
+		SELECT
+			`tabSalary Slip`.employee_deduction
+		FROM
+			`tabSalary Slip`
+		WHERE
+			`tabSalary Slip`.employee = %(employee)s
+			AND %(date)s BETWEEN `tabSalary Slip`.start_date AND `tabSalary Slip`.end_date
+			AND `tabSalary Slip`.status="Submitted"
+		""", {
+			'employee': employee,
+			'date': end_date
+		}, as_dict=True)
+	if salary_slip_deduction:
+		deduction_amount=salary_slip_deduction[0].employee_deduction
+	return deduction_amount
 
 @frappe.whitelist()
-def updateDeductionCalculation(start_date,end_date,amount):
+def updateDeductionCalculation(start_date,end_date,amount,employee):
 	val=dict()
+	paid_amount=list()
 	no_of_months=monthDiff(start_date,end_date)
 	val['deduction_amount']=round((int(amount)/no_of_months),2)
+	# val['paid_amount']=deduction_amount
 	dates = [start_date,end_date]
 	start, end = [datetime.datetime.strptime(_, "%Y-%m-%d") for _ in dates]
 	val['month_list']=[datetime.datetime.strptime('%2.2d-%2.2d' % (y, m), '%Y-%m').strftime('%b-%y') \
        for y in range(start.year, end.year+1) \
        for m in range(start.month if y==start.year else 1, end.month+1 if y == end.year else 13)]
-
+	if val['month_list']:
+		for each_month in val['month_list']:
+			deduction_amount=fetch_salary_slip_amount_of_recurring_month(employee,each_month)
+			paid_amount.append(deduction_amount)
+	val['paid_amount']=paid_amount
 	return val
 
 def monthDiff(start_date,end_date):
@@ -78,3 +102,26 @@ def monthDiff(start_date,end_date):
 def get_month(month,name):
 	return frappe.db.get_list('Deduction Calculation',filters={'month':month,'parent':name,'parenttype':'Employee Deductions'},fields=['name','recurring','total','balance','one_time'])
 	
+def fetch_salary_slip_amount_of_recurring_month(employee,each_month):
+	datetime_object = datetime.datetime.strptime(each_month, "%b-%y")
+	# month_number = datetime_object.month
+	end_date=datetime_object
+	deduction_amount=0
+	salary_slip_deduction = frappe.db.sql("""
+		SELECT
+			`tabSalary Slip`.employee_deduction
+		FROM
+			`tabSalary Slip`
+		WHERE
+			`tabSalary Slip`.employee = %(employee)s
+			AND MONTH(%(date)s) BETWEEN MONTH(`tabSalary Slip`.start_date) AND MONTH(`tabSalary Slip`.end_date)
+			AND YEAR(%(date)s) BETWEEN YEAR(`tabSalary Slip`.start_date) AND YEAR(`tabSalary Slip`.end_date)
+			AND `tabSalary Slip`.status="Submitted"
+		""", {
+			'employee': employee,
+			'date': end_date
+		}, as_dict=True)
+	if salary_slip_deduction:
+		deduction_amount=salary_slip_deduction[0].employee_deduction
+	return deduction_amount
+

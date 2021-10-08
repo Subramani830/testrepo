@@ -377,6 +377,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Sales Invoice Timesheet-time_sheet_reference_no",
 		"Sales Invoice Timesheet-employee",
 		"Sales Invoice Timesheet-shift",
+		"Timesheet Detail-is_project_allowance_applicable"
 		]
 	]
 ]
@@ -1013,7 +1014,6 @@ doc_events = {
 	"Payment Entry":{
 		"on_submit":["axis_inspection.axis_inspection.doctype.petty_cash_request.petty_cash_request.update_petty_cash_request_status"]
 	}
-
 }
 
 
