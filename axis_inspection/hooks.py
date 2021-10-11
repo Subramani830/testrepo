@@ -26,6 +26,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"filters": [
          [
              "name", "in", [
+		"Purchase Invoice-employee",
+		"Journal Entry Account-employee",
+		"Asset-old_asset_id",
 		"Sales Order Item-standby_rate",
 		"Sales Order Item-overtime_rate",
 		"Sales Order-reason_for_extension",
@@ -392,6 +395,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 	[
 		"name","in",
  			[
+				"Item-naming_series-options",
+				"Asset-naming_series-options",
 				"Sales Order-base_in_words-allow_on_submit",
 				"Sales Taxes and Charges-item_wise_tax_detail-allow_on_submit",
 				"Job Offer-status-options",
@@ -997,7 +1002,6 @@ doc_events = {
 		 			"axis_inspection.axis_inspection.doctype.delivery_note.delivery_note.get_timesheets_check"],
 	},
 	"Timesheet":{
-		"before_submit":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.check_attachement"],
 		"on_submit":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.on_submit",],
 		"on_cancel":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.on_cancel"]
 	},

@@ -10,6 +10,11 @@ frappe.ui.form.on('Delivery Note', {
             });
         }
         }); 
+    },
+    po_no:function(frm){
+        if(frm.doc.po_no=="Proforma"){
+            frm.set_df_property("timesheets", "reqd", 1);
+        }
     }
 
 }); 
