@@ -51,6 +51,12 @@ employee:function(frm,cdt,cdn){
 }
 get_absent_days(frm)
 },
+before_submit: function (frm) {
+	if (frm.doc.status === "Draft") {
+		frm.set_df_property("timesheet_attachment", "reqd", 1);
+	}
+
+},
 before_workflow_action: (frm) => {
 	if(frm.doc.workflow_state=="Draft")
 	{
