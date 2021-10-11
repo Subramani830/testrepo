@@ -53,7 +53,13 @@ function endOfMonth(start_date){
 }
 	 
 function update_deduction_table(frm){
+	var deduction_details=[]
 	if(frm.doc.deduction_detail){
+		$.each(frm.doc.deduction_detail,function(idx,deduction_rec){
+			if(deduction_rec.salary_component_name){
+				deduction_details.push(deduction_rec.salary_component_name)
+			}
+		})
 		cur_frm.clear_table("deduction_calculation")
 		cur_frm.refresh_field("deduction_calculation")
 		$.each(frm.doc.deduction_detail,function(idx,deduction){
@@ -72,7 +78,8 @@ function update_deduction_table(frm){
 							args: {
 								start_date:deduction.start_date,
 								end_date:deduction.end_date,
-								employee:frm.doc.employee
+								employee:frm.doc.employee,
+								deductions:deduction_details
 							},
 							callback: function(r) {	
 								var already_exists=false
@@ -110,7 +117,8 @@ function update_deduction_table(frm){
 						start_date:deduction.start_date,
 						end_date:deduction.end_date,
 						amount:deduction.retention_amount,
-						employee:frm.doc.employee
+						employee:frm.doc.employee,
+						deductions:deduction_details
 					},
 					callback: function(r) {
 						rentation_amount_per_month=r.message.deduction_amount
