@@ -24,7 +24,7 @@ def validate_minimum_charge(doc,method):
     set_billing_hours_and_amount(doc)
 
 def set_billing_hours_and_amount(doc):
-    for timesheet in doc.time_sheets:
+    for timesheet in doc.timesheets:
         ts_doc = frappe.get_doc('Timesheet', timesheet.time_sheet)
         if not timesheet.billing_hours and ts_doc.total_billable_hours:
             timesheet.billing_hours = ts_doc.total_billable_hours

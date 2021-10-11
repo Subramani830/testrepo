@@ -81,6 +81,11 @@ ses_number:function(frm){
             })
         }
     }
+},
+po_no:function(frm){
+    if(frm.doc.po_no=="Proforma"){
+        frm.set_df_property("timesheets", "reqd", 1);
+    }
 }
 
 });

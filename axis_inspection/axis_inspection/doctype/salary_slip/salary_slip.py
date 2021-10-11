@@ -86,60 +86,12 @@ def on_cancel(self, method):
 
 @frappe.whitelist()
 def update_salary_slip(self):
-    costing_amount = get_overtime_bill(self)
-    # create_additional_salary(self.employee, 'Overtime',
-    #                          self.start_date, costing_amount)
-    self.overtime_bill = costing_amount
-    self.gross_pay = self.overtime_bill
     for row in self.earnings:
         self.gross_pay += row.amount
 
     total_deduction = 0
-    month = convertDateFormat(self.end_date)
-    parent = frappe.db.get_value('Employee Deductions', {
-                                    'employee': self.employee}, 'name')
-    if parent:
-        #self.employee_deduction = frappe.db.get_value('Deduction Calculation', {
-        employee_deductions = frappe.db.sql("""
-            SELECT *
-            FROM
-                `tabDeduction Detail`
-            WHERE
-                `tabDeduction Detail`.parent = %(parent)s
-                AND `tabDeduction Detail`.parenttype = 'Employee Deductions'
-                AND %(end_date)s BETWEEN `tabDeduction Detail`.start_date AND `tabDeduction Detail`.end_date
-            """, {
-                'parent': parent,
-                'end_date': self.end_date
-            }, as_dict=True)
-        # employee_deduction = frappe.db.get_value('Deduction Detail', {
-            #'parenttype': 'Employee Deductions', 'month': month, 'parent': parent}, ['balance','salary_component_name'])
-        total_employee_deduction=0
-        if employee_deductions:
-            for record in employee_deductions:   
-                if record.deduction_type=="One Time":                                      
-                    total_employee_deduction +=record.retention_amount
-                else:
-                    num_months = (record.end_date.year - record.start_date.year) * 12 + (record.end_date.month - record.start_date.month)
-                    try:
-                        recurring_amount=record.retention_amount/(num_months+1)
-                        total_employee_deduction +=recurring_amount
-                    except Exception:
-                        recurring_amount=record.retention_amount 
-                        total_employee_deduction +=recurring_amount
-        self.employee_deduction=total_employee_deduction                                            
-
-    #total_deduction = self.employee_deduction
     for row in self.deductions:
         total_deduction += row.amount
-
-    working_hours = get_working_hours(self.employee_name)
-    earnings = get_earnings(self.salary_structure)
-    if working_hours:
-        hours = float(working_hours)
-        self.attendance_deduction_amount = (
-            (earnings/self.total_working_days)/hours)*self.attendance_deduction_hours
-        #total_deduction += self.attendance_deduction_amount
 
     self.total_deduction = total_deduction
     self.net_pay = flt(self.gross_pay) - \
@@ -151,14 +103,24 @@ def update_salary_slip(self):
 
 
 def update_actual_paid(self):
+    deduction_names=[]
+    total_employee_deduction=0
     month = convertDateFormat(self.start_date)
     parent = frappe.db.get_value('Employee Deductions', {
                                  'employee': self.employee}, 'name')
     if parent:
+        deductions=frappe.db.get_list('Deduction Details',filters={'parent':parent},fields=['salary_component_name'])
+        if deductions:
+            for each in deductions:
+                deduction_names.append(each[0].salary_component_name)
+        if self.deductions:
+            for rec in self.deductions:
+                if rec.salary_component in deduction_names:
+                    total_employee_deduction=total_employee_deduction+rec.amount
         name = frappe.db.get_value('Deduction Calculation', {
                                    'parenttype': 'Employee Deductions', 'month': month, 'parent': parent}, 'name')
         frappe.db.set_value('Deduction Calculation', {
-                            "name": name}, "actual_paid", self.employee_deduction)
+                            "name": name}, "actual_paid", total_employee_deduction)
         doc = frappe.get_doc('Employee Deductions', parent)
         doc.save()
 

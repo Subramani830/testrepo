@@ -147,18 +147,25 @@ def get_absent_days(employee,start_date):
 def get_duplicate_entry(doc):
 	days = []
 	result=json.loads(doc)
-	for time_sheet in frappe.db.get_list("Timesheet", filters={"employee":result['employee'],"year_of_work":result['year_of_work'],"month_of_work":result['month_of_work'],"customer":result['customer'],"name":["!=",result['name']]},fields=["name"]):
-		if(time_sheet):
-			for i in result['time_logs']:
-				f_time = i['from_time']
-				day= datetime.strptime(f_time,'%Y-%m-%d %H:%M:%S')
-				dt=day.date()
-				day_time=frappe.db.sql("""select date(from_time) from `tabTimesheet Detail` where parent = '{name}' and date(from_time)='{dates}' and docstatus != 2 """.format(name=time_sheet['name'],dates=dt))
-				for time in day_time:
-					days.append(day_time)
+	if result['customer']:
+		for time_sheet in frappe.db.get_list("Timesheet", filters={"employee":result['employee'],"year_of_work":result['year_of_work'],"month_of_work":result['month_of_work'],"customer":result['customer'],"name":["!=",result['name']]},fields=["name"]):
+			if(time_sheet):
+				for i in result['time_logs']:
+					f_time = i['from_time']
+					day= datetime.strptime(f_time,'%Y-%m-%d %H:%M:%S')
+					dt=day.date()
+					day_time=frappe.db.sql("""select date(from_time) from `tabTimesheet Detail` where parent = '{name}' and date(from_time)='{dates}' and docstatus != 2 """.format(name=time_sheet['name'],dates=dt))
+					for time in day_time:
+						days.append(day_time)
+	if not result['customer']:
+		for time_sheet in frappe.db.get_list("Timesheet", filters={"employee":result['employee'],"year_of_work":result['year_of_work'],"month_of_work":result['month_of_work'],"name":["!=",result['name']]},fields=["name"]):
+			if(time_sheet):
+				for i in result['time_logs']:
+					f_time = i['from_time']
+					day= datetime.strptime(f_time,'%Y-%m-%d %H:%M:%S')
+					dt=day.date()
+					day_time=frappe.db.sql("""select date(from_time) from `tabTimesheet Detail` where parent = '{name}' and date(from_time)='{dates}' and docstatus != 2 """.format(name=time_sheet['name'],dates=dt))
+					for time in day_time:
+						days.append(day_time)
 				
 	return days
-
-def check_attachement(doc,method=None):
-	if not doc.timesheet_attachment:
-		frappe.throw('Attachment is mandatory')

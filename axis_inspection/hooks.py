@@ -26,6 +26,9 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"filters": [
          [
              "name", "in", [
+		"Purchase Invoice-employee",
+		"Journal Entry Account-employee",
+		"Asset-old_asset_id",
 		"Sales Order Item-standby_rate",
 		"Sales Order Item-overtime_rate",
 		"Sales Order-reason_for_extension",
@@ -219,7 +222,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Contract-contract_template_for_arabic",
 		"Contract-contract_terms_",
 		"Contract-contract_template_",
-		"Salary Slip-employee_deduction",
 		"Sales Order Item-cost_center",
 		"Sales Order Item-branch",
 		"Sales Order Item-project",
@@ -241,7 +243,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Project-subject",
 		"Training Program-location",
 		"Sales Order-customers_purchase_order_valid_till",
-		"Salary Slip-overtime_bill",
 		"Training Program-section_break_10",
 		"Training Program-training_frequency",
 		"Training Program-column_break_12",
@@ -330,7 +331,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Delivery Note-location",
 		"Attendance-early_exit_duration",
 		"Attendance-late_entry_duration",
-		"Salary Slip-attendance_deduction_amount",
 		"Salary Slip-attendance_deduction_hours",
 		"Sales Invoice-sales_order",
 		"Salary Component-is_project_allwoance",
@@ -377,6 +377,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Sales Invoice Timesheet-time_sheet_reference_no",
 		"Sales Invoice Timesheet-employee",
 		"Sales Invoice Timesheet-shift",
+		"Timesheet Detail-is_project_allowance_applicable"
 		]
 	]
 ]
@@ -392,6 +393,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 	[
 		"name","in",
  			[
+				"Item-naming_series-options",
+				"Asset-naming_series-options",
 				"Sales Order-base_in_words-allow_on_submit",
 				"Sales Taxes and Charges-item_wise_tax_detail-allow_on_submit",
 				"Job Offer-status-options",
@@ -997,7 +1000,6 @@ doc_events = {
 		 			"axis_inspection.axis_inspection.doctype.delivery_note.delivery_note.get_timesheets_check"],
 	},
 	"Timesheet":{
-		"before_submit":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.check_attachement"],
 		"on_submit":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.on_submit",],
 		"on_cancel":["axis_inspection.axis_inspection.doctype.timesheet.timesheet.on_cancel"]
 	},
@@ -1013,7 +1015,6 @@ doc_events = {
 	"Payment Entry":{
 		"on_submit":["axis_inspection.axis_inspection.doctype.petty_cash_request.petty_cash_request.update_petty_cash_request_status"]
 	}
-
 }
 
 

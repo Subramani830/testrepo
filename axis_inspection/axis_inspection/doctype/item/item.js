@@ -11,5 +11,15 @@ frappe.ui.form.on('Item', {
 				}
 		    	});
 		})
+	},
+	refresh:function(frm){
+		frm.set_query('item_group', () => {
+			return {
+				filters: [
+					['Item Group', 'docstatus', '!=', 2],
+					['Item Group', 'is_group', '=', 0]
+				]
+			}
+		})
 	}
 })
