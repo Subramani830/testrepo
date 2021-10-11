@@ -30,7 +30,7 @@
    "fieldname": "retention_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Retention Amount"
+   "label": "Deduction Amount"
   },
   {
    "fieldname": "deduction_type",
@@ -59,7 +59,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-10-05 13:03:10.498185",
+ "modified": "2021-10-11 14:20:15.034528",
  "modified_by": "Administrator",
  "module": "Axis Inspection",
  "name": "Deduction Detail",

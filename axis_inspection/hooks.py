@@ -219,7 +219,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Contract-contract_template_for_arabic",
 		"Contract-contract_terms_",
 		"Contract-contract_template_",
-		"Salary Slip-employee_deduction",
 		"Sales Order Item-cost_center",
 		"Sales Order Item-branch",
 		"Sales Order Item-project",
@@ -241,7 +240,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Project-subject",
 		"Training Program-location",
 		"Sales Order-customers_purchase_order_valid_till",
-		"Salary Slip-overtime_bill",
 		"Training Program-section_break_10",
 		"Training Program-training_frequency",
 		"Training Program-column_break_12",
@@ -330,7 +328,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Delivery Note-location",
 		"Attendance-early_exit_duration",
 		"Attendance-late_entry_duration",
-		"Salary Slip-attendance_deduction_amount",
 		"Salary Slip-attendance_deduction_hours",
 		"Sales Invoice-sales_order",
 		"Salary Component-is_project_allwoance",
@@ -377,6 +374,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Sales Invoice Timesheet-time_sheet_reference_no",
 		"Sales Invoice Timesheet-employee",
 		"Sales Invoice Timesheet-shift",
+		"Timesheet Detail-is_project_allowance_applicable"
 		]
 	]
 ]
@@ -1013,7 +1011,6 @@ doc_events = {
 	"Payment Entry":{
 		"on_submit":["axis_inspection.axis_inspection.doctype.petty_cash_request.petty_cash_request.update_petty_cash_request_status"]
 	}
-
 }
 
 
