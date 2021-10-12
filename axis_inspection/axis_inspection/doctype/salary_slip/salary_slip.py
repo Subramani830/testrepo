@@ -64,9 +64,12 @@ def additional_salary(doc,method=None):
 
         working_hours = get_working_hours(doc.employee_name)
         earnings = get_earnings(doc.salary_structure)
+        total_working_days=0
+        if doc.total_working_days:
+            total_working_days=doc.total_working_days
         if working_hours:
             hours = float(working_hours)
-            attendance_deduction_amount = ((earnings/doc.total_working_days)/hours)*doc.attendance_deduction_hours
+            attendance_deduction_amount = ((earnings/total_working_days)/hours)*doc.attendance_deduction_hours
             create_additional_salary(doc.employee, 'Attendance Deduction', doc.start_date, attendance_deduction_amount)
 
 
