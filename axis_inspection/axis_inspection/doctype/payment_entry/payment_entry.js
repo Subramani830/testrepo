@@ -180,13 +180,17 @@ frappe.ui.form.on('Payment Entry', {
 				if (item.reference_doctype == "Sales Invoice" || item.reference_doctype == "Purchase Invoice") {
 					if (bank_account == undefined) {
 						bank_account = get_bank_account(item.reference_doctype, item.reference_name)
-						console.log(bank_account,'bank_account')
 						frm.set_value("bank_account", bank_account)
 					}
 					else {
-						var account,is_opening = get_bank_account_with_opening_check(item.reference_doctype, item.reference_name)
-						if (bank_account != account && is_opening=='No') {
-							frappe.throw(item.reference_doctype + ' ' + item.reference_name + ' should be allow for bank_Account  "' + account + '".');
+						var account = get_bank_account(item.reference_doctype, item.reference_name)
+						var is_opening=get_is_opening_value(item.reference_doctype, item.reference_name)
+						if(is_opening=='No'){
+							if(bank_account!=undefined && account!=undefined){
+								if (bank_account != account) {
+									frappe.throw(item.reference_doctype + ' ' + item.reference_name + ' should be allow for bank_Account  "' + account + '".');
+								}
+							}
 						}
 					}
 				}
@@ -253,8 +257,7 @@ function get_bank_account(doctype, name) {
 	return account
 }
 
-function get_bank_account_with_opening_check(doctype, name) {
-	var account;
+function get_is_opening_value(doctype, name) {
 	var is_opening;
 	frappe.call({
 		method: 'frappe.client.get_value',
@@ -265,13 +268,12 @@ function get_bank_account_with_opening_check(doctype, name) {
 				'name': name
 			},
 			'fieldname': [
-				"bank_account","is_opening"
+				"is_opening"
 			]
 		},
 		callback: function (r) {
-			account = r.message.bank_account
 			is_opening = r.message.is_opening
 		}
 	});
-	return account,is_opening
+	return is_opening
 }
