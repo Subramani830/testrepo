@@ -27,9 +27,9 @@ def additional_salary(doc,method=None):
 
     #doc = json.loads(doc)
     if doc.employee != None:
-        costing_amount = get_overtime_bill(doc)
-        create_additional_salary(doc.employee, 'Overtime',
-                                    doc.start_date, costing_amount)
+        costing_amount = get_overtime_bill(doc)#ommitting overtime additional salary until timesheet is fixed.
+        #create_additional_salary(doc.employee, 'Overtime',
+        #                            doc.start_date, costing_amount)
 
         #if doc.employee_deduction != 0:
         month = convertDateFormat(doc.end_date)
@@ -51,6 +51,9 @@ def additional_salary(doc,method=None):
             # employee_deduction = frappe.db.get_value('Deduction Detail', {
                 #'parenttype': 'Employee Deductions', 'month': month, 'parent': parent}, ['balance','salary_component_name'])
             if employee_deductions:
+                # file = open("/home/erpnext/frappe-bench/MyFile.txt", "a")
+                # file.write("found emp deductioN")
+                # file.close()
                 for record in employee_deductions:   
                     if record.deduction_type=="One Time":                                      
                         create_additional_salary(doc.employee, record.salary_component_name, doc.start_date, record.retention_amount)
@@ -89,6 +92,9 @@ def on_cancel(self, method):
 
 @frappe.whitelist()
 def update_salary_slip(self):
+    #setting gross pay to 0 otherwise it keeps incrementing
+    self.gross_pay = 0
+    self.total_deduction = 0
     for row in self.earnings:
         self.gross_pay += row.amount
 
@@ -112,10 +118,10 @@ def update_actual_paid(self):
     parent = frappe.db.get_value('Employee Deductions', {
                                  'employee': self.employee}, 'name')
     if parent:
-        deductions=frappe.db.get_list('Deduction Details',filters={'parent':parent},fields=['salary_component_name'])
+        deductions=frappe.db.get_list('Deduction Detail',filters={'parent':parent},fields=['salary_component_name'])
         if deductions:
             for each in deductions:
-                deduction_names.append(each[0].salary_component_name)
+                deduction_names.append(each.salary_component_name)
         if self.deductions:
             for rec in self.deductions:
                 if rec.salary_component in deduction_names:
