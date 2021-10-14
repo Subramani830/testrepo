@@ -43,10 +43,12 @@ class EmployeeDeductions(Document):
 		for row in monthList:
 			for val in self.get('deduction_calculation'):
 				if val.month==row:
-					self.total_balance+=val.balance
+				# 	self.total_balance+=val.balance
 					if val.month==datetime.datetime.now().strftime('%b')+'-'+datetime.datetime.now().strftime('%y'):
-						self.current_month_balance=val.balance
-
+						self.current_month_balance=val.total
+		for index,each in enumerate(self.deduction_calculation):
+			if index==len(self.deduction_calculation)-1:
+				self.total_balance=each.total
 
 @frappe.whitelist()
 def convertDateFormat(start_date):
@@ -126,8 +128,8 @@ def fetch_salary_slip_amount_of_recurring_month(employee,each_month,deductions):
 			`tabSalary Slip`
 		WHERE
 			`tabSalary Slip`.employee = %(employee)s
-			AND MONTH(%(date)s) BETWEEN MONTH(`tabSalary Slip`.start_date) AND MONTH(`tabSalary Slip`.end_date)
-			AND YEAR(%(date)s) BETWEEN YEAR(`tabSalary Slip`.start_date) AND YEAR(`tabSalary Slip`.end_date)
+			AND MONTH(%(date)s) = MONTH(`tabSalary Slip`.end_date)
+			AND YEAR(%(date)s) = YEAR(`tabSalary Slip`.end_date)
 			AND `tabSalary Slip`.status="Submitted"
 		""", {
 			'employee': employee,
