@@ -1,6 +1,12 @@
 frappe.ui.form.on('Sales Invoice', {
 refresh(frm) {
-		// your code here
+    frm.fields_dict['taxes'].grid.get_field('account_head').get_query = function(doc, cdt, cdn) {
+        return {    
+            filters: {
+                company: frm.doc.company
+            }
+        }
+    }
 if(frm.doc.month_of_work==""){
 	var today = new Date();
         var month = new Array();
@@ -89,4 +95,3 @@ po_no:function(frm){
 }
 
 });
-
