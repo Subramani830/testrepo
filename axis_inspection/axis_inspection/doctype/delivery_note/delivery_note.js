@@ -24,6 +24,14 @@ frappe.ui.form.on('Delivery Note', {
         if(frm.doc.po_no=="Proforma"){
             frm.set_df_property("timesheets", "reqd", 1);
         }
+    },
+    onload:function(frm){
+        frm.fields_dict['taxes'].grid.get_field('account_head').get_query = function(doc, cdt, cdn) {
+            return {    
+                filters: {
+                    company: frm.doc.company
+                }
+            }
+        }
     }
-
 }); 
