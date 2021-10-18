@@ -1,6 +1,12 @@
 frappe.ui.form.on('Sales Order', {
 refresh(frm) {
-
+	frm.fields_dict['taxes'].grid.get_field('account_head').get_query = function(doc, cdt, cdn) {
+        return {    
+            filters: {
+                company: frm.doc.company
+            }
+        }
+    }
 	if(frm.doc.status=="Closed"){
         frappe.call({
                 method:"axis_inspection.axis_inspection.api.update_workflow_status",
