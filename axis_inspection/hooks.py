@@ -26,7 +26,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"filters": [
          [
              "name", "in", [
-		"Purchase Invoice-employee",
+		"Journal Entry-attachment",
+		"Purchase Invoice Item-employee",
 		"Journal Entry Account-employee",
 		"Asset-old_asset_id",
 		"Sales Order Item-standby_rate",

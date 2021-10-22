@@ -220,6 +220,10 @@ timesheet_date: function(frm){
 	get_absent_days(frm)
 },
 before_save: function(frm){
+	if (frm.doc.docstatus === 0 && frm.doc.timesheet_type!="Basic") {
+		frm.set_df_property("visit", "reqd", 1);
+		frm.set_df_property("shift", "reqd", 1);
+	}
  var dates=[' '];
 	frappe.call({
 		method:"axis_inspection.axis_inspection.doctype.timesheet.timesheet.get_duplicate_entry",
