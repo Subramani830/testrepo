@@ -16,22 +16,33 @@ from datetime import datetime
 def additional_salary(doc,method=None):
     def get_overtime_bill(doc):
         total_costing_amount = 0.0
+        basic_amount=0
+        salary_structure = frappe.db.get_value('Salary Structure Assignment', {'employee': doc.employee, 'from_date': [
+                                           '<=', doc.start_date], 'docstatus': 1}, 'salary_structure', order_by='from_date desc')
+        if salary_structure:
+            basic_amount_rec = frappe.db.sql(
+                """select s.salary_component,s.amount from `tabSalary Detail` s where s.parentfield="Earnings" and s.parenttype="Salary Structure" and s.salary_component="Basic Salary" and s.parent=%s""", (salary_structure), as_dict=True)
+            if basic_amount_rec:
+                if basic_amount_rec[0].salary_component=="Basic Salary":
+                    basic_amount=basic_amount_rec[0].amount
+
         timesheet = frappe.db.get_list('Timesheet', {'employee': doc.employee, 'timesheet_date': [
-                                    "between", [doc.start_date, doc.end_date]], 'timesheet_type': 'Client', 'docstatus': 1}, 'name')
+                                     "between", [doc.start_date, doc.end_date]], 'timesheet_type': 'Basic', 'docstatus': 1}, 'name')
         for val in timesheet:
-            costing_amount_list = frappe.db.get_list('Timesheet Detail', filters={
-                                                    'activity_type': 'Overtime', 'parent': val.name}, fields=['costing_amount'])
-            for row in costing_amount_list:
-                total_costing_amount = total_costing_amount+row.costing_amount
+            costing_hours_list = frappe.db.get_list('Timesheet Detail', filters={
+                                                    'activity_type': 'Overtime', 'parent': val.name}, fields=['hours'])
+            for row in costing_hours_list:
+                overtime_amount=0
+                overtime_amount=round(((basic_amount*12/365)/row.hours)*1.5,2)
+                total_costing_amount = total_costing_amount+overtime_amount
         return total_costing_amount
 
-    #doc = json.loads(doc)
     if doc.employee != None:
-        costing_amount = get_overtime_bill(doc)#ommitting overtime additional salary until timesheet is fixed.
-        #create_additional_salary(doc.employee, 'Overtime',
-        #                            doc.start_date, costing_amount)
+        costing_amount=0
+        costing_amount = get_overtime_bill(doc)
+        create_additional_salary(doc.employee, 'Overtime',
+                                    doc.start_date, costing_amount)
 
-        #if doc.employee_deduction != 0:
         month = convertDateFormat(doc.end_date)
         parent = frappe.db.get_value('Employee Deductions', {
                                     'employee': doc.employee}, 'name')
@@ -48,8 +59,6 @@ def additional_salary(doc,method=None):
                     'parent': parent,
                     'end_date': doc.end_date
                 }, as_dict=True)
-            # employee_deduction = frappe.db.get_value('Deduction Detail', {
-                #'parenttype': 'Employee Deductions', 'month': month, 'parent': parent}, ['balance','salary_component_name'])
             if employee_deductions:
                 # file = open("/home/erpnext/frappe-bench/MyFile.txt", "a")
                 # file.write("found emp deductioN")
@@ -73,7 +82,8 @@ def additional_salary(doc,method=None):
         if working_hours:
             hours = float(working_hours)
             attendance_deduction_amount = ((earnings/total_working_days)/hours)*doc.attendance_deduction_hours
-            create_additional_salary(doc.employee, 'Attendance Deduction', doc.start_date, attendance_deduction_amount)
+            #Commenting attendance deduction creation for now
+            #create_additional_salary(doc.employee, 'Attendance Deduction', doc.start_date, attendance_deduction_amount)
 
 
 def validate(self, method):
@@ -178,7 +188,7 @@ def update_earnings(employee, self):
                 total_working_days = frappe.db.sql("""
                 select count(DISTINCT DATE(td.from_time)) as working_days from `tabTimesheet Detail` td join  `tabTimesheet` t
            on(t.name=td.parent) where td.activity_type IN ('On Duty','Overtime','Standby') and td.docstatus=1 and td.from_time 
-                BETWEEN %s and DATE_ADD(%s, INTERVAL 1 DAY) and t.employee=%s and t.timesheet_type='Client' and td.is_project_allowance_applicable=1
+                BETWEEN %s and DATE_ADD(%s, INTERVAL 1 DAY) and t.employee=%s and t.timesheet_type='Basic' and td.is_project_allowance_applicable=1
                 """, (frappe.utils.add_months(self.start_date, -1), frappe.utils.add_months(self.end_date, -1), employee), as_dict=True)
                 if total_working_days:
                     for val in total_working_days:
@@ -192,18 +202,6 @@ def update_earnings(employee, self):
                             amount = 0
                             create_additional_salary(
                                 employee, component.salary_component, self.start_date, amount)
-
-
-def get_overtime_bill(self):
-    total_costing_amount = 0.0
-    timesheet = frappe.db.get_list('Timesheet', {'employee': self.employee, 'timesheet_date': [
-                                   "between", [self.start_date, self.end_date]], 'timesheet_type': 'Client', 'docstatus': 1}, 'name')
-    for val in timesheet:
-        costing_amount_list = frappe.db.get_list('Timesheet Detail', filters={
-                                                 'activity_type': 'Overtime', 'parent': val.name}, fields=['costing_amount'])
-        for row in costing_amount_list:
-            total_costing_amount = total_costing_amount+row.costing_amount
-    return total_costing_amount
 
 
 def create_additional_salary(employee, salary_component, start_date, amount):
