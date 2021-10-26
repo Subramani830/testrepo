@@ -204,19 +204,6 @@ timesheet_type:function(frm){
 		})
 	},
 timesheet_date: function(frm){
-	if(frm.doc.timesheet_date!=undefined){
-	frappe.call({
-		method: 'axis_inspection.axis_inspection.doctype.timesheet.timesheet.convertDateFormat',
-		async:false,
-		args: {
-			start_date:frm.doc.timesheet_date
-		},
-		callback: function(c) {
-		frm.set_value("month_of_work",c.message[0])
-		frm.set_value("year_of_work",c.message[1])
-		}
-	});
-	}
 	get_absent_days(frm)
 },
 before_save: function(frm){
