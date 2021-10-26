@@ -5,8 +5,7 @@ import frappe
 
 def get_dashboard_data(data):
 	return {
-        'heatmap': True,
-		'fieldname': 'name',
+		'fieldname': 'time_sheet',
 		'transactions': [
 			{
 				'label': _('References'),

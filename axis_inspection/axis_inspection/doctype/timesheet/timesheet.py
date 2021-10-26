@@ -150,7 +150,7 @@ def get_duplicate_entry(doc):
 	if result['timesheet_type']!="Basic":
 		try:
 			if result['customer']:
-				for time_sheet in frappe.db.get_list("Timesheet", filters={"employee":result['employee'],"year_of_work":result['year_of_work'],"month_of_work":result['month_of_work'],"customer":result['customer'],"name":["!=",result['name']]},fields=["name"]):
+				for time_sheet in frappe.db.get_list("Timesheet", filters={"employee":result['employee'],"start_date":result["start_date"],"end_date":result["end_date"],"customer":result['customer'],"name":["!=",result['name']]},fields=["name"]):
 					if(time_sheet):
 						for i in result['time_logs']:
 							f_time = i['from_time']
@@ -160,7 +160,7 @@ def get_duplicate_entry(doc):
 							for time in day_time:
 								days.append(day_time)
 		except KeyError:
-			for time_sheet in frappe.db.get_list("Timesheet", filters={"employee":result['employee'],"year_of_work":result['year_of_work'],"month_of_work":result['month_of_work'],"name":["!=",result['name']]},fields=["name"]):
+			for time_sheet in frappe.db.get_list("Timesheet", filters={"employee":result['employee'],"start_date":result["start_date"],"end_date":result["end_date"],"name":["!=",result['name']]},fields=["name"]):
 				if(time_sheet):
 					for i in result['time_logs']:
 						f_time = i['from_time']

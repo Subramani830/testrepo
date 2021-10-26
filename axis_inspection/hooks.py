@@ -26,6 +26,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"filters": [
          [
              "name", "in", [
+		"Sales Invoice Timesheet-start_date",
+		"Sales Invoice Timesheet-end_date",
 		"Journal Entry-attachment",
 		"Purchase Invoice Item-employee",
 		"Journal Entry Account-employee",
@@ -368,10 +370,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Material Request-prefered_email",
 		"Material Request-reports_to",
 		"Material Request-reports_to_employee_name",
-		"Timesheet-month_of_work",
-		"Timesheet-year_of_work",
-		"Sales Invoice Timesheet-year_of_work",
-		"Sales Invoice Timesheet-month_of_work",
 		"Timesheet-timesheet_reference_no",
 		"Timesheet-shift",
 		"Timesheet-visit",
