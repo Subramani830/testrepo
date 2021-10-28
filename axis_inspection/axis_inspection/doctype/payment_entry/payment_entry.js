@@ -221,6 +221,34 @@ frappe.ui.form.on('Payment Entry', {
 				}
 			})
 		}
+	},
+	setup:function(frm,cdt,cdn){
+		frm.set_query("reference_name", "references", function(doc, cdt, cdn) {
+			const child = locals[cdt][cdn];
+			const filters = {"docstatus": 1, "company": doc.company};
+			const party_type_doctypes = ['Sales Invoice', 'Sales Order', 'Purchase Invoice',
+				'Purchase Order', 'Expense Claim', 'Fees', 'Dunning', 'Donation'];
+
+			if (in_list(party_type_doctypes, child.reference_doctype)) {
+				filters[doc.party_type.toLowerCase()] = doc.party;
+			}
+
+			if(child.reference_doctype == "Expense Claim") {
+				filters["docstatus"] = 1;
+				filters["is_paid"] = 0;
+			}
+			if(child.reference_doctype == "Purchase Invoice") {
+				filters["is_paid"] = 0;
+			}
+			if(child.reference_doctype == "Sales Invoice"){
+				filters["outstanding_amount"]=["!=",0]
+			}
+
+			return {
+				filters: filters
+			};
+		});
+
 	}
 });
 
@@ -232,34 +260,6 @@ frappe.ui.form.on('Payment Entry Reference', {
 		if (frm.doc.employee_costs != undefined) {
 			cur_row.doc.employee_costs = frm.doc.employee_costs
 			cur_frm.refresh_fields();
-		}
-	},
-	reference_doctype(frm,cdt,cdn){
-		var cur_doc = locals[cdt][cdn];
-		if(cur_doc.reference_doctype=="Purchase Invoice" || cur_doc.reference_doctype=="Sales Invoice"){
-			frm.fields_dict['references'].grid.get_field('reference_name').get_query = function(doc, cdt, cdn) {
-				return {    
-					filters: {
-						company: frm.doc.company,
-						docstatus:1,
-						is_paid:0,
-						supplier:frm.doc.party
-					}
-				}
-			}
-			refresh_field("references");
-		}
-		else{
-			frm.fields_dict['references'].grid.get_field('reference_name').get_query = function(doc, cdt, cdn) {
-				return {    
-					filters: {
-						company: frm.doc.company,
-						docstatus:1,
-						supplier:frm.doc.party
-					}
-				}
-			}
-			refresh_field("references");
 		}
 	}
 })
