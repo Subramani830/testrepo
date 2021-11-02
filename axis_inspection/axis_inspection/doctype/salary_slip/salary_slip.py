@@ -17,6 +17,9 @@ def additional_salary(doc,method=None):
     def get_overtime_bill(doc):
         total_costing_amount = 0.0
         basic_amount=0
+        contract_working_hours=0
+        employee_contract_rec=frappe.db.get_value('Employee Contract',{'docstatus':1,'party_name':doc.employee},['name'])
+        contract_working_hours=frappe.db.get_value('Contract Term Detail', {'contract_term': 'Working Hours','parent':employee_contract_rec}, ['value'])
         salary_structure = frappe.db.get_value('Salary Structure Assignment', {'employee': doc.employee, 'from_date': [
                                            '<=', doc.start_date], 'docstatus': 1}, 'salary_structure', order_by='from_date desc')
         if salary_structure:
@@ -33,7 +36,7 @@ def additional_salary(doc,method=None):
                                                     'activity_type': 'Overtime', 'parent': val.name}, fields=['hours'])
             for row in costing_hours_list:
                 overtime_amount=0
-                overtime_amount=round(((basic_amount*12/365)/row.hours)*1.5,2)
+                overtime_amount=round((((basic_amount*12/365)/int(contract_working_hours))*1.5)*row.hours,2)
                 total_costing_amount = total_costing_amount+overtime_amount
         return total_costing_amount
 
