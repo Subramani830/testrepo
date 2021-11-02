@@ -2352,7 +2352,7 @@
   "reqd": 1,
   "search_index": 0,
   "translatable": 0,
-  "unique": 0,
+  "unique": 1,
   "width": null
  },
  {
@@ -6824,7 +6824,7 @@
   "reqd": 1,
   "search_index": 0,
   "translatable": 0,
-  "unique": 0,
+  "unique": 1,
   "width": null
  },
  {

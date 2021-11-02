@@ -320,7 +320,6 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"Timesheet-customer",
 		"Timesheet Detail-shift",
 		"Timesheet Detail-visit",
-		"Supplier-company_registration",
 		"Asset-project",
 		"Sales Invoice-send_customer_email",
 		"Salary Structure-employee",
