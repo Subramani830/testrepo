@@ -26,6 +26,8 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 		"filters": [
          [
              "name", "in", [
+		"Item-old_item_id",
+		"Project-purchase_order",
 		"Sales Invoice Timesheet-start_date",
 		"Sales Invoice Timesheet-end_date",
 		"Journal Entry-attachment",
@@ -391,6 +393,7 @@ fixtures = ["Desk Page","Workflow","Workflow State","Workflow Action Master","Le
 	[
 		"name","in",
  			[
+				"Vehicle-chassis_no-unique",
 				"Item-naming_series-options",
 				"Asset-naming_series-options",
 				"Sales Order-base_in_words-allow_on_submit",
@@ -964,7 +967,8 @@ override_doctype_dashboards = {
 	"Project":["axis_inspection.axis_inspection.doctype.project.project_dashboard.get_dashboard_data"],
 	"Quotation":["axis_inspection.axis_inspection.doctype.quotation.quotation_dashboard.get_dashboard_data"],
 	"Petty Cash Request":["axis_inspection.axis_inspection.doctype.petty_cash_request.petty_cash_request_dashboard.get_dashboard_data"],
-	"Timesheet":["axis_inspection.axis_inspection.doctype.timesheet.timesheet_dashboard.get_dashboard_data"]
+	"Timesheet":["axis_inspection.axis_inspection.doctype.timesheet.timesheet_dashboard.get_dashboard_data"],
+	# "Delivery Note":["axis_inspection.axis_inspection.doctype.delivery_note.delivery_note_dashboard.get_dashboard_data"]
 }
 
 doc_events = {
