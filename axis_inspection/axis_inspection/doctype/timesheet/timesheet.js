@@ -29,18 +29,6 @@ employee:function(frm,cdt,cdn){
 					}
 				}
 			});
-			frappe.call({
-				method:"axis_inspection.axis_inspection.api.get_working_hours",
-				async:false,
-				args: {
-				"employee_name":frm.doc.employee_name
-				},
-				callback: function(r){
-					for(var i=0; i<r.message.length; i++){
-						frm.set_value('working_hour',r.message)
-					}
-				}
-			});
 			frm.set_query("project","time_logs",function(){
 				return{
 					filters: {
@@ -48,8 +36,23 @@ employee:function(frm,cdt,cdn){
 					}
 					}
 					});
-}
-get_absent_days(frm)
+				}
+},
+employee_name:function(frm){
+	if(frm.doc.employee_name){
+		frappe.call({
+			method:"axis_inspection.axis_inspection.api.get_working_hours",
+			async:false,
+			args: {
+			"employee_name":frm.doc.employee_name
+			},
+			callback: function(r){
+				for(var i=0; i<r.message.length; i++){
+					frm.set_value('working_hour',r.message)
+				}
+			}
+		});
+	}
 },
 before_submit: function (frm) {
 	if (frm.doc.status === "Draft") {
@@ -122,7 +125,7 @@ before_workflow_action: (frm) => {
 			},
 			callback: function(r){
 				for(var i=0; i<r.message.length; i++){
-					items.push(r.message[i]);
+					items.push(r.message[i].item_code);
 				}
 			}
 		});
