@@ -295,14 +295,14 @@ def get_employee(task):
 
 @frappe.whitelist()
 def validate_stock_entry(stock_entry_type):
-	items=[]
-	stock_entry=frappe.db.get_list("Stock Entry",filters={'stock_entry_type':'Material Issue','docstatus':1},fields=["name"])
-	for row in stock_entry:
-		item_list=frappe.db.get_list('Stock Entry Detail',filters={'parent':row.name,'parenttype':'Stock Entry'},fields=['item_code'])
-		for val in item_list:
-			if val.item_code not in items:
-				items.append(val.item_code)
-	return items
+	stock_entry_items=frappe.db.sql("""
+		SELECT DISTINCT `tabStock Entry Detail`.item_code
+		FROM `tabStock Entry Detail`,`tabStock Entry`
+		WHERE `tabStock Entry Detail`.parent=`tabStock Entry`.name AND `tabStock Entry Detail`.parenttype='Stock Entry'
+		AND `tabStock Entry`.stock_entry_type='Material Issue' AND `tabStock Entry`.docstatus=1
+	""", as_dict=True)
+
+	return stock_entry_items
 
 @frappe.whitelist()
 def get_working_hours(employee_name):
