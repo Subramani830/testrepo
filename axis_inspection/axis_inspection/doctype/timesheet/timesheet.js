@@ -125,7 +125,7 @@ before_workflow_action: (frm) => {
 			},
 			callback: function(r){
 				for(var i=0; i<r.message.length; i++){
-					items.push(r.message[i]);
+					items.push(r.message[i].item_code);
 				}
 			}
 		});
