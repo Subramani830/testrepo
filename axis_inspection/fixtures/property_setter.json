@@ -1,4 +1,21 @@
 [
+  {
+    "default_value": null,
+    "doc_type": "Vehicle",
+    "docstatus": 0,
+    "doctype": "Property Setter",
+    "doctype_or_field": "DocField",
+    "field_name": "chassis_no",
+    "modified": "2021-11-08 10:25:37.466380",
+    "name": "Vehicle-chassis_no-unique",
+    "parent": null,
+    "parentfield": null,
+    "parenttype": null,
+    "property": "unique",
+    "property_type": "Check",
+    "row_name": null,
+    "value": "1"
+  },
  {
    "default_value": null,
    "doc_type": "Asset",
