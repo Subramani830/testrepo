@@ -1,0 +1,24 @@
+diff --git frappe/core/doctype/user_permission/user_permission.js frappe/core/doctype/user_permission/user_permission.js
+index 4c3f5b4eb8..8490845463 100644
+--- frappe/core/doctype/user_permission/user_permission.js
++++ frappe/core/doctype/user_permission/user_permission.js
+@@ -32,7 +32,8 @@ frappe.ui.form.on('User Permission', {
+ 	allow: frm => {
+ 		if (frm.doc.allow) {
+ 			if (frm.doc.for_value) {
+-				frm.set_value('for_value', null);
++				frappe.model.set_value(frm.doctype, frm.name, "for_value", null);
++				//frm.set_value('for_value', null);
+ 			}
+ 			frm.trigger('toggle_hide_descendants');
+ 		}
+@@ -45,7 +46,8 @@ frappe.ui.form.on('User Permission', {
+ 	set_applicable_for_constraint: frm => {
+ 		frm.toggle_reqd('applicable_for', !frm.doc.apply_to_all_doctypes);
+ 		if (frm.doc.apply_to_all_doctypes) {
+-			frm.set_value('applicable_for', null);
++			frappe.model.set_value(frm.doctype, frm.name, "applicable_for", null);
++			//frm.set_value('applicable_for', null);
+ 		}
+ 	},
+ 
