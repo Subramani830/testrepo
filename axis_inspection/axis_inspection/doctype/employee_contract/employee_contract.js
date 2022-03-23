@@ -73,7 +73,7 @@ frappe.ui.form.on('Employee Contract', {
 
 	},
 	after_save:function(frm){
-		if(frm.doc.party_type=="Employee"){
+		if(frm.doc.party_type=="Employee"  && !frm.doc.__islocal){
 			 var ot;
 			    $.each(frm.doc.contract_term, function(idx, item){
 					if(item.contract_term=="Overtime"){
