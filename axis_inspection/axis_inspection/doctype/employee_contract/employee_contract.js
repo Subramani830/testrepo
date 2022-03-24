@@ -277,3 +277,5 @@ function getDateDifference(startDate,endDate) {
 	};
   }
 
+// cherrypic example for the js 
+
