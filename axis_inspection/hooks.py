@@ -957,6 +957,7 @@ scheduler_events = {
  	 ]
 }
 
+#test
 override_doctype_dashboards = {
 	"Employee": ["axis_inspection.axis_inspection.doctype.employee.employee_dashboard.get_dashboard_data"],
 	"Contract": ["axis_inspection.axis_inspection.doctype.contract.contract_dashboard.get_dashboard_data"],
