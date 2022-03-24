@@ -2,6 +2,8 @@
 # Copyright (c) 2021, veena and contributors
 # For license information, please see license.txt
 
+#example of the cherry pick
+
 from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
