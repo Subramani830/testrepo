@@ -1222,6 +1222,7 @@ SalesInvoice.add_timesheet_data = add_timesheet_data
 SalarySlip.calculate_net_pay = calculate_net_pay
 SalarySlip.calculate_component_amounts = calculate_component_amounts
 
+#added A COMMENT
 
 app_include_js = "/assets/js/axis_inspection.min.js"
 # Includes in <head>
