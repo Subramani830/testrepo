@@ -957,7 +957,6 @@ scheduler_events = {
  	 ]
 }
 
-#test
 override_doctype_dashboards = {
 	"Employee": ["axis_inspection.axis_inspection.doctype.employee.employee_dashboard.get_dashboard_data"],
 	"Contract": ["axis_inspection.axis_inspection.doctype.contract.contract_dashboard.get_dashboard_data"],
@@ -969,7 +968,6 @@ override_doctype_dashboards = {
 	"Quotation":["axis_inspection.axis_inspection.doctype.quotation.quotation_dashboard.get_dashboard_data"],
 	"Petty Cash Request":["axis_inspection.axis_inspection.doctype.petty_cash_request.petty_cash_request_dashboard.get_dashboard_data"],
 	"Timesheet":["axis_inspection.axis_inspection.doctype.timesheet.timesheet_dashboard.get_dashboard_data"],
-	# "Delivery Note":["axis_inspection.axis_inspection.doctype.delivery_note.delivery_note_dashboard.get_dashboard_data"]
 }
 
 doc_events = {
@@ -1224,6 +1222,7 @@ SalesInvoice.add_timesheet_data = add_timesheet_data
 SalarySlip.calculate_net_pay = calculate_net_pay
 SalarySlip.calculate_component_amounts = calculate_component_amounts
 
+#added A COMMENT
 
 app_include_js = "/assets/js/axis_inspection.min.js"
 # Includes in <head>
@@ -1253,8 +1252,6 @@ app_include_js = "/assets/js/axis_inspection.min.js"
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
-# Home Pages
-# ----------
 
 # application home page (will override Website Settings)
 # home_page = "login"
