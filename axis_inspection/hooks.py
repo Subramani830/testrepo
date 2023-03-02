@@ -969,7 +969,6 @@ override_doctype_dashboards = {
 	"Quotation":["axis_inspection.axis_inspection.doctype.quotation.quotation_dashboard.get_dashboard_data"],
 	"Petty Cash Request":["axis_inspection.axis_inspection.doctype.petty_cash_request.petty_cash_request_dashboard.get_dashboard_data"],
 	"Timesheet":["axis_inspection.axis_inspection.doctype.timesheet.timesheet_dashboard.get_dashboard_data"],
-	# "Delivery Note":["axis_inspection.axis_inspection.doctype.delivery_note.delivery_note_dashboard.get_dashboard_data"]
 }
 
 doc_events = {

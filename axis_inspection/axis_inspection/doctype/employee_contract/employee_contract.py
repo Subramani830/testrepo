@@ -23,6 +23,16 @@ class EmployeeContract(Document):
 
 				elif row.value!="Not Applicable" or row.value!="Applicable":
 					frappe.throw(_('Overtime value should be either "Not Applicable" or "Applicable"'))
+					
+	def on_cancel(self):
+		self.remove_employee_contract()
+		
+	def on_trash(self):
+		self.remove_employee_contract()
+		
+	def remove_employee_contract(self):
+		if self.party_type=="Employee":
+			frappe.db.set_value('Employee', self.party_name,{ 'contract_no': None, 'contract':None,'contract_end_date':None,'contract_date_end':None})
 
 
 @frappe.whitelist()
