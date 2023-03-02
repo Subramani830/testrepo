@@ -957,7 +957,6 @@ scheduler_events = {
  	 ]
 }
 
-#test
 override_doctype_dashboards = {
 	"Employee": ["axis_inspection.axis_inspection.doctype.employee.employee_dashboard.get_dashboard_data"],
 	"Contract": ["axis_inspection.axis_inspection.doctype.contract.contract_dashboard.get_dashboard_data"],
@@ -1252,8 +1251,6 @@ app_include_js = "/assets/js/axis_inspection.min.js"
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
-# Home Pages
-# ----------
 
 # application home page (will override Website Settings)
 # home_page = "login"
